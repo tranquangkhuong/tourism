@@ -1,0 +1,90 @@
+   /* mobile */
+   @media only screen and (max-width:46.1875em){
+       .hide-on-mobile{
+           display: none;
+       }
+        /* header */
+        .header-bottom .header-mid .header-nav__list{
+            flex-direction: column;
+        }
+        .header-bottom .header-nav__list .header-nav__item{
+            width: 100%;
+        }
+        .search-wrap .search__btn{
+            padding: 16px 10px 12px;
+        }
+        .footer-wrap{
+            padding: 0 20px;
+        }
+    }
+
+    /*  tablet */
+    @media only screen and (min-width:46.25em) and (max-width:63.9375em) {
+        .footer-logo a img{
+            width: 180px;
+        }
+    }
+    /* Tablet and Mobile  */
+    @media only screen and (max-width:63.9375em){
+        .hide-on-tablet-mobile{
+            display: none;
+        }
+        /* header */
+        .header-bottom .header-mid{
+            position: absolute;
+            height: auto;
+            align-items: self-end;
+            width: 100%;
+            position: fixed;
+            top: 18%;
+            right: 100%;
+            transition: all ease-in 0.6s;
+            opacity: 1;
+        }
+        #category-checkbox-input:checked ~ .header-mid{
+            right: 0;
+            opacity: 1;
+        }
+        .header-bottom .header-nav__list{
+            height: auto;
+        }
+        .header-nav__list .header-nav__item{
+            background-color: #36c1bc99;
+            border: 1px solid var(--white-color);
+        }
+        .header-nav__item .header-nav__link{
+            padding: 10px 0;
+            color: var(--white-color);
+        }
+        .header-nav__link::before{
+            content: '';
+            display: none;
+        }
+        .header-nav__link::after{
+            content: '';
+            background-color: #fff;
+        }
+        .list-category-mobile{
+            font-size: 20px;
+            padding: 20px;
+        }
+        .list-category-mobile i:hover{
+            color: var(--primary-color);
+        }
+        .logo{
+            padding-left: 0;
+        }
+        .form-search{
+            width: 90%;
+        }
+        .footer-column{
+            margin-top: 50px;
+        }
+    }
+    /* PC */
+    @media screen and (min-width:1024px) {
+        .list-category-mobile{
+            display: none;
+        }
+
+    }
