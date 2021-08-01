@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"
     integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw=="
     crossorigin="anonymous" />
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous">
-    </script>
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+    <script type="text/javascript" src="{{ URL::asset('frontend/jquery/jquery.min.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
     integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
@@ -35,11 +35,34 @@
     <title>Setsail Website</title>
 </head>
 <body>
-    <!-- <div class="preloading">
-        <div class="close_category"></div>
+    <!-- <div class="load-wrap">
+        <div class="loader">
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+            <span style="--i:4;"></span>
+            <span style="--i:5;"></span>
+            <span style="--i:6;"></span>
+            <span style="--i:7;"></span>
+            <span style="--i:8;"></span>
+            <span style="--i:9;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:15;"></span>
+            <span style="--i:16;"></span>
+            <span style="--i:17;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:20;"></span>
+            <div class="plane"></div>
+        </div>
     </div> -->
-    <!-- <header id="header"> -->
-    <header id="header">
+
+<div class="main">
+ <header id="header">
         <section class="header-top hide-on-tablet-mobile" >
             <div class="header-top__left">
                 <a href="mailto:hoangngocbkhn2311@gmail.com" class="header-top__left-item">
@@ -70,6 +93,9 @@
                         <li class="language-item"><a href="" class="language-link">Tiếng Việt</a></li>
                     </ul>
                 </div>
+                <div class="account js-account">
+                    <a href="#" class="account__link"><i class="ti-user"></i></a>
+                </div>
             </div>
         </section>
         <section class="header-bottom">
@@ -94,7 +120,7 @@
                         <a href="#" class="header-nav__link">Destination</a>
                     </li>
                     <li class="header-nav__item">
-                        <a href="#" class="header-nav__link">Tour</a>
+                        <a href="#" class="header-nav__link active">Tour</a>
                         <ul class="subnav-list">
                             <li class="subnav-item"><a href="#" class="subnav-link">Domestic</a></li>
                             <li class="subnav-item"><a href="#" class="subnav-link">Foreign</a></li>
@@ -127,10 +153,11 @@
                     </div>
                 </div>
                 <label for="search-check-input-btn" class="modal_overlay"></label>
+                <div class="account js-account hide-on-pc">
+                    <a href="#" class="account__link"><i class="ti-user"></i></a>
+                </div>
             </div>
-
         </section>
-
     </header>
 
     <div class="container">
@@ -241,7 +268,7 @@
             </div>
         </div>
 
-        <section class="title title-top">
+        <section class="title title-top title-top-first">
             <div class="grid wide">
                 <div class="row">
                     <div class="col l-6 l-o-3 m-8 m-o-2 c-10 c-o-1">
@@ -261,7 +288,7 @@
                     <div class="col l-3 m-6 c-8 c-o-2 tour-item-wrap">
                         <div class="tour-location tour-item">
                             <div class="tour-location__img">
-                                <img src="{{ URL::asset('frontend/img/touritem10.jpg') }}" alt="tour">
+                                <img width="650" heigth="650" src="{{ URL::asset('frontend/img/touritem10.jpg') }}" alt="tour">
                             </div>
                             <span class="tour-item__location">Viet Nam</span>
                             <a href="#" class="tour-item__link"></a>
@@ -449,8 +476,8 @@
                                         </div>
                                     </div>
                                     <div class="video">
-                                        <div class="video-wrap">
-                                            <div class="video-frames">
+                                            <!-- // video tự quay -->
+                                            <div class="video-frames js-video">
                                                 <img src="{{ URL::asset('frontend/img/hoi-an-travel.jpg') }}" alt="" class="video-frames__imge" onclick="playVideo()">
                                                 <span class="video-frames-button">
                                                     <img src="{{ URL::asset('frontend/img/play-button.png') }}" alt="" class="video-frames-button__play" onclick="playVideo()" >
@@ -462,17 +489,12 @@
                         </div>
                 </div>
 
-                <div class="modal" id="videoModal">
-                    <div class="modal__overlay">
-                        <div class="video-wrap">
-                            <div class="video-layer" id="videoPlayer">
-                                <video width="100%" controls   id="myVideo" >
-                                    <source src="{{ URL::asset('frontend/video/video.mp4') }}"  type="video/mp4">
-                                </video>
-                                <img src="{{ URL::asset('frontend/img/close.png') }}" alt="" class="close" onclick="stopVideo()">
+                <div class="modal-video js-modal-video-close" onclick="stopVideo()" id="videoModal">
+                        <div class="video-wrap wy">
+                            <div class="youtube">
+                               <iframe  width="640" height="360" src="https://www.youtube.com/embed/Ilui-mb3sT0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; controls; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
-                    </div>
                  </div>
            </div>
         </section>
@@ -527,7 +549,7 @@
             </div>
         </section>
         <section id="slide-tour">
-            <div class="title title-top">
+            <div class="title title-top ">
                 <div class="grid wide">
                     <div class="row">
                         <div class="col l-6 l-o-3 m-8 m-o-2 c-10 c-o-1">
@@ -933,13 +955,13 @@
                 </div>
             </div>
         </section>
-        <!-- <section id="blog">
+        <section id="blog">
             <div class="grid wide">
                 <div class="row">
-                    <div class="col l-7">
+                    <div class="col l-8 c-10 c-o-1">
                         <div class="blog-title">
                             <h2 class="blog-title__heading">From Our Blog</h2>
-                            <p class="blog-title__text">Một số bài viết về ẩm thức đặc biejetj của chúng tôi, có thể bạn sẽ quan tâm đến</p>
+                            <p class="blog-title__text">Một số bài viết về ẩm thức đặc biệt của chúng tôi, có thể bạn sẽ quan tâm đến hãy xem những bài viết dưới đấy để biết thêm</p>
                         </div>
                         <ul class="blog-list">
                             <li class="blog-item">
@@ -950,7 +972,7 @@
                                     <h4 class="blog-item__content-name"><a href="#">Amazing Tour</a></h4>
                                     <p class="blog-item__content-text">Al alit emnos lnipedit ius, vel et hinc agam fabulas. Ut audiam invenire iracundia vim. An eam dico similique, ut sint posse sit,</p>
                                     <div class="content-comment__wrap">
-                                        <a href="#" class="content-comment__wrap">September 11, 2016</a>
+                                        <a href="#">September 11, 2016</a>
                                         <a href="#"><i class="fas fa-comment"></i>4 comments</a>
                                     </div>
                                 </div>
@@ -961,24 +983,27 @@
                                 </div>
                                 <div class="blog-item__content">
                                     <h4 class="blog-item__content-name"><a href="#">Amazing Tour</a></h4>
-                                    <p class="blog-item__content-text">Al alit emnos lnipedit ius, vel et hinc agam fabulas. Ut audiam invenire iracundia vim. An eam dico similique, ut sint posse sit,</p>
+                                    <p class="blog-item__content-text">Al alit emnos lnipedit ius, vel et hinc agam fabulas. Ut audiam invenire iracundia vim. An eam dico similique, ut sint posse sit,l alit emnos lnipedit ius, vel et hinc agam fabulas. Ut audiam invenire iracundia vim. An eam dico similique, ut sint posse sitl alit emnos lnipedit ius, vel et hinc agam fabulas. Ut audiam invenire iracundia vim. An eam dico similique, ut sint posse sit</p>
                                     <div class="content-comment__wrap">
-                                        <a href="#" class="content-comment__wrap">September 11, 2016</a>
-                                        <a href="#"><i class="fas fa-comment"></i>4 comments</a>
+                                        <a href="#" >September 11, 2016</a>
+                                        <a href="#"><i class="far fa-comment"></i>4 comments</a>
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
-                    <div class="col l-5">
-                        <div class="blog-show-img">
-                            <a href="#"><img src="{{ URL::asset('frontend/img/stamp5.jpg') }}" alt="show"></a>
+                    <div class="col l-4 hide-on-mobile hide-on-tablet">
+                        <div class="blog-show-wrap">
+                            <a class="blog-show-img" href="#"><img src="{{ URL::asset('frontend/img/woman.jpg') }}" alt="show"></a>
+                            <div class="robbins-wrap">
+                                <h5 class="robbins-link">vietour.com</h5>
+                                <h2 class="robbins">sale up to 70%</h2>
+                            </div>
                         </div>
-                        <a href="#" class="robbins">sale up to 70%</a>
                     </div>
                 </div>
             </div>
-        </section> -->
+        </section>
     </div>
     <footer id="footer">
         <div class="grid wide">
@@ -1039,7 +1064,70 @@
             </div>
         </div>
     </footer>
+</div>
+    <!-- login form -->
+    <div class="modal js-modal-close">
+        <div class="modal-container">
+            <header class="form-header">
+                <a href="#" class="form-header__action active">Login</a>
+                <a href="#" class="form-header__action">Register</a>
+            </header>
+            <div class="form-body form-body-login active">
+                <h4 class="form-title">Sign In Here!</h4>
+                <p class="form-descriotion">Log into your account in just a few simple steps</p>
+                <form action="">
+                    <input type="text" id="form-input" placeholder="User Name">
+                    <label for="form-input"></label>
+                    <input type="password" id="form-input" placeholder="Password">
+                    <label for="form-input"></label>
+
+                    <div class="remember-me">
+                        <label class="remember-lable" for="remember-radio">Remember me</label>
+                        <input type="radio" id="remember-radio">
+                    </div>
+                    <div class="form-btn">
+                        <p class="forgot-password">Forgot your password?</p>
+                            <button type="submit">sign in</button>
+                    </div>
+                    <div class="form-login-social">
+                        <p class="form-descriotion">Sign in with Facebook or Google+</p>
+                        <div class="google-facebook">
+                            <button class="facebook"><i class="fab fa-facebook-f"></i>Facebook</button>
+                            <button class="google"><i class="fab fa-google-plus-g"></i></i>Google</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="form-body form-body-register">
+                <h4 class="form-title">Register Now!</h4>
+                <p class="form-descriotion">Join the Viettour community today & set up a free account</p>
+                <form action="">
+                    <input type="text" id="form-input" name="other" placeholder="User name">
+                    <label for="form-input"></label>
+                    <input class="email" type="text" id="form-input" placeholder="Email">
+                    <label for="form-input"></label>
+                    <input type="password" id="form-input" placeholder="Password">
+                    <label for="form-input"></label>
+                    <input type="password" id="form-input" placeholder="Repeat Password">
+                    <label for="form-input"></label>
+
+                    <div class="form-btn">
+                        <button type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+
+<!-- // scoll header -->
+<script type="text/javascript">
+    window.addEventListener("scroll", function () {
+        var header = document.querySelector("header");
+        var height = "200px"
+        header.classList.toggle("sticky", window.scrollY > 0);
+    })
+</script>
 <script >
     const selected = document.querySelector(".filter-selected")
     const optionContainer = document.querySelector(".filter__list")
@@ -1072,18 +1160,27 @@
     })
 
       //video
-       var myVideo = document.getElementById("myVideo");
-       var videoModal = document.getElementById("videoModal");
+      const modalVideo =  document.querySelector(".modal-video")
+      const getBtns = document.querySelectorAll('.js-video')
+      const modalVideoClose = document.querySelector(".js-modal-video-close")
+      const modalVideoContainer = document.querySelector(".video-wrap")
+  // hàm hiển thị modal đăng nhập (thêm class open vào modal)
+  function showModal(){
+        modalVideo.classList.add('open')
+    }
+    // hàm ẩn modal  (loại bỏ class open ra khỏi modal)
+    function hideModal(){
+        modalVideo.classList.remove('open')
+    }
 
-    function stopVideo(){
-        videoModal.style.display = 'none';
-        myVideo.pause();
-        myVideo.currentTime = 0;
+    for (const getBtn of getBtns) {
+        getBtn.addEventListener('click', showModal)
     }
-    function playVideo(){
-        videoModal.style.display = 'block';
-        videoPlayer.style.display = 'block';
-    }
+    modalVideoClose.addEventListener('click', hideModal)
+
+    modalVideoContainer.addEventListener('click', function (event) {
+        event.stopPropagation()
+    })
 </script>
 
 </html>
@@ -1278,4 +1375,54 @@ $('.review__slide').slick({
 
     ]
 });
+</script>
+
+<script></script>
+
+<script>
+    const buyBtns = document.querySelectorAll('.js-account')
+    const modal =  document.querySelector(".modal")
+    const modalClose = document.querySelector('.js-modal-close')
+    const modalContainer = document.querySelector('.modal-container')
+
+    // hàm hiển thị modal đăng nhập (thêm class open vào modal)
+    function showModal(){
+        modal.classList.add('open')
+    }
+    // hàm ẩn modal  (loại bỏ class open ra khỏi modal)
+    function hideModal(){
+        modal.classList.remove('open')
+    }
+
+    for (const buyBtn of buyBtns) {
+        buyBtn.addEventListener('click', showModal)
+    }
+    modalClose.addEventListener('click', hideModal)
+
+    modalContainer.addEventListener('click', function (event) {
+        event.stopPropagation()
+    })
+</script>
+
+<script>
+// tab login
+    const $ = document.querySelector.bind(document)
+    const $$ = document.querySelectorAll.bind(document)
+
+    const tabs = $$('.form-header__action')
+    const panes = $$('.form-body')
+
+    tabs.forEach((tab, index) => {
+        const pane = panes[index]
+
+
+        tab.onclick = function () {
+            $('.form-header__action.active').classList.remove('active')
+            $('.form-body.active').classList.remove('active')
+
+            this.classList.add('active')
+            pane.classList.add('active')
+        }
+    })
+
 </script>
