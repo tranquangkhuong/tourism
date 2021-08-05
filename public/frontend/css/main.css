@@ -1570,26 +1570,74 @@ li.slick-active button {
     letter-spacing: -.05em;
     color: var(--white-color);
 }
-
-/* ///////////////////////////// */
-/* .wrap-loader {
-    background: rgba(0, 0, 0, 0) linear-gradient(135deg, #3023ae 0%, #c86dd7 100%) repeat fixed 0 0;
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    height: 100vh;
+/* /// back top top */
+#button-back-top {
+    display: inline-block;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s,
+      opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
     z-index: 1000;
-}
-#loader-page{
-    position:relative;
-      opacity:0.8;
-      position:fixed;
-      width:100%;
-      height:100%;
-      top:0px;
-      left:0px;
-      z-index:1000;
   }
-  #loader-page img{
-    position:fixed;
-  } */
+  #button-back-top::after {
+    content: "\f077";
+    font-family: "Font Awesome 5 Free";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    font-weight: 600;
+    line-height: 60px;
+    color: var(--white-color);
+  }
+  #button-back-top:hover::after{
+      color: var(--primary-color);
+  }
+  #button-back-top:hover {
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid var(--primary-color);
+  }
+  #button-back-top:active {
+    background-color: #fff;
+    border: 1px solid var(--primary-color)
+  }
+  #button-back-top.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Styles for the content section */
+
+  .content {
+    width: 77%;
+    margin: 50px auto;
+    font-family: 'Merriweather', serif;
+    font-size: 17px;
+    color: #6c767a;
+    line-height: 1.9;
+  }
+  @media (min-width: 500px) {
+    .content {
+      width: 43%;
+    }
+    #button-back-top {
+      margin: 30px;
+    }
+  }
+  .content h1 {
+    margin-bottom: -10px;
+    color: #03a9f4;
+    line-height: 1.5;
+  }
+  .content h3 {
+    font-style: italic;
+    color: #96a2a7;
+  }

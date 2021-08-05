@@ -1112,8 +1112,28 @@
             </div>
         </div>
     </div>
+         <!-- back to top -->
+    <a id="button-back-top"></a>
 </body>
+<!-- back to top -->
+<script>
+var btn = $('#button-back-top');
 
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
+
+
+</script>
 <!-- // scoll header -->
 <script type="text/javascript">
     window.addEventListener("scroll", function () {
