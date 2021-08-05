@@ -11,6 +11,8 @@
     <!-- link slick -->
     <link type="text/css" href="{{ URL::asset('frontend/slick/slick.css') }}" rel="stylesheet">
     <script type="text/javascript" src="{{ URL::asset('frontend/slick/slick.min.js') }}"></script>
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="http://theme.hstatic.net/1000385365/1000493497/14/logo.png?v=389"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"
     integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw=="
@@ -19,6 +21,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
     <script type="text/javascript" src="{{ URL::asset('frontend/jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('frontend/jquery/jquery-ui.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
     integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
@@ -34,33 +37,24 @@
 
     <title>Setsail Website</title>
 </head>
+<script>
+    $(window).on('load', function() {
+        $(".load-wrap").fadeOut(1000);
+        $(".main").fadeIn(1000);
+    })
+</script>
 <body>
-    <!-- <div class="load-wrap">
-        <div class="loader">
-            <span style="--i:1;"></span>
-            <span style="--i:2;"></span>
-            <span style="--i:3;"></span>
-            <span style="--i:4;"></span>
-            <span style="--i:5;"></span>
-            <span style="--i:6;"></span>
-            <span style="--i:7;"></span>
-            <span style="--i:8;"></span>
-            <span style="--i:9;"></span>
-            <span style="--i:10;"></span>
-            <span style="--i:11;"></span>
-            <span style="--i:12;"></span>
-            <span style="--i:13;"></span>
-            <span style="--i:14;"></span>
-            <span style="--i:15;"></span>
-            <span style="--i:16;"></span>
-            <span style="--i:17;"></span>
-            <span style="--i:18;"></span>
-            <span style="--i:19;"></span>
-            <span style="--i:20;"></span>
-            <div class="plane"></div>
+    <div class="load-wrap">
+        <div id="load">
+            <div>G</div>
+            <div>N</div>
+            <div>I</div>
+            <div>D</div>
+            <div>A</div>
+            <div>O</div>
+            <div>L</div>
         </div>
-    </div> -->
-
+</div>
 <div class="main">
  <header id="header">
         <section class="header-top hide-on-tablet-mobile" >
@@ -1406,23 +1400,23 @@ $('.review__slide').slick({
 
 <script>
 // tab login
-    const $ = document.querySelector.bind(document)
-    const $$ = document.querySelectorAll.bind(document)
-
-    const tabs = $$('.form-header__action')
-    const panes = $$('.form-body')
+    // const $ = document.querySelector.bind(document)
+    // const $$ = document.querySelectorAll.bind(document)
+      const tabs = document.querySelectorAll('.form-header__action')
+    const  panes = document.querySelectorAll('.form-body')
 
     tabs.forEach((tab, index) => {
         const pane = panes[index]
 
 
         tab.onclick = function () {
-            $('.form-header__action.active').classList.remove('active')
-            $('.form-body.active').classList.remove('active')
+            const tab = document.querySelector('.form-header__action.active')
+            const form = document.querySelector('.form-body.active')
+            tab.classList.remove('active')
+            form.classList.remove('active')
 
             this.classList.add('active')
             pane.classList.add('active')
         }
     })
-
 </script>
