@@ -1,0 +1,17 @@
+{
+    "Welcome to website": "Chào mừng :Name đến với trang web!",
+    "You have not entered your password.": "Bạn chưa nhập mật khẩu của mình.",
+    "Password at least :min characters.": "Mật khẩu ít nhất :min ký tự.",
+    "Incorrect password.": "Mật khẩu không chính xác.",
+    "Re-enter new incorrect password.": "Nhập lại mật khẩu mới chưa chính xác.",
+    "Change password successfully.": "Thay đổi mật khẩu thành công.",
+    "Email already exists.": "Email đã tồn tại.",
+    "You have not entered your email.": "Bạn chưa nhập email của mình.",
+    "Register successfully.": "Đăng ký thành công.",
+    "Add user successfully.": "Thêm người dùng thành công.",
+    "Delete successfully.": "Xóa thành công.",
+    "Delete failed.": "Xóa thất bại.",
+    "Update successfully.": "Cập nhật thành công.",
+    "Update failed.": "Cập nhật thất bại.",
+    "Save successfully.": "Lưu thành công."
+}
