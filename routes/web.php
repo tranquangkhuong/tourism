@@ -16,13 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-route::get('sweetalert', [Controller::class, 'sweetAlert']);
+Route::get('sweetalert', [Controller::class, 'sweetAlert']);
 
-route::get('/', function () {
-    return view('index');
-    // echo __('message.welcome', ['name' => 'khuong']);
-    // echo '<br/>';
-    // echo __('Welcome to website', ['name' => 'khuong']);
+Route::get('/2', function () {
+    return view('welcome2');
 });
 
 Route::post('register', [RegisterController::class, 'register'])->name('register');
