@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 route::get('sweetalert', [Controller::class, 'sweetAlert']);
 
-Route::get('/', function () {
-    return view('welcome');
+route::get('/', function () {
+    return view('index');
     // echo __('message.welcome', ['name' => 'khuong']);
     // echo '<br/>';
     // echo __('Welcome to website', ['name' => 'khuong']);
