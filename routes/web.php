@@ -27,3 +27,11 @@ Route::get('/', function () {
 
 Route::post('register', [RegisterController::class, 'register'])->name('register');
 Route::post('login', [LoginController::class, 'login'])->name('login');
+
+Route::get('/standard_list', function () {
+    return view('standard_list');
+});
+
+// Route::get('/form', function () {
+//     //
+// })->name('form.login_register');
