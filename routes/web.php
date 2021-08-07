@@ -15,4 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('standard_list');
+
+   
 });
+
+// Route::get('/form', function () {
+//     //
+// })->name('form.login_register');

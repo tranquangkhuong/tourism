@@ -1,4 +1,6 @@
 
+
+
 @import './about_us/about_us.css';
 @import './blog_masonry/blog_resonry.css';
 @import './contact_us/contact_us.css';
@@ -51,4 +53,5 @@
 .opacity{
     opacity: 0;
 }
+
 

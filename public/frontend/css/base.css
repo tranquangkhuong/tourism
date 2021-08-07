@@ -1,9 +1,8 @@
-/* reset css */
-
 
 :root{
     --height-header-top: 46px;
     --height-header-bottom: 80px;
+
     --primary-color: #3fd0d4;
     --white-color: #fff;
     --text-color: #212121;
@@ -52,10 +51,5 @@
     100%{
         opacity: 1;
     }
-}
 
-@keyframes showText2{
-    100%{
-        opacity: 1;
-    }
 }
