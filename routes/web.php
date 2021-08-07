@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+route::get('sweetalert', [Controller::class, 'sweetAlert']);
+
+route::get('/', function () {
     return view('index');
+    // echo __('message.welcome', ['name' => 'khuong']);
+    // echo '<br/>';
+    // echo __('Welcome to website', ['name' => 'khuong']);
+});
+
+Route::post('register', [RegisterController::class, 'register'])->name('register');
+Route::post('login', [LoginController::class, 'login'])->name('login');
+
+Route::get('/standard_list', function () {
+    return view('standard_list');
 });
 
 

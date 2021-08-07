@@ -1,0 +1,42 @@
+
+/* mobile */
+@media only screen and (max-width:46.1875em){
+
+
+}
+
+/*  tablet */
+@media only screen and (min-width:46.25em)and (max-width:63.9375em) {
+
+}
+/* Tablet and Mobile  */
+@media only screen and (max-width:63.9375em){
+    .slider {
+        height: 350px;
+    }
+    .slider-text {
+        font-size: 3rem;
+    }
+    .person {
+        width: 450px;
+    }
+.container-blogmasonry_list_content{
+    padding: 0 20px;
+
+}
+.blogmasonry-title_item{
+    margin-left: -28px;
+}
+
+}
+/* PC */
+@media screen and (min-width:1024px) {
+
+
+}
+
+
+
+
+
+

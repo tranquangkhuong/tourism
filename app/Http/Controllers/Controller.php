@@ -10,4 +10,13 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected const TYPE_SUCCESS = 'success';
+    protected const TYPE_ERROR = 'error';
+
+    public function sweetAlert()
+    {
+        alert()->success('Message for title', 'warning');
+        return view('test.sweetalert');
+    }
 }
