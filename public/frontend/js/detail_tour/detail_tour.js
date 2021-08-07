@@ -43,6 +43,7 @@ tabLink.forEach((tabs,index)=>{
 
         tabLinkview.classList.remove('active');
         panesView.classList.remove('active');
+        
         this.classList.add('active');
         showPan.classList.add('active');
     }
