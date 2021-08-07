@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('index');
 });
 
+
 // Route::get('/form', function () {
 //     //
 // })->name('form.login_register');
