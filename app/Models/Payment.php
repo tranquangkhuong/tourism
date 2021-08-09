@@ -15,4 +15,12 @@ class Payment extends Model
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Relationship 1-n to Bookings
+     */
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'payment_id', 'id');
+    }
 }

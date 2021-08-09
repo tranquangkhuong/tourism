@@ -19,4 +19,15 @@ class Article extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    protected $imagePath = '/storage/images/articles/';
+    protected $thumbnailPath = '/storage/images/articles/thumbnail/';
+
+    /**
+     * Relationship 1-n (inverse) to User
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -16,4 +16,13 @@ interface RepositoryInterface
     public function edit($id);
     public function update($request, $id);
     public function destroy($id);
+    // xu li data editor
+    public function getDataFromEditor($dataEditor, $path, $oldData = null);
+    // xu li anh
+    public function uploadImage($hasFile, $file);
+    public function updateImagePath($id, $hasFile, $file);
+    public function deleteImage($path);
+    public function getImageDirectory();
+    public function getThumbnailDirectory();
+    public function checkFileExisted($path);
 }

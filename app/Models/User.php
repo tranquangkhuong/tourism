@@ -48,4 +48,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relationship 1-n to Booking
+     */
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'user_id', 'id');
+    }
+
+    /**
+     * Relationship 1-n to Articles
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'user_id', 'id');
+    }
+
+    /**
+     * Relationship 1-n to Sliders
+     */
+    public function sliders()
+    {
+        return $this->hasMany(Slider::class, 'user_id', 'id');
+    }
+
+    /**
+     * Relationship 1-n to Notification
+     */
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'user_id', 'id');
+    }
 }

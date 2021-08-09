@@ -15,4 +15,12 @@ class Comment extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    /**
+     * Relationship 1-n (inverse) to Tour
+     */
+    public function tour()
+    {
+        return $this->belongsTo(Tour::class);
+    }
 }

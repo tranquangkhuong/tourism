@@ -14,4 +14,12 @@ class Vote extends Model
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Relationship 1-n (inverse) to Tour
+     */
+    public function tour()
+    {
+        return $this->belongsTo(Tour::class);
+    }
 }

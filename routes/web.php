@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('sweetalert', [Controller::class, 'sweetAlert']);
 
-Route::get('/2', function () {
-    return view('welcome2');
+Route::get('/', function () {
+    return view('index');
 });
 
 Route::post('register', [RegisterController::class, 'register'])->name('register');

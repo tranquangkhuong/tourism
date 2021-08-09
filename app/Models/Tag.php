@@ -14,4 +14,12 @@ class Tag extends Model
         'created_at',
         'updated_at'
     ];
+
+    /**
+     * Relationship n-n (inverse) to Tour
+     */
+    public function tours()
+    {
+        return $this->belongsToMany(Tour::class);
+    }
 }

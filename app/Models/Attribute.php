@@ -14,4 +14,12 @@ class Attribute extends Model
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Relationship n-n (inverse) to Tours
+     */
+    public function tours()
+    {
+        return $this->belongsToMany(Tour::class);
+    }
 }

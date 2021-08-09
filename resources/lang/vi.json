@@ -13,5 +13,11 @@
     "Delete failed.": "Xóa thất bại.",
     "Update successfully.": "Cập nhật thành công.",
     "Update failed.": "Cập nhật thất bại.",
-    "Save successfully.": "Lưu thành công."
+    "Save successfully.": "Lưu thành công.",
+    "Create a successful article.": "Tạo bài viết thành công.",
+    "Create a failed article.": "Tạo bài viết không thành công.",
+    "Update a successful article.": "Cập nhật bài viết thành công.",
+    "Update a failed article.": "Cập nhật bài viết không thành công.",
+    "Create a successful tour.": "Tạo một tour thành công.",
+    "Booking was successfully.": "Đặt chỗ thành công."
 }

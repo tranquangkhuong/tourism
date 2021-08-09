@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 abstract class RepositoryEloquent implements RepositoryInterface
 {
@@ -148,7 +149,8 @@ abstract class RepositoryEloquent implements RepositoryInterface
         ];
     }
 
-    public function getDataFromEditor($request, $path, $oldData = null)
+    // * Xu li du lieu tu Editor
+    public function getDataFromEditor($dataEditor, $imagePathInEditor, $oldData = null)
     {
         // tat loi libxml
         libxml_use_internal_errors(true);
@@ -156,8 +158,6 @@ abstract class RepositoryEloquent implements RepositoryInterface
         // khai bao bien result ban dau la null
         $result = null;
 
-        // lay data moi submit
-        $dataEditor = $request->dataEditor;
         if (!empty($dataEditor)) {
             // tao doi tuong DOM duyet dataEditor moi submit
             $dom = new \DOMDocument();
@@ -174,18 +174,18 @@ abstract class RepositoryEloquent implements RepositoryInterface
                 // Tao Anh Moi
                 // neu trong src ton tai chuoi base64
                 if (strpos($dataImg, 'base64') !== false) {
-                    list($type, $data) = explode(';', $dataImg);
+                    // list($type, $data) = explode(';', $dataImg);
                     list($type, $data) = explode(',', $dataImg);
                     // giai ma base64
                     $dt = base64_decode($data);
 
                     // tao thu muc neu chua co
-                    if (!is_dir(public_path($path))) {
-                        mkdir(public_path($path), 777, true);
+                    if (!is_dir(public_path($imagePathInEditor))) {
+                        mkdir(public_path($imagePathInEditor), 777, true);
                     }
 
                     // tao ten anh
-                    $imageName = $path . time() . '_' . $key . '.png';
+                    $imageName = $imagePathInEditor . time() . '_' . $key . '.png';
                     $publicPath = public_path() . $imageName;
                     // tao anh moi (base64 chuyen thanh png)
                     file_put_contents($publicPath, $dt);
@@ -222,10 +222,14 @@ abstract class RepositoryEloquent implements RepositoryInterface
         return $result;
     }
 
+    /*=================================================================*/
+
     /**
-     * Upload image and Get Image path.
+     * ! Upload image.
+     *
+     * @return string $imagePath
      */
-    public function getImagePath($path, $hasFile, $file)
+    public function uploadImage($hasFile, $file)
     {
         if ($hasFile) {
             // lay ten hoc cua file
@@ -239,32 +243,34 @@ abstract class RepositoryEloquent implements RepositoryInterface
             $fileName = $fileNameWithoutExtension . uniqid('_') . '.' . $extension;
             // tien hanh upload
             $file->move($this->getImageDirectory(), $fileName);
+
+            return $this->getImageDirectory() . $fileName;
         }
 
-        return $this->getImageDirectory() . $fileName;
+        return null;
     }
 
     /**
-     * Khai bao $pathImage ben Eloquent.
+     * ! Update image (xoa anh cu, upload anh moi).
+     *
+     * @return string $imagePath
      */
-    public function getImageDirectory()
+    public function updateImagePath($id, $hasFile, $file)
     {
-        if (!is_dir(public_path($this->pathImage))) {
-            mkdir(public_path($this->pathImage), 777, true);
+        $oldImagePath = $this->getOldImagePath($id);
+        if ($hasFile) {
+            if ($oldImagePath) {
+                $this->deleteImage($oldImagePath);
+            }
+            $imagePath = $this->uploadImage($hasFile, $file);
+
+            return $imagePath;
         }
-        return public_path($this->pathImage);
+        return false;
     }
 
     /**
-     * Lay duong dan cua cac anh thumbnail.
-     */
-    public function getThumbnailPath()
-    {
-        return public_path($this->thumbnailPath);
-    }
-
-    /**
-     * Xoa anh.
+     * ! Xoa anh.
      */
     public function deleteImage($path)
     {
@@ -274,9 +280,39 @@ abstract class RepositoryEloquent implements RepositoryInterface
             $fileName = array_pop($tmpArr); // lay phan tu cuoi cua mang -> tuc la ten file
             File::delete(public_path($path)); // xoa anh goc
 
-            $thumbnailPath = $this->getThumbnailPath() . $fileName; // lay duong dan thumbnail
+            $thumbnailPath = $this->getThumbnailDirectory() . $fileName; // lay duong dan thumbnail
             File::delete($thumbnailPath); // xoa anh thumbnail
         }
+    }
+
+    /**
+     * lay duong dan cu trong database
+     */
+    public function getOldImagePath($id)
+    {
+        return $this->find($id)->image;
+    }
+
+    /**
+     * Lay $imagePath ben Model.
+     */
+    public function getImageDirectory()
+    {
+        if (!is_dir(public_path($this->_model->imagePath))) {
+            mkdir(public_path($this->_model->imagePath), 777, true);
+        }
+        return public_path($this->_model->imagePath);
+    }
+
+    /**
+     * Lay duong dan cua cac anh thumbnail ben Model.
+     */
+    public function getThumbnailDirectory()
+    {
+        if (!is_dir(public_path($this->_model->thumbnailPath))) {
+            mkdir(public_path($this->_model->thumbnailPath), 777, true);
+        }
+        return public_path($this->_model->thumbnailPath);
     }
 
     /**
@@ -285,5 +321,29 @@ abstract class RepositoryEloquent implements RepositoryInterface
     public function checkFileExisted($path)
     {
         return File::exists(public_path($path));
+    }
+
+    /**
+     * Fly Resize.
+     */
+    public function flyResize($size, $imagePath)
+    {
+        $imageFullPath = public_path($imagePath);
+        $sizes = config('image.sizes');
+
+        if (!file_exists($imageFullPath) || !isset($sizes[$size])) {
+            abort(404);
+        }
+
+        $fileName = array_pop(explode('/', $imagePath)); // lay ten file
+        $savePath = public_path('/storage/images/resizes/' . $size . '/' . $fileName);
+        $saveDir = dirname($savePath);
+        if (!is_dir($saveDir)) {
+            mkdir($saveDir, 777, true);
+        }
+        list($width, $height) = $sizes[$size];
+        $image = Image::make($imageFullPath)->fit($width, $height)->save($savePath);
+
+        return $image->response();
     }
 }

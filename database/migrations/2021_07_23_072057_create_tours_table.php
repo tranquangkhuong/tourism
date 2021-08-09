@@ -15,6 +15,12 @@ class CreateToursTable extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('area_id')->comment('FK to areas')
+                ->references('id')->on('areas')
+                ->onDelete('set null');
+            $table->foreignId('location_id')->comment('FK to locations')
+                ->references('id')->on('locations')
+                ->onDelete('set null');
             $table->string('title')->comment('Tiêu đề');
             $table->string('description')->comment('Mô tả');
             $table->string('departure_location')->comment('Địa điểm khởi hành');

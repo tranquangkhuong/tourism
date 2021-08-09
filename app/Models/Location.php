@@ -14,4 +14,12 @@ class Location extends Model
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Relationship 1-n to Tour
+     */
+    public function tours()
+    {
+        return $this->hasMany(Tour::class, 'location_id', 'id');
+    }
 }

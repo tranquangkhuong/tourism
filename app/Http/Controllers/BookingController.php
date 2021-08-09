@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CustomerBooking;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -34,7 +35,9 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // luu thong tin
+        // gui mail (goi event de thuc hien)
+        event(new CustomerBooking($booking));
     }
 
     /**

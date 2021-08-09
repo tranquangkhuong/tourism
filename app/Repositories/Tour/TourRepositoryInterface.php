@@ -6,5 +6,9 @@ use App\Repositories\RepositoryInterface;
 
 interface TourRepositoryInterface extends RepositoryInterface
 {
-    //
+    public function getAllArea();
+    public function getAllLocation();
+    public function storeTour($request);
+    public function storeTourDetail($request);
+    public function updateTourDetail($request, $id);
 }

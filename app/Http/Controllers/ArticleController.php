@@ -9,6 +9,8 @@ class ArticleController extends Controller
 {
     protected $repo;
 
+    protected $imagePathInEditor = '/storage/images/editor/';
+
     public function __construct(ArticleRepositoryInterface $articleRepository)
     {
         $this->repo = $articleRepository;
@@ -57,7 +59,9 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $rs = $this->repo->store($request);
+        $image = $this->repo->uploadImage($request->hasFile('image'), $request->file('image'));
+        $content = $this->repo->getDataFromEditor($request->data_editor, $this->imagePathInEditor);
+        $rs = $this->repo->storeArticle($request, $image, $content);
         toast($rs['msg'], $rs['type']);
 
         return redirect()->route('admin.article.index');
@@ -98,7 +102,9 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $articleId)
     {
-        $rs = $this->repo->update($request, $articleId);
+        $image = $this->repo->updateImagePath($articleId, $request->hasFile('image'), $request->file('image'));
+        $content = $this->repo->getContent($articleId, $request->data_editor, $this->imagePathInEditor);
+        $rs = $this->repo->updateArticle($articleId, $request->title, $image, $content);
         toast($rs['msg'], $rs['type']);
 
         return redirect()->route('admin.article.index');

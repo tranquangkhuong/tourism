@@ -17,4 +17,12 @@ class Slider extends Model
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Relationship 1-n (inverse) to User
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

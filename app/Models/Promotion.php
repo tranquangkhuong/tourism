@@ -18,4 +18,12 @@ class Promotion extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    /**
+     * Relationship n-n (inverse) to Tours
+     */
+    public function tours()
+    {
+        return $this->belongsToMany(Tour::class);
+    }
 }
