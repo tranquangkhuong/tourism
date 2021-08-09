@@ -41,4 +41,3 @@
 </table>
 <h4>Thank you again !</h4>
 <p>chen logo - align right</p>
-thuan
