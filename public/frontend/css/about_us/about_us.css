@@ -241,3 +241,18 @@
 
 }
 
+.video-review-about {
+    background: url(/frontend/img/videoabout_us.jpg);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 800px;
+    min-height: 200px;
+    background-attachment: scroll;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+    margin-bottom: 60px;
+}
+.main-about_us{
+    margin: 0px 12px;
+}

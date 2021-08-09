@@ -5,8 +5,20 @@
         width: 100%;
         height: 125%;
     }
+    .responsive-iframe{
+        width: 310px;
+        height: 176px;
 
-
+    }
+    .container_popular_tours{
+        padding: 0px 30px;
+    }
+    .famous_list_tour-item {
+        padding: 0px 30px;
+    }
+    .famous_list_tour-item .famous_list_tour-information {
+        padding: 0 75px;
+    }
 }
 
     /*  tablet */
@@ -14,6 +26,12 @@
         .container_about_us_item-img{
             width: 100%;
         }
+        .responsive-iframe{
+            width: 602px;
+            height: 340px;
+        }
+       
+    
 
     }
     /* Tablet and Mobile  */
@@ -47,6 +65,11 @@
         .container_footer_about_us_item-button{
             margin:25px ;
         }
+        .video-review-about {
+            margin-bottom: 82px;
+            height: 579px;
+            margin-top: 117px;
+        }
     }
     /* PC */
     @media screen and (min-width:1024px) {
@@ -56,6 +79,7 @@
         }
         .container_popular_tours{
             padding-top: 200px;
+            padding: 0px 30px;
         }
         .popular_tours-img img{
             width: 100%;
@@ -70,6 +94,10 @@
         }
         .container_famous{
           padding-bottom: 40px;
+        }
+        .responsive-iframe{
+            width: 825px;
+            height: 463px;
         }
 
     }

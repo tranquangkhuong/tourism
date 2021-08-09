@@ -1,7 +1,9 @@
 
 /* mobile */
 @media only screen and (max-width:46.1875em){
-
+    .container_about_us-item {
+        padding: 29px 0 0px 0;
+    };
 
 }
 
@@ -15,7 +17,7 @@
         height: 350px;
     }
     .slider-text {
-        font-size: 3rem;
+        font-size: 5rem;
     }
     .person {
         width: 450px;
@@ -24,9 +26,7 @@
     padding: 0 20px;
 
 }
-.blogmasonry-title_item{
-    margin-left: -28px;
-}
+
 
 }
 /* PC */

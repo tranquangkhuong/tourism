@@ -36,8 +36,8 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         // luu thong tin
-        // gui mail (goi event de thuc hien)
-        event(new CustomerBooking($booking));
+
+
     }
 
     /**

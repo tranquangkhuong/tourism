@@ -70,5 +70,12 @@
 
 
 }
+.blogmasonry_item-title a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+.blogmasonry_item-title a:hover{
+    color: var(--primary-color);
+}
 
 

@@ -22,14 +22,26 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::post('register', [RegisterController::class, 'register'])->name('register');
-Route::post('login', [LoginController::class, 'login'])->name('login');
-
-Route::get('/standard_list', function () {
+Route::get('/standard-list', function () {
     return view('standard_list');
 });
 
+Route::get('/detail-tour', function () {
+    return view('detail_tour');
+});
 
-// Route::get('/form', function () {
-//     //
-// })->name('form.login_register');
+Route::get('/contact-us', function () {
+    return view('contact_us');
+});
+
+Route::get('/blog', function () {
+    return view('blog_masonry');
+});
+
+Route::get('/about-us', function () {
+    return view('about_us');
+});
+
+
+Route::post('register', [RegisterController::class, 'register'])->name('register');
+Route::post('login', [LoginController::class, 'login'])->name('login');
