@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('fb-login', function () {
+    return view('test.fb_login');
+});
 Route::get('sweetalert', [Controller::class, 'sweetAlert']);
 
 Route::get('/', function () {
