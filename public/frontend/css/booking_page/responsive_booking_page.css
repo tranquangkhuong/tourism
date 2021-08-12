@@ -1,0 +1,18 @@
+@media only screen and (max-width:46.1875em){
+
+}
+
+ /*  tablet */
+@media only screen and (min-width:46.25em)and (max-width:63.9375em) {
+#booking .booking-wrap-info .booking-name-tour {
+    font-size: 1.6rem;
+}
+
+}
+
+/* tablet and mobile */
+@media (max-width: 63.9375em) {
+    .booking-detail-info {
+        flex-direction: column;
+    }
+}

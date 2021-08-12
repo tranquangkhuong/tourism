@@ -41,6 +41,10 @@ Route::get('/blog', function () {
 Route::get('/about-us', function () {
     return view('about_us');
 });
+Route::get('/booking', function () {
+    return view('booking_page');
+});
+
 
 
 Route::post('register', [RegisterController::class, 'register'])->name('register');

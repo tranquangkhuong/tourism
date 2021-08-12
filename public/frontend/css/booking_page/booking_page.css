@@ -1,0 +1,76 @@
+#booking{
+    width: 100%;
+}
+.wrap-section-booking {
+    width: 100%;
+    position: relative;
+    background-color: var(--white-color);
+    padding: 40px 20px;
+}
+.wrap-section-booking .booking-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    border: 1px solid var(--primary-color);
+    padding: 5px;
+    color: var(--primary-color);
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+.booking-wrap-info div img {
+    width: 100%;
+}
+.booking-wrap-info .booking-name-tour {
+    margin: 10px 0;
+    text-decoration: none;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    height: 50px;
+    line-height: 24px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    border-top: 1px dashed var(--primary-color);
+    border-bottom: 1px dashed var(--primary-color);
+    transition: color .2s;
+}
+.booking-name-tour:hover {
+    color: #ff9800;
+}
+.booking-detail-info {
+    padding: 20px 10px;
+    display: flex;
+    background-color: #00c4ff0f;
+}
+.booking-detail-info div {
+    width: 100%;
+}
+.booking-detail-info__item {
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 5px 0;
+}
+.booking-detail-info__item i{
+    margin-right: 15px;
+    color: #10a7e2;
+}
+.booking-detail-info__item span span {
+    font-weight: 600;
+}
+.booking-detail-info__item a{
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.booking-detail-info__item a:hover{
+    color: #ff9800;
+}
+#booking .booking-notice {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-top: 15px;
+    background: oldlace;
+    padding: 4px 6px;
+    border-left: 8px solid #ffc107;
+}

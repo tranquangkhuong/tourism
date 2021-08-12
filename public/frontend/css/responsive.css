@@ -3,6 +3,7 @@
 @import './blog_masonry/responsive_blog_resonry.css';
 @import './contact_us/responsive_contact_us.css';
 @import './detail.tour/responsive_detail.css';
+@import './booking_page/responsive_booking_page.css';
 
 /* mobile */
 @media only screen and (max-width:46.1875em){
