@@ -21,6 +21,9 @@ Route::get('sweetalert', [Controller::class, 'sweetAlert']);
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/admin', function () {
+    return view('admin.master');
+});
 
 Route::get('/standard-list', function () {
     return view('standard_list');
