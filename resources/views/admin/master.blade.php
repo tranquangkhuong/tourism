@@ -17,9 +17,17 @@
     <title>Document</title>
 </head>
 <body>
-
-   @include('admin.include.navbar')
+    <!-- header -->
    @include('admin.include.sidebar')
-   
+   <!-- sidebar -->
+   @include('admin.include.navbar')
+ 
+   <!-- container -->
+    <div class="content-wrapper" style="min-height: 348px;">
+    @yield('header')
+        @yield('content')
+    </div>
+
+      
 </body>
 </html>

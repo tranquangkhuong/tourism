@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('/admin', function () {
-    return view('admin.master');
+    return view('admin.homeadmin');
 });
 
 Route::get('/standard-list', function () {
