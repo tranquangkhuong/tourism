@@ -1864,6 +1864,7 @@ li.slick-active button {
 
 #button-back-top.show {
     opacity: 1;
+    box-shadow: 0 0 4px rgb(0 0 0 / 40%);
     visibility: visible;
 }
 
@@ -1948,3 +1949,4 @@ li.slick-active button {
 .opacity {
     opacity: 0;
 }
+
