@@ -17,33 +17,36 @@ class CreateToursTable extends Migration
             $table->id();
             $table->foreignId('area_id')->comment('FK to areas')
                 ->references('id')->on('areas')
-                ->onDelete('set null');
+                ->onDelete('no action');
             $table->foreignId('location_id')->comment('FK to locations')
                 ->references('id')->on('locations')
-                ->onDelete('set null');
-            $table->string('title')->comment('Tiêu đề');
-            $table->string('description')->comment('Mô tả');
+                ->onDelete('no action');
+            $table->foreignId('promotion_id')->default(0)->comment('FK to promotions')
+                ->references('id')->on('promotions')
+                ->onDelete('no action');
+            $table->string('name')->comment('Tên tour');
+            $table->string('code');
+            $table->string('description', 2048)->comment('Mô tả');
             $table->string('departure_location')->comment('Địa điểm khởi hành');
             $table->string('destination')->comment('Đích đến');
-            $table->string('journey')->comment('Hành trình');
-            $table->tinyInteger('display')->default(1)->comment('1 là hiển thị');
+            $table->string('itinerary')->comment('Hành trình');
+            $table->integer('slot')->comment('Số chỗ');
+            $table->float('adult_price')->comment('Giá người lớn từ 12t trở lên');
+            $table->float('youth_price')->comment('Giá trẻ em 5t đến 11t');
+            $table->float('child_price')->comment('Giá trẻ nhỏ 2t đến 4t');
+            $table->float('baby_price')->comment('Giá sơ sinh dưới 2t');
+            $table->tinyInteger('display', 1)->default(1)->comment('1 là hiển thị');
             $table->timestamps();
             $table->softDeletes();
         });
 
-        Schema::create('tours_details', function (Blueprint $table) {
+        Schema::create('other_days', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tour_id')->comment('FK to tours')
                 ->references('id')->on('tours')
                 ->onDelete('cascade');
-            $table->string('code');
             $table->date('departure_date')->comment('Ngày khởi hành');
             $table->string('departure_time')->nullable()->comment('Thời gian khởi hành');
-            $table->integer('slot')->comment('Số chỗ');
-            $table->float('adult_price')->comment('Giá người lớn');
-            $table->float('youth_price')->comment('Giá trẻ em');
-            $table->float('child_price')->comment('Giá trẻ nhỏ');
-            $table->float('infant_price')->comment('Giá sơ sinh');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -64,7 +67,7 @@ class CreateToursTable extends Migration
             $table->foreignId('tour_id')->comment('FK to tours')
                 ->references('id')->on('tours')
                 ->onDelete('cascade');
-            $table->string('image');
+            $table->string('image_path', 2048);
             $table->timestamps();
         });
     }
@@ -77,7 +80,7 @@ class CreateToursTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tours');
-        Schema::dropIfExists('tours_details');
+        Schema::dropIfExists('other_days');
         Schema::dropIfExists('tour_plans');
         Schema::dropIfExists('tour_images');
     }

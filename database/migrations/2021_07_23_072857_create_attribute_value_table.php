@@ -27,7 +27,6 @@ class CreateAttributeValueTable extends Migration
             $table->foreignId('tour_id')->comment('FK to tours')
                 ->references('id')->on('tours')
                 ->onDelete('cascade');
-            $table->timestamps();
         });
 
         Schema::create('values', function (Blueprint $table) {
@@ -50,7 +49,6 @@ class CreateAttributeValueTable extends Migration
             $table->foreignId('value_id')->comment('FK to values')
                 ->references('id')->on('values')
                 ->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

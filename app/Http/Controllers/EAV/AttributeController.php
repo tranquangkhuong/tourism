@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\EAV;
 
+use App\Http\Controllers\Controller;
 use App\Repositories\Attribute\AttributeRepositoryInterface;
 use Illuminate\Http\Request;
 
