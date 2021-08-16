@@ -38,10 +38,10 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
-                Home Admin
+                Dashbroard
               </p>
             </a>
-          </li> 
+          </li>
         </ul>
 
         <!-- slider -->
@@ -60,7 +60,8 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="../../index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>                  <p>List slider</p>
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List slider</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -70,7 +71,7 @@
                 </a>
               </li>
             </ul>
-          </li> 
+          </li>
         </ul>
         <!-- Area & Location -->
          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -98,7 +99,7 @@
                 </a>
               </li>
             </ul>
-          </li> 
+          </li>
         </ul>
 
         <!-- tour order -->
@@ -107,7 +108,8 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="fas fa-mountain"></i>              <p>
+              <i class="fas fa-mountain"></i>
+              <p>
                Tour
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -115,18 +117,18 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="../../index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>                  
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Manage Tour</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="../../index2.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Slider</p>
+                  <p>Add Tour</p>
                 </a>
               </li>
             </ul>
-          </li> 
+          </li>
         </ul>
 
         <!-- Promotion -->
@@ -154,7 +156,7 @@
                 </a>
               </li>
             </ul>
-          </li> 
+          </li>
         </ul>
 
          <!-- Payment -->
@@ -164,7 +166,8 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="fas fa-money-bill-alt"></i>              <p>
+              <i class="fas fa-money-bill-alt"></i>
+              <p>
                Payment
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -183,12 +186,18 @@
                 </a>
               </li>
             </ul>
-          </li> 
+          </li>
         </ul>
       </nav>
-     
+
+
+
+
+
+
 
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
+

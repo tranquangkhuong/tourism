@@ -10,15 +10,14 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     @endsection
-    
+
     <!-- /.content-header -->
      @section('content')
     <!-- Main content -->
@@ -88,7 +87,7 @@
           <!-- ./col -->
         </div>
         <!-- /.row -->
-        
+
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
