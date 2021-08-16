@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -18,5 +19,12 @@ class Controller extends BaseController
     {
         alert()->success('Message for title', 'warning');
         return view('test.sweetalert');
+    }
+
+    public function changeLanguage(Request $request, $language)
+    {
+        $request->session()->put('website_language', $language);
+
+        return redirect()->back();
     }
 }
