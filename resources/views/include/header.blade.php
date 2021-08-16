@@ -29,8 +29,20 @@
                     <li class="language-item"><a href="" class="language-link">Tiếng Việt</a></li>
                 </ul>
             </div>
-            <div class="account js-account">
-                <a href="#" class="account__link"><i class="ti-user"></i></a>
+            <!-- chưa login -->
+            <!-- <div class="account js-account">
+                 <a href="#" class="account__link"><i class="ti-user"></i></a>
+            </div> -->
+
+            <!-- đã login -->
+            <div class="account-logined">
+                <div class="account-logined-action">
+                    <span class="account-name"><span class="account-name-user">Khuong KYS</span><i class="fas fa-sort-down"></i></span>
+                </div>
+                <ul class="account-option-list">
+                    <li class="account-option-item"><a href="#"><i class="far fa-user-circle"></i>My Account</a></li>
+                    <li class="account-option-item"><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                </ul>
             </div>
         </div>
     </section>
@@ -68,8 +80,7 @@
                 <li class="header-nav__item">
                     <a href="#" class="header-nav__link">Shop</a>
                 </li>
-                <label for="category-checkbox-input" class="close-categories hide-on-pc"><i
-                        class="fas fa-times-circle"></i></label>
+                <label for="category-checkbox-input" class="close-categories hide-on-pc"><i class="fas fa-times-circle"></i></label>
             </ul>
 
         </nav>
@@ -90,8 +101,20 @@
                 </div>
             </div>
             <label for="search-check-input-btn" class="modal_overlay"></label>
-            <div class="account js-account hide-on-pc">
+            <!-- // chưa login -->
+            <!-- <div class="account js-account hide-on-pc">
                 <a href="#" class="account__link"><i class="ti-user"></i></a>
+            </div> -->
+                    <!-- đã login -->
+            <div class="account-logined account-mobile hide-on-pc account">
+                <label for="user-check-input" class="account__link"><i class="ti-user"></i></label>
+                <input type="checkbox" id="user-check-input" hidden />
+                <ul class="account-option-list">
+                     <span class="account-name"><span class="account-name-user">Khuong KYS</span><i class="fas fa-sort-down"></i></span>
+                     <li class="account-option-item"><a href="#"><i class="far fa-user-circle"></i>My Account</a></li>
+                     <li class="account-option-item"><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                </ul>
+                <label for="user-check-input" class="modal_overlay"></label>
             </div>
         </div>
     </section>

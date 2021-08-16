@@ -66,7 +66,7 @@
 
 .account .account__link {
     text-decoration: none;
-    color: #fff;
+    color: var(--white-color);
     font-size: 18px;
     padding: 18px;
     background: #00b6ff;
@@ -526,7 +526,7 @@ a.recent-time__link:hover {
 .footer-form__wrap span {
     position: relative;
     font-size: 1.4rem;
-    color: #fff;
+    color: var(--white-color);
     z-index: 3;
 }
 
@@ -1504,7 +1504,7 @@ li.slick-active button {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background: #fff;
+    background: var(--white-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1853,12 +1853,12 @@ li.slick-active button {
 
 #button-back-top:hover {
     cursor: pointer;
-    background-color: #fff;
+    background-color: var(--white-color);
     border: 1px solid var(--primary-color);
 }
 
 #button-back-top:active {
-    background-color: #fff;
+    background-color: var(--white-color);
     border: 1px solid var(--primary-color)
 }
 
@@ -1928,7 +1928,7 @@ li.slick-active button {
     text-align: center;
     font-size: 10rem;
     font-weight: 600;
-    color: #fff;
+    color: var(--white-color);
 }
 
 .slider-img {
@@ -1948,5 +1948,72 @@ li.slick-active button {
 
 .opacity {
     opacity: 0;
+}
+/* //// logout */
+.account-name
+{
+    padding-left:20px;
+    color: var(--white-color);
+ }
+ .account-name .account-name-user {
+     font-weight: 600;
+ }
+
+ .account-logined {
+     height: 100%;
+     position: relative;
+     background-color: #a53737;
+     cursor: pointer;
+ }
+ .account-logined:hover .account-option-list{
+     height: 110px;
+     padding: 20px 0;
+     display: block;
+ }
+ .account-logined .account-logined-action {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+ }
+ .account-logined .account-logined-action i {
+     font-size: 1.8rem;
+     color: var(--white-color);
+     padding: 0 10px;
+ }
+ .account-option-list {
+    position: absolute;
+    top: 100%;
+    overflow: hidden;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #a53737;
+    z-index: 50;
+    list-style: none;
+    transition: all .4s ease;
+}
+.account-option-list  .account-option-item {
+    padding: 4px 0 4px 10px;
+    transition: color .3s ease-in;
+    border: 1px solid #d2c6c6;
+}
+.account-option-list  .account-option-item:last-child{
+    border-top: 0;
+}
+.account-option-list  .account-option-item:hover{
+    background-color: var(--text-color);
+}
+.account-option-list  .account-option-item a {
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--white-color);
+}
+.account-option-item a i {
+    margin-right: 10px;
+}
+.account-mobile .account__link:hover {
+    color: var(--primary-color);
 }
 

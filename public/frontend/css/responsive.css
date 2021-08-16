@@ -238,6 +238,33 @@
          padding: 10px;
          background-color: #fff;
      }
+     /* logout */
+     .account-logined.account-mobile .account-option-list{
+         position: fixed;
+        top: 80px;
+        right: 0;
+        left: unset;
+        width: 300px;
+        padding: 20px;
+        height: auto;
+        transform: translateX(306px);
+        z-index: 10000;
+     }
+     #user-check-input:checked ~  .account-option-list {
+         transform: translateX(0);
+         display: block;
+     }
+     .account-mobile .account-option-list .account-name {
+        padding: 10px 15px;
+        font-size: 1.4rem;
+        display: block;
+     }
+     .account-mobile .account-name i {
+         margin-left: 10px;
+     }
+     #user-check-input:checked ~ .modal_overlay  {
+        display: block;
+     }
 
  }
  /* PC  slow solution*/
