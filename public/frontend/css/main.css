@@ -3,6 +3,7 @@
 @import "./contact_us/contact_us.css";
 @import "./standard_list/standard_list.css";
 @import "./detail.tour/detail_tour.css";
+@import "./booking_page/booking_page.css";
 @import "./base.css";
 
 /*
@@ -65,7 +66,7 @@
 
 .account .account__link {
     text-decoration: none;
-    color: #fff;
+    color: var(--white-color);
     font-size: 18px;
     padding: 18px;
     background: #00b6ff;
@@ -525,7 +526,7 @@ a.recent-time__link:hover {
 .footer-form__wrap span {
     position: relative;
     font-size: 1.4rem;
-    color: #fff;
+    color: var(--white-color);
     z-index: 3;
 }
 
@@ -1502,7 +1503,7 @@ li.slick-active button {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background: #fff;
+    background: var(--white-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1851,17 +1852,18 @@ li.slick-active button {
 
 #button-back-top:hover {
     cursor: pointer;
-    background-color: #fff;
+    background-color: var(--white-color);
     border: 1px solid var(--primary-color);
 }
 
 #button-back-top:active {
-    background-color: #fff;
+    background-color: var(--white-color);
     border: 1px solid var(--primary-color);
 }
 
 #button-back-top.show {
     opacity: 1;
+    box-shadow: 0 0 4px rgb(0 0 0 / 40%);
     visibility: visible;
 }
 
@@ -1925,7 +1927,7 @@ li.slick-active button {
     text-align: center;
     font-size: 10rem;
     font-weight: 600;
-    color: #fff;
+    color: var(--white-color);
 }
 
 .slider-img {
@@ -1948,7 +1950,7 @@ li.slick-active button {
 }
 
 
-/* logout */
+/* //// logout */
 
 .account-name {
     padding-left: 20px;

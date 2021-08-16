@@ -241,7 +241,18 @@ html {
         opacity: 0;
     }
 }
-
+#breadcumps .breadcrumb {
+    width: 100%;
+    border-radius: 2px;
+    height: auto;
+    margin-top: 10px;
+}
+#breadcumps .breadcrumb span {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-color);
+    opacity: .8;
+}
 .modal-video,
 .modal {
     position: fixed;
