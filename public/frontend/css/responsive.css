@@ -2,6 +2,7 @@
 @import "./blog_masonry/responsive_blog_resonry.css";
 @import "./contact_us/responsive_contact_us.css";
 @import "./detail.tour/responsive_detail.css";
+@import "./booking_page/responsive_booking_page.css";
 
 /* mobile */
 
@@ -11,6 +12,9 @@
     }
     .logo img {
         max-width: 100px;
+    }
+    #breadcumps .breadcrumb {
+        padding-left: 10px;
     }
     /* header */
     .header-bottom .header-mid .header-nav__list {
@@ -267,6 +271,16 @@
 /* PC  slow solution*/
 
 @media screen and (min-width: 1024px) and (max-width: 1240px) {
+    .list-tour__item-standard {
+        font-size: 1.2rem;
+    }
+    .account .account__link {
+        text-decoration: none;
+        color: #000;
+        font-size: 18px;
+        padding: 10px;
+        background-color: #fff;
+    }
     .list-category-mobile {
         display: none;
     }

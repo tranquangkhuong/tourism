@@ -124,6 +124,9 @@ Route::get('/blog', function () {
 Route::get('/about-us', function () {
     return view('about_us');
 });
+Route::get('/booking', function () {
+    return view('booking_page');
+});
 
 /*
 |-----------------------------------------------------------------------
@@ -135,6 +138,19 @@ Route::get('/about-us', function () {
 // })->name('dashboard');
 Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:web'], function () {
 
+<<<<<<< HEAD
+=======
+/*
+|-----------------------------------------------------------------------
+| Routes for Administrators.
+|-----------------------------------------------------------------------
+*/
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:web'], function () {
+
+>>>>>>> ngoc
     Route::group(['prefix' => '/tag', 'as' => 'tag.'], function () {
         Route::get('/', [TagController::class, 'index'])->name('index');
         Route::get('/add', [TagController::class, 'create'])->name('add');
