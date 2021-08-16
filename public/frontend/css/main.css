@@ -1949,6 +1949,9 @@ li.slick-active button {
     opacity: 0;
 }
 
+
+/* logout */
+
 .account-name {
     padding-left: 20px;
     color: var(--white-color);

@@ -128,7 +128,6 @@ Route::get('/booking', function () {
     return view('booking_page');
 });
 
-
 /*
 |-----------------------------------------------------------------------
 | Routes for Administrators.
@@ -138,7 +137,6 @@ Route::get('/booking', function () {
 //     return view('dashboard');
 // })->name('dashboard');
 Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:web'], function () {
-
     Route::group(['prefix' => '/tag', 'as' => 'tag.'], function () {
         Route::get('/', [TagController::class, 'index'])->name('index');
         Route::get('/add', [TagController::class, 'create'])->name('add');
