@@ -247,23 +247,24 @@ $('.review__slide').slick({
     ]
 });
 
-// tab login
-// const $ = document.querySelector.bind(document)
-// const $$ = document.querySelectorAll.bind(document)
-// var tabsh = document.querySelectorAll('.form-header__action')
-// var panes = document.querySelectorAll('.form-body')
+//tab login
+// const a = document.querySelector.bind(document)
+// const aa = document.querySelectorAll.bind(document)
+var tabsh = document.querySelectorAll('.form-header__action')
+var panes = document.querySelectorAll('.form-body')
+    
+tabsh.forEach((tabsk, index) => {
+    const panel = panes[index];
+    tabsk.onclick = function() {
+        var tabpl = document.querySelector('.form-header__action.active')
+        var formgt = document.querySelector('.form-body.active')
+        tabpl.classList.remove('active')
+        formgt.classList.remove('active')
 
-// tabsh.forEach((tabsk, index) => {
-//     const panel = panes[index];
-//     tabsk.onclick = function() {
-//         var tabpl = document.querySelector('.form-header__action.active')
-//         var formgt = document.querySelector('.form-body.active')
-//         tabpl.classList.remove('active')
-//         formgt.classList.remove('active')
-
-//         this.classList.add('active')
-//         panel.classList.add('active')
-//     }
-// });
+        this.classList.add('active')
+        panel.classList.add('active')
+    }
+});
 
 // // ====================== tab login================
+

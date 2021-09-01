@@ -1627,7 +1627,7 @@ li.slick-active button {
     line-height: 2.4rem;
 }
 
-.review__slide-text__location:hover {
+.review__slide-text .review__slide-text__location:hover {
     color: var(--primary-color);
 }
 

@@ -13,7 +13,7 @@
 .container-search-content-holder {
     width: 100%;
     height: auto;
-    z-index: 100;
+    z-index: 5;
     background-color: #f8f8f8;
     position: relative;
 }
@@ -209,7 +209,7 @@
 
 .Price-range-card {
     font-size: 14px;
-    color: #fff;
+    color: var(--white-color);
 }
 
 .feedback_content-submit.submit-btn {
@@ -219,7 +219,7 @@
 .feedback_information-email-card.range {
     margin: 45px 0px;
 }
-.filter-wrap-item{
+.container-feedback.sandard-list .filter-wrap-item{
     margin: 15px 0px;
 }
 .filter__icon-calendar, .filter__icon-place, .filter__icon-location-search::before {
