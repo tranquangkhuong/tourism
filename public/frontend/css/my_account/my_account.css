@@ -41,11 +41,12 @@
 #myAccount .side-bar__item.active {
     border-bottom: 1px solid var(--white-color);
 }
-#myAccount .side-bar__item h3 {
+#myAccount .side-bar__item a{
     font-size: 16px;
     line-height: 30px;
     font-weight: 500;
     color: var(--white-color);
+    text-decoration: none;
 }
 #myAccount  .feedback_input-card {
     border-radius: 15px;
@@ -100,6 +101,8 @@
     font-size: 2.2rem;
     font-family: inherit;
     color: #333;
+}
+.header-avatar__action a i {
     line-height: 35px;
 }
 #myAccount .header-background {
@@ -147,4 +150,17 @@
 .header-background__action  a i {
     margin-right: 10px;
     font-size: 1.8rem;
+}
+#myAccount .table {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+#myAccount .table th {
+    padding: 0 10px;
+}
+
+#myAccount .table td {
+    border-left: 2px solid #fff;
+    padding: 0 6px;
+    border-bottom: 1px solid #fff;
 }
