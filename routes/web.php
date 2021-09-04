@@ -72,6 +72,9 @@ Route::get('/admin/tour', function () {
 Route::get('/admin/add-tour', function () {
     return view('admin.tour.add_tour');
 });
+Route::get('/admin/testtour', function () {
+    return view('admin.tour.testtour');
+});
 
 // upload-images
 Route::post('upload-images','ImagesController@store');
