@@ -11,6 +11,9 @@
     .hide-on-mobile{
         display: none;
     }
+    .header-top .header-top__right{
+        padding-right: 0;
+    }
     .logo img{
         max-width: 100px;
     }
@@ -139,6 +142,7 @@
      .footer-logo a img{
          width: 180px;
      }
+
      /* slider */
      .slider-move .banner-content--slider .banner-heading__big{
          font-size: 8rem;
@@ -160,6 +164,12 @@
          display: none;
      }
      /* header */
+     #header .header-top {
+         display: inline-block;
+     }
+     .main .header-top__right {
+         float: right;
+     }
      .header-bottom .header-mid{
          position: absolute;
          height: auto;
