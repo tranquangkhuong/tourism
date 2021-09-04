@@ -118,6 +118,5 @@
         </div>
 
     </div>
-    <img src="{{ URL::asset('frontend/img/footer_about.jpg') }}" alt="" class="jumbotron" style=" no-repeat center;
-           background-size: cover;width:100%; height:700px; background: rgba(90, 74, 74,0.5);">
+    <img src="{{ URL::asset('frontend/img/footer_about.jpg') }}" alt="" class="jumbotron" style="background: no-repeat center; background-size: cover;width:100%; height:700px; background: rgba(90, 74, 74,0.5);">
     @endsection

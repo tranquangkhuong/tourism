@@ -105,6 +105,7 @@ Route::get('/', function () {
     return view('index');
 });
 
+
 Route::get('/standard-list', function () {
     return view('standard_list');
 });
@@ -155,3 +156,41 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:web'
         Route::get('/delete/{tag_id}', [TagController::class, 'destroy'])->name('delete');
     });
 });
+// page admin
+Route::get('/admin', function () {
+    return view('admin.homeadmin');
+});
+
+//slider
+Route::get('/admin/slider', function () {
+    return view('admin.slider.listslider');
+});
+Route::get('/admin/add-slider', function () {
+    return view('admin.slider.addslider');
+});
+
+// area location.
+Route::get('/admin/area-location', function () {
+    return view('admin.arealocation.manage_location');
+});
+Route::get('/admin/add-location', function () {
+    return view('admin.arealocation.add_location');
+});
+// tour.
+Route::get('/admin/tour', function () {
+    return view('admin.tour.manage_tour');
+});
+
+Route::get('/admin/add-tour', function () {
+    return view('admin.tour.add_tour');
+});
+Route::get('/admin/testtour', function () {
+    return view('admin.tour.testtour');
+});
+
+// upload-images
+Route::post('upload-images','ImagesController@store');
+
+Route::post('register', [RegisterController::class, 'register'])->name('register');
+Route::post('login', [LoginController::class, 'login'])->name('login');
+

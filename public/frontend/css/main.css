@@ -1,11 +1,10 @@
-@import './about_us/about_us.css';
-@import './blog_masonry/blog_resonry.css';
-@import './contact_us/contact_us.css';
-@import './standard_list/standard_list.css';
-@import './detail.tour/detail_tour.css';
-@import './booking_page/booking_page.css';
-@import './my_account/my_account.css';
-@import './base.css';
+@import "./about_us/about_us.css";
+@import "./blog_masonry/blog_resonry.css";
+@import "./contact_us/contact_us.css";
+@import "./standard_list/standard_list.css";
+@import "./detail.tour/detail_tour.css";
+@import "./booking_page/booking_page.css";
+@import "./base.css";
 
 /*
  * header top
@@ -1631,7 +1630,7 @@ li.slick-active button {
     line-height: 2.4rem;
 }
 
-.review__slide-text .review__slide-text__location:hover {
+.review__slide-text__location:hover {
     color: var(--primary-color);
 }
 
@@ -2032,7 +2031,6 @@ li.slick-active button {
 
 .account-mobile .account__link:hover {
     color: var(--primary-color);
-
 }
 /* header notification */
 .header-top__right .notification {
@@ -2163,4 +2161,3 @@ li.slick-active button {
 .notification-content__footer a:hover{
     opacity: 1;
 }
-
