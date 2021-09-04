@@ -1,6 +1,6 @@
 <header id="header">
-    <section class="header-top hide-on-tablet-mobile">
-        <div class="header-top__left">
+    <section class="header-top">
+        <div class="header-top__left hide-on-tablet-mobile">
             <a href="mailto:hoangngocbkhn2311@gmail.com" class="header-top__left-item">
                 <i class="fas fa-envelope"></i>
                 <span class="left-item__text">setsail@qode.com</span>
@@ -16,12 +16,66 @@
         </div>
         <div class="header-top__right">
             <div class="social">
+                <div class="notification-wrap">
+                    <a href="#" class="social-link notification"><i class="fas fa-bell"></i><span>2</span></a>
+                     <!-- content notification -->
+                    <div class="notification-content">
+                        <header class="notification-content__header">
+                            <h1>Notification</h1>
+                            <a href="#">Đánh dấu đã đọc tất cả</a>
+                        </header>
+                        <div class="notification-content__list">
+                            <div class="notification-content__item">
+                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát bà Du lịch cát bà</span>
+                                <div class="time-and-action">
+                                    <span class="time">19-08-2021</span>
+                                    <div class="action">
+                                        <a href="#">đã đọc</a>
+                                        <a href="#">xóa</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-content__item">
+                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát bà Du lịch cát bà</span>
+                                <div class="time-and-action">
+                                    <span class="time">19-08-2021</span>
+                                    <div class="action">
+                                        <a href="#">đã đọc</a>
+                                        <a href="#">xóa</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-content__item active">
+                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát bà Du lịch cát bà</span>
+                                <div class="time-and-action">
+                                    <span class="time">19-08-2021</span>
+                                    <div class="action">
+                                        <a href="#">đã đọc</a>
+                                        <a href="#">xóa</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-content__item">
+                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát bà Du lịch cát bà</span>
+                                <div class="time-and-action">
+                                    <span class="time">19-08-2021</span>
+                                    <div class="action">
+                                        <a href="#">đã đọc</a>
+                                        <a href="#">xóa</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="notification-content__footer"><a href="#">xóa tất cả</a></footer>
+                    </div>
+                </div>
+
                 <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="language">
+            <div class="language hide-on-mobile">
                 <a href="#" class="language-link active">English</a>
                 <ul class="language-list">
                     <li class="language-item"><a href="" class="language-link">German</a></li>
@@ -29,11 +83,13 @@
                     <li class="language-item"><a href="" class="language-link">Tiếng Việt</a></li>
                 </ul>
             </div>
-            {{-- chua login --}}
-            {{-- <div class="account js-account">
+
+            <!-- -- chua login -- -->
+            <!-- <div class="account js-account">
                 <a href="#" class="account__link"><i class="ti-user"></i></a>
-            </div> --}}
-            {{-- da login --}}
+            </div> -->
+
+            <!-- đã login -->
             <div class="account-logined">
                 <div class="account-logined-action">
                     <span class="account-name"><span class="account-name-user">Khuong KYS</span><i
@@ -43,7 +99,7 @@
                     <li class="account-option-item"><a href="#"><i class="far fa-user-circle"></i>My Account</a>
                     </li>
                     <li class="account-option-item"><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-                </ul>
+                </ul>   
             </div>
         </div>
     </section>
@@ -81,10 +137,8 @@
                 <li class="header-nav__item">
                     <a href="#" class="header-nav__link">Shop</a>
                 </li>
-                <label for="category-checkbox-input" class="close-categories hide-on-pc"><i
-                        class="fas fa-times-circle"></i></label>
+                <label for="category-checkbox-input" class="close-categories hide-on-pc"><i class="fas fa-times-circle"></i></label>
             </ul>
-
         </nav>
         <div class="header-right">
             <div class="cart-wrap">
@@ -103,26 +157,7 @@
                 </div>
             </div>
             <label for="search-check-input-btn" class="modal_overlay"></label>
-
-            {{-- chua login --}}
-            {{-- <div class="account js-account hide-on-pc">
-                <a href="#" class="account__link"><i class="ti-user"></i></a>
-            </div> --}}
-            {{-- da login --}}
-            <div class="account-logined account-mobile hide-on-pc account">
-                <label for="user-check-input" class="account__link"><i class="ti-user"></i></label>
-                <input type="checkbox" id="user-check-input" hidden />
-                <ul class="account-option-list">
-                    <span class="account-name"><span class="account-name-user">Khuong KYS</span><i
-                            class="fas fa-sort-down"></i></span>
-                    <li class="account-option-item"><a href="#"><i class="far fa-user-circle"></i>My
-                            Account</a>
-                    </li>
-                    <li class="account-option-item"><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a>
-                    </li>
-                </ul>
-                <label for="user-check-input" class="modal_overlay"></label>
-            </div>
+        </div>
         </div>
     </section>
 </header>

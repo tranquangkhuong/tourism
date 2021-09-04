@@ -54,6 +54,11 @@ $(function() {
 const tabLink = document.querySelectorAll(".tablinks");
 const panes = document.querySelectorAll(".tabcontent");
 
+// for(var i = 0; i < tabLink.length; i++ ) {
+//     tabLink[i].onclick = function () {
+//         tabLink.classList.toggle('active_page')
+//     }
+// }
 tabLink.forEach((tabs, index) => {
     const showPan = panes[index]
     tabs.onclick = function() {

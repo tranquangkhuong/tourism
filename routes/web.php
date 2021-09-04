@@ -127,6 +127,15 @@ Route::get('/about-us', function () {
 Route::get('/booking', function () {
     return view('booking_page');
 });
+Route::get('/test', function () {
+    return view('test');
+});
+Route::get('/mail', function () {
+    return view('mail.booking');
+});
+Route::get('/myaccount', function () {
+    return view('my_account');
+});
 
 /*
 |-----------------------------------------------------------------------
