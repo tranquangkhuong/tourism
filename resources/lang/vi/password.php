@@ -19,4 +19,18 @@ return [
     'token' => 'Mã thông báo đặt lại mật khẩu này không hợp lệ.',
     'user' => "Chúng tôi không thể tìm thấy người dùng có địa chỉ email đó.",
 
+    'required' => "Mật khẩu không được để trống.",
+    'min' => "Mật khẩu ít nhất :min ký tự.",
+    'incorrect' => "Mật khẩu không chính xác.",
+    'change_success' => "Đổi mật khẩu thành công.",
+    'new' => [
+        'required' => "Mật khẩu mới không được để trống.",
+        'min' => "Mật khẩu mới ít nhất :min ký tự.",
+    ],
+    'renew' => [
+        'required' => "Nhập lại mật khẩu mới không được để trống.",
+        'min' => "Nhập lại mật khẩu mới ít nhất :min ký tự.",
+        'incorrect' => "Nhập lại mật khẩu không chính xác.",
+    ]
+
 ];

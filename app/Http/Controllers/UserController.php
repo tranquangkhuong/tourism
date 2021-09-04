@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PasswordRequest;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
 
 
 class UserController extends Controller
@@ -20,19 +20,23 @@ class UserController extends Controller
     /**
      * Get user id.
      *
-     * *ADMIN
+     * @return int id
      */
-    public function id()
+    public static function id()
     {
         return Auth::guard('web')->id();
     }
 
+    /*
+    |-------------------------------------------------------------------
+    | Ham xu li users cho Admin.
+    |-------------------------------------------------------------------
+    */
+
     /**
      * Display a listing of the resource.
      *
-     * * ADMIN
-     *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
@@ -42,37 +46,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * * ADMIN
-     *
-     * @return View
-     */
-    public function create()
-    {
-        return view('admin.user.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * * ADMIN
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $rs = $this->repo->store($request);
-        toast($rs['msg'], $rs['type']);
-
-        return redirect()->route('admin.user_index');
-    }
-
-    /**
      * Display the specified resource.
-     *
-     * * ADMIN
      *
      * @param  int  $id
      * @return View
@@ -85,58 +59,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * * CLIENT
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $user = $this->repo->show($this->id());
-
-        return view('user.edit', compact('user'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * * CLIENT
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $rs = $this->repo->update($request, $this->id());
-        Alert::alert($rs['title'], $rs['msg'], $rs['type']);
-
-        return back();
-    }
-
-    /**
-     * User password update.
-     *
-     * * CLIENT
-     *
-     * @param \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function updatePassword(Request $request)
-    {
-        $rs = $this->repo->updatePassword($request, $this->id());
-        // alert($rs['msg'], $rs['type']);
-        Alert::alert($rs['title'], $rs['msg'], $rs['type']);
-
-        return redirect()->route('change_password');
-    }
-
-    /**
      * Remove the specified resource from storage.
-     *
-     * * ADMIN
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -152,8 +75,6 @@ class UserController extends Controller
     /**
      * Search for users by name.
      *
-     * * ADMIN
-     *
      * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -162,5 +83,52 @@ class UserController extends Controller
         $users = $this->repo->search('name', $request->keyword);
 
         return response()->json($users);
+    }
+
+    /*
+    |-------------------------------------------------------------------
+    | Ham xu li users cho Customer, tren trang front.
+    |-------------------------------------------------------------------
+    */
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return View
+     */
+    public function profile()
+    {
+        $user = $this->repo->show(static::id());
+
+        return view('test.user_profile', compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $rs = $this->repo->update($request, $this->id());
+        toast($rs['msg'], $rs['type']);
+
+        return back();
+    }
+
+    /**
+     * User password update.
+     *
+     * @param \Illuminate\Http\PasswordRequest  $request
+     * @return array
+     */
+    public function updatePassword(PasswordRequest $request)
+    {
+        $rs = $this->repo->updatePassword($request, static::id());
+        toast($rs['msg'], $rs['type']);
+
+        return redirect()->route('user.profile');
     }
 }

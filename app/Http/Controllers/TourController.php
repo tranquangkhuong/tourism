@@ -14,6 +14,13 @@ class TourController extends Controller
         $this->repo = $tourRepository;
     }
 
+    /*
+    |-------------------------------------------------------------------
+    | Tours.
+    |-------------------------------------------------------------------
+    | Xu li cac thong tin lien quan den bang tours.
+    */
+
     /**
      * Display a listing of the resource.
      *
@@ -107,10 +114,15 @@ class TourController extends Controller
         return redirect()->route('admin.tour.index');
     }
 
-    /** ============================================================= */
+    /*
+    |-------------------------------------------------------------------
+    | Other Days.
+    |-------------------------------------------------------------------
+    | Xu li cac thong tin lien quan den bang other_days.
+    */
 
     /**
-     * Luu tour_details.
+     * Luu other_day.
      */
     public function storeTourDetail(Request $request)
     {
@@ -121,7 +133,7 @@ class TourController extends Controller
     }
 
     /**
-     * Update tour_details.
+     * Update other_day.
      */
     public function updateTourDetail(Request $request, $tourDetailId)
     {
@@ -138,4 +150,18 @@ class TourController extends Controller
 
         return back();
     }
+
+    /*
+    |-------------------------------------------------------------------
+    | Tour Images.
+    |-------------------------------------------------------------------
+    | Xu li cac thong tin lien quan den bang tour_images.
+    */
+
+    /*
+    |-------------------------------------------------------------------
+    | Tour Plans.
+    |-------------------------------------------------------------------
+    | Xu li cac thong tin lien quan den bang tour_plans.
+    */
 }

@@ -23,7 +23,7 @@ class TagController extends Controller
     {
         $tags = $this->repo->getAll();
 
-        return view('admin.tag.index', compact('tags'));
+        return view('test.tag.index', compact('tags'));
     }
 
     /**
@@ -42,11 +42,11 @@ class TagController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     *
      */
     public function create()
     {
         // Cai nay lam modal, khong phai tao file nua
+        return view('test.tag.add');
     }
 
     /**
@@ -64,19 +64,6 @@ class TagController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $tagId
-     * @return \Illuminate\Http\Response
-     */
-    public function show($tagId)
-    {
-        $tag = $this->repo->find($tagId);
-
-        return response()->json($tag);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $tagId
@@ -86,7 +73,7 @@ class TagController extends Controller
     {
         $tag = $this->repo->find($tagId);
 
-        return view('admin.tag.edit', compact('tag'));
+        return view('test.tag.edit', compact('tag'));
     }
 
     /**
@@ -101,7 +88,7 @@ class TagController extends Controller
         $rs = $this->repo->update($request, $tagId);
         toast($rs['msg'], $rs['type']);
 
-        return redirect()->route('admin.tag.index');
+        return redirect()->route('test.tag.index');
     }
 
     /**

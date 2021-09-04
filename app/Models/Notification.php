@@ -10,9 +10,12 @@ class Notification extends Model
     use HasFactory;
 
     protected $fillable = [
-        'content',
-        'created_at',
-        'updated_at'
+        'user_id',
+        'type',
+        'notifiable_type',
+        'notifiable_id',
+        'data',
+        'read_at',
     ];
 
     /**

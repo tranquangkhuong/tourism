@@ -19,4 +19,17 @@ return [
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
 
+    'required' => "Passwords must not be left blank.",
+    'min' => "Password at least :min characters.",
+    'incorrect' => "Incorrect password.",
+    'change_success' => "Change password successfully.",
+    'new' => [
+        'required' => "New passwords must not be left blank.",
+        'min' => "New password at least :min characters.",
+    ],
+    'renew' => [
+        'required' => "Re-new passwords must not be left blank.",
+        'min' => "Re-new password at least :min characters.",
+        'incorrect' => "Re-enter new incorrect password.",
+    ]
 ];

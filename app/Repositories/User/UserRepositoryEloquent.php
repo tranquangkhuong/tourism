@@ -45,24 +45,24 @@ class UserRepositoryEloquent extends RepositoryEloquent implements UserRepositor
 
         if (!Hash::check($pwd, $currentPwd)) {
             return [
-                'msg' => __('Incorrect password.'),
+                'msg' => __('password.incorrect'),
                 'type' => self::TYPE_ERROR,
             ];
         }
 
         if (strcmp($newPwd, $rePwd) != 0) {
             return [
-                'msg' => __('Re-enter new incorrect password.'),
+                'msg' => __('password.renew.incorrect'),
                 'type' => self::TYPE_ERROR,
             ];
         }
 
-        $user = $this->_model->findOrFail($id);
-        $user->password = Hash::make($newPwd);
-        $user->save();
+        $this->_model->find($id)->update([
+            'password' => Hash::make($newPwd)
+        ]);
 
         return [
-            'msg' => __('Change password successfully.'),
+            'msg' => __('password.change_success'),
             'type' => self::TYPE_SUCCESS,
         ];
     }
