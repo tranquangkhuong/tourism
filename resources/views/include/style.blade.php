@@ -31,3 +31,10 @@
 <link href="{{ URL::asset('frontend/css/base.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('frontend/css/grid.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('frontend/css/responsive.css') }}" rel="stylesheet">
+<style>
+    label.error {
+        display: inline-block;
+        color: red;
+        width: 200px;
+    }
+</style>

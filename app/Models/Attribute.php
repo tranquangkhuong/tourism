@@ -22,4 +22,12 @@ class Attribute extends Model
     {
         return $this->belongsToMany(Tour::class);
     }
+
+    /**
+     * Relationship 1-n to Values.
+     */
+    public function values()
+    {
+        return $this->hasMany(Value::class, 'attribute_id', 'id');
+    }
 }

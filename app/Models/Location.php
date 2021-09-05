@@ -10,10 +10,19 @@ class Location extends Model
     use HasFactory;
 
     protected $fillable = [
+        'area_id',
         'name',
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Relationship 1-n (inverse) to Areas.
+     */
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
 
     /**
      * Relationship 1-n to Tour

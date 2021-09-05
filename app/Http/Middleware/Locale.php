@@ -16,6 +16,7 @@ class Locale
      */
     public function handle(Request $request, Closure $next)
     {
+        // tuy chinh thay doi ngon ngu
         $language = $request->session()->get('website_language', config('app.locale'));
         config(['app.locale' => $language]);
 

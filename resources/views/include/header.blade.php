@@ -18,7 +18,7 @@
             <div class="social">
                 <div class="notification-wrap">
                     <a href="#" class="social-link notification"><i class="fas fa-bell"></i><span>2</span></a>
-                     <!-- content notification -->
+                    <!-- content notification -->
                     <div class="notification-content">
                         <header class="notification-content__header">
                             <h1>Notification</h1>
@@ -26,7 +26,8 @@
                         </header>
                         <div class="notification-content__list">
                             <div class="notification-content__item">
-                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát bà Du lịch cát bà</span>
+                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát
+                                    bà Du lịch cát bà</span>
                                 <div class="time-and-action">
                                     <span class="time">19-08-2021</span>
                                     <div class="action">
@@ -36,7 +37,8 @@
                                 </div>
                             </div>
                             <div class="notification-content__item">
-                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát bà Du lịch cát bà</span>
+                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát
+                                    bà Du lịch cát bà</span>
                                 <div class="time-and-action">
                                     <span class="time">19-08-2021</span>
                                     <div class="action">
@@ -46,7 +48,8 @@
                                 </div>
                             </div>
                             <div class="notification-content__item active">
-                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát bà Du lịch cát bà</span>
+                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát
+                                    bà Du lịch cát bà</span>
                                 <div class="time-and-action">
                                     <span class="time">19-08-2021</span>
                                     <div class="action">
@@ -56,7 +59,8 @@
                                 </div>
                             </div>
                             <div class="notification-content__item">
-                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát bà Du lịch cát bà</span>
+                                <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát
+                                    bà Du lịch cát bà</span>
                                 <div class="time-and-action">
                                     <span class="time">19-08-2021</span>
                                     <div class="action">
@@ -84,23 +88,31 @@
                 </ul>
             </div>
 
-            <!-- -- chua login -- -->
-            <!-- <div class="account js-account">
-                <a href="#" class="account__link"><i class="ti-user"></i></a>
-            </div> -->
-
-            <!-- đã login -->
+            {{-- da login --}}
+            @if (Auth::guard('user')->check())
             <div class="account-logined">
                 <div class="account-logined-action">
-                    <span class="account-name"><span class="account-name-user">Khuong KYS</span><i
+                    <span class="account-name"><span
+                            class="account-name-user">{{ Auth::guard('user')->user()->name }}</span><i
                             class="fas fa-sort-down"></i></span>
                 </div>
                 <ul class="account-option-list">
-                    <li class="account-option-item"><a href="#"><i class="far fa-user-circle"></i>My Account</a>
-                    </li>
-                    <li class="account-option-item"><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-                </ul>   
+
+                    <li class="account-option-item"><a href="#"><i class="far fa-user-circle"></i>My Account</a></li>
+                    <li class="account-option-item"><a href="{{ route('logout') }}"><i
+                                class="fas fa-sign-out-alt"></i>Logout</a></li>
+                </ul>
             </div>
+
+            @else
+
+            {{-- chua login --}}
+            <div class="account js-account">
+                <a href="javascript::void(0)" class="account__link"><i class="ti-user"></i></a>
+            </div>
+
+            @endif
+
         </div>
     </section>
     <section class="header-bottom">
@@ -137,7 +149,8 @@
                 <li class="header-nav__item">
                     <a href="#" class="header-nav__link">Shop</a>
                 </li>
-                <label for="category-checkbox-input" class="close-categories hide-on-pc"><i class="fas fa-times-circle"></i></label>
+                <label for="category-checkbox-input" class="close-categories hide-on-pc"><i
+                        class="fas fa-times-circle"></i></label>
             </ul>
         </nav>
         <div class="header-right">
@@ -157,7 +170,36 @@
                 </div>
             </div>
             <label for="search-check-input-btn" class="modal_overlay"></label>
+
         </div>
+
+
+        {{-- da login --}}
+        @if (Auth::guard('user')->check())
+
+        <div class="account-logined account-mobile hide-on-pc account">
+            <label for="user-check-input" class="account__link"><i class="ti-user"></i></label>
+            <input type="checkbox" id="user-check-input" hidden />
+            <ul class="account-option-list">
+                <span class="account-name"><span
+                        class="account-name-user">{{ Auth::guard('user')->user()->name }}</span><i
+                        class="fas fa-sort-down"></i></span>
+                <li class="account-option-item"><a href="#"><i class="far fa-user-circle"></i>My Account</a></li>
+                <li class="account-option-item"><a href="{{ route('logout') }}"><i
+                            class="fas fa-sign-out-alt"></i>Logout</a></li>
+            </ul>
+            <label for="user-check-input" class="modal_overlay"></label>
+        </div>
+
+        @else
+
+        {{-- chua login --}}
+        <div class="account js-account hide-on-pc">
+            <a href="javascript::void(0)" class="account__link"><i class="ti-user"></i></a>
+        </div>
+
+        @endif
+
         </div>
     </section>
 </header>

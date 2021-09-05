@@ -34,7 +34,7 @@ class LoginWithSocialNetworkController extends Controller
         // ->orWhere('email', $user->getEmail())
         $findUser = User::where($providerIdField, $user->id)->first();
         if ($findUser) {
-            Auth::guard('web')->login($findUser);
+            Auth::guard('user')->login($findUser);
             toast(__('Welcome back.'), 'info')->position('top');
 
             return redirect()->intended('/');
@@ -47,7 +47,7 @@ class LoginWithSocialNetworkController extends Controller
                 'profile_photo_path' => $user->getAvatar(),
                 'password' => encrypt('tour12345'),
             ]);
-            Auth::guard('web')->login($newUser);
+            Auth::guard('user')->login($newUser);
             toast(__('Welcome to website, :Name !', ['name' => $user->getName()]), 'success')->position('top');
 
             return redirect()->intended('/');

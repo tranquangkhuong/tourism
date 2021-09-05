@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Repositories\Booking;
+
+use App\Repositories\RepositoryInterface;
+
+interface BookingRepositoryInterface extends RepositoryInterface
+{
+    public function getTour($tourId);
+    public function getPromotion($tourId);
+}

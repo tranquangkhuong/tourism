@@ -21,7 +21,7 @@ class LoginController extends Controller
         //     $remember = true;
         // }
 
-        if (Auth::guard('web')->attempt([
+        if (Auth::guard('user')->attempt([
             'email' => $email,
             'password' => $password,
             'is_admin' => 1,
@@ -31,7 +31,7 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        if (Auth::guard('web')->attempt([
+        if (Auth::guard('user')->attempt([
             'email' => $email,
             'password' => $password,
             'is_admin' => 0,
@@ -55,8 +55,8 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        if (Auth::guard('web')->check()) {
-            Auth::guard('web')->logout();
+        if (Auth::guard('user')->check()) {
+            Auth::guard('user')->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
             toast(__('You are logged out.'), 'warning');

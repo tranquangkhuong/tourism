@@ -17,6 +17,14 @@ class Area extends Model
     ];
 
     /**
+     * Relationship 1-n to Locations.
+     */
+    public function locations()
+    {
+        return $this->hasMany(Location::class, 'area_id', 'id');
+    }
+
+    /**
      * Relationship 1-n to Tour
      */
     public function tours()

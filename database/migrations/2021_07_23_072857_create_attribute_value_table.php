@@ -19,36 +19,16 @@ class CreateAttributeValueTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('attribute_tour', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('attribute_id')->comment('FK to attributes')
-                ->references('id')->on('attributes')
-                ->onDelete('cascade');
-            $table->foreignId('tour_id')->comment('FK to tours')
-                ->references('id')->on('tours')
-                ->onDelete('cascade');
-        });
-
         Schema::create('values', function (Blueprint $table) {
             $table->id();
             $table->foreignId('attribute_id')->comment('FK to attributes')
                 ->references('id')->on('attributes')
                 ->onDelete('cascade');
-            $table->string('value');
-            $table->timestamps();
-        });
-
-        Schema::create('tour_attribute_value', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('tour_id')->comment('FK to tours')
                 ->references('id')->on('tours')
                 ->onDelete('cascade');
-            $table->foreignId('attribute_id')->comment('FK to attributes')
-                ->references('id')->on('attributes')
-                ->onDelete('cascade');
-            $table->foreignId('value_id')->comment('FK to values')
-                ->references('id')->on('values')
-                ->onDelete('cascade');
+            $table->string('value');
+            $table->timestamps();
         });
     }
 
@@ -60,8 +40,6 @@ class CreateAttributeValueTable extends Migration
     public function down()
     {
         Schema::dropIfExists('attributes');
-        Schema::dropIfExists('attribute_tour');
         Schema::dropIfExists('values');
-        Schema::dropIfExists('tour_attribute_value');
     }
 }

@@ -23,4 +23,12 @@ class Comment extends Model
     {
         return $this->belongsTo(Tour::class);
     }
+
+    /**
+     * Relationship 1-n (inverse) to user.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
