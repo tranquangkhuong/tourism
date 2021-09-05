@@ -23,7 +23,7 @@
 html {
     font-size: 62.5%;
     line-height: 2.5rem;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     scroll-behavior: smooth;
 }
 
@@ -91,7 +91,7 @@ html {
     -o-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
-    color: #35C4F0;
+    color: #35c4f0;
 }
 
 #load div:nth-child(2) {
@@ -266,8 +266,8 @@ html {
     width: 400px;
     max-width: calc(100% - 32px);
     min-height: 200px;
-    animation: modalFadeIn ease .4s;
-    transition: .3s;
+    animation: modalFadeIn ease 0.4s;
+    transition: 0.3s;
 }
 
 
@@ -336,8 +336,9 @@ html {
     flex-direction: column;
 }
 
-.form-body form input[type=password],
-.form-body form input[type=text] {
+.form-body form input[type="password"],
+.form-body form input[type="text"],
+.form-body form input[type="email"] {
     position: relative;
     width: 100%;
     margin: 0 0 6px;
@@ -347,24 +348,25 @@ html {
     line-height: calc(50px - 12px * 2);
     color: var(--white-color);
     background-color: #f8f8f8;
-    background-color: rgba(255, 255, 255, .25);
+    background-color: rgba(255, 255, 255, 0.25);
     border: 0;
     border-radius: 0;
     outline: 0;
     cursor: auto;
     -webkit-appearance: none;
     box-sizing: border-box;
-    -webkit-transition: color .2s ease-in-out;
-    -moz-transition: color .2s ease-in-out;
-    transition: color .2s ease-in-out;
+    -webkit-transition: color 0.2s ease-in-out;
+    -moz-transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
 }
 
 .form-body form input+label {
     position: relative;
 }
 
+.form-body form input[type="email"]+label::before,
 .form-body form input[type="text"]+label::before {
-    content: '\f2bd';
+    content: "\f2bd";
     position: absolute;
     font-size: 14px;
     top: -30px;
@@ -380,7 +382,7 @@ html {
 }
 
 .form-body form input[type="password"]+label::before {
-    content: '\f084';
+    content: "\f084";
     position: absolute;
     font-size: 12px;
     top: -30px;
@@ -424,9 +426,9 @@ html {
     font-size: 14px;
     margin: 3px 0 0;
     color: #26878a;
-    -webkit-transition: color .2s ease-out;
-    -moz-transition: color .2s ease-out;
-    transition: color .2s ease-out;
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out;
     user-select: none;
 }
 
@@ -442,11 +444,11 @@ html {
     margin: 0;
     font-size: 13px;
     font-weight: 600;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     outline: 0;
     box-sizing: border-box;
-    transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     padding: 14px 42px;
     cursor: pointer;
     border: 0;
@@ -471,8 +473,10 @@ html {
     width: 100%;
     position: relative;
     display: flex;
+    text-align: center;
 }
 
+.google-facebook a,
 .google-facebook button {
     appearance: none;
     border: none;
@@ -483,12 +487,15 @@ html {
     font-weight: 600;
     color: var(--white-color);
     cursor: pointer;
+    text-decoration: none;
 }
 
+.google-facebook a:hover,
 .google-facebook button:hover {
-    opacity: .8;
+    opacity: 0.8;
 }
 
+.google-facebook a i,
 .google-facebook button i {
     padding-right: 10px;
 }
@@ -540,7 +547,7 @@ html {
 }
 
 .header-no-cart::before {
-    content: '';
+    content: "";
     height: 32px;
     width: 30px;
     position: absolute;
@@ -618,7 +625,7 @@ html {
 
 /* footer form */
 
-.footer-form__input[type=text] {
+.footer-form__input[type="text"] {
     font-size: 1.4rem;
     line-height: 2.6rem;
     padding: 10px 20px 10px 40px;
@@ -651,13 +658,13 @@ html {
     width: 100%;
 }
 
-.footer-form__input[type=submit]:hover {
+.footer-form__input[type="submit"]:hover {
     background-color: var(--white-color);
     color: var(--primary-color);
     cursor: pointer;
 }
 
-.footer-form__input[type=submit] {
+.footer-form__input[type="submit"] {
     font-size: 1.2rem;
     line-height: 26px;
     color: var(--white-color);
@@ -683,7 +690,7 @@ html {
     font-weight: 400;
     transform-origin: 50% 50%;
     white-space: nowrap;
-    font-family: 'Satisfy', cursive;
+    font-family: "Satisfy", cursive;
     font-size: 3.3rem;
     text-shadow: 1px 2px #35232399;
 }
@@ -755,19 +762,19 @@ html {
 
 @-webkit-keyframes zoom {
     from {
-        -webkit-transform: scale(0)
+        -webkit-transform: scale(0);
     }
     to {
-        -webkit-transform: scale(1)
+        -webkit-transform: scale(1);
     }
 }
 
 @keyframes zoom {
     from {
-        transform: scale(0)
+        transform: scale(0);
     }
     to {
-        transform: scale(1)
+        transform: scale(1);
     }
 }
 

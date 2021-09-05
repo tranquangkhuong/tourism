@@ -15,13 +15,14 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (Auth::guard('web')->check() && Auth::guard('web')->user()->is_admin === 1) {
+        if (Auth::guard('admin')->check()) {
             return route('admin.dashboard');
+        } else if (Auth::guard('user')->check()) {
+            return redirect()->intended();
         }
 
-        return redirect()->intended('/');
-        // if (!$request->expectsJson()) {
-        //     return route('login');
-        // }
+        if (!$request->expectsJson()) {
+            return redirect()->intended();
+        }
     }
 }

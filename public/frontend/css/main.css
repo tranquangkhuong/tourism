@@ -1972,6 +1972,12 @@ li.slick-active button {
     display: block;
 }
 
+.header-top__right .account-logined .account-option-list {
+    width: 140px;
+    right: 0;
+    left: unset;
+}
+
 .account-logined .account-logined-action {
     width: 100%;
     height: 100%;
@@ -1989,8 +1995,7 @@ li.slick-active button {
     position: absolute;
     top: 100%;
     overflow: hidden;
-    left: 0;
-    width: 100%;
+    right: 0;
     height: 0;
     background-color: #a53737;
     z-index: 50;

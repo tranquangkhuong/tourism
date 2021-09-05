@@ -22,4 +22,12 @@ class Vote extends Model
     {
         return $this->belongsTo(Tour::class);
     }
+
+    /**
+     * Relationship 1-n (inverse) to users.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

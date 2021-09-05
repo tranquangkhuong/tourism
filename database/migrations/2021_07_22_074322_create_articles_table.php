@@ -15,8 +15,8 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->comment('FK to users')
-                ->references('id')->on('users')
+            $table->foreignId('admin_id')->comment('FK to admins')
+                ->references('id')->on('admins')
                 ->onDelete('cascade');
             $table->string('title');
             $table->string('image_path', 2048)->nullable();

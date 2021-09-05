@@ -15,8 +15,8 @@ class CreateSlidersTable extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->comment('FK to users')
-                ->references('id')->on('users')
+            $table->foreignId('admin_id')->comment('FK to admins')
+                ->references('id')->on('admins')
                 ->onDelete('cascade');
             $table->string('title');
             $table->string('content')->nullable();

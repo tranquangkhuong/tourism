@@ -1,0 +1,43 @@
+<?php
+
+return [
+    'super_admin' => [
+        'roles' => [
+            'name' => 'super-admin',
+        ],
+    ],
+
+    'admin' => [
+        'roles' => [
+            'name' => 'admin',
+        ],
+        'permissions' => [
+            'add_tag',
+            'edit_tag',
+            'delete_tag',
+            'add_vehicle',
+            'edit_vehicle',
+            'delete_vehicle',
+            'add_promotion',
+            'edit_promotion',
+            'delete_promotion',
+            'add_area',
+            'edit_area',
+            'delete_area',
+            'add_location',
+            'edit_location',
+            'delete_location',
+            'add_payment',
+            'edit_payment',
+            'delete_payment',
+            'add_article',
+            'edit_article',
+            'delete_article',
+            'add_slider',
+            'edit_slider',
+            'delete_slider',
+            'add_contact',
+            ''
+        ],
+    ],
+];

@@ -30,8 +30,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Schema::defaultStringLength(191);
-
         // Verify Email Customize
         VerifyEmail::toMailUsing(function ($notifiable) {
             $url = URL::temporarySignedRoute('verification.verify', now()->addMinutes(60), ['id' => $notifiable->getKey()]);

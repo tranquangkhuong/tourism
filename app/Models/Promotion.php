@@ -11,19 +11,19 @@ class Promotion extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'content',
+        'name',
         'start_date',
         'end_date',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'number',
+        'type',
+        'amount',
     ];
 
     /**
-     * Relationship n-n (inverse) to Tours
+     * Relationship 1-n to Tours
      */
     public function tours()
     {
-        return $this->belongsToMany(Tour::class);
+        return $this->hasMany(Tour::class, 'promotion_id', 'id');
     }
 }
