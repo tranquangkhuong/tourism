@@ -21,12 +21,12 @@ class SliderController extends Controller
      */
     public function index()
     {
-        return view('test.slider.index');
+        return view('admin.slider.index');
     }
 
     public function indexData()
     {
-        return response()->json($this->repo->getAll(['id', 'title']));
+        return response()->json($this->repo->getAll(['id', 'title', 'image_path', 'display', 'created_at']));
     }
 
     /**
@@ -36,7 +36,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('test.slider.add');
+        return view('admin.slider.add');
     }
 
     /**
@@ -47,7 +47,7 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->file('image'));
+        // dd($request->all());
         $image = $this->repo->uploadImage($request->hasFile('image'), $request->file('image'));
         $rs = $this->repo->storeSlider($request, $image);
         toast($rs['msg'], $rs['stt']);
@@ -78,7 +78,7 @@ class SliderController extends Controller
     {
         $slider = $this->repo->find($sliderId);
 
-        return view('test.slider.edit', compact('slider'));
+        return view('admin.slider.edit', compact('slider'));
     }
 
     /**

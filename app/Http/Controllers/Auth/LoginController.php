@@ -12,32 +12,22 @@ class LoginController extends Controller
 {
     public function login(LoginRequest $request)
     {
-        // dd($request->all());
-        $email = $request->email;
-        $password = $request->password;
-        // $remember = false;
-
-        // if ($request->remember === 1) {
-        //     $remember = true;
-        // }
-
-        if (Auth::guard('user')->attempt([
-            'email' => $email,
-            'password' => $password,
-            'is_admin' => 1,
+        if (Auth::guard('admin')->attempt([
+            'email' => $request->email,
+            'password' => $request->password,
         ], $request->remember)) {
             $request->session()->regenerate();
 
-            return redirect()->route('admin.dashboard');
+            return redirect()->url('/admin/dashboard');
         }
 
         if (Auth::guard('user')->attempt([
-            'email' => $email,
-            'password' => $password,
-            'is_admin' => 0,
+            'email' => $request->email,
+            'password' => $request->password,
         ], $request->remember)) {
             $request->session()->regenerate();
             toast(__('Welcome back.'), 'success')->position('top');
+
             return redirect()->intended('/');
         }
 

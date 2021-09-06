@@ -10,7 +10,7 @@ $(document).ready(() => {
     var id = $("table").find("tbody").attr("id");
     var name = id.slice(id.lastIndexOf("-") + 1);
     LoadData(name);
-    setInterval(() => LoadData(name), 900000);
+    // setInterval(() => LoadData(name), 900000);
 
     // tim kiem - filter
     $("#search").on("keyup", function() {
@@ -32,28 +32,71 @@ function LoadData(name) {
             $.each(response, (index, value) => {
                 var ur = route(`admin.${name}.edit`, value.id);
                 str += "<tr>";
-                str += `<td>${value.name}<td>`;
-                if (name == "article" || name == "slider") {
-                    str += `<td>${value.title}</td>`;
+
+                // switch (name) {
+                //     case "tag":
+                //         str += `<td>${response.name}</td>
+                //                 <td>${response.created_at}</td>`;
+                //         break;
+                //     case "slider":
+                //         break;
+                //     default:
+                //         break;
+                // }
+
+                if (name == "slider") {
+                    str += `<td>
+                            ${value.title}
+                        </td>
+                        <td>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <img src="{{ URL::asset('${value.image_path}') }}" alt="image slider"
+                                        style="width:50%">
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="project_progress">
+                            <p>${value.created_at}</p>
+                        </td>
+                        <td class="project-state">`;
+                    if (value.display === 1) {
+                        str += `<a href="#"><span class="badge badge-success">Hiển thị</span></a>`;
+                    } else {
+                        str += `<a href="#"><span class="badge badge-warning">Ẩn</span></a>`;
+                    }
+                    str += `</td>`;
                 }
-                if (name == "location") {
-                    str += `<td>${value.area}<td>`;
-                }
-                if (name == "promotion") {
-                    str += `<td>${value.amount}<td>`;
-                }
-                if (name == "tour") {
-                    str += `<td>${value.area}<td>`;
-                    str += `<td>${value.location}<td>`;
-                }
-                if (name == "image") {
-                    str += `<div><img src="{{ asset(${value.image_path}) }}" onError="this.onerror=null;this.src='{{ url("/images/placeholder600x600.png") }}';" alt="Tour image"></div>`;
-                }
-                str += `<td><a href="${ur}">Edit</a></td>`;
-                str += `<td><a href="javascript::void(0)" onclick="confirmDelete('${name}', ${value.id})">Delete</a></td>`;
+
+                // if (name == "location") {
+                //     str += `<td>${value.area}<td>`;
+                // }
+                // if (name == "promotion") {
+                //     str += `<td>${value.amount}<td>`;
+                // }
+                // if (name == "tour") {
+                //     str += `<td>${value.area}<td>`;
+                //     str += `<td>${value.location}<td>`;
+                // }
+                // if (name == "image") {
+                //     str += `<div><img src="{{ asset(${value.image_path}) }}" onError="this.onerror=null;this.src='{{ url("/images/placeholder600x600.png") }}';" alt="Tour image"></div>`;
+                // }
+
+                str += `<td class="project-actions text-right">
+                            <a class="btn btn-info btn-sm" href="${ur}">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Edit
+                            </a>
+                            <a class="btn btn-danger btn-sm" href="javascript::void(0)" onclick="confirmDelete('${name}', ${value.id})">
+                                <i class="fas fa-trash">
+                                </i>
+                                Delete
+                            </a>
+                        </td>`;
                 str += "</tr>";
             });
-            $("table > tbody" + `#list-${name}`).html(str);
+            $(`table tbody #list-${name}`).html(str);
         },
     });
 }

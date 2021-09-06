@@ -379,7 +379,7 @@ abstract class RepositoryEloquent implements RepositoryInterface
             // $file->store($this->getImageDirectory());
             $file->move($this->getImageDirectory($addPath), $fileName);
 
-            return $this->_model->imagePath . $addPath . $fileName;
+            return '/images/' . $this->_model->imagePath . $addPath . $fileName;
         } else {
             return null;
         }

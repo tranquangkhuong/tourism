@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LoginWithSocialNetworkController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\BackendController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Controller;
@@ -194,7 +195,9 @@ Route::get('/notification/delete/{notification_id}', [UserController::class, 'de
 Route::get('/generate-code/{length}', [Controller::class, 'generateCode'])->name('generate_code');
 Route::get('/images/{model}/{size}/{image_path}', [Controller::class, 'flyResize'])->where('image_path', '(.*)');
 
-Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:user'], function () {
+Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
+
+    Route::get('/dashboard', [BackendController::class, 'dashboard']);
 
     Route::group(['prefix' => '/tag', 'as' => 'tag.'], function () {
         Route::get('/', [TagController::class, 'index'])->name('index');
@@ -330,40 +333,37 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:user
     Route::get('/change-password', [AdminController::class, 'changePassword']);
     Route::post('/update-password', [AdminController::class, 'updatePassword']);
 });
-// page admin
-Route::get('/admin', function () {
-    return view('admin.homeadmin');
-});
+// // page admin
+// Route::get('/admin', function () {
+//     return view('admin.homeadmin');
+// });
 
-//slider
-Route::get('/admin/slider', function () {
-    return view('admin.slider.listslider');
-});
-Route::get('/admin/add-slider', function () {
-    return view('admin.slider.addslider');
-});
+// //slider
+// Route::get('/admin/slider', function () {
+//     return view('admin.slider.index');
+// });
+// Route::get('/admin/add-slider', function () {
+//     return view('admin.slider.add');
+// });
 
-// area location.
-Route::get('/admin/area-location', function () {
-    return view('admin.arealocation.manage_location');
-});
-Route::get('/admin/add-location', function () {
-    return view('admin.arealocation.add_location');
-});
-// tour.
-Route::get('/admin/tour', function () {
-    return view('admin.tour.manage_tour');
-});
+// // area location.
+// Route::get('/admin/area-location', function () {
+//     return view('admin.arealocation.manage_location');
+// });
+// Route::get('/admin/add-location', function () {
+//     return view('admin.arealocation.add_location');
+// });
+// // tour.
+// Route::get('/admin/tour', function () {
+//     return view('admin.tour.manage_tour');
+// });
 
-Route::get('/admin/add-tour', function () {
-    return view('admin.tour.add_tour');
-});
-Route::get('/admin/testtour', function () {
-    return view('admin.tour.testtour');
-});
+// Route::get('/admin/add-tour', function () {
+//     return view('admin.tour.add_tour');
+// });
+// Route::get('/admin/testtour', function () {
+//     return view('admin.tour.testtour');
+// });
 
 // upload-images
 Route::post('upload-images', 'ImagesController@store');
-
-Route::post('register', [RegisterController::class, 'register'])->name('register');
-Route::post('login', [LoginController::class, 'login'])->name('login');

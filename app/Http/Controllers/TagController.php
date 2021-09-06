@@ -21,12 +21,12 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('test.tag.index');
+        return view('admin.tag.index');
     }
 
     public function indexData()
     {
-        return response()->json($this->repo->getAll(['id', 'name']));
+        return response()->json($this->repo->getAll(['id', 'name', 'created_at']));
     }
 
     /**
@@ -63,7 +63,7 @@ class TagController extends Controller
     {
         $tag = $this->repo->find($tagId);
 
-        return view('test.tag.edit', compact('tag'));
+        return view('admin.tag.edit', compact('tag'));
     }
 
     /**
