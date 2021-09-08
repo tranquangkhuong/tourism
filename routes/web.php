@@ -79,7 +79,14 @@ Route::get('/admin/testtour', function () {
 // upload-images
 Route::post('upload-images','ImagesController@store');
 
+// account.
+Route::get('/admin/login', function () {
+    return view('admin.account.login');
+});
 
+Route::get('/admin/register.', function () {
+    return view('admin.account.register');
+});
 
 
 

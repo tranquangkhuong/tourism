@@ -17,25 +17,25 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
 
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
 
     <link type="text/css" href="{{ URL::asset('frontend/backend/css/adminlte.min.css') }}" rel="stylesheet">
-    <link type="text/css" href="{{ URL::asset('frontend/backend/css/bootstrap-duallistbox.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('frontend/backend/css/main.css') }}" rel="stylesheet">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+    <link type="text/css" href="{{ URL::asset('frontend/backend/css/dropzone.min.css') }}" rel="stylesheet">
+    {{-- <link type="text/css" href="{{ URL::asset('frontend/backend/css/bootstrap-duallistbox.min.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ URL::asset('frontend/backend/css/bs-stepper.min.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ URL::asset('frontend/backend/css/codemirror.css') }}" rel="stylesheet">
-    <link type="text/css" href="{{ URL::asset('frontend/backend/css/dropzone.min.css') }}" rel="stylesheet">
+
     <link type="text/css" href="{{ URL::asset('frontend/backend/css/monokai.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ URL::asset('frontend/backend/css/select2-bootstrap4.min.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ URL::asset('frontend/backend/css/summernote-bs4.min.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ URL::asset('frontend/backend/css/select2.min.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ URL::asset('frontend/backend/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
-    <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/dropzone.min.js') }}"></script>
-
-
-
-
-
+    <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/dropzone.min.js') }}"></script> --}}
 
 
 
@@ -43,7 +43,6 @@
 </head>
 <body class="sidebar-mini" style="height: auto;">
     <div class="wrapper">
-
         `<!-- header -->
         @include('admin.include.sidebar')
         <!-- sidebar -->
@@ -72,26 +71,96 @@
     <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/daterangepicker.js') }}"></script>
 
     <!-- Bootstrap 4 -->
-    <script type="text/javascript" src="{{ URL::asset('frontend/backend/bootstrap/bootstrap4.min.js') }}"></script>
-
+    {{-- <script type="text/javascript" src="{{ URL::asset('frontend/backend/bootstrap/bootstrap4.min.js') }}"></script> --}}
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
     <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/bootstrap4.bundle.min.js') }}"></script>
+
+
     <!--  demo purposes -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/demo.js') }}"></script>
     <!--  App -->
     <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/adminlte.min.js') }}"></script>
-    {{-- <!-- ChartJS --> --}}
+    <!-- ChartJS -->
     <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/chartJS.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/select2.full.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/duallistbox.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/dropzone.min.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/duallistbox.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/inputmask.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/moment.min.js') }}"></script>
-    {{-- tempusdominus-bootstrap-4.min.js --}}
-    <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/moment.min.js') }}"></script> --}} --}}
+    {{-- tempusdominus-bootstrap-4.min.js
+    {{-- <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/tempusdominus-bootstrap-4.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/bootstrap-switch.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/bs-stepper.min.js') }}"></script>
-    
+    <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/bs-stepper.min.js') }}"></script> --}}
 
 
+  <script>
+
+    $(function () {
+    bsCustomFileInput.init();
+    });
+  </script>
+
+    <script>
+
+        // DropzoneJS Demo Code Start
+        Dropzone.autoDiscover = false
+
+        // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+        var previewNode = document.querySelector("#template")
+        previewNode.id = ""
+        var previewTemplate = previewNode.parentNode.innerHTML
+        previewNode.parentNode.removeChild(previewNode)
+
+        var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+          url: "/target-url", // Set the url
+          thumbnailWidth: 80,
+          thumbnailHeight: 80,
+          parallelUploads: 20,
+          previewTemplate: previewTemplate,
+          autoQueue: false, // Make sure the files aren't queued until manually added
+          previewsContainer: "#previews", // Define the container to display the previews
+          clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+        })
+
+        myDropzone.on("addedfile", function(file) {
+          // Hookup the start button
+          file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
+        })
+
+        // Update the total progress bar
+        myDropzone.on("totaluploadprogress", function(progress) {
+          document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
+        })
+
+        myDropzone.on("sending", function(file) {
+          // Show the total progress bar when upload starts
+          document.querySelector("#total-progress").style.opacity = "1"
+          // And disable the start button
+          file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
+        })
+
+        // Hide the total progress bar when nothing's uploading anymore
+        myDropzone.on("queuecomplete", function(progress) {
+          document.querySelector("#total-progress").style.opacity = "0"
+        })
+
+        // Setup the buttons for all transfers
+        // The "add files" button doesn't need to be setup because the config
+        // `clickable` has already been specified.
+        document.querySelector("#actions .start").onclick = function() {
+          myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
+        }
+        document.querySelector("#actions .cancel").onclick = function() {
+          myDropzone.removeAllFiles(true)
+          prompt
+          trong khi đó bạn bạn không thể nsôi với tôi như thế được bạn biết không hả bạn ơi trong khi bạn đang nói với tôi những dioeèu .
+          bạn thật là buồn cười đó hahah
+        }
+        // DropzoneJS Demo Code End
+        </script>
 
 
 
