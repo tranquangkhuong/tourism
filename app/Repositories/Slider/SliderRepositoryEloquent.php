@@ -22,6 +22,7 @@ class SliderRepositoryEloquent extends RepositoryEloquent implements SliderRepos
             if (!empty($image)) {
                 $slider->image_path = $image;
             }
+            $slider->display = $request->display;
             $slider->save();
 
             return [

@@ -12,9 +12,10 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="#">Slider</a></li>
-                    <li class="breadcrumb-item active"><a href="#">Add slider</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.slider.index') }}">Slider</a></li>
+                    <li class="breadcrumb-item active">Add slider</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -76,7 +77,7 @@
 
                     <!-- .card-footer -->
                     <div class="card-footer">
-                        <a href="#" class="btn btn-secondary">Cancel</a>
+                        <a href="{{ route('admin.slider.index') }}" class="btn btn-secondary">Cancel</a>
                         <button type="submit" class="btn btn-success float-right">Save</button>
                     </div>
                     <!-- /.card-footer -->

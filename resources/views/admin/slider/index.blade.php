@@ -12,9 +12,9 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i></a></li>
-                    <li class="breadcrumb-item active"><a href="#">Slider</a></li>
-                    {{-- <li class="breadcrumb-item"><a href="#">List slider</a></li> --}}
+                    <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active">Slider</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,48 +24,63 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function () {
-    $.ajax({
-    type: "GET",
-    url: route(`admin.slider.index_data`),
-    dataType: "json",
-    success: (response) => {
-    var str = "";
-    $.each(response, (index, value) => {
-        var ur = route(`admin.slider.edit`, value.id);
-        str += `<tr>`;
-        str += `<td>`;
-        str += `${value.title}`;
-        str += `</td>`;
-        str += `<td>`;
-        str += `<ul class="list-inline">`;
-            str += `<li class="list-inline-item">`
-                    str += `<img src="{{ URL::asset('${value.image_path}') }}" alt="image slider" style="width:50%">`;
-                str += `</li>`;
-            str += `</ul>`;
-        str += `</td>`;
-        str += `<td class="project_progress">`
-            str += `<p>${value.created_at}</p>`;
-        str += `</td>`;
-        str += `<td class="project-state">`;
-            if (value.display === 1) {
-            str += `<a href="#"><span class="badge badge-success">Hiển thị</span></a>`;
-            } else {
-            str += `<a href="#"><span class="badge badge-warning">Ẩn</span></a>`;
-            }
-            str += `</td>`;
-
-            str += `<td class="project-actions text-right">`;
-            str += `<a class="btn btn-info btn-sm" href="${ur}">`;
-                str += `<i class="fas fa-pencil-alt"></i>Edit</a>`;
-
-
-            str += `<a class="btn btn-danger btn-sm" href="javascript::void(0)" onclick="confirmDelete('slider', ${value.id})">`;
-                str += `<i class="fas fa-trash"></i>Delete</a></td>`;
-        str += `</tr>`;
+        // tim kiem - filter
+        $("#search").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $(`#list-slider tr`).filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
         });
-        $(`table > tbody > #list-slider`).html(str);
-        },
-    });
+
+        // Alert Delete
+        $('.btn-delete').click((e) => {
+            let isDelete = confirm('Bạn có chắc chắn muốn xóa?');
+            if(!isDelete) {
+                e.preventDefault();
+            }
+        });
+//     $.ajax({
+//     type: "GET",
+//     url: route(`admin.slider.index_data`),
+//     dataType: "json",
+//     success: (response) => {
+//     var str = "";
+//     $.each(response, (index, value) => {
+//         var ur = route(`admin.slider.edit`, value.id);
+//         str += `<tr>`;
+//         str += `<td>`;
+//         str += `${value.title}`;
+//         str += `</td>`;
+//         str += `<td>`;
+//         str += `<ul class="list-inline">`;
+//             str += `<li class="list-inline-item">`
+//                     str += `<img src="{{ URL::asset('${value.image_path}') }}" alt="image slider" style="width:50%">`;
+//                 str += `</li>`;
+//             str += `</ul>`;
+//         str += `</td>`;
+//         str += `<td class="project_progress">`
+//             str += `<p>${value.created_at}</p>`;
+//         str += `</td>`;
+//         str += `<td class="project-state">`;
+//             if (value.display === 1) {
+//             str += `<a href="#"><span class="badge badge-success">Hiển thị</span></a>`;
+//             } else {
+//             str += `<a href="#"><span class="badge badge-warning">Ẩn</span></a>`;
+//             }
+//             str += `</td>`;
+
+//             str += `<td class="project-actions text-right">`;
+//             str += `<a class="btn btn-info btn-sm" href="${ur}">`;
+//                 str += `<i class="fas fa-pencil-alt"></i>Edit</a>`;
+
+
+//             str += `<a class="btn btn-danger btn-sm" href="javascript::void(0)" onclick="confirmDelete('slider', ${value.id})">`;
+//                 str += `<i class="fas fa-trash"></i>Delete</a></td>`;
+//         str += `</tr>`;
+//         });
+//         $(`table > tbody > #list-slider`).html(str);
+//         },
+//     });
 });
 </script>
 @endsection
@@ -104,8 +119,8 @@
 
         <!-- .card-body -->
         <div class="card-body p-0" style="display: block;">
-            <table class="table table-striped projects">
-                <thead class="text-center">
+            <table class="table table-striped table-hover table-head-fixed projects">
+                <thead>
                     <tr>
                         <th style="width: 30%">
                             Title slider
@@ -152,7 +167,8 @@
                                 </i>
                                 Edit
                             </a>
-                            <a class="btn btn-danger btn-sm" href="javascript::void()">
+                            <a class="btn btn-danger btn-sm btn-delete"
+                                href="{{ route('admin.slider.delete', ['slider_id' => $slider->id]) }}">
                                 <i class="fas fa-trash">
                                 </i>
                                 Delete

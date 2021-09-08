@@ -50,25 +50,46 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                <<<<<<< HEAD <li class="nav-item">
-                    <a href="{{ url('/admin/dashboard') }}" class="nav-link">
-                        <i class="nav-icon fas fa-home"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                    </li>
-            </ul>
-
             <!-- slider -->
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
+                        <div class="image">
+                            <img src="{{ URL::asset('frontend/img/logo-i2.png') }}" class="img-circle elevation-2"
+                                alt="User Image">
+                        </div>
+                        <p style="color:#fff;padding: 35px;">
+                            Admin tour
+                            <i class="fas fa-key"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="javascript::void()" class="nav-link">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <p>My Profile</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/logout') }}" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/admin/dashboard') }}" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript::void()" class="nav-link">
                         <i class=" nav-icon far fa-images"></i>
                         <p>
                             Slider
@@ -77,24 +98,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>List slider</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../index2.html" class="nav-link">
+                            <a href="{{ route('admin.slider.add') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Slider</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.slider.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List Slider</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
-            </ul>
-            <!-- Area & Location -->
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fas fa-map-marked-alt"></i>
@@ -118,12 +134,6 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
-
-            <!-- tour order -->
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fas fa-mountain"></i>
@@ -147,12 +157,6 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
-
-            <!-- Promotion -->
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fas fa-ad"></i>
@@ -176,13 +180,6 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
-
-            <!-- Payment -->
-
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fas fa-money-bill-alt"></i>
@@ -206,181 +203,26 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-car-side"></i>
+                        <p>
+                            Vehicle
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../../index.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Manager Vehicle</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
         </nav>
-
-
-
-
-
-
-
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
 </aside>
-=======
-<li class="nav-item">
-    <a href="#" class="nav-link">
-        <div class="image">
-            <img src="{{ URL::asset('frontend/img/logo-i2.png') }}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <p style="color:#fff;padding: 35px;">
-            Admin tour
-            <i class="fas fa-key"></i>
-        </p>
-    </a>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="../../index.html" class="nav-link">
-                <i class="fas fa-sign-in-alt"></i>
-                <p>Login</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="../../index2.html" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i>
-                <p>Logout</p>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="nav-item">
-    <a href="#" class="nav-link">
-        <i class=" nav-icon far fa-images"></i>
-        <p>
-            Slider
-            <i class="right fas fa-angle-left"></i>
-        </p>
-    </a>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="../../index.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>List slider</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="../../index2.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Slider</p>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="nav-item">
-    <a href="#" class="nav-link">
-        <i class="fas fa-map-marked-alt"></i>
-        <p>
-            Area & Location
-            <i class="right fas fa-angle-left"></i>
-        </p>
-    </a>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="../../index.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage Location</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="../../index2.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Location</p>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="nav-item">
-    <a href="#" class="nav-link">
-        <i class="fas fa-mountain"></i>
-        <p>
-            Tour
-            <i class="right fas fa-angle-left"></i>
-        </p>
-    </a>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="../../index.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage Tour</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="../../index2.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Tour</p>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="nav-item">
-    <a href="#" class="nav-link">
-        <i class="fas fa-ad"></i>
-        <p>
-            Promotion
-            <i class="right fas fa-angle-left"></i>
-        </p>
-    </a>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="../../index.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage Promotion</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="../../index2.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Promotion</p>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="nav-item">
-    <a href="#" class="nav-link">
-        <i class="fas fa-money-bill-alt"></i>
-        <p>
-            Payment
-            <i class="right fas fa-angle-left"></i>
-        </p>
-    </a>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="../../index.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage Payment</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="../../index2.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Payment</p>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="nav-item">
-    <a href="#" class="nav-link">
-        <i class="fas fa-car-side"></i>
-        <p>
-            Vehicle
-            <i class="right fas fa-angle-left"></i>
-        </p>
-    </a>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="../../index.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manager Vehicle</p>
-            </a>
-        </li>
-    </ul>
-</li>
-
-</nav>
-<!-- /.sidebar-menu -->
-</div>
-<!-- /.sidebar -->
-</aside>
->>>>>>> thuan

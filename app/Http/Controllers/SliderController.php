@@ -106,10 +106,12 @@ class SliderController extends Controller
     public function destroy($sliderId)
     {
         $rs = $this->repo->destroy($sliderId);
-        if ($rs['stt'] == 'error') {
-            return response()->json($rs, 500);
-        }
+        toast($rs['msg'], $rs['stt']);
+        return back();
+        // if ($rs['stt'] == 'error') {
+        //     return response()->json($rs, 500);
+        // }
 
-        return response()->json($rs);
+        // return response()->json($rs);
     }
 }
