@@ -13,7 +13,6 @@
 
 <body class="sidebar-mini" style="height: auto;">
     <div class="wrapper">
-
         <!-- sidebar -->
         @include('admin.include.sidebar')
 

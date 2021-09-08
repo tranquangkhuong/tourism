@@ -136,24 +136,7 @@
                 <h4 class=" d-flex justify-content-center">Date</h4>
                 <div class="form-group">
                     <label>Date range:</label>
-
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="far fa-calendar-alt"></i>
-                        </span>
-                      </div>
-                      <input type="text" class="form-control float-right col-12 col-sm-6" id="from" name="from">
-                      <label for="to">to</label>
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="far fa-calendar-alt"></i>
-                        </span>
-                      </div>
-                      <input type="text" class="form-control float-right col-12 col-sm-6" id="to" name="to">
-
-                    </div>
-                    <!-- /.input group -->
+                        <input type="text" class="form-control date" placeholder="Pick the multiple dates">
                   </div>
 
                     <!-- /.input group -->
@@ -251,58 +234,58 @@
           <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
 
         {{-- tab 3 --}}
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card card-default">
-              <div class="card-header">
-                <h3 class="card-title">Dropzone.js <small><em>jQuery File Upload</em> like look</small></h3>
-              </div>
-              <div class="card-body">
-                <div id="actions" class="row">
-                  <div class="col-lg-6">
-                    <div class="btn-group w-100">
-                      <span class="btn btn-success col fileinput-button dz-clickable">
-                        <i class="fas fa-plus"></i>
-                        <span>Add files</span>
-                      </span>
-                      <button type="submit" class="btn btn-primary col start">
-                        <i class="fas fa-upload"></i>
-                        <span>Start upload</span>
-                      </button>
-                      <button type="reset" class="btn btn-warning col cancel">
-                        <i class="fas fa-times-circle"></i>
-                        <span>Cancel upload</span>
-                      </button>
+        <section class="content">
+            <div class="container-fluid">
+
+              <!-- /.row -->
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card card-default">
+                    <div class="card-header">
+                      <h3 class="card-title">Dropzone.js <small><em>jQuery File Upload</em> like look</small></h3>
                     </div>
-                  </div>
-                  <div class="col-lg-6 d-flex align-items-center">
-                    <div class="fileupload-process w-100">
-                      <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="opacity: 1;">
-                        <div class="progress-bar progress-bar-success" style="width: 100%;" data-dz-uploadprogress=""></div>
+                    <div class="card-body">
+                      <div id="actions" class="row">
+                        <div class="col-lg-6">
+                          <div class="btn-group w-100">
+                            <span class="btn btn-success col fileinput-button dz-clickable">
+                              <i class="fas fa-plus"></i>
+                              <span>Add files</span>
+                            </span>
+                            <button type="submit" class="btn btn-primary col start">
+                              <i class="fas fa-upload"></i>
+                              <span>Start upload</span>
+                            </button>
+                            <button type="reset" class="btn btn-warning col cancel">
+                              <i class="fas fa-times-circle"></i>
+                              <span>Cancel upload</span>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center">
+                          <div class="fileupload-process w-100">
+                            <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                              <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress=""></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="table table-striped files" id="previews">
+
                       </div>
                     </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      Visit <a href="https://www.dropzonejs.com">dropzone.js documentation</a> for more examples and information about the plugin.
+                    </div>
                   </div>
-                </div>
-                <div class="table table-striped files" id="previews">
-
+                  <!-- /.card -->
                 </div>
               </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-                Visit <a href="https://www.dropzonejs.com">dropzone.js documentation</a> for more examples and information about the plugin.
-              </div>
+              <!-- /.row -->
             </div>
-            <!-- /.card -->
-          </div>
-        </div>
-
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
-
-          </div>
-        </div>
+            <!-- /.container-fluid -->
+          </section>
       </div>
       <!-- /.card -->
     </div>
@@ -323,104 +306,21 @@
 
 }
 
-    };
+};
 
 
    </script>
   <script>
-    $( function() {
-      var dateFormat = "mm/dd/yy",
-        from = $( "#from" )
-          .datepicker({
+   $('.date').datepicker({
+    multidate: true,
+	format: 'dd-mm-yyyy'
+  });
 
-            changeMonth: true,
-            numberOfMonths: 1,
-            dateFormat: 'dd/mm/yy'
-          })
-          .on( "change", function() {
-            to.datepicker( "option", "minDate", getDate( this ) );
-          }),
-        to = $( "#to" ).datepicker({
-          defaultDate: "+1w",
-          changeMonth: true,
-          numberOfMonths: 2,
-          dateFormat: 'dd/mm/yy'
-        })
-        .on( "change", function() {
-          from.datepicker( "option", "maxDate", getDate( this ) );
-        });
-
-      function getDate( element ) {
-        var date;
-        try {
-          date = $.datepicker.parseDate( dateFormat, element.value );
-        } catch( error ) {
-          date = null;
-        }
-
-        return date;
-      }
-    } );
 
 </script>
 
 
 
-<script>
-
-    // DropzoneJS Demo Code Start
-    Dropzone.autoDiscover = false
-
-    // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-    var previewNode = document.querySelector("#template")
-    previewNode.id = ""
-    var previewTemplate = previewNode.parentNode.innerHTML
-    previewNode.parentNode.removeChild(previewNode)
-
-    var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-      url: "/target-url", // Set the url
-      thumbnailWidth: 80,
-      thumbnailHeight: 80,
-      parallelUploads: 20,
-      previewTemplate: previewTemplate,
-      autoQueue: false, // Make sure the files aren't queued until manually added
-      previewsContainer: "#previews", // Define the container to display the previews
-      clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-    })
-
-    myDropzone.on("addedfile", function(file) {
-      // Hookup the start button
-      file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
-    })
-
-    // Update the total progress bar
-    myDropzone.on("totaluploadprogress", function(progress) {
-      document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
-    })
-
-    myDropzone.on("sending", function(file) {
-      // Show the total progress bar when upload starts
-      document.querySelector("#total-progress").style.opacity = "1"
-      // And disable the start button
-      file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
-    })
-
-    // Hide the total progress bar when nothing's uploading anymore
-    myDropzone.on("queuecomplete", function(progress) {
-      document.querySelector("#total-progress").style.opacity = "0"
-    })
-
-    // Setup the buttons for all transfers
-    // The "add files" button doesn't need to be setup because the config
-    // `clickable` has already been specified.
-    document.querySelector("#actions .start").onclick = function() {
-      myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
-    }
-    document.querySelector("#actions .cancel").onclick = function() {
-      myDropzone.removeAllFiles(true)
-    };
-    // DropzoneJS Demo Code End
-  </script>
 
 
   <!-- /.content -->
