@@ -35,3 +35,14 @@
     bsCustomFileInput.init();
     });
 </script>
+<script>
+    const listLink = document.querySelectorAll('.nav-link');
+
+    listLink.forEach((listlinks,index)=>{
+        listlinks.onclick=function(){
+            const linkActive = document.querySelector('.nav-link.active');
+            linkActive.classList.remove("active");
+            this.classList.add('active')
+        }
+    });
+</script>
