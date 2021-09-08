@@ -11,7 +11,7 @@
     @include('include.style')
 
     <!-- Push style theo tung view khac nhau -->
-    @stack('style')
+    @yield('style')
 
 </head>
 
@@ -36,13 +36,11 @@
     <!-- back to top -->
     <a id="button-back-top"></a>
 
-    {{-- @yield('content') --}}
-
     @include('sweetalert::alert')
 
 </body>
 
 @include('include.script')
-@stack('script')
+@yield('script')
 
 </html>

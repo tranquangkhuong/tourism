@@ -18,11 +18,14 @@ class PermissionSeeder extends Seeder
         // Add Admin Role
         $adminRole = Role::where('name', config('roles.admin.roles'))->first();
         if (!$adminRole) {
-            $adminRole = Role::create(config('roles.admin.roles'));
+            $adminRole = Role::create([
+                'name' => config('roles.admin.roles.name'),
+                'guard_name' => config('auth.guards.admin.name'),
+            ]);
         }
 
         // Get new Admin Permission
-        $newPermissions = $this->getNewPermissions('roles.admin.permissions');
+        $newPermissions = $this->createAdminPermissions('roles.admin.permissions');
         Permission::insert($newPermissions);
         $adminRole->syncPermissions(config('roles.admin.permissions'));
     }
@@ -32,7 +35,7 @@ class PermissionSeeder extends Seeder
      * @param string $config
      * @return array
      */
-    private function getNewPermissions(string $config): array
+    private function createAdminPermissions(string $config)
     {
         $currentPermissions = Permission::get('name')->pluck('name')->toArray();
         $newPermissions = [];
@@ -41,9 +44,7 @@ class PermissionSeeder extends Seeder
             if (!in_array($configPermission, $currentPermissions)) {
                 $newPermissions[] = [
                     'name' => $configPermission,
-                    'guard_name' => config('auth.guards.admin'),
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                    'guard_name' => config('auth.guards.admin.name'),
                 ];
             }
         }

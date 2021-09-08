@@ -16,9 +16,10 @@ class CreatePromotionsTable extends Migration
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
             $table->string('content');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->float('number');
+            $table->string('code');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->decimal('number', 10, 2)->nullable();
             $table->string('type')->default('VND');
             $table->integer('amount')->nullable();
             $table->timestamps();

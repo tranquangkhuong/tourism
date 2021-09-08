@@ -16,17 +16,11 @@ class Controller extends BaseController
 
     protected const STATUS_SUCCESS = 'success';
     protected const STATUS_ERROR = 'error';
-    protected $repo;
 
-    public function __construct(RepositoryInterface $repositoryInterface)
-    {
-        $this->repo = $repositoryInterface;
-    }
-
-    public function footerData()
-    {
-        return response()->json($this->repo->getFooterData());
-    }
+    // public function footerData()
+    // {
+    //     return response()->json($this->repo->getFooterData());
+    // }
 
     public function changeLanguage(Request $request, $language)
     {
@@ -46,8 +40,8 @@ class Controller extends BaseController
         return $randomString;
     }
 
-    public function flyResize($model, $size, $imagePath)
-    {
-        return $this->repo->flyResize($model, $size, $imagePath);
-    }
+    // public function flyResize($model, $size, $imagePath)
+    // {
+    //     return $this->repo->flyResize($model, $size, $imagePath);
+    // }
 }

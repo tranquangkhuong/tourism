@@ -35,20 +35,10 @@ class CreatePivotTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('area_tour', function (Blueprint $table) {
+        Schema::create('promotion_tour', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('area_id')->comment('FK to areas')
-                ->references('id')->on('areas')
-                ->onDelete('cascade');
-            $table->foreignId('tour_id')->comment('FK to tours')
-                ->references('id')->on('tours')
-                ->onDelete('cascade');
-        });
-
-        Schema::create('location_tour', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('location_id')->comment('FK to locations')
-                ->references('id')->on('locations')
+            $table->foreignId('promotion_id')->comment('FK to promotions')
+                ->references('id')->on('promotions')
                 ->onDelete('cascade');
             $table->foreignId('tour_id')->comment('FK to tours')
                 ->references('id')->on('tours')
@@ -65,7 +55,6 @@ class CreatePivotTable extends Migration
     {
         Schema::dropIfExists('tag_tour');
         Schema::dropIfExists('tour_vehicle');
-        Schema::dropIfExists('area_tour');
-        Schema::dropIfExists('location_tour');
+        Schema::dropIfExists('promotion_tour');
     }
 }

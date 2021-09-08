@@ -128,8 +128,11 @@
         })
     });
 </script>
+
+<!-- Jquery Validation -->
 <script src="{{ URL::asset('backend/jquery-validation-1.19.3/dist/jquery.validate.min.js') }}"></script>
 <script src="{{ URL::asset('backend/jquery-validation-1.19.3/dist/additional-methods.min.js') }}"></script>
+
 <script src="{{ URL::asset('frontend/js/main.js') }}"></script>
 <script src="{{ URL::asset('frontend/js/detail_tour/detail_tour.js') }}"></script>
 <script src="{{ URL::asset('frontend/js/contact_us_js/contact_us.js') }}"></script>

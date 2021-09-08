@@ -432,10 +432,11 @@ abstract class RepositoryEloquent implements RepositoryInterface
      */
     public function getImageDirectory($addPath = '')
     {
-        if (!is_dir(public_path('images/' . $this->_model->imagePath . $addPath))) {
-            mkdir(public_path('images/' . $this->_model->imagePath . $addPath), 0777, true);
+        $path = '/images/' . $this->_model->imagePath . $addPath;
+        if (!is_dir(public_path($path))) {
+            mkdir(public_path($path), 0777, true);
         }
-        return public_path('images/' . $this->_model->imagePath . $addPath);
+        return public_path($path);
     }
 
     /**

@@ -16,10 +16,10 @@ class SliderRepositoryEloquent extends RepositoryEloquent implements SliderRepos
     {
         try {
             $slider = new Slider();
-            $slider->admin_id = 1;
+            $slider->admin_id = 5;
             $slider->title = $request->title;
             $slider->content = $request->content;
-            if ($image) {
+            if (!empty($image)) {
                 $slider->image_path = $image;
             }
             $slider->save();

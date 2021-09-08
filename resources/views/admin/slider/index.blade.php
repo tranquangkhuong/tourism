@@ -76,7 +76,12 @@
     <div class="card">
         <!-- .card-header -->
         <div class="card-header">
-            <h3 class="card-title">Slider Management</h3>
+            <h3 class="card-title">
+                <a href="{{ route('admin.slider.add') }}" class="btn btn-xs btn-success">
+                    <i class="fas fa-plus-circle"></i>&nbsp;
+                    Thêm mới
+                </a>
+            </h3>
             <div class="card-tools">
                 <div class="row">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -119,75 +124,43 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody id="list-slider">
-                    {{-- <tr>
-                        <td>
-                            response.title
-                        </td>
-                        <td>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <img src="{{ URL::asset('frontend/img/slider1.jpg') }}" alt="slider1"
-                    style="width:50%">
-                    </li>
-                    </ul>
-                    </td>
-                    <td class="project_progress">
-                        <p> response.created_at</p>
-                    </td>
-                    <td class="project-state">
-                        <a href="#"><span class="badge badge-success">Hiển thị</span></a>
-                    </td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-info btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </a>
-                    </td>
-                    </tr>
 
+                <tbody id="list-slider">
+                    @foreach ($sliders as $slider)
                     <tr>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            <a>
-                                Slider 2
-                            </a>
-                        </td>
+                        <td>{{ $slider->title }}</td>
                         <td>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <img src="{{ URL::asset('frontend/img/slider2.jpg') }}" alt="slider1"
+                                    <img src="{{ URL::asset($slider->image_path) }}" alt="{{ $slider->title }}"
                                         style="width:50%">
                                 </li>
                             </ul>
                         </td>
-                        <td class="project_progress">
-                            <p> explore and Travel</p>
-                        </td>
+                        <td class="project_progress">{{ $slider->created_at }}</td>
                         <td class="project-state">
+                            @if ($slider->display === 1)
                             <a href="#"><span class="badge badge-success">Hiển thị</span></a>
+                            @else
+                            <a href="#"><span class="badge badge-warning">Ẩn</span></a>
+                            @endif
                         </td>
                         <td class="project-actions text-right">
-                            <a class="btn btn-info btn-sm" href="#">
+                            <a class="btn btn-info btn-sm"
+                                href="{{ route('admin.slider.edit', ['slider_id' => $slider->id]) }}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Edit
                             </a>
-                            <a class="btn btn-danger btn-sm" href="#">
+                            <a class="btn btn-danger btn-sm" href="javascript::void()">
                                 <i class="fas fa-trash">
                                 </i>
                                 Delete
                             </a>
                         </td>
-                    </tr> --}}
+                    </tr>
+                    @endforeach
+
                 </tbody>
             </table>
         </div>

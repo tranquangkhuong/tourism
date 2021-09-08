@@ -18,7 +18,7 @@ class LoginController extends Controller
         ], $request->remember)) {
             $request->session()->regenerate();
 
-            return redirect()->url('/admin/dashboard');
+            return redirect('/admin/dashboard');
         }
 
         if (Auth::guard('user')->attempt([
@@ -45,8 +45,9 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        if (Auth::guard('user')->check()) {
+        if (Auth::guard('user')->check() || auth('admin')->check()) {
             Auth::guard('user')->logout();
+            auth('admin')->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
             toast(__('You are logged out.'), 'warning');

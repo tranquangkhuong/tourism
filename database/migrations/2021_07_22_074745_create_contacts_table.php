@@ -15,6 +15,16 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('info')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('about', function (Blueprint $table) {
+            $table->id();
             $table->longText('about_us')->nullable();
             $table->string('facebook')->nullable();
             $table->string('youtube')->nullable();
@@ -33,5 +43,6 @@ class CreateContactsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('contacts');
+        Schema::dropIfExists('about');
     }
 }

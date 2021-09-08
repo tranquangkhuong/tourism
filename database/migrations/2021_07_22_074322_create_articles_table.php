@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('image_path', 2048)->nullable();
             $table->longText('content');
-            $table->tinyInteger('display', 1)->default(1)->comment('1 là hiển thị');
+            $table->tinyInteger('display')->default(1)->comment('1 là hiển thị');
             $table->timestamps();
             $table->softDeletes();
         });

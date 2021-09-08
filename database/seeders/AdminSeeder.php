@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Admin;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class AdminSeeder extends Seeder
 {
@@ -18,18 +19,19 @@ class AdminSeeder extends Seeder
         $countAdmin = Admin::count();
         if (!$countAdmin) {
             // create admin account
-            $admin = Admin::insert([
-                [
-                    'name' => 'Admin',
-                    'email' => 'admin@mail.xxx',
-                    'password' => Hash::make('12345'),
-                    'created_at' => now(),
-                ]
+            $admin = Admin::create([
+                'name' => 'super-admin',
+                'email' => 'superadmin@mail.xxx',
+                'password' => Hash::make('123456'),
+                'created_at' => now(),
             ]);
             // create role super-admin
-            Role::create(config('roles.super_admin.roles'));
+            Role::create([
+                'name' => config('roles.super_admin.roles.name'),
+                'guard_name' => config('auth.guards.admin.name'),
+            ]);
             // Assign role vao admin account
-            $admin->assignRole(config('roles.super_admin.roles'));
+            $admin->assignRole(config('roles.super_admin.roles.name'));
         }
     }
 }

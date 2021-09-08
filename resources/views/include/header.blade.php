@@ -16,6 +16,8 @@
         </div>
         <div class="header-top__right">
             <div class="social">
+
+                @if (auth('user')->check())
                 <div class="notification-wrap">
                     <a href="#" class="social-link notification"><i class="fas fa-bell"></i><span>2</span></a>
                     <!-- content notification -->
@@ -73,6 +75,7 @@
                         <footer class="notification-content__footer"><a href="#">xóa tất cả</a></footer>
                     </div>
                 </div>
+                @endif
 
                 <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>

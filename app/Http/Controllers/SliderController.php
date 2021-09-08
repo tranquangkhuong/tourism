@@ -21,7 +21,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        return view('admin.slider.index');
+        $sliders = $this->repo->getAll(['id', 'title', 'image_path', 'display', 'created_at']);
+        return view('admin.slider.index', compact('sliders'));
     }
 
     public function indexData()
@@ -47,7 +48,6 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $image = $this->repo->uploadImage($request->hasFile('image'), $request->file('image'));
         $rs = $this->repo->storeSlider($request, $image);
         toast($rs['msg'], $rs['stt']);

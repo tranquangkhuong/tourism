@@ -18,10 +18,10 @@ class CreateSlidersTable extends Migration
             $table->foreignId('admin_id')->comment('FK to admins')
                 ->references('id')->on('admins')
                 ->onDelete('cascade');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('content')->nullable();
-            $table->string('image_path', 2048);
-            $table->tinyInteger('display', 1)->default(1)->comment('1 là hiển thị');
+            $table->string('image_path', 2048)->nullable();
+            $table->tinyInteger('display')->default(1)->comment('1 là hiển thị');
             $table->timestamps();
         });
     }

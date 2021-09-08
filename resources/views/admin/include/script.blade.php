@@ -29,3 +29,9 @@
 </script>
 <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/bootstrap-switch.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/bs-stepper.min.js') }}"></script>
+
+<script>
+    $(function () {
+    bsCustomFileInput.init();
+    });
+</script>
