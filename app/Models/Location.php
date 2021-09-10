@@ -12,6 +12,7 @@ class Location extends Model
     protected $fillable = [
         'area_id',
         'name',
+        'description',
         'created_at',
         'updated_at',
     ];

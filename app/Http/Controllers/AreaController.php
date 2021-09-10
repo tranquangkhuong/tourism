@@ -21,24 +21,13 @@ class AreaController extends Controller
      */
     public function index()
     {
-        return view('test.area.index');
+        $areas = $this->repo->getAll(['id', 'name', 'domestic', 'created_at']);
+        return view('admin.area.index', compact('areas'));
     }
 
     public function indexData()
     {
         return response()->json($this->repo->getAll(['id', 'name']));
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // Su dung modal
-        return view('test.area.add');
     }
 
     /**
@@ -76,7 +65,7 @@ class AreaController extends Controller
     {
         $area = $this->repo->find($areaId);
 
-        return view('test.area.edit', compact('area'));
+        return view('admin.area.edit', compact('area'));
     }
 
     /**
@@ -103,10 +92,12 @@ class AreaController extends Controller
     public function destroy($areaId)
     {
         $rs = $this->repo->destroy($areaId);
-        if ($rs['stt'] == 'error') {
-            return response()->json($rs, 500);
-        }
+        toast($rs['msg'], $rs['stt']);
+        return back();
+        // if ($rs['stt'] == 'error') {
+        //     return response()->json($rs, 500);
+        // }
 
-        return response()->json($rs);
+        // return response()->json($rs);
     }
 }

@@ -21,7 +21,8 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        return view('test.promotion.index');
+        $promotions = $this->repo->getAll();
+        return view('admin.promotion.index', compact('promotions'));
     }
 
     public function indexData()
@@ -36,7 +37,7 @@ class PromotionController extends Controller
      */
     public function create()
     {
-        return view('test.promotion.add');
+        return view('admin.promotion.add');
     }
 
     /**
@@ -76,7 +77,7 @@ class PromotionController extends Controller
     {
         $promotion = $this->repo->find($promotionId);
 
-        return view('test.promotion.edit', compact('promotion'));
+        return view('admin.promotion.edit', compact('promotion'));
     }
 
     /**
@@ -103,10 +104,12 @@ class PromotionController extends Controller
     public function destroy($promotionId)
     {
         $rs = $this->repo->destroy($promotionId);
-        if ($rs['stt'] == 'error') {
-            return response()->json($rs, 500);
-        }
+        toast($rs['msg'], $rs['stt']);
+        return back();
+        // if ($rs['stt'] == 'error') {
+        //     return response()->json($rs, 500);
+        // }
 
-        return response()->json($rs);
+        // return response()->json($rs);
     }
 }

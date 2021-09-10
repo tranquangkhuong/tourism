@@ -202,7 +202,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::group(['prefix' => '/tag', 'as' => 'tag.'], function () {
         Route::get('/', [TagController::class, 'index'])->name('index');
         Route::get('/index-data', [TagController::class, 'indexData'])->name('index_data');
-        Route::get('/add', [TagController::class, 'create'])->name('add');
+        // Route::get('/add', [TagController::class, 'create'])->name('add');
         Route::post('/store', [TagController::class, 'store'])->name('store');
         Route::get('/edit/{tag_id}', [TagController::class, 'edit'])->name('edit');
         Route::post('/update/{tag_id}', [TagController::class, 'update'])->name('update');
@@ -212,7 +212,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::group(['prefix' => '/vehicle', 'as' => 'vehicle.'], function () {
         Route::get('/', [VehicleController::class, 'index'])->name('index');
         Route::get('/index-data', [VehicleController::class, 'indexData'])->name('index_data');
-        Route::get('/add', [VehicleController::class, 'create'])->name('add');
+        // Route::get('/add', [VehicleController::class, 'create'])->name('add');
         Route::post('/store', [VehicleController::class, 'store'])->name('store');
         Route::get('/edit/{vehicle_id}', [VehicleController::class, 'edit'])->name('edit');
         Route::post('/update/{vehicle_id}', [VehicleController::class, 'update'])->name('update');
@@ -222,7 +222,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::group(['prefix' => '/area', 'as' => 'area.'], function () {
         Route::get('/', [AreaController::class, 'index'])->name('index');
         Route::get('/index-data', [AreaController::class, 'indexData'])->name('index_data');
-        Route::get('/add', [AreaController::class, 'create'])->name('add');
+        // Route::get('/add', [AreaController::class, 'create'])->name('add');
         Route::post('/store', [AreaController::class, 'store'])->name('store');
         Route::get('/edit/{area_id}', [AreaController::class, 'edit'])->name('edit');
         Route::post('/update/{area_id}', [AreaController::class, 'update'])->name('update');
@@ -232,7 +232,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::group(['prefix' => '/location', 'as' => 'location.'], function () {
         Route::get('/', [LocationController::class, 'index'])->name('index');
         Route::get('/index-data', [LocationController::class, 'indexData'])->name('index_data');
-        Route::get('/add', [LocationController::class, 'create'])->name('add');
+        // Route::get('/add', [LocationController::class, 'create'])->name('add');
         Route::post('/store', [LocationController::class, 'store'])->name('store');
         Route::get('/edit/{location_id}', [LocationController::class, 'edit'])->name('edit');
         Route::post('/update/{location_id}', [LocationController::class, 'update'])->name('update');

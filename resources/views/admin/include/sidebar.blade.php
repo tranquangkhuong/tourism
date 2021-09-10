@@ -89,6 +89,22 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.tag.index') }}" class="nav-link">
+                        <i class="fas fa-tags"></i>
+                        <p>
+                            Tag
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.vehicle.index') }}" class="nav-link">
+                        <i class="fas fa-car-side"></i>
+                        <p>
+                            Vehicle
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="javascript::void()" class="nav-link">
                         <i class=" nav-icon far fa-images"></i>
                         <p>
@@ -112,7 +128,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="javascript::void()" class="nav-link">
                         <i class="fas fa-map-marked-alt"></i>
                         <p>
                             Area & Location
@@ -121,15 +137,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
+                            <a href="{{ route('admin.area.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Manage Location</p>
+                                <p>Area</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index2.html" class="nav-link">
+                            <a href="{{ route('admin.location.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Add Location</p>
+                                <p>Location</p>
                             </a>
                         </li>
                     </ul>
@@ -158,8 +174,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-ad"></i>
+                    <a href="javascript::void()" class="nav-link">
+                        <i class="fab fa-adversal"></i>
                         <p>
                             Promotion
                             <i class="right fas fa-angle-left"></i>
@@ -167,13 +183,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
+                            <a href="{{ route('admin.promotion.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Manage Promotion</p>
+                                <p>List Promotion</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index2.html" class="nav-link">
+                            <a href="{{ route('admin.promotion.add') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Promotion</p>
                             </a>

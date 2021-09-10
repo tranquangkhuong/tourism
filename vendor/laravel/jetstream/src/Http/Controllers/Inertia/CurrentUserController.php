@@ -5,7 +5,6 @@ namespace Laravel\Jetstream\Http\Controllers\Inertia;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Laravel\Fortify\Actions\ConfirmPassword;
@@ -28,7 +27,7 @@ class CurrentUserController extends Controller
 
         if (! $confirmed) {
             throw ValidationException::withMessages([
-                'password' => 'The password is incorrect.',
+                'password' => __('The password is incorrect.'),
             ]);
         }
 

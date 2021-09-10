@@ -21,22 +21,13 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('admin.tag.index');
+        $tags = $this->repo->getAll(['id', 'name', 'created_at']);
+        return view('admin.tag.index', compact('tags'));
     }
 
     public function indexData()
     {
         return response()->json($this->repo->getAll(['id', 'name', 'created_at']));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     */
-    public function create()
-    {
-        // Cai nay lam modal, khong phai tao file nua
-        return view('test.tag.add');
     }
 
     /**
@@ -90,11 +81,12 @@ class TagController extends Controller
     public function destroy($tagId)
     {
         $rs = $this->repo->destroy($tagId);
-        // toast($rs['msg'], $rs['stt']);
-        if ($rs['stt'] == 'error') {
-            return response()->json($rs, 500);
-        }
+        toast($rs['msg'], $rs['stt']);
+        return back();
+        // if ($rs['stt'] == 'error') {
+        //     return response()->json($rs, 500);
+        // }
 
-        return response()->json($rs);
+        // return response()->json($rs);
     }
 }

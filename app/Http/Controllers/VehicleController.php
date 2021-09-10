@@ -21,22 +21,13 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        return view('test.vehicle.index');
+        $vehicles = $this->repo->getAll(['id', 'name', 'created_at']);
+        return view('admin.vehicle.index', compact('vehicles'));
     }
 
     public function indexData()
     {
         return response()->json($this->repo->getAll(['id', 'name']));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     */
-    public function create()
-    {
-        // Dung modal cho tien
-        return view('test.vehicle.add');
     }
 
     /**
@@ -74,7 +65,7 @@ class VehicleController extends Controller
     {
         $vehicle = $this->repo->find($vehicleId);
 
-        return view('test.vehicle.edit', compact('vehicle'));
+        return view('admin.vehicle.edit', compact('vehicle'));
     }
 
     /**
@@ -101,10 +92,12 @@ class VehicleController extends Controller
     public function destroy($vehicleId)
     {
         $rs = $this->repo->destroy($vehicleId);
-        if ($rs['stt'] == 'error') {
-            return response()->json($rs, 500);
-        }
+        toast($rs['msg'], $rs['stt']);
+        return back();
+        // if ($rs['stt'] == 'error') {
+        //     return response()->json($rs, 500);
+        // }
 
-        return response()->json($rs);
+        // return response()->json($rs);
     }
 }

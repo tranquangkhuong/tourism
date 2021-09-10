@@ -15,7 +15,7 @@
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.slider.index') }}">Slider</a></li>
-                    <li class="breadcrumb-item active">Add slider</li>
+                    <li class="breadcrumb-item active">Add</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->

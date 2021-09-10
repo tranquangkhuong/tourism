@@ -21,10 +21,11 @@ class LocationController extends Controller
      */
     public function index()
     {
+        $locations = $this->repo->getAll(['locations.id as id', 'locations.name as name', 'locations.created_at', 'areas.name as area', 'areas.domestic']);
         // lay area de cho vao modal create
-        // $areas = $this->repo->getAllArea();
+        $areas = $this->repo->getAllArea();
 
-        return view('test.location.index');
+        return view('admin.location.index', compact('locations', 'areas'));
     }
 
     public function indexData()
@@ -32,18 +33,6 @@ class LocationController extends Controller
         $columns = ['locations.id as id', 'locations.name as name', 'areas.name as area'];
         // dd($columns);
         return response()->json($this->repo->getAll($columns));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // su dung modal
-        $areas = $this->repo->getAllArea();
-        return view('test.location.add', compact('areas'));
     }
 
     /**
@@ -82,7 +71,7 @@ class LocationController extends Controller
         $location = $this->repo->find($locationId);
         $areas = $this->repo->getAllArea();
 
-        return view('test.location.edit', compact('location', 'areas'));
+        return view('admin.location.edit', compact('location', 'areas'));
     }
 
     /**
@@ -109,10 +98,12 @@ class LocationController extends Controller
     public function destroy($locationId)
     {
         $rs = $this->repo->destroy($locationId);
-        if ($rs['stt'] == 'error') {
-            return response()->json($rs, 500);
-        }
+        toast($rs['msg'], $rs['stt']);
+        return back();
+        // if ($rs['stt'] == 'error') {
+        //     return response()->json($rs, 500);
+        // }
 
-        return response()->json($rs);
+        // return response()->json($rs);
     }
 }

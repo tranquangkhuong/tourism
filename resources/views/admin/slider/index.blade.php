@@ -21,6 +21,7 @@
     </div><!-- /.container-fluid -->
 </div>
 @endsection
+
 @section('script')
 <script type="text/javascript">
     $(document).ready(function () {
@@ -84,6 +85,7 @@
 });
 </script>
 @endsection
+
 @section('content')
 <!-- Main content -->
 <section class="content">
@@ -99,40 +101,35 @@
             </h3>
             <div class="card-tools">
                 <div class="row">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" id="search" class="form-control float-right" placeholder="Search">
-                        <div class="input-group-append float-right">
-                            <button type="button" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    <div class="col">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" id="search" class="form-control float-right" placeholder="Search">
+                            <div class="input-group-append float-right">
+                                <button type="button" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </div>
                         </div>
                     </div>
-
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                        <i class="fas fa-times"></i>
-                    </button>
                 </div>
             </div>
         </div>
         <!-- /.card-header -->
 
         <!-- .card-body -->
-        <div class="card-body p-0" style="display: block;">
-            <table class="table table-striped table-hover table-head-fixed projects">
+        <div class="card-body table-responsive p-0" style="display: block;">
+            <table class="table table-striped table-hover table-head-fixed projects text-center">
                 <thead>
                     <tr>
                         <th style="width: 30%">
-                            Title slider
+                            Title
                         </th>
-                        <th style="width: 40%">
-                            Image slider
+                        <th style="width: 30%">
+                            Image
                         </th>
                         <th style="width: 10%">
-                            Date
-                        </th>
-                        <th style="width: 5%">
                             Display
+                        </th>
+                        <th style="width: 15%">
+                            Date
                         </th>
                         <th style="width: 15%">
                             Action
@@ -148,11 +145,10 @@
                             <ul class="list-inline">
                                 <li class="list-inline-item">
                                     <img src="{{ URL::asset($slider->image_path) }}" alt="{{ $slider->title }}"
-                                        style="width:50%">
+                                        style="width:40%">
                                 </li>
                             </ul>
                         </td>
-                        <td class="project_progress">{{ $slider->created_at }}</td>
                         <td class="project-state">
                             @if ($slider->display === 1)
                             <a href="#"><span class="badge badge-success">Hiển thị</span></a>
@@ -160,23 +156,25 @@
                             <a href="#"><span class="badge badge-warning">Ẩn</span></a>
                             @endif
                         </td>
-                        <td class="project-actions text-right">
-                            <a class="btn btn-info btn-sm"
-                                href="{{ route('admin.slider.edit', ['slider_id' => $slider->id]) }}">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                Edit
-                            </a>
-                            <a class="btn btn-danger btn-sm btn-delete"
-                                href="{{ route('admin.slider.delete', ['slider_id' => $slider->id]) }}">
-                                <i class="fas fa-trash">
-                                </i>
-                                Delete
-                            </a>
+                        <td class="project_progress">{{ $slider->created_at }}</td>
+                        <td class="project-actions">
+                            <div class="row">
+                                <div class="col">
+                                    <a class="btn btn-info btn-sm" title="Edit"
+                                        href="{{ route('admin.slider.edit', ['slider_id' => $slider->id]) }}">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm btn-delete" title="Delete"
+                                        href="{{ route('admin.slider.delete', ['slider_id' => $slider->id]) }}">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                    </a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
-
                 </tbody>
             </table>
         </div>

@@ -4,7 +4,6 @@
 
 @section('header')
 <!-- Content Header (Page header) -->
-
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -16,13 +15,14 @@
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.slider.index') }}">Slider</a></li>
-                    <li class="breadcrumb-item active">Edit slider</li>
+                    <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
 @endsection
+
 @section('content')
 <!-- Main content -->
 <section class="content">
@@ -76,6 +76,11 @@
                                 <option {{ $slider->display === 1?'selected':'' }} value="1">Hiển thị</option>
                                 <option {{ $slider->display !== 1?'selected':'' }} value="0">Ẩn</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCreatedAt">Created at</label>
+                            <input type="" id="inputCreatedAt" class="form-control" disabled
+                                value="{{ date('m-d-Y H:i:s', strtotime($slider->created_at)) }}">
                         </div>
                     </div>
                     <!-- /.card-body -->

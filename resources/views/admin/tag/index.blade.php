@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-{{-- @push('title', 'Slider') --}}
+@push('title', 'Tag')
 
 @section('header')
 <!-- Content Header (Page header) -->
@@ -12,9 +12,9 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i></a></li>
-                    <li class="breadcrumb-item active"><a href="#">Tag</a></li>
-                    {{-- <li class="breadcrumb-item"><a href="#">List slider</a></li> --}}
+                    <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active">Tag</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -23,7 +23,25 @@
 @endsection
 
 @section('script')
-<script type="text/javascript" src="{{ URL::asset('backend/index.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Tim kiem - filter
+        $("#search").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $(`#list-tag tr`).filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+
+        // Alert Delete
+        $('.btn-delete').click((e) => {
+            let isDelete = confirm('Bạn có chắc chắn muốn xóa?');
+            if(!isDelete) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
 @endsection
 
 @section('content')
@@ -42,32 +60,31 @@
 
             <div class="card-tools">
                 <div class="row">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" id="search" class="form-control float-right" placeholder="Search">
-                        <div class="input-group-append float-right">
-                            <button type="button" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    <div class="col">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" id="search" class="form-control float-right" placeholder="Search">
+                            <div class="input-group-append float-right">
+                                <button type="button" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                        <i class="fas fa-times"></i>
-                    </button>
                 </div>
             </div>
         </div>
         <!-- /.card-header -->
 
         <!-- .card-body -->
-        <div class="card-body p-0" style="display: block;">
-            <table class="table table-striped projects">
-                <thead class="text-center">
+        <div class="card-body table-responsive p-0" style="display: block;">
+            <table class="table table-striped table-hover table-head-fixed projects text-center">
+                <thead>
                     <tr>
+                        <th style="width: 20%">
+                            ID
+                        </th>
                         <th style="width: 40%">
                             Name
                         </th>
-                        <th style="width: 40%">
+                        <th style="20">
                             Date
                         </th>
                         <th style="width: 20%">
@@ -76,74 +93,29 @@
                     </tr>
                 </thead>
                 <tbody id="list-tag">
-                    {{-- <tr>
-                        <td>
-                            response.title
-                        </td>
-                        <td>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <img src="{{ URL::asset('frontend/img/slider1.jpg') }}" alt="slider1"
-                    style="width:50%">
-                    </li>
-                    </ul>
-                    </td>
-                    <td class="project_progress">
-                        <p> response.created_at</p>
-                    </td>
-                    <td class="project-state">
-                        <a href="#"><span class="badge badge-success">Hiển thị</span></a>
-                    </td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-info btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </a>
-                    </td>
-                    </tr>
-
+                    @foreach ($tags as $tag)
                     <tr>
-                        <td>
-                            2
+                        <td style="opacity: .5">{{ $tag->id }}</td>
+                        <td>{{ $tag->name }}</td>
+                        <td>{{ $tag->created_at }}</td>
+                        <td class="project-actions">
+                            <div class="row">
+                                <div class="col">
+                                    <a class="btn btn-info btn-sm" title="Edit"
+                                        href="{{ route('admin.tag.edit', $tag->id) }}">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm btn-delete" title="Delete"
+                                        href="{{ route('admin.tag.delete', $tag->id) }}">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                    </a>
+                                </div>
+                            </div>
                         </td>
-                        <td>
-                            <a>
-                                Slider 2
-                            </a>
-                        </td>
-                        <td>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <img src="{{ URL::asset('frontend/img/slider2.jpg') }}" alt="slider1"
-                                        style="width:50%">
-                                </li>
-                            </ul>
-                        </td>
-                        <td class="project_progress">
-                            <p> explore and Travel</p>
-                        </td>
-                        <td class="project-state">
-                            <a href="#"><span class="badge badge-success">Hiển thị</span></a>
-                        </td>
-                        <td class="project-actions text-right">
-                            <a class="btn btn-info btn-sm" href="#">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                Edit
-                            </a>
-                            <a class="btn btn-danger btn-sm" href="#">
-                                <i class="fas fa-trash">
-                                </i>
-                                Delete
-                            </a>
-                        </td>
-                    </tr> --}}
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -154,6 +126,8 @@
 
 </section>
 <!-- /.content -->
+
+<!-- .modal -->
 <div class="modal fade" id="modal-add" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -168,7 +142,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-12">
-                            <input class="form-control" type="text" name="name" id="name" placeholder="Nhập tag"
+                            <input class="form-control" type="text" name="name" id="name" placeholder="Nhập tên tag"
                                 required="">
                         </div>
                     </div>
@@ -183,4 +157,5 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+<!-- /.modal -->
 @endsection
