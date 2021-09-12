@@ -14,20 +14,30 @@ class ArticleRepositoryEloquent extends RepositoryEloquent implements ArticleRep
         return \App\Models\Article::class;
     }
 
+    public function getAll($columns = ['*'])
+    {
+        return $this->_model->select($columns)->join('admins', 'articles.admin_id', '=', 'admins.id')->orderBy('id', 'desc')->get();
+    }
+
     /**
      * Luu bai viet.
      */
-    public function storeArticle($request, $image, $content)
+    public function store($request)
     {
         try {
+            $image = $this->uploadImage($request->hasFile('image'), $request->file('image'));
+            $content = $this->getDataFromEditor($request->content);
+
             $article = new Article();
-            $article->admin_id = 1;
+            $article->admin_id = 5;
             $article->title = $request->title;
             if ($image) {
                 $article->image_path = $image;
             }
             $article->content = $content;
+            $article->display = $request->display;
             $article->created_at = now();
+            $article->updated_at = now();
             $article->save();
 
             return [
@@ -43,26 +53,21 @@ class ArticleRepositoryEloquent extends RepositoryEloquent implements ArticleRep
     }
 
     /**
-     * Lay noi dung trong Editor moi (sau khi kiem tra va upload anh moi len).
-     */
-    public function getContent($articleId, $dataEditor)
-    {
-        // dd($this->find($articleId)->content);
-        return $this->getDataFromEditor($dataEditor, $this->find($articleId)->content);
-    }
-
-    /**
      * Cap nhat bai viet.
      */
-    public function updateArticle($articleId, $title, $image, $content)
+    public function update($request, $articleId)
     {
         try {
+            $image = $this->updateImagePath($articleId, $request->hasFile('image'), $request->file('image'), 'image_path');
+            $content = $this->getDataFromEditor($request->content, $this->find($articleId)->content);
+
             $article = $this->find($articleId);
-            $article->title = $title;
+            $article->title = $request->title;
             if ($image) {
                 $article->image_path = $image;
             }
             $article->content = $content;
+            $article->display = $request->display;
             $article->updated_at = now();
             $article->save();
 

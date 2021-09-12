@@ -12,7 +12,7 @@ class Article extends Model
 
     public $imagePath = 'articles/';
     // public $thumbnailPath = 'articles/thumbnail/';
-    public $imagePathInEditor = 'editor/';
+    public $imagePathInEditor = '/images/editor/';
 
     protected $fillable = [
         'admin_id',

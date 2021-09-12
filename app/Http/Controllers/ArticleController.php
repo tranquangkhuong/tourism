@@ -21,7 +21,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('test.article.index');
+        $articles = $this->repo->getAll(['articles.id as id', 'articles.title', 'admins.name as writer', 'articles.display', 'articles.updated_at']);
+        return view('admin.article.index', compact('articles'));
     }
 
     public function indexData()
@@ -36,7 +37,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('test.article.add');
+        return view('admin.article.add');
     }
 
     /**
@@ -47,10 +48,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->file('image'));
-        $image = $this->repo->uploadImage($request->hasFile('image'), $request->file('image'));
-        $content = $this->repo->getDataFromEditor($request->data_editor);
-        $rs = $this->repo->storeArticle($request, $image, $content);
+        $rs = $this->repo->store($request);
         toast($rs['msg'], $rs['stt']);
 
         return redirect()->route('admin.article.index');
@@ -79,7 +77,7 @@ class ArticleController extends Controller
     {
         $article = $this->repo->find($articleId);
 
-        return view('test.article.edit', compact('article'));
+        return view('admin.article.edit', compact('article'));
     }
 
     /**
@@ -91,9 +89,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $articleId)
     {
-        $image = $this->repo->updateImagePath($articleId, $request->hasFile('image'), $request->file('image'), 'image_path');
-        $content = $this->repo->getContent($articleId, $request->data_editor);
-        $rs = $this->repo->updateArticle($articleId, $request->title, $image, $content);
+        $rs = $this->repo->update($request, $articleId);
         toast($rs['msg'], $rs['stt']);
 
         return redirect()->route('admin.article.index');
@@ -108,10 +104,12 @@ class ArticleController extends Controller
     public function destroy($articleId)
     {
         $rs = $this->repo->destroy($articleId);
-        if ($rs['stt'] == 'error') {
-            return response()->json($rs, 500);
-        }
+        toast($rs['msg'], $rs['stt']);
+        return back();
+        // if ($rs['stt'] == 'error') {
+        //     return response()->json($rs, 500);
+        // }
 
-        return response()->json($rs);
+        // return response()->json($rs);
     }
 }

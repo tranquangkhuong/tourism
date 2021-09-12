@@ -129,6 +129,29 @@
                 </li>
                 <li class="nav-item">
                     <a href="javascript::void()" class="nav-link">
+                        <i class="fab fa-adversal"></i>
+                        <p>
+                            Article
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.article.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List Article</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.article.add') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Article</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript::void()" class="nav-link">
                         <i class="fas fa-map-marked-alt"></i>
                         <p>
                             Area & Location

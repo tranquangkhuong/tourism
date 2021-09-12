@@ -1,8 +1,8 @@
 <script type="text/javascript">
     $('#summernote').summernote({
-          placeholder: 'Hello Bootstrap 4',
+          placeholder: 'Enter text',
           tabsize: 2,
-          height: 100
+          height: 200
         });
 </script>
 
