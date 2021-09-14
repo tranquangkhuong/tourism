@@ -140,7 +140,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD54ImUCEQ9aYBDgXVomjGIBdqdX93k3Z0&callback=initMap&callback=initMap">
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
-
+<!-- 
 <script>
     const buyBtns = document.querySelectorAll('.js-account')
     const modal =  document.querySelector(".modal")
@@ -164,4 +164,4 @@
     modalContainer.addEventListener('click', function (event) {
         event.stopPropagation()
     });
-</script>
+</script> -->
