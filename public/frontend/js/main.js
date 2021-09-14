@@ -267,10 +267,6 @@ $('.review__slide').slick({
 // });
 
 
-//         this.classList.add('active')
-//         panel.classList.add('active')
-//     }
-// });
 var onChange = document.querySelectorAll('.form-header__action');
   var onChange1 = document.querySelectorAll('.form-body');
   for(var i=0; i<onChange.length;i++){
