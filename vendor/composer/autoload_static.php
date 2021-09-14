@@ -35,7 +35,12 @@ class ComposerStaticInit4d02d97ee51c33fe99a4521fb1898837
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+<<<<<<< HEAD
         '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
+=======
+        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
+>>>>>>> thuan
         '6b34c85f7b1ad6faa15aa12109e030f2' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/functions.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
@@ -191,7 +196,10 @@ class ComposerStaticInit4d02d97ee51c33fe99a4521fb1898837
         'B' => 
         array (
             'Brick\\Math\\' => 11,
+<<<<<<< HEAD
             'BaconQrCode\\' => 12,
+=======
+>>>>>>> thuan
         ),
         'A' => 
         array (
@@ -549,10 +557,13 @@ class ComposerStaticInit4d02d97ee51c33fe99a4521fb1898837
         array (
             0 => __DIR__ . '/..' . '/dflydev/dot-access-data/src',
         ),
+<<<<<<< HEAD
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+=======
+>>>>>>> thuan
         'Database\\Seeders\\' => 
         array (
             0 => __DIR__ . '/../..' . '/database/seeders',
@@ -577,10 +588,13 @@ class ComposerStaticInit4d02d97ee51c33fe99a4521fb1898837
         array (
             0 => __DIR__ . '/..' . '/brick/math/src',
         ),
+<<<<<<< HEAD
         'BaconQrCode\\' => 
         array (
             0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
         ),
+=======
+>>>>>>> thuan
         'Asm89\\Stack\\' => 
         array (
             0 => __DIR__ . '/..' . '/asm89/stack-cors/src',
@@ -617,7 +631,10 @@ class ComposerStaticInit4d02d97ee51c33fe99a4521fb1898837
         'App\\Actions\\Jetstream\\DeleteUser' => __DIR__ . '/../..' . '/app/Actions/Jetstream/DeleteUser.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Events\\CustomerBooking' => __DIR__ . '/../..' . '/app/Events/CustomerBooking.php',
+<<<<<<< HEAD
         'App\\Events\\CustomerNotification' => __DIR__ . '/../..' . '/app/Events/CustomerNotification.php',
+=======
+>>>>>>> thuan
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\AreaController' => __DIR__ . '/../..' . '/app/Http/Controllers/AreaController.php',
@@ -656,11 +673,16 @@ class ComposerStaticInit4d02d97ee51c33fe99a4521fb1898837
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LoginRequest.php',
+<<<<<<< HEAD
         'App\\Http\\Requests\\PasswordRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PasswordRequest.php',
         'App\\Listeners\\CreateNotificationForCustomer' => __DIR__ . '/../..' . '/app/Listeners/CreateNotificationForCustomer.php',
         'App\\Listeners\\SendMailConfirmBooking' => __DIR__ . '/../..' . '/app/Listeners/SendMailConfirmBooking.php',
         'App\\Mail\\MailBooking' => __DIR__ . '/../..' . '/app/Mail/MailBooking.php',
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
+=======
+        'App\\Listeners\\SendMailConfirmBooking' => __DIR__ . '/../..' . '/app/Listeners/SendMailConfirmBooking.php',
+        'App\\Mail\\MailBooking' => __DIR__ . '/../..' . '/app/Mail/MailBooking.php',
+>>>>>>> thuan
         'App\\Models\\Area' => __DIR__ . '/../..' . '/app/Models/Area.php',
         'App\\Models\\Article' => __DIR__ . '/../..' . '/app/Models/Article.php',
         'App\\Models\\Attribute' => __DIR__ . '/../..' . '/app/Models/Attribute.php',
@@ -733,6 +755,7 @@ class ComposerStaticInit4d02d97ee51c33fe99a4521fb1898837
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+<<<<<<< HEAD
         'BaconQrCode\\Common\\BitArray' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/BitArray.php',
         'BaconQrCode\\Common\\BitMatrix' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/BitMatrix.php',
         'BaconQrCode\\Common\\BitUtils' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/BitUtils.php',
@@ -793,6 +816,8 @@ class ComposerStaticInit4d02d97ee51c33fe99a4521fb1898837
         'BaconQrCode\\Renderer\\RendererStyle\\GradientType' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/RendererStyle/GradientType.php',
         'BaconQrCode\\Renderer\\RendererStyle\\RendererStyle' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/RendererStyle/RendererStyle.php',
         'BaconQrCode\\Writer' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Writer.php',
+=======
+>>>>>>> thuan
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',
         'Brick\\Math\\BigNumber' => __DIR__ . '/..' . '/brick/math/src/BigNumber.php',
@@ -912,7 +937,10 @@ class ComposerStaticInit4d02d97ee51c33fe99a4521fb1898837
         'Database\\Seeders\\PermissionSeeder' => __DIR__ . '/../..' . '/database/seeders/PermissionSeeder.php',
         'Database\\Seeders\\TagSeeder' => __DIR__ . '/../..' . '/database/seeders/TagSeeder.php',
         'Database\\Seeders\\UserSeeder' => __DIR__ . '/../..' . '/database/seeders/UserSeeder.php',
+<<<<<<< HEAD
         'Database\\Seeders\\VehicleSeeder' => __DIR__ . '/../..' . '/database/seeders/VehicleSeeder.php',
+=======
+>>>>>>> thuan
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Exception\\PropertyException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
@@ -1594,6 +1622,7 @@ class ComposerStaticInit4d02d97ee51c33fe99a4521fb1898837
         'Faker\\Provider\\nl_BE\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Payment.php',
         'Faker\\Provider\\nl_BE\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Person.php',
         'Faker\\Provider\\nl_BE\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/PhoneNumber.php',
+        'Faker\\Provider\\nl_BE\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Text.php',
         'Faker\\Provider\\nl_NL\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Address.php',
         'Faker\\Provider\\nl_NL\\Color' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Color.php',
         'Faker\\Provider\\nl_NL\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Company.php',

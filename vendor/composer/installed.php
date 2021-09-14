@@ -5,7 +5,11 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
+<<<<<<< HEAD
         'reference' => '4f2c8d4abc52976af9f31d9ee190baf3d5db88dd',
+=======
+        'reference' => '2d52ae923db73e52fed65cf1f64bccfd27f4f00f',
+>>>>>>> thuan
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -19,6 +23,7 @@
             'reference' => '9cb795bf30988e8c96dd3c40623c48a877bc6714',
             'dev_requirement' => false,
         ),
+<<<<<<< HEAD
         'bacon/bacon-qr-code' => array(
             'pretty_version' => '2.0.4',
             'version' => '2.0.4.0',
@@ -28,6 +33,8 @@
             'reference' => 'f73543ac4e1def05f1a70bcd1525c8a157a1ad09',
             'dev_requirement' => false,
         ),
+=======
+>>>>>>> thuan
         'brick/math' => array(
             'pretty_version' => '0.9.3',
             'version' => '0.9.3.0',
@@ -472,7 +479,11 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
+<<<<<<< HEAD
             'reference' => '4f2c8d4abc52976af9f31d9ee190baf3d5db88dd',
+=======
+            'reference' => '2d52ae923db73e52fed65cf1f64bccfd27f4f00f',
+>>>>>>> thuan
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -547,6 +558,7 @@
             'reference' => '3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3',
             'dev_requirement' => false,
         ),
+<<<<<<< HEAD
         'league/oauth1-client' => array(
             'pretty_version' => 'v1.10.0',
             'version' => '1.10.0.0',
@@ -574,6 +586,8 @@
             'reference' => '9841e3c46f5bd0739b53aed8ac677fa712943df7',
             'dev_requirement' => false,
         ),
+=======
+>>>>>>> thuan
         'mockery/mockery' => array(
             'pretty_version' => '1.4.3',
             'version' => '1.4.3.0',

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4b58b881a9f87a150b292c1e550c663",
+    "content-hash": "a5767e8c03670f20ae16038a4f525de4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6948,7 +6948,11 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
+<<<<<<< HEAD
             "time": "2021-08-23T13:43:27+00:00"
+=======
+            "time": "2021-06-08T15:18:38+00:00"
+>>>>>>> thuan
         },
         {
             "name": "mockery/mockery",
