@@ -1,0 +1,11 @@
+/*
+*css admin backend
+*/
+
+.nav-item .image img {
+    width: 100px;
+}
+.nav-item .nav-link-logo {
+    text-align: center;
+}
+

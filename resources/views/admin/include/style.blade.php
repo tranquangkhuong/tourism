@@ -1,6 +1,8 @@
 <!-- favicon -->
 <link rel="icon" type="image/png" href="{{ URL::asset('frontend/img/logo-i2.png') }}" />
 
+<link rel="stylesheet" type="text/css"  href="{{ URL::asset('frontend/backend/css/style-admin.css') }}" />
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -32,3 +34,6 @@
 <link type="text/css" href="{{ URL::asset('frontend/backend/css/tempusdominus-bootstrap-4.min.css') }}"
     rel="stylesheet">
 <script type="text/javascript" src="{{ URL::asset('frontend/backend/js/dropzone.min.js') }}"></script>
+<!-- Jquery admin code -->
+<script type="text/javascript" src="{{ URL::asset('frontend/backend/js/writejq/write.js') }}"></script>
+

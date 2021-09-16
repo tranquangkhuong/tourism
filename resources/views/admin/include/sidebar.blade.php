@@ -51,16 +51,16 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <!-- slider -->
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" id="myTab" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link nav-link-logo">
                         <div class="image">
                             <img src="{{ URL::asset('frontend/img/logo-i2.png') }}" class="img-circle elevation-2"
                                 alt="User Image">
                         </div>
-                        <p style="color:#fff;padding: 35px;">
+                        <p class="text">
                             Admin tour
                             <i class="fas fa-key"></i>
                         </p>
