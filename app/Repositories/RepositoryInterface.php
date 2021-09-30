@@ -9,6 +9,7 @@ interface RepositoryInterface
     public function find($id);
     public function search($column = 'name', $keyword);
     public function getFooterData();
+    public function getAllUser();
     public function getAllArea();
     public function getAllLocation();
     public function getAllPromotion();

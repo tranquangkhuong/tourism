@@ -38,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'password',
         'phone',
         'address',
-        'is_admin',
+        'avatar_image_path',
         'remember_token',
         'current_team_id',
         'profile_photo_path',

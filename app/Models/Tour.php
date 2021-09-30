@@ -15,7 +15,6 @@ class Tour extends Model
     protected $fillable = [
         'area_id',
         'location_id',
-        'promotion_id',
         'name',
         'code',
         'description',
@@ -29,6 +28,7 @@ class Tour extends Model
         'child_price',
         'baby_price',
         'display',
+        'image_path',
     ];
 
     /*
@@ -69,11 +69,11 @@ class Tour extends Model
     }
 
     /**
-     * Relationship 1-n (inverse) to Promotions
+     * Relationship n-n (inverse) to Promotions
      */
-    public function promotion()
+    public function promotions()
     {
-        return $this->belongsTo(Promotion::class);
+        return $this->belongsToMany(Promotion::class);
     }
 
     /**

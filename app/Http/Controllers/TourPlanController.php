@@ -14,14 +14,13 @@ class TourPlanController extends Controller
         $this->repo = $tourPlanRepository;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($tourId)
+    public function index($tourId)
     {
-        return view('test.tour.plan.add', compact('tourId'));
+        $plans = $this->repo->getPlan($tourId);
+        // $tourId = $tourId;
+        // dd($tourId);
+
+        return view('admin.tour.plan', compact('plans', 'tourId'));
     }
 
     /**
@@ -32,24 +31,18 @@ class TourPlanController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $rs = $this->repo->store($request);
         toast($rs['msg'], $rs['stt']);
 
-        return redirect()->route('admin.tour.edit', ['tour_id' => $request->tour_id]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($tourId)
-    {
-        $tourPlan = $this->repo->getPlan($tourId);
-        // dd($tourPlan);
-
-        return view('test.tour.plan.edit', compact('tourPlan', 'tourId'));
+        return redirect()->route('admin.tour.plan.index', ['tour_id' => $request->tour_id]);
+        // $data = [
+        //     'title' => 'Tieu de',
+        //     'msg' => 'Tin nhan',
+        //     'stt' => 'success',
+        //     'data' => $request->all(),
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -62,9 +55,9 @@ class TourPlanController extends Controller
     public function update(Request $request, $planId)
     {
         $rs = $this->repo->update($request, $planId);
-        // toast($rs['msg'], $rs['stt']);
+        toast($rs['msg'], $rs['stt']);
 
-        // return back();
+        return redirect()->route('admin.tour.plan.index', ['tour_id' => $request->tour_id]);
     }
 
     /**

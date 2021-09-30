@@ -161,12 +161,12 @@
                             <div class="row">
                                 <div class="col">
                                     <a class="btn btn-info btn-sm" title="Edit"
-                                        href="{{ route('admin.slider.edit', ['slider_id' => $slider->id]) }}">
+                                        href="{{ route('admin.slider.edit', $slider->id) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                     </a>
                                     <a class="btn btn-danger btn-sm btn-delete" title="Delete"
-                                        href="{{ route('admin.slider.delete', ['slider_id' => $slider->id]) }}">
+                                        href="{{ route('admin.slider.delete', $slider->id) }}">
                                         <i class="fas fa-trash">
                                         </i>
                                     </a>

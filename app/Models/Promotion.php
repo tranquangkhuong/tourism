@@ -21,10 +21,10 @@ class Promotion extends Model
     ];
 
     /**
-     * Relationship 1-n to Tours
+     * Relationship n-n to Tours
      */
     public function tours()
     {
-        return $this->hasMany(Tour::class, 'promotion_id', 'id');
+        return $this->belongsToMany(Tour::class, 'promotion_tour', 'promotion_id', 'tour_id');
     }
 }

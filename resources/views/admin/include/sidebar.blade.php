@@ -80,33 +80,46 @@
                         </li>
                     </ul>
                 </li>
+                <!-- start -->
                 <li class="nav-item">
-                    <a href="{{ url('/admin/dashboard') }}" class="nav-link active">
+                    <a href="{{ url('/admin/dashboard') }}" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
-                        <p>
-                            Dashboard
-                        </p>
+                        <p>Dashboard</p>
                     </a>
                 </li>
+
+                <li class="nav-header text-uppercase">Categories</li>
+
                 <li class="nav-item">
                     <a href="{{ route('admin.tag.index') }}" class="nav-link">
-                        <i class="fas fa-tags"></i>
+                        <i class="nav-icon fas fa-tags"></i>
                         <p>
                             Tag
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('admin.vehicle.index') }}" class="nav-link">
-                        <i class="fas fa-car-side"></i>
+                        <i class="nav-icon fas fa-car-side"></i>
                         <p>
                             Vehicle
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('admin.payment.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-money-bill-alt"></i>
+                        <p>
+                            Payment
+                        </p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="javascript::void()" class="nav-link">
-                        <i class=" nav-icon far fa-images"></i>
+                        <i class="nav-icon far fa-images"></i>
                         <p>
                             Slider
                             <i class="right fas fa-angle-left"></i>
@@ -127,9 +140,10 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-item">
                     <a href="javascript::void()" class="nav-link">
-                        <i class="fab fa-adversal"></i>
+                        <i class="nav-icon fab fa-adversal"></i>
                         <p>
                             Article
                             <i class="right fas fa-angle-left"></i>
@@ -150,9 +164,10 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-item">
                     <a href="javascript::void()" class="nav-link">
-                        <i class="fas fa-map-marked-alt"></i>
+                        <i class="nav-icon fas fa-map-marked-alt"></i>
                         <p>
                             Area & Location
                             <i class="right fas fa-angle-left"></i>
@@ -173,32 +188,10 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-mountain"></i>
-                        <p>
-                            Tour
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Manage Tour</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Tour</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
                 <li class="nav-item">
                     <a href="javascript::void()" class="nav-link">
-                        <i class="fab fa-adversal"></i>
+                        <i class="nav-icon fab fa-adversal"></i>
                         <p>
                             Promotion
                             <i class="right fas fa-angle-left"></i>
@@ -219,46 +212,106 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-header text-uppercase">Tour Manage</li>
+
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-money-bill-alt"></i>
+                    <a href="javascript::void()" id="tour" class="nav-link">
+                        <i class="nav-icon fas fa-mountain"></i>
                         <p>
-                            Payment
+                            Tour
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
+                            <a href="{{ route('admin.tour.index') }}" id="manage-tour" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Manage Payment</p>
+                                <p>Manage Tour</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index2.html" class="nav-link">
+                            <a href="{{ route('admin.tour.add') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Add Payment</p>
+                                <p>Add Tour</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-car-side"></i>
+                    <a href="javascript::void()" id="" class="nav-link">
+                        <i class="nav-icon fas fa-mountain"></i>
                         <p>
-                            Vehicle
+                            Booking
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
+                            <a href="#" id="" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Manager Vehicle</p>
+                                <p>Booking Manage</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Booking</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-header text-uppercase">Account Manage</li>
+
+                <li class="nav-item">
+                    <a href="javascript::void()" class="nav-link">
+                        <i class="nav-icon fas fa-car-side"></i>
+                        <p>
+                            User
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.user.add') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.user.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User Manage</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('admin.manage.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-car-side"></i>
+                        <p>
+                            Admin
+                            {{-- <i class="right fas fa-angle-left"></i> --}}
+                        </p>
+                    </a>
+                    {{-- <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.manage.add') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Admin</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.manage.index') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Admin Manage</p>
+                    </a>
+                </li>
+            </ul> --}}
+            </li>
 
         </nav>
         <!-- /.sidebar-menu -->

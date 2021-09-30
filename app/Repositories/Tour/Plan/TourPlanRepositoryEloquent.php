@@ -15,7 +15,7 @@ class TourPlanRepositoryEloquent extends RepositoryEloquent implements TourPlanR
 
     public function getPlan($tourId)
     {
-        $data = $this->_model->where('tour_id', $tourId)->get();
+        $data = $this->_model->where('tour_id', $tourId)->orderBy('day', 'asc')->get();
         // $data['tour_name'] = $this->getTourName($tourId);
         // dd($data[0]['content']);
         return $data;
@@ -29,16 +29,18 @@ class TourPlanRepositoryEloquent extends RepositoryEloquent implements TourPlanR
     public function store($request)
     {
         try {
-            $data = $request->all();
-            $day = $data['day'];
-            foreach ($day as $key => $value) {
-                TourPlan::create([
-                    'tour_id' => $data['tour_id'],
-                    'day' => $value,
-                    'content' => $data['content'][$key],
-                    'note' => $data['note'][$key],
-                ]);
-            }
+            // $data = $request->all();
+            // $day = $data['day'];
+            // foreach ($day as $key => $value) {
+            $this->_model->insert([
+                'tour_id' => $request->tour_id,
+                'day' => $request->day,
+                'content' => $request->content,
+                'note' => $request->note,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            // }
 
             return [
                 'title' => __('Done!'),

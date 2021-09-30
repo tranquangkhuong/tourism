@@ -28,7 +28,17 @@ class TourController extends Controller
      */
     public function index()
     {
-        return view('test.tour.index');
+        $tours = $this->repo->getAll([
+            'tours.id',
+            'tours.name as name',
+            'tours.image_path',
+            'tours.display',
+            'areas.name as area',
+            'areas.domestic',
+            'locations.name as location'
+        ]);
+        // dd($tours);
+        return view('admin.tour.index', compact('tours'));
     }
 
     public function indexData()
@@ -55,7 +65,7 @@ class TourController extends Controller
         $tags = $this->repo->getAllTag();
         $vehicles = $this->repo->getAllVehicle();
 
-        return view('test.tour.add', compact('areas', 'locations', 'promotions', 'tags', 'vehicles'));
+        return view('admin.tour.add', compact('areas', 'locations', 'promotions', 'tags', 'vehicles'));
     }
 
     /**
@@ -66,7 +76,7 @@ class TourController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->include);
+        // dd($request->all(), json_encode($request->include), json_decode(json_encode($request->include)));
         $rs = $this->repo->store($request);
         toast($rs['msg'], $rs['stt']);
 
@@ -92,17 +102,17 @@ class TourController extends Controller
      */
     public function edit($tourId)
     {
-        $tour = $this->repo->find($tourId);
+        $tour = $this->repo->find($tourId)->first();
         $areas = $this->repo->getAllArea();
         $locations = $this->repo->getAllLocation();
         $promotions = $this->repo->getAllPromotion();
         $tags = $this->repo->getAllTag();
         $vehicles = $this->repo->getAllVehicle();
-        $includes = $this->repo->getTourInclude();
-        // $notIncludes - $this->repo->getTourNotInclude();
-        // dd($includes);
+        $includes = ($this->repo->getTourInclude($tourId));
+        $notIncludes = ($this->repo->getTourNotInclude($tourId));
+        // dd(json_decode($notIncludes->value));
 
-        return view('test.tour.edit', compact('tour', 'areas', 'locations', 'promotions', 'includes'));
+        return view('admin.tour.edit', compact('tour', 'areas', 'locations', 'promotions', 'tags', 'vehicles', 'includes', 'notIncludes'));
     }
 
     /**
@@ -114,6 +124,7 @@ class TourController extends Controller
      */
     public function update(Request $request, $tourId)
     {
+        // dd($request, $tourId);
         $rs = $this->repo->update($request, $tourId);
         toast($rs['msg'], $rs['stt']);
 
@@ -129,10 +140,12 @@ class TourController extends Controller
     public function destroy($tourId)
     {
         $rs = $this->repo->destroy($tourId);
-        if ($rs['stt'] == 'error') {
-            return response()->json($rs, 500);
-        }
+        toast($rs['msg'], $rs['stt']);
+        return back();
+        // if ($rs['stt'] == 'error') {
+        //     return response()->json($rs, 500);
+        // }
 
-        return response()->json($rs);
+        // return response()->json($rs);
     }
 }

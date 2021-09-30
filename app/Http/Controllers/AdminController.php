@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PasswordRequest;
 use App\Repositories\Admin\AdminRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -113,21 +115,21 @@ class AdminController extends Controller
     |---------------------------------------------------------------------------
     */
     /**
-     * Edit my admin-profile
+     * Edit my admin-account
      */
-    public function editProfile()
+    public function editAccount()
     {
-        $profile = $this->repo->show($this->id());
-
-        return view('admin.edit_profile', compact('profile'));
+        $account = $this->repo->show(5);
+        // dd($account);
+        return view('admin.account.my_account', compact('account'));
     }
 
     /**
-     * Update my admin-profile
+     * Update my admin-account
      */
-    public function updateProfile(Request $request)
+    public function updateAccount(Request $request)
     {
-        $rs = $this->repo->updateProfile($request, $this->id());
+        $rs = $this->repo->updateProfile($request, 5);
         toast($rs['msg'], $rs['stt']);
 
         return back();
@@ -138,7 +140,7 @@ class AdminController extends Controller
      */
     public function changePassword()
     {
-        return view('admin.change_password');
+        return view('admin.account.change_password');
     }
 
     /**
@@ -146,9 +148,12 @@ class AdminController extends Controller
      */
     public function updatePassword(Request $request)
     {
-        $rs = $this->repo->updatePassword($request, $this->id());
+        $rs = $this->repo->updatePassword($request, 5);
+        if (!empty($rs['error_messages'])) {
+            session()->flash('errors', $rs['error_messages']);
+        }
         toast($rs['msg'], $rs['stt']);
 
-        return redirect()->route('user.profile');
+        return redirect()->back();
     }
 }

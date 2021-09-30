@@ -8,6 +8,6 @@ interface TourRepositoryInterface extends RepositoryInterface
 {
     public function getIncludeId();
     public function getNotIncludeId();
-    public function getTourInclude();
-    public function getTourNotInclude();
+    public function getTourInclude($tourId);
+    public function getTourNotInclude($tourId);
 }

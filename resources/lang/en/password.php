@@ -23,6 +23,7 @@ return [
     'min' => "Password at least :min characters.",
     'incorrect' => "Incorrect password.",
     'change_success' => "Change password successfully.",
+    'validate_failed' => "Validate password failed.",
     'new' => [
         'required' => "New passwords must not be left blank.",
         'min' => "New password at least :min characters.",

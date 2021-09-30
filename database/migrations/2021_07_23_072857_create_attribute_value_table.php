@@ -27,7 +27,7 @@ class CreateAttributeValueTable extends Migration
             $table->foreignId('tour_id')->comment('FK to tours')
                 ->references('id')->on('tours')
                 ->onDelete('cascade');
-            $table->string('value');
+            $table->json('value');
             $table->timestamps();
         });
     }

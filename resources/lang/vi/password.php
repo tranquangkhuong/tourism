@@ -23,6 +23,7 @@ return [
     'min' => "Mật khẩu ít nhất :min ký tự.",
     'incorrect' => "Mật khẩu không chính xác.",
     'change_success' => "Đổi mật khẩu thành công.",
+    'validate_failed' => "Xác thực mật khẩu không thành công.",
     'new' => [
         'required' => "Mật khẩu mới không được để trống.",
         'min' => "Mật khẩu mới ít nhất :min ký tự.",

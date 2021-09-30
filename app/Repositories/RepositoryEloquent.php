@@ -8,10 +8,12 @@ use App\Models\Payment;
 use App\Models\Promotion;
 use App\Models\Tag;
 use App\Models\Tour;
+use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
 abstract class RepositoryEloquent implements RepositoryInterface
@@ -53,7 +55,7 @@ abstract class RepositoryEloquent implements RepositoryInterface
      */
     public function getAll($columns = ['*'])
     {
-        return $this->_model->select($columns)->get();
+        return $this->_model->select($columns)->orderBy('id', 'desc')->get();
     }
 
     public function find($id)
@@ -73,6 +75,14 @@ abstract class RepositoryEloquent implements RepositoryInterface
     public function getFooterData()
     {
         return DB::table('about')->select('facebook', 'youtube', 'instagram', 'twitter', 'pinterest')->first();
+    }
+
+    /**
+     * Lay tat ca User
+     */
+    public function getAllUser()
+    {
+        return User::all();
     }
 
     /**
@@ -200,10 +210,33 @@ abstract class RepositoryEloquent implements RepositoryInterface
     public function updatePassword($request, $id)
     {
         try {
+            // Validate
+            $validator = Validator::make($request->all(), [
+                'password' => 'required|min:6',
+                'new_password' => 'required|min:6',
+                're_new_password' => 'required|min:6',
+            ], [
+                'password.required' => __('password.required'),
+                'password.min' => __('password.min', ['min' => 6]),
+                'new_password.required' => __('password.new.required'),
+                'new_password.min' => __('password.new.min', ['min' => 6]),
+                're_new_password.required' => __('password.renew.required'),
+                're_new_password.min' => __('password.renew.min', ['min' => 6]),
+            ]);
+
+            if ($validator->fails()) {
+                return [
+                    'title' => __('Oops! An error has occurred.'),
+                    'msg' => __('password.validate_failed'),
+                    'stt' => self::STATUS_ERROR,
+                    'error_messages' => $validator->messages()->all(),
+                ];
+            }
+
             $pwd = $request->password;
             $newPwd = $request->new_password;
             $rePwd = $request->re_new_password;
-            $currentPwd = $this->_model->select('password')->where('id', $id)->first()->password;
+            $currentPwd = $this->find($id)->first()->password;
 
             if (!Hash::check($pwd, $currentPwd)) {
                 return [

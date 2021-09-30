@@ -181,6 +181,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         // App\Notifications\ResetPasswordNotification::class,
+        App\Providers\HelperServiceProvider::class, // custom helper
 
     ],
 
@@ -237,6 +238,7 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Helper' => App\Helpers\Helper::class,
 
     ],
 

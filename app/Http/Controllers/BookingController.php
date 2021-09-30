@@ -15,6 +15,11 @@ class BookingController extends Controller
         $this->repo = $bookingRepository;
     }
 
+    /*
+    |---------------------------------------------------------------------------
+    | Cac ham dung cho Admin.
+    |---------------------------------------------------------------------------
+    */
     /**
      * Display a listing of the resource.
      *
@@ -30,13 +35,13 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($tourId)
+    public function create()
     {
-        $tour = $this->repo->getTour($tourId);
-        $promotion = $this->repo->getPromotion($tourId);
+        $users = $this->repo->getAllUser();
+        $tours = $this->repo->getAllTour();
         $payments = $this->repo->getAllPayment();
-
-        return view('booking', compact('tour', 'promotion', 'payments'));
+        // dd($users);
+        return view('admin.booking.add', compact('users', 'tours', 'payments'));
     }
 
     /**
@@ -51,19 +56,6 @@ class BookingController extends Controller
         toast($rs['msg'], $rs['stt']);
 
         return redirect()->url('/detail-tour', [$rs['tour_id']]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function bookingDetail($code)
-    {
-        $booking = $this->repo->getBookingDetail($code);
-
-        return response()->json($booking);
     }
 
     /**
@@ -103,5 +95,54 @@ class BookingController extends Controller
         }
 
         return response()->json($rs);
+    }
+
+    /*
+    |---------------------------------------------------------------------------
+    | Cac ham dung cho User.
+    |---------------------------------------------------------------------------
+    */
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function userCreate($tourId)
+    {
+        $tour = $this->repo->getTour($tourId);
+        $promotions = $this->repo->getPromotion($tourId);
+        $payments = $this->repo->getAllPayment();
+        // dd($promotions);
+
+        return view('booking', compact('tour', 'promotions', 'payments'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function userStore(Request $request)
+    {
+        dd($request);
+        $rs = $this->repo->store($request);
+        toast($rs['msg'], $rs['stt']);
+
+        return redirect()->url('/detail-tour', [$rs['tour_id']]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function bookingDetail($code)
+    {
+        $booking = $this->repo->getBookingDetail($code);
+
+        return response()->json($booking);
     }
 }

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '4f2c8d4abc52976af9f31d9ee190baf3d5db88dd',
+        'reference' => 'cd0eb01c458a2414c092c020ff16af10907de447',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -472,7 +472,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '4f2c8d4abc52976af9f31d9ee190baf3d5db88dd',
+            'reference' => 'cd0eb01c458a2414c092c020ff16af10907de447',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -728,12 +728,12 @@
             'dev_requirement' => false,
         ),
         'phpspec/prophecy' => array(
-            'pretty_version' => '1.13.0',
-            'version' => '1.13.0.0',
+            'pretty_version' => '1.14.0',
+            'version' => '1.14.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpspec/prophecy',
             'aliases' => array(),
-            'reference' => 'be1996ed8adc35c3fd795488a653f4b518be70ea',
+            'reference' => 'd86dfc2e2a3cd366cee475e52c6bb3bbc371aa0e',
             'dev_requirement' => true,
         ),
         'phpunit/php-code-coverage' => array(
@@ -886,8 +886,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0',
+                0 => '1.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(

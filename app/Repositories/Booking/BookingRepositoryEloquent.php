@@ -3,6 +3,7 @@
 namespace App\Repositories\Booking;
 
 use App\Events\CustomerBooking;
+use App\Helpers\Helper;
 use App\Models\Booking;
 use App\Models\Promotion;
 use App\Models\Tour;
@@ -20,12 +21,12 @@ class BookingRepositoryEloquent extends RepositoryEloquent implements BookingRep
 
     public function getTour($tourId)
     {
-        return Tour::find($tourId)->first();
+        return Tour::where('id', $tourId)->first();
     }
 
     public function getPromotion($tourId)
     {
-        return Tour::find($tourId)->promotion()->first();
+        return Tour::find($tourId)->promotions()->get();
     }
 
     public function getBookingDetail($code)
@@ -59,10 +60,16 @@ class BookingRepositoryEloquent extends RepositoryEloquent implements BookingRep
 
     public function store($request)
     {
+        if (!empty($request->code)) {
+            $code = $request->code;
+        } else {
+            $code = Helper::generateCode();
+        }
+
         $booking = $this->_model->create([
             'user_id' => $request->user_id,
             'payment_id' => $request->payment_id,
-            'code' => $request->code,
+            'code' => $code,
             'status' => $request->status,
         ]);
 

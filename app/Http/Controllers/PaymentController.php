@@ -21,22 +21,13 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('test.payment.index');
+        $payments = $this->repo->getAll(['id', 'name', 'created_at']);
+        return view('admin.payment.index', compact('payments'));
     }
 
     public function indexData()
     {
         return response()->json($this->repo->getAll(['id', 'name']));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return View
-     */
-    public function create()
-    {
-        return view('test.payment.add');
     }
 
     /**
@@ -75,8 +66,8 @@ class PaymentController extends Controller
     public function edit($paymentId)
     {
         $payment = $this->repo->find($paymentId);
-
-        return view('test.payment.edit', compact('payment'));
+        // dd(view('admin.payment.edit', compact('payment')));
+        return view('admin.payment.edit', compact('payment'));
     }
 
     /**
@@ -103,10 +94,12 @@ class PaymentController extends Controller
     public function destroy($paymentId)
     {
         $rs = $this->repo->destroy($paymentId);
-        if ($rs['stt'] == 'error') {
-            return response()->json($rs, 500);
-        }
+        toast($rs['msg'], $rs['stt']);
+        return back();
+        // if ($rs['stt'] == 'error') {
+        //     return response()->json($rs, 500);
+        // }
 
-        return response()->json($rs);
+        // return response()->json($rs);
     }
 }

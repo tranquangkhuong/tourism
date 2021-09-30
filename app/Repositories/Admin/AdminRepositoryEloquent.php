@@ -80,8 +80,10 @@ class AdminRepositoryEloquent extends RepositoryEloquent implements AdminReposit
         }
     }
 
-    /**
-     * Update thong tin cua ban than admin (update my admin-profile).
+    /*
+    |---------------------------------------------------------------------------
+    | Update thong tin cua ban than admin (update my admin-profile).
+    |---------------------------------------------------------------------------
      */
     public function updateProfile($request, $myAdminId)
     {

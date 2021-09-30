@@ -25,6 +25,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use App\Models\Tour;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -161,15 +162,15 @@ Route::get('/contact-us', function () {
 Route::group(['prefix' => '/tour'], function () {
     Route::get('/domestic', [BaseController::class, 'domestic']);
     Route::get('/foreign', [BaseController::class, 'foreign']);
-    Route::get('/detail/{tour_id}', [BaseController::class, 'detailTour']);
-    Route::get('/booking/{tour_id}', [BookingController::class, 'create']);
-    Route::post('/booking/store', [BookingController::class, 'store']);
+    Route::get('/{tour_id}/detail', [BaseController::class, 'detailTour']);
+    Route::get('/{tour_id}/booking', [BookingController::class, 'userCreate']);
+    Route::post('/booking/store', [BookingController::class, 'userStore']);
 });
 
-//  Các route lien quan đến users
-Route::group(['prefix' => '/user', 'as' => 'user.', 'middleware' => 'user'], function () {
+//  Các route lien quan đến users , 'middleware' => 'user'
+Route::group(['prefix' => '/user', 'as' => 'user.'], function () {
     Route::get('/profile', [UserController::class, 'profile']);
-    Route::post('/profile/update', [UserController::class, 'update']);
+    Route::post('/profile/update', [UserController::class, 'userUpdate']);
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/update-password', [UserController::class, 'updatePassword']);
     Route::get('/booking', [UserController::class, 'booking']);
@@ -242,7 +243,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::group(['prefix' => '/payment', 'as' => 'payment.'], function () {
         Route::get('/', [PaymentController::class, 'index'])->name('index');
         Route::get('/index-data', [PaymentController::class, 'indexData'])->name('index_data');
-        Route::get('/add', [PaymentController::class, 'create'])->name('add');
+        // Route::get('/add', [PaymentController::class, 'create'])->name('add');
         Route::post('/store', [PaymentController::class, 'store'])->name('store');
         Route::get('/edit/{payment_id}', [PaymentController::class, 'edit'])->name('edit');
         Route::post('/update/{payment_id}', [PaymentController::class, 'update'])->name('update');
@@ -281,7 +282,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
         Route::group(['prefix' => '/plan', 'as' => 'plan.'], function () {
             Route::get('/{tour_id}', [TourPlanController::class, 'index'])->name('index');
             Route::get('/index-data/{tour_id}', [TourPlanController::class, 'indexData'])->name('index_data');
-            Route::get('/add/{tour_id}', [TourPlanController::class, 'create'])->name('add');
+            // Route::get('/add/{tour_id}', [TourPlanController::class, 'create'])->name('add');
             Route::post('/store', [TourPlanController::class, 'store'])->name('store');
             // Route::get('/edit/{tour_id}', [TourPlanController::class, 'edit'])->name('edit');
             Route::post('/update/{plan_id}', [TourPlanController::class, 'update'])->name('update');
@@ -328,8 +329,27 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
         // Route::get('/active/{admin_id}', [AdminController::class, 'active'])->name('active');
     });
 
-    Route::get('/profile', [AdminController::class, 'editProfile']);
-    Route::post('/profile/update', [AdminController::class, 'updateProfile']);
+    Route::group(['prefix' => '/user-manage', 'as' => 'user.'], function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/add', [UserController::class, 'create'])->name('add');
+        Route::post('/store', [UserController::class, 'store'])->name('store');
+        Route::get('/edit/{user_id}', [UserController::class, 'edit'])->name('edit');
+        Route::post('/update/{user_id}', [UserController::class, 'update'])->name('update');
+        // Route::get('/block/{admin_id}', [AdminController::class, 'block'])->name('block');
+        // Route::get('/active/{admin_id}', [AdminController::class, 'active'])->name('active');
+    });
+
+    Route::group(['prefix' => 'booking', 'as' => 'booking.'], function () {
+        Route::get('/', [BookingController::class, 'index'])->name('index');
+        Route::get('/add', [BookingController::class, 'create'])->name('add');
+        Route::post('/store', [BookingController::class, 'store'])->name('store');
+        Route::get('/edit/{booking_id}', [BookingController::class, 'edit'])->name('edit');
+        Route::post('/update/{booking_id}', [BookingController::class, 'update'])->name('update');
+        Route::get('/delete/{booking_id}', [BookingController::class, 'destroy'])->name('delete');
+    });
+
+    Route::get('/account', [AdminController::class, 'editAccount']);
+    Route::post('/account/update', [AdminController::class, 'updateAccount']);
     Route::get('/change-password', [AdminController::class, 'changePassword']);
     Route::post('/update-password', [AdminController::class, 'updatePassword']);
 });
@@ -365,12 +385,18 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
 //     return view('admin.tour.testtour');
 // });
 
-// upload-images
-Route::post('upload-images', 'ImagesController@store');
 
-Route::get('upad', function () {
-    App\Models\User::find(1)->update([
-        'password' => Illuminate\Support\Facades\Hash::make('123456'),
+Route::get('insert-data', function () {
+    DB::table('test')->insert([
+        'json_data' => json_encode(['bữa sáng', 'bữa trưa']),
+        'created_at' => now(),
         'updated_at' => now(),
     ]);
+});
+
+Route::get('show-data', function () {
+    $data = DB::table('test')->where('id', 2)->get();
+    // $da = json_decode($data['data']);
+    dd(json_decode($data[0]->json_data));
+    echo 'cc';
 });

@@ -39,9 +39,9 @@ class UserRepositoryEloquent extends RepositoryEloquent implements UserRepositor
             }
 
             $user = new User();
+            $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
-            $user->is_admin = 1;
             $user->save();
 
             return [
@@ -62,12 +62,16 @@ class UserRepositoryEloquent extends RepositoryEloquent implements UserRepositor
     {
         try {
             $path = $this->updateImagePath($id, $request->hasFile('image'), $request->file('image'), 'avatar_image_path', $id . '/');
-            $this->find($id)->update([
-                'name' => $request->name,
-                'phone' => $request->phone,
-                'address' => $request->address,
-                'avatar_image_path' => $path,
-            ]);
+
+            $user = $this->find($id);
+            $user->name = $request->name;
+            if (!empty($request->email)) {
+                $user->email = $request->email;
+            }
+            $user->phone = $request->phone;
+            $user->address = $request->address;
+            $user->avatar_image_path = $path;
+            $user->save();
 
             return [
                 'title' => __('Done!'),

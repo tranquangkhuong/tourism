@@ -28,8 +28,7 @@ class TourRepositoryEloquent extends RepositoryEloquent implements TourRepositor
         return $this->_model->select($columns)
             ->join('areas', 'tours.area_id', '=', 'areas.id')
             ->join('locations', 'tours.location_id', '=', 'locations.id')
-            ->join('promotions', 'tours.promotion_id', '=', 'promotions.id')
-            ->get();
+            ->orderBy('id', 'desc')->get();
     }
 
     /**
@@ -51,18 +50,26 @@ class TourRepositoryEloquent extends RepositoryEloquent implements TourRepositor
     /**
      * Lay cac dich vu bao gom theo tour (include).
      */
-    public function getTourInclude()
+    public function getTourInclude($tourId)
     {
-        return $this->_model->select('values.id', 'values.attribute_id', 'values.tour_id', 'values.value')->where('tours.id', 6)->join('values', 'tours.id', '=', 'values.tour_id')->where('values.attribute_id', 2)->get();
+        return $this->_model->select('values.id', 'values.attribute_id', 'values.tour_id', 'values.value')->join('values', 'tours.id', '=', 'values.tour_id')
+            ->where([
+                ['values.attribute_id', $this->getIncludeId()],
+                ['values.tour_id', $tourId],
+            ])->first();
         // Value::select('values.id AS value_id', 'values.tour_id', 'values.attribute_id', 'values.value');
     }
 
     /**
      * Lay cac dich vu KHONG bao gom theo tour (include).
      */
-    public function getTourNotInclude()
+    public function getTourNotInclude($tourId)
     {
-        return $this->_model->values()->getNotIncludeId();
+        return $this->_model->select('values.id', 'values.attribute_id', 'values.tour_id', 'values.value')->join('values', 'tours.id', '=', 'values.tour_id')
+            ->where([
+                ['values.attribute_id', $this->getNotIncludeId()],
+                ['values.tour_id', $tourId],
+            ])->first();
     }
 
     /**
@@ -74,7 +81,6 @@ class TourRepositoryEloquent extends RepositoryEloquent implements TourRepositor
             $tour = $this->_model->create([
                 'area_id' => $request->area_id,
                 'location_id' => $request->location_id,
-                'promotion_id' => $request->promotion_id,
                 'code' => $request->code,
                 'name' => $request->name,
                 'description' => $request->description,
@@ -87,26 +93,33 @@ class TourRepositoryEloquent extends RepositoryEloquent implements TourRepositor
                 'youth_price' => $request->youth_price,
                 'child_price' => $request->child_price,
                 'baby_price' => $request->baby_price,
+                'display' => $request->display,
             ]);
+            $tour->promotions()->attach($request->promotion_id);
             $tour->tags()->attach($request->tag_id);
             $tour->vehicles()->attach($request->vehicle_id);
 
             // xu li Include (dich vu kem theo)
-            $valueInclude = implode(';', $request->include);
-            Value::create([
+            $include = json_encode($request->include);
+            Value::insert([
                 'attribute_id' => $this->getIncludeId(),
                 'tour_id' => $tour->id,
-                'value' => $valueInclude,
+                'value' => $include,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
 
             // xu li Not Include (dich vu KHONG kem theo)
-            $valueNotInclude = implode(';', $request->not_include);
-            Value::create([
+            $notInclude = json_encode($request->not_include);
+            Value::insert([
                 'attribute_id' => $this->getNotIncludeId(),
                 'tour_id' => $tour->id,
-                'value' => $valueNotInclude,
+                'value' => $notInclude,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
 
+            // Upload anh tour
             $path = $this->uploadImage($request->hasFile('image'), $request->file('image'), $tour->id . '/');
             $this->_model->find($tour->id)->update(['image_path' => $path]);
 
@@ -128,13 +141,12 @@ class TourRepositoryEloquent extends RepositoryEloquent implements TourRepositor
     {
         try {
             // xu li anh
-            $path = $this->updateImagePath($id, $request->hasFile('image'), $request->file('image'), 'image_path');
+            $path = $this->updateImagePath($id, $request->hasFile('image'), $request->file('image'), 'image_path', $id . '/');
             // thuc hien luu vao DB
-            $tour = $this->_model->find($id)->update([
+            $tour = $this->_model->find($id);
+            $tour->update([
                 'area_id' => $request->area_id,
                 'location_id' => $request->location_id,
-                'promotion_id' => $request->promotion_id,
-                'code' => $request->code,
                 'name' => $request->name,
                 'description' => $request->description,
                 'departure_location' => $request->departure_location,
@@ -146,21 +158,25 @@ class TourRepositoryEloquent extends RepositoryEloquent implements TourRepositor
                 'youth_price' => $request->youth_price,
                 'child_price' => $request->child_price,
                 'baby_price' => $request->baby_price,
+                'display' => $request->display,
                 'image_path' => $path,
             ]);
+            $tour->promotions()->sync($request->promotion_id);
             $tour->tags()->sync($request->tag_id);
             $tour->vehicles()->sync($request->vehicle_id);
 
-            // xu li Include
-            $valueInclude = implode(';', $request->include);
-            Value::find($request->value_include_id)->update([
-                'value' => $valueInclude,
+            // xu li Include (dich vu kem theo)
+            $include = json_encode($request->include);
+            Value::findOrFail($request->include_value_id)->update([
+                'value' => $include,
+                'updated_at' => now(),
             ]);
 
-            // xu li Include
-            $valueNotInclude = implode(';', $request->not_include);
-            Value::find($$request->value_not_include_id)->update([
-                'value' => $valueNotInclude,
+            // xu li Not Include (dich vu KHONG kem theo)
+            $notInclude = json_encode($request->not_include);
+            Value::findOrFail($request->not_include_value_id)->update([
+                'value' => $notInclude,
+                'updated_at' => now(),
             ]);
 
             return [

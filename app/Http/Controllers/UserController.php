@@ -42,8 +42,53 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->repo->getAll(['id', 'name', 'email', 'avatar_image_path', 'profile_photo_path']);
+        // dd($users);
 
         return view('admin.user.index', compact('users'));
+    }
+
+    /**
+     * Get view create.
+     *
+     * @return view
+     */
+    public function create()
+    {
+        return view('admin.user.add');
+    }
+
+    /**
+     * Create new record to DB.
+     *
+     * @return Redirect
+     */
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        $rs = $this->repo->store($request);
+        toast($rs['msg'], $rs['stt']);
+
+        return back();
+    }
+
+    /**
+     * Get view edit.
+     */
+    public function edit($userId)
+    {
+        $user = $this->repo->show($userId);
+        return view('admin.user.edit', compact('user'));
+    }
+
+    /**
+     * Update user.
+     */
+    public function update(Request $request, $userId)
+    {
+        $rs = $this->repo->update($request, $userId);
+        toast($rs['msg'], $rs['stt']);
+
+        return back();
     }
 
     /**
@@ -54,7 +99,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = $this->repo->show($this->id());
+        $user = $this->repo->show($id);
 
         return view('admin.user.show', compact('user'));
     }
@@ -86,9 +131,10 @@ class UserController extends Controller
      */
     public function profile()
     {
-        $user = $this->repo->show(static::id());
+        // dd('loading');
+        $user = $this->repo->show(1);
 
-        return view('test.user_profile', compact('user'));
+        return view('user.my_account', compact('user'));
     }
 
     /**
@@ -98,13 +144,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function userUpdate(Request $request)
     {
-        $imagePath = $this->repo->uploadImage($request->hasFile('image'), $request->file('image'), $this->id() . '/');
-        $rs = $this->repo->update($request, $this->id());
+        // dd($request->has)
+        $rs = $this->repo->update($request, 1);
         toast($rs['msg'], $rs['stt']);
 
         return back();
+    }
+
+    /**
+     * Get view change password
+     *
+     * @return view
+     */
+    public function changePassword()
+    {
+        return view('user.change_password');
     }
 
     /**
@@ -113,12 +169,15 @@ class UserController extends Controller
      * @param \Illuminate\Http\PasswordRequest  $request
      * @return array
      */
-    public function updatePassword(PasswordRequest $request)
+    public function updatePassword(Request $request)
     {
-        $rs = $this->repo->updatePassword($request, static::id());
+        $rs = $this->repo->updatePassword($request, 1);
+        if (!empty($rs['error_messages'])) {
+            session()->flash('errors', $rs['error_messages']);
+        }
         toast($rs['msg'], $rs['stt']);
 
-        return redirect()->route('user.profile');
+        return redirect()->back();
     }
 
     /**
@@ -130,7 +189,7 @@ class UserController extends Controller
     }
 
     /**
-     * Xu li Notification.
+     * ! Xu li Notification.
      */
     public function getNotification()
     {

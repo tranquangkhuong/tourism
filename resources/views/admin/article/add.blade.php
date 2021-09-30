@@ -63,7 +63,7 @@
                                 placeholder="Enter article title">
                         </div>
                         <div class="form-group">
-                            <label for="inputDescription">Content</label>
+                            <label for="summernote">Content</label>
                             <textarea id="summernote" name="content" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
