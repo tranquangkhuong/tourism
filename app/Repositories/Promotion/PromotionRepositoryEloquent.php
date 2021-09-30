@@ -11,4 +11,15 @@ class PromotionRepositoryEloquent extends RepositoryEloquent implements Promotio
     {
         return \App\Models\Promotion::class;
     }
+
+    public function getValuePromotion($promotionId)
+    {
+        dd('loading');
+        $pro = $this->find($promotionId)->get();
+        return [
+            'number' => $pro->number,
+            'type' => $pro->type,
+            'amount' => $pro->amount,
+        ];
+    }
 }

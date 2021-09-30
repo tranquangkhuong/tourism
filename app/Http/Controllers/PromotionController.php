@@ -112,4 +112,10 @@ class PromotionController extends Controller
 
         // return response()->json($rs);
     }
+
+    public function getPromotion($promotionId)
+    {
+        $data = $this->repo->getValuePromotion($promotionId);
+        return response()->json($data);
+    }
 }

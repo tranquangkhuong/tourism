@@ -166,6 +166,7 @@ Route::group(['prefix' => '/tour'], function () {
     Route::get('/{tour_id}/booking', [BookingController::class, 'userCreate']);
     Route::post('/booking/store', [BookingController::class, 'userStore']);
 });
+Route::get('/promotion/{promotion_id}', [PromotionController::class, 'getPromotion']);
 
 //  Các route lien quan đến users , 'middleware' => 'user'
 Route::group(['prefix' => '/user', 'as' => 'user.'], function () {

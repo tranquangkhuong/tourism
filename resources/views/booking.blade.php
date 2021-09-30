@@ -21,6 +21,28 @@
         return x1 + x2;
     }
 
+    var promotionNumberValue = 0;
+    var promotionType = '';
+
+    // var promotion = function() {
+        $('.promotion').change(function (e) {
+            e.preventDefault();
+            var id = $(this).find(':selected')[0].val();
+            alert(id);
+            $.ajax({
+                type: "get",
+                url: "/promotion/" + id,
+                data: {'promotion_id': id},
+                // dataType: "dataType",
+                success: function (data) {
+                    promotionNumberValue = data.number;
+                    promotionType = data.type;
+                    console.log(promotionNumberValue, promotionType);
+                }
+            });
+        });
+    // }
+
     $('#adultSlot, #youthSlot, #childSlot, #babySlot').on('input', function() {
         var adultSlot = ($('#adultSlot').val());
         var youthSlot = ($('#youthSlot').val());
@@ -34,7 +56,7 @@
         var totalPrice = (adultSlot*adultPrice) + (youthSlot*youthPrice) + (childSlot*childPrice) + (babySlot*babyPrice);
         $('#totalSlot').val(number_format(totalSlot, 0, ',', ' '));
         $('#totalPrice').val(number_format(totalPrice, 0, ',', ' '));
-    })
+    });
 </script>
 @endsection
 
@@ -191,7 +213,7 @@
                             </div>
                             @if (count($promotions) > 0)
                             <div>
-                                <select name="promotion_id">
+                                <select name="promotion_id" class="promotion">
                                     @foreach ($promotions as $promotion)
                                     <option value="{{ $promotion->id }}">{{ $promotion->content }}</option>
                                     @endforeach
