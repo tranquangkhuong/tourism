@@ -1946,7 +1946,7 @@ li.slick-active button {
     width: 650px;
     bottom: -100px;
     left: -70px;
-    z-index: 9;
+    z-index: 5;
 }
 
 .opacity {

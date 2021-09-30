@@ -164,4 +164,19 @@
     modalContainer.addEventListener('click', function (event) {
         event.stopPropagation()
     });
+
+    var onChange = document.querySelectorAll('.form-header__action');
+  var onChange1 = document.querySelectorAll('.form-body');
+  for(var i=0; i<onChange.length;i++){
+    const addactive = onChange1[i];
+    onChange[i].onclick = function(){
+      var onChange1 = document.querySelector('.form-body.active');
+      for(var i=0; i<onChange.length;i++){
+        onChange[i].classList.remove('active');
+        onChange1.classList.remove('active');
+      }
+      this.classList.add('active');
+      addactive.classList.add('active');
+    }
+  }
 </script>

@@ -7,6 +7,8 @@
     integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('frontend/backend/css/style-admin.css') }}" />
+
 <!-- Bootstrap 4 css -->
 <link href="{{ URL::asset('frontend/backend/bootstrap/bootstrap4.min.css') }}" rel="stylesheet">
 
@@ -41,3 +43,6 @@
 
 <!-- Dropzone css -->
 <link type="text/css" href="{{ URL::asset('frontend/backend/css/dropzone.min.css') }}" rel="stylesheet">
+
+<!-- Jquery admin code -->
+<script type="text/javascript" src="{{ URL::asset('frontend/backend/js/writejq/write.js') }}"></script>

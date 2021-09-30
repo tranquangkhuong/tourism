@@ -114,3 +114,17 @@
         }
     });
 </script>
+<script >
+    var setDefaultActive = function() {
+    var path = window.location.pathname;
+
+    console.log(path);
+
+    var element = $(".nav-item a[href='" + path + "']");
+    console.log(element);
+
+    element.addClass("active");
+}
+
+setDefaultActive()
+</script>
