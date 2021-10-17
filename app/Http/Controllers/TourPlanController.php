@@ -20,7 +20,7 @@ class TourPlanController extends Controller
         // $tourId = $tourId;
         // dd($tourId);
 
-        return view('admin.tour.plan', compact('plans', 'tourId'));
+        return view('backend.tour.plan', compact('plans', 'tourId'));
     }
 
     /**

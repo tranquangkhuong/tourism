@@ -22,7 +22,7 @@ class AreaController extends Controller
     public function index()
     {
         $areas = $this->repo->getAll(['id', 'name', 'domestic', 'created_at']);
-        return view('admin.area.index', compact('areas'));
+        return view('backend.area.index', compact('areas'));
     }
 
     public function indexData()
@@ -65,7 +65,7 @@ class AreaController extends Controller
     {
         $area = $this->repo->find($areaId);
 
-        return view('admin.area.edit', compact('area'));
+        return view('backend.area.edit', compact('area'));
     }
 
     /**

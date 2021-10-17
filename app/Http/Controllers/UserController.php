@@ -44,7 +44,7 @@ class UserController extends Controller
         $users = $this->repo->getAll(['id', 'name', 'email', 'avatar_image_path', 'profile_photo_path']);
         // dd($users);
 
-        return view('admin.user.index', compact('users'));
+        return view('backend.user.index', compact('users'));
     }
 
     /**
@@ -54,7 +54,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.add');
+        return view('backend.user.add');
     }
 
     /**
@@ -77,7 +77,7 @@ class UserController extends Controller
     public function edit($userId)
     {
         $user = $this->repo->show($userId);
-        return view('admin.user.edit', compact('user'));
+        return view('backend.user.edit', compact('user'));
     }
 
     /**
@@ -101,7 +101,7 @@ class UserController extends Controller
     {
         $user = $this->repo->show($id);
 
-        return view('admin.user.show', compact('user'));
+        return view('backend.user.show', compact('user'));
     }
 
     /**
@@ -134,7 +134,7 @@ class UserController extends Controller
         // dd('loading');
         $user = $this->repo->show(1);
 
-        return view('user.my_account', compact('user'));
+        return view('frontend.user.my_account', compact('user'));
     }
 
     /**
@@ -160,7 +160,7 @@ class UserController extends Controller
      */
     public function changePassword()
     {
-        return view('user.change_password');
+        return view('frontend.user.change_password');
     }
 
     /**

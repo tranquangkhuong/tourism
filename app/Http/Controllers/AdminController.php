@@ -39,7 +39,7 @@ class AdminController extends Controller
     {
         $admins = $this->repo->getAll(['id', 'name', 'email', 'avatar_image_path', 'created_at']);
 
-        return view('admin.manage.index', compact('admins'));
+        return view('backend.admin.index', compact('admins'));
     }
 
     /**
@@ -65,7 +65,7 @@ class AdminController extends Controller
     public function edit($adminId)
     {
         $admin = $this->repo->show($adminId);
-        return view('admin.manage.edit', compact('admin'));
+        return view('backend.admin.edit', compact('admin'));
     }
 
     /**
@@ -121,7 +121,7 @@ class AdminController extends Controller
     {
         $account = $this->repo->show(5);
         // dd($account);
-        return view('admin.account.my_account', compact('account'));
+        return view('backend.account.my_account', compact('account'));
     }
 
     /**
@@ -140,7 +140,7 @@ class AdminController extends Controller
      */
     public function changePassword()
     {
-        return view('admin.account.change_password');
+        return view('backend.account.change_password');
     }
 
     /**

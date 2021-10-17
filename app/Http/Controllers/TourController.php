@@ -38,7 +38,7 @@ class TourController extends Controller
             'locations.name as location'
         ]);
         // dd($tours);
-        return view('admin.tour.index', compact('tours'));
+        return view('backend.tour.index', compact('tours'));
     }
 
     public function indexData()
@@ -65,7 +65,7 @@ class TourController extends Controller
         $tags = $this->repo->getAllTag();
         $vehicles = $this->repo->getAllVehicle();
 
-        return view('admin.tour.add', compact('areas', 'locations', 'promotions', 'tags', 'vehicles'));
+        return view('backend.tour.add', compact('areas', 'locations', 'promotions', 'tags', 'vehicles'));
     }
 
     /**
@@ -112,7 +112,7 @@ class TourController extends Controller
         $notIncludes = ($this->repo->getTourNotInclude($tourId));
         // dd(json_decode($notIncludes->value));
 
-        return view('admin.tour.edit', compact('tour', 'areas', 'locations', 'promotions', 'tags', 'vehicles', 'includes', 'notIncludes'));
+        return view('backend.tour.edit', compact('tour', 'areas', 'locations', 'promotions', 'tags', 'vehicles', 'includes', 'notIncludes'));
     }
 
     /**

@@ -21,6 +21,9 @@ class CreateBookingTable extends Migration
             $table->foreignId('payment_id')->comment('FK to payments')
                 ->references('id')->on('payments')
                 ->onDelete('cascade');
+            $table->foreignId('promotion_id')->comment('FK to promotions')
+                ->references('id')->on('promotions')
+                ->onDelete('cascade');
             $table->string('code');
             $table->tinyInteger('status')->default(1)->comment('1 là đơn đã hoàn thành');
             $table->timestamps();
@@ -36,14 +39,13 @@ class CreateBookingTable extends Migration
                 ->references('id')->on('tours')
                 ->onDelete('cascade');
             $table->date('other_day');
-            $table->decimal('discount', 10, 2)->nullable();
-            $table->integer('adult_slot')->nullable();
+            $table->integer('adult_slot')->default(0);
             $table->decimal('adult_price', 12, 2)->nullable()->comment('Giá nguời lớn trên 11 tuổi');
-            $table->integer('youth_slot')->nullable();
+            $table->integer('youth_slot')->default(0);
             $table->decimal('youth_price', 12, 2)->nullable()->comment('Giá trẻ em 5 -> 11 tuổi');
-            $table->integer('child_slot')->nullable();
+            $table->integer('child_slot')->default(0);
             $table->decimal('child_price', 12, 2)->nullable()->comment('Giá trẻ nhỏ 2 -> 4 tuổi');
-            $table->integer('baby_slot')->nullable();
+            $table->integer('baby_slot')->default(0);
             $table->decimal('baby_price', 12, 2)->nullable()->comment('Giá em bé duới 2 tuổi');
             $table->integer('total_slot')->nullable()->comment('Tổng slot');
             $table->decimal('total_price', 12, 2)->nullable()->comment('Tổng giá');

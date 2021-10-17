@@ -22,7 +22,7 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = $this->repo->getAll(['id', 'title', 'image_path', 'display', 'created_at']);
-        return view('admin.slider.index', compact('sliders'));
+        return view('backend.slider.index', compact('sliders'));
     }
 
     public function indexData()
@@ -37,7 +37,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('admin.slider.add');
+        return view('backend.slider.add');
     }
 
     /**
@@ -78,7 +78,7 @@ class SliderController extends Controller
     {
         $slider = $this->repo->find($sliderId);
 
-        return view('admin.slider.edit', compact('slider'));
+        return view('backend.slider.edit', compact('slider'));
     }
 
     /**

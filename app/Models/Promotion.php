@@ -21,6 +21,14 @@ class Promotion extends Model
     ];
 
     /**
+     * Relationship 1-n to Bookings
+     */
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'payment_id', 'id');
+    }
+
+    /**
      * Relationship n-n to Tours
      */
     public function tours()

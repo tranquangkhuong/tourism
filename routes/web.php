@@ -23,12 +23,15 @@ use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\TourPlanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\VnpayController;
+use App\Models\Booking;
 use App\Models\Tour;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,12 +88,12 @@ Route::post('/reset-password', [ResetPasswordController::class, 'updatePassword'
 |-----------------------------------------------------------------------
 */
 
-Route::get('login', function () {
-    return view('auth.login');
-});
-Route::get('register', function () {
-    return view('auth.register');
-});
+// Route::get('login', function () {
+//     return view('auth.login');
+// });
+// Route::get('register', function () {
+//     return view('auth.register');
+// });
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -118,44 +121,44 @@ Route::get('/auth/{provider}/callback', [LoginWithSocialNetworkController::class
 
 // Route::get('/', [BaseController::class, 'home']);
 Route::get('/', function () {
-    return view('index');
+    return view('frontend.index');
 })->name('index');
 
 // Route::get('/destination', [BaseController::class, 'destination']);
 Route::get('/standard-list', function () {
-    return view('standard_list');
+    return view('frontend.standard_list');
 });
 
 Route::get('/detail-tour', function () {
-    return view('detail_tour');
+    return view('frontend.detail_tour');
 });
 
 
 // Route::get('/blog', [BaseController::class, 'blog']);
 Route::get('/blog', function () {
-    return view('blog_masonry');
+    return view('frontend.blog_masonry');
 });
 
 // Route::get('about', [BaseController::class, 'about']);
 Route::get('/about-us', function () {
-    return view('about_us');
+    return view('frontend.about_us');
 });
 Route::get('/booking', function () {
-    return view('booking_page');
+    return view('frontend.booking_page');
 });
 Route::get('/test', function () {
-    return view('test');
+    return view('frontend.test');
 });
 Route::get('/mail', function () {
     return view('mail.booking');
 });
 Route::get('/myaccount', function () {
-    return view('my_account');
+    return view('frontend.user.my_account');
 });
 
 // Route::get('/contact', [BaseController::class, 'contact']);
 Route::get('/contact-us', function () {
-    return view('contact_us');
+    return view('frontend.contact_us');
 });
 
 // Các route liên quan đến Tours
@@ -163,13 +166,20 @@ Route::group(['prefix' => '/tour'], function () {
     Route::get('/domestic', [BaseController::class, 'domestic']);
     Route::get('/foreign', [BaseController::class, 'foreign']);
     Route::get('/{tour_id}/detail', [BaseController::class, 'detailTour']);
-    Route::get('/{tour_id}/booking', [BookingController::class, 'userCreate']);
-    Route::post('/booking/store', [BookingController::class, 'userStore']);
+    Route::get('/{tour_id}/booking', [BookingController::class, 'userCreate'])->middleware('auth:user');
+    Route::post('/booking/store', [BookingController::class, 'userStore'])->middleware('auth:user');
 });
+
+// Lấy thông tin của mã giảm giá
 Route::get('/promotion/{promotion_id}', [PromotionController::class, 'getPromotion']);
 
+// Thanh toán online qua VnPay
+Route::post('/vnpay', [VnpayController::class, 'create'])->name('vnpay');
+Route::get('/return-vnpay', [VnpayController::class, 'return'])->name('vnpay.return');
+
+
 //  Các route lien quan đến users , 'middleware' => 'user'
-Route::group(['prefix' => '/user', 'as' => 'user.'], function () {
+Route::group(['prefix' => '/user', 'as' => 'user.', 'middleware' => 'auth:user'], function () {
     Route::get('/profile', [UserController::class, 'profile']);
     Route::post('/profile/update', [UserController::class, 'userUpdate']);
     Route::get('/change-password', [UserController::class, 'changePassword']);
@@ -197,7 +207,7 @@ Route::get('/notification/delete/{notification_id}', [UserController::class, 'de
 Route::get('/generate-code/{length}', [Controller::class, 'generateCode'])->name('generate_code');
 Route::get('/images/{model}/{size}/{image_path}', [Controller::class, 'flyResize'])->where('image_path', '(.*)');
 
-Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
+Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function () {
 
     Route::get('/dashboard', [BackendController::class, 'dashboard']);
 
@@ -388,16 +398,38 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
 
 
 Route::get('insert-data', function () {
-    DB::table('test')->insert([
-        'json_data' => json_encode(['bữa sáng', 'bữa trưa']),
+    $bookingDetail = DB::table('booking_details')->insert([
+        'booking_id' => 15,
+        'tour_id' => 1,
+        'other_day' => date('Y-m-d'), //$request->other_day
+        'adult_slot' => 2,
+        'adult_price' => 10,
+        'youth_slot' => 0,
+        'youth_price' => 10,
+        'child_slot' => 0,
+        'child_price' => 10,
+        'baby_slot' => 0,
+        'baby_price' => 10,
+        'total_slot' => 2,
+        'total_price' => 1099994,
         'created_at' => now(),
         'updated_at' => now(),
     ]);
+    dd($bookingDetail);
 });
 
 Route::get('show-data', function () {
-    $data = DB::table('test')->where('id', 2)->get();
-    // $da = json_decode($data['data']);
-    dd(json_decode($data[0]->json_data));
-    echo 'cc';
+    $a = Booking::where('code', 'RJtBjos6bZ')->first();
+    dd($a);
+});
+
+Route::get('session', function () {
+    session()->put('name', 'khuo9ng');
+    session(['ho' => 'Traanf']);
+    Session::put('user.class', 'tiếng anh');
+    Session::put('user.age', '10');
+    session()->forget('user');
+    Session::forget('ho');
+    session()->forget('name');
+    dd(session('name'));
 });

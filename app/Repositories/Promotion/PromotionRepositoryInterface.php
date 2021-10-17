@@ -6,5 +6,5 @@ use App\Repositories\RepositoryInterface;
 
 interface PromotionRepositoryInterface extends RepositoryInterface
 {
-    public function getValuePromotion($promotionId)
+    public function getValuePromotion($promotionId);
 }

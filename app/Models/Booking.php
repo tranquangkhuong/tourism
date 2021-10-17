@@ -10,6 +10,9 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'payment_id',
+        'promotion_id',
         'code',
         'status',
         'created_at',
@@ -23,6 +26,14 @@ class Booking extends Model
     public function payment()
     {
         return $this->belongsTo(Payment::class);
+    }
+
+    /**
+     * Relationship 1-n (inverse) to Promotion
+     */
+    public function promotion()
+    {
+        return $this->belongsTo(Promotion::class);
     }
 
     /**

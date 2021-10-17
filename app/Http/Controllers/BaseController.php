@@ -26,7 +26,7 @@ class BaseController extends Controller
         $recommendedTours = Tag::where('name', 'like', 'recommended')->tours()->select('id', 'name')->get();
         $articles = Article::select('id', 'title', 'content')->limit(5)->orderByDesc('created_at')->get();
 
-        return view('home', compact('hotTours', 'newTours', 'recommendedTours', 'articles'));
+        return view('frontend.index', compact('hotTours', 'newTours', 'recommendedTours', 'articles'));
     }
 
     /**
@@ -36,7 +36,7 @@ class BaseController extends Controller
     {
         $tours = Location::has('tours')->get();
 
-        return view('destination', compact('tours'));
+        return view('frontend.destination', compact('tours'));
     }
 
     /**
@@ -46,7 +46,7 @@ class BaseController extends Controller
     {
         $tours = Area::where('domestic', 1)->tours();
 
-        return view('tour.domestic', compact('tours'));
+        return view('frontend.tour.domestic', compact('tours'));
     }
 
     /**
@@ -56,7 +56,7 @@ class BaseController extends Controller
     {
         $tours = Area::where('domestic', 0)->tours();
 
-        return view('tour.foreign', compact('tours'));
+        return view('frontend.tour.foreign', compact('tours'));
     }
 
     /**
@@ -67,6 +67,7 @@ class BaseController extends Controller
         $t = Tour::where('id', $tourId);
         $tour = $t->first();
         $tags = $t->tags()->name;
+        dd($tags);
         $vehicles = $t->vehicles()->name;
         $area = $t->area()->name;
         $location = $t->location()->name;
@@ -87,7 +88,7 @@ class BaseController extends Controller
         // Binh luan & danh gia
         $comments = Comment::select('comments.content', 'comments.created_at', 'users.name', 'users.avatar_image_path', 'users.profile_image_path')->join('users', 'comments.user_id', '=', 'users.id')->where('comments.tour_id', $tourId)->get();
 
-        return view('detail_tour', compact('tour', 'tags', 'vehicles', 'area', 'location', 'vote', 'plans', 'images', 'comments'));
+        return view('frontend.detail_tour', compact('tour', 'tags', 'vehicles', 'area', 'location', 'vote', 'plans', 'images', 'comments'));
     }
 
     /**
@@ -96,7 +97,7 @@ class BaseController extends Controller
     public function blog()
     {
         $articles = Article::paginate(10);
-        return view('blog_masonry', compact('articles'));
+        return view('frontend.blog_masonry', compact('articles'));
     }
 
     /**
@@ -106,7 +107,7 @@ class BaseController extends Controller
     {
         $aboutUs = DB::table('about')->first('about_us');
 
-        return view('about_us', compact('aboutUs'));
+        return view('frontend.about_us', compact('aboutUs'));
     }
 
     /**
@@ -116,6 +117,6 @@ class BaseController extends Controller
     {
         $contacts = DB::table('contacts')->all();
 
-        return view('contact_us', compact('contacts'));
+        return view('frontend.contact_us', compact('contacts'));
     }
 }

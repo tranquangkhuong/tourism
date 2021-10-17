@@ -25,7 +25,7 @@ class LocationController extends Controller
         // lay area de cho vao modal create
         $areas = $this->repo->getAllArea();
 
-        return view('admin.location.index', compact('locations', 'areas'));
+        return view('backend.location.index', compact('locations', 'areas'));
     }
 
     public function indexData()
@@ -71,7 +71,7 @@ class LocationController extends Controller
         $location = $this->repo->find($locationId);
         $areas = $this->repo->getAllArea();
 
-        return view('admin.location.edit', compact('location', 'areas'));
+        return view('backend.location.edit', compact('location', 'areas'));
     }
 
     /**

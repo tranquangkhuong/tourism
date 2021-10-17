@@ -22,7 +22,7 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = $this->repo->getAll(['id', 'name', 'created_at']);
-        return view('admin.payment.index', compact('payments'));
+        return view('backend.payment.index', compact('payments'));
     }
 
     public function indexData()
@@ -67,7 +67,7 @@ class PaymentController extends Controller
     {
         $payment = $this->repo->find($paymentId);
         // dd(view('admin.payment.edit', compact('payment')));
-        return view('admin.payment.edit', compact('payment'));
+        return view('backend.payment.edit', compact('payment'));
     }
 
     /**

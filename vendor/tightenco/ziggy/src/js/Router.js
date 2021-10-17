@@ -14,7 +14,7 @@ export default class Router extends String {
     constructor(name, params, absolute = true, config) {
         super();
 
-        this._config = config ?? Ziggy ?? globalThis?.Ziggy;
+        this._config = config ?? (typeof Ziggy !== 'undefined' ? Ziggy : globalThis?.Ziggy);
         this._config = { ...this._config, absolute };
 
         if (name) {
@@ -83,7 +83,7 @@ export default class Router extends String {
 
         // Test the passed name against the current route, matching some
         // basic wildcards, e.g. passing `events.*` matches `events.show`
-        const match = new RegExp(`^${name.replace('.', '\\.').replace('*', '.*')}$`).test(current);
+        const match = new RegExp(`^${name.replace(/\./g, '\\.').replace(/\*/g, '.*')}$`).test(current);
 
         if ([null, undefined].includes(params) || !match) return match;
 

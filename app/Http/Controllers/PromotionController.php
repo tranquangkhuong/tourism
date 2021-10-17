@@ -22,7 +22,7 @@ class PromotionController extends Controller
     public function index()
     {
         $promotions = $this->repo->getAll();
-        return view('admin.promotion.index', compact('promotions'));
+        return view('backend.promotion.index', compact('promotions'));
     }
 
     public function indexData()
@@ -37,7 +37,7 @@ class PromotionController extends Controller
      */
     public function create()
     {
-        return view('admin.promotion.add');
+        return view('backend.promotion.add');
     }
 
     /**
@@ -77,7 +77,7 @@ class PromotionController extends Controller
     {
         $promotion = $this->repo->find($promotionId);
 
-        return view('admin.promotion.edit', compact('promotion'));
+        return view('backend.promotion.edit', compact('promotion'));
     }
 
     /**
@@ -116,6 +116,7 @@ class PromotionController extends Controller
     public function getPromotion($promotionId)
     {
         $data = $this->repo->getValuePromotion($promotionId);
+        // dd($data);
         return response()->json($data);
     }
 }

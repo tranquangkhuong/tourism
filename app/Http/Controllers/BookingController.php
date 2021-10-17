@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\CustomerBooking;
 use App\Repositories\Booking\BookingRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
 {
@@ -41,7 +42,7 @@ class BookingController extends Controller
         $tours = $this->repo->getAllTour();
         $payments = $this->repo->getAllPayment();
         // dd($users);
-        return view('admin.booking.add', compact('users', 'tours', 'payments'));
+        return view('backend.booking.add', compact('users', 'tours', 'payments'));
     }
 
     /**
@@ -113,9 +114,9 @@ class BookingController extends Controller
         $tour = $this->repo->getTour($tourId);
         $promotions = $this->repo->getPromotion($tourId);
         $payments = $this->repo->getAllPayment();
-        // dd($promotions);
+        // dd($tour, $promotions, $payments);
 
-        return view('booking', compact('tour', 'promotions', 'payments'));
+        return view('frontend.booking.index', compact('tour', 'promotions', 'payments'));
     }
 
     /**
@@ -126,11 +127,11 @@ class BookingController extends Controller
      */
     public function userStore(Request $request)
     {
-        dd($request);
-        $rs = $this->repo->store($request);
-        toast($rs['msg'], $rs['stt']);
-
-        return redirect()->url('/detail-tour', [$rs['tour_id']]);
+        $booking = $this->repo->store($request);
+        // dd($booking['booking_id']);
+        $result = $this->repo->checkPaymentMethod($booking['booking_id']);
+        $data = $result['data'];
+        return view($result['view'], compact('data'));
     }
 
     /**

@@ -22,7 +22,7 @@ class VehicleController extends Controller
     public function index()
     {
         $vehicles = $this->repo->getAll(['id', 'name', 'created_at']);
-        return view('admin.vehicle.index', compact('vehicles'));
+        return view('backend.vehicle.index', compact('vehicles'));
     }
 
     public function indexData()
@@ -65,7 +65,7 @@ class VehicleController extends Controller
     {
         $vehicle = $this->repo->find($vehicleId);
 
-        return view('admin.vehicle.edit', compact('vehicle'));
+        return view('backend.vehicle.edit', compact('vehicle'));
     }
 
     /**

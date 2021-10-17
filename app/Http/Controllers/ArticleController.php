@@ -22,7 +22,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = $this->repo->getAll(['articles.id as id', 'articles.title', 'admins.name as writer', 'articles.display', 'articles.updated_at']);
-        return view('admin.article.index', compact('articles'));
+        return view('backend.article.index', compact('articles'));
     }
 
     public function indexData()
@@ -37,7 +37,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('admin.article.add');
+        return view('backend.article.add');
     }
 
     /**
@@ -77,7 +77,7 @@ class ArticleController extends Controller
     {
         $article = $this->repo->find($articleId);
 
-        return view('admin.article.edit', compact('article'));
+        return view('backend.article.edit', compact('article'));
     }
 
     /**
