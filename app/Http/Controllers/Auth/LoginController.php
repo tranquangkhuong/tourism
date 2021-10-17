@@ -30,6 +30,7 @@ class LoginController extends Controller
 
             return redirect()->intended('/');
         }
+        toast(__('auth.failed'), 'error')->autoClose(10000);
 
         return back()->withErrors(__('auth.failed'))->withInput();
 
