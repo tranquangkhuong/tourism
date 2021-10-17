@@ -2166,3 +2166,13 @@ li.slick-active button {
 .notification-content__footer a:hover{
     opacity: 1;
 }
+/* Change Password */
+.container-change-password {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: palevioletred;
+    background: url('../img/bg.jpg');
+} 
