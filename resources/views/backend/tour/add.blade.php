@@ -3,18 +3,11 @@
 @push('title', 'Add Tour')
 
 @section('script')
-<script>
-    // Generate code
-$("#btn-generate-code").click(function(e) {
-    e.preventDefault();
-    $.ajax({
-        type: "GET",
-        url: route('generate_code', 10),
-        success: (response) => {
-            $("input[name=code]").val(response);
-        },
-    });
-});
+<script src="{{ asset('js/custom-function.js') }}"></script>
+<script type="text/javascript">
+    // Active Sidebar
+    $('#link-tour').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-tour, #link-add-tour').addClass('active');
 </script>
 @endsection
 

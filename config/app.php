@@ -169,6 +169,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -182,6 +183,7 @@ return [
         App\Providers\JetstreamServiceProvider::class,
         // App\Notifications\ResetPasswordNotification::class,
         App\Providers\HelperServiceProvider::class, // custom helper
+        App\Providers\RepositoryServiceProvider::class, // add repository provider
 
     ],
 
@@ -238,7 +240,8 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Helper' => App\Helpers\Helper::class,
+        'Helper' => App\Helpers\Helper::class,  // custom helper
+        'PDF' => Barryvdh\DomPDF\Facade::class, // pachage export PDF - barryvdh/laravel-dompdf
 
     ],
 

@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col l-6 l-o-3 m-8 m-o-2 c-10 c-o-1">
                 <div class="banner-content banner-content-choose text-dark-color">
-                    <h2 class="banner-heading__medium banner-heading--color">Plan The</h2>
-                    <h1 class="banner-heading__big">Perfect Holiday</h1>
+                    <h2 class="banner-heading__medium banner-heading--color">Featured Tour</h2>
+                    <h1 class="banner-heading__big">Hot Tour</h1>
                     <p class="banner-text-small">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aene an
                         commodo ligula eget dolor. Aenean massa. Cum sociis the</p>
                 </div>
@@ -16,7 +16,7 @@
 <section id="tour-hightlight">
     <div class="grid wide">
         <div class="row">
-            <div class="col l-3 m-6 c-8 c-o-2 tour-item-wrap">
+            {{-- <div class="col l-3 m-6 c-8 c-o-2 tour-item-wrap">
                 <div class="tour-location tour-item">
                     <div class="tour-location__img">
                         <img width="650" heigth="650" src="{{ URL::asset('frontend/img/touritem10.jpg') }}" alt="tour">
@@ -24,23 +24,28 @@
                     <span class="tour-item__location">Viet Nam</span>
                     <a href="#" class="tour-item__link"></a>
                 </div>
-            </div>
+            </div> --}}
+            @foreach ($hotTours as $hotTour)
             <div class="col l-3 m-6 c-8 c-o-2 tour-item-wrap">
                 <div class="tour-item">
                     <div class="tour-item__img">
-                        <img src="{{ URL::asset('frontend/img/touritem1.jpg') }}" alt="tour">
+                        <img src="{{ URL::asset($hotTour->image_path) }}" alt="tour"
+                            onerror="this.onerror=null;this.src='{{ asset('/images/placeholder600x600.png') }}'">
                     </div>
                     <div class="tour-item__content">
-                        <span class="item__content-name">Hoi An</span>
+                        <span class="item__content-name">{{ $hotTour->name }}</span>
                         <div class="item__content-rate-price">
                             <span class="item__content-rate">8.0 superd</span>
-                            <span class="item__content-price">2000k</span>
+                            <span class="item__content-price">
+                                {{ number_format($hotTour->adult_price, 0, ',', ' ') }} <sup>đ</sup>
+                            </span>
                         </div>
                     </div>
-                    <a href="#" class="tour-item__link"></a>
+                    <a href="{{ url("/tour/{$hotTour->id}") }}" class="tour-item__link"></a>
                 </div>
             </div>
-            <div class="col l-3 m-6 c-8 c-o-2 tour-item-wrap">
+            @endforeach
+            {{-- <div class="col l-3 m-6 c-8 c-o-2 tour-item-wrap">
                 <div class="tour-item">
                     <div class="tour-item__img">
                         <img src="{{ URL::asset('frontend/img/touritem2.jpg') }}" alt="tour">
@@ -181,10 +186,11 @@
                     </div>
                     <a href="#" class="tour-item__link"></a>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
+
 <section id="branch">
     <div class="branch-wrap">
         <img src="{{ URL::asset('frontend/img/brancvietnam.png') }}" alt="" class="branch-wrap__img">

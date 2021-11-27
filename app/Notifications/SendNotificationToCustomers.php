@@ -20,6 +20,7 @@ class SendNotificationToCustomers extends Notification implements ShouldQueue
     public function __construct($dataNotify)
     {
         $this->notification = $dataNotify;
+        // dd($this->notification['code']);
     }
 
     /**
@@ -56,7 +57,8 @@ class SendNotificationToCustomers extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'code' => $this->notification['code'],
+            'msg_notify' => $this->notification['msg_notify'],
         ];
     }
 
@@ -66,12 +68,11 @@ class SendNotificationToCustomers extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toDatabase($notifiable)
-    {
-        return [
-            'user_id' => $this->notification['user_id'],
-            'type' => $this->notification['type'],
-            'data' => $this->notification['data'],
-        ];
-    }
+    // public function toDatabase($notifiable)
+    // {
+    //     return [
+    //         'code' => $this->notification['code'],
+    //         'content' => $this->notification['content'],
+    //     ];
+    // }
 }

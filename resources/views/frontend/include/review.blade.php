@@ -3,6 +3,7 @@
         <div class="grid wide">
             <div class="row">
                 <div class="col l-8 l-o-2 c-10 c-o-1">
+
                     <div class="title">
                         <div class="grid">
                             <div class="wrap-title">
@@ -15,8 +16,9 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- video -->
                     <div class="video">
-                        <!-- // video tự quay -->
                         <div class="video-frames js-video">
                             <img src="{{ URL::asset('frontend/img/hoi-an-travel.jpg') }}" alt=""
                                 class="video-frames__imge" onclick="playVideo()">
@@ -26,6 +28,7 @@
                             </span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

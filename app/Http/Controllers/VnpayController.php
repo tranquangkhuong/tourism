@@ -19,41 +19,30 @@ class VnpayController extends Controller
      */
     public function create(Request $request)
     {
-        session(['booking_code' => $request->order_id]);
+        // dd($request->all());
+        $dataRq = $request->all();
+        // session(['booking_code' => $dataRq['booking_id']]);
         // session(['url_prev' => url()->previous()]);
 
         // Các mã config đã để ở file .env rồi
-        $vnp_TmnCode = env('VNP_TMN_CODE'); //Mã website tại VNPAY; "XSY4HIVO"
-        $vnp_HashSecret = env('VNP_HASH_SECRET'); //Chuỗi bí mật; "MXOGEMDPHWSBWPCPERSLIKFXFLNRLQIR"
-        $vnp_Url = env('VNP_URL'); //"https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"
-        $vnp_Returnurl = env('VNP_RETURN_URL'); //"http://127.0.0.1:8000/return-vnpay"
 
-        $vnp_TxnRef = $request->order_id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $vnp_OrderInfo = $request->order_desc; //Thông tin mô tả nội dung thanh toán (Tiếng Việt, không dấu).
-        $vnp_OrderType = $request->order_type;  //Loại thanh toán; 'billpayment'
-        $vnp_Amount = $request->amount * 100; //Số tiền thanh toán. VNPAY phản hồi số tiền nhân thêm 100 lần.
-        $vnp_Locale = $request->language;
-        $vnp_BankCode = $request->bank_code; //Mã ngân hàng
-        $vnp_IpAddr = request()->ip();
-
-        //Add Params of 2.0.1 Version
-        $vnp_ExpireDate = $request->txtexpire;
+        $hash_secret = env('VNP_HASH_SECRET');
+        // $vnp_BankCode = $request->bank_code; //Mã ngân hàng
 
         $inputData = array(
             "vnp_Version" => "2.1.0",
-            "vnp_TmnCode" => $vnp_TmnCode,
-            "vnp_Amount" => $vnp_Amount,
+            "vnp_TmnCode" => env('VNP_TMN_CODE'),
+            "vnp_Amount" => $dataRq['total_price'] * 100, //Số tiền thanh toán. VNPAY phản hồi số tiền nhân thêm 100 lần.
             "vnp_Command" => "pay",
             "vnp_CreateDate" => date('YmdHis'),
             "vnp_CurrCode" => "VND",
-            "vnp_IpAddr" => $vnp_IpAddr,
-            "vnp_Locale" => $vnp_Locale,
-            "vnp_OrderInfo" => $vnp_OrderInfo,
-            "vnp_OrderType" => $vnp_OrderType,
-            "vnp_ReturnUrl" => $vnp_Returnurl,
-            "vnp_TxnRef" => $vnp_TxnRef,
-            //Add params version 2.0.1
-            "vnp_ExpireDate" => $vnp_ExpireDate,
+            "vnp_IpAddr" => request()->ip(),
+            "vnp_Locale" => 'vn', //app()->getLocale()
+            "vnp_OrderInfo" => 'Thanh toan booking', //Thông tin mô tả nội dung thanh toán (Tiếng Việt, không dấu).
+            "vnp_OrderType" => 'billpayment', //Loại thanh toán; 'billpayment'
+            "vnp_ReturnUrl" => env('VNP_RETURN_URL'),
+            "vnp_TxnRef" => $dataRq['booking_id'], //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+            "vnp_ExpireDate" => date('YmdHis', strtotime('+15 minutes', strtotime(date('YmdHis')))), //Add params version 2.0.1
         );
 
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {
@@ -77,9 +66,9 @@ class VnpayController extends Controller
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
         }
 
-        $vnp_Url = $vnp_Url . "?" . $query;
-        if (isset($vnp_HashSecret)) {
-            $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
+        $vnp_Url = env('VNP_URL') . "?" . $query;
+        if (isset($hash_secret)) {
+            $vnpSecureHash = hash_hmac('sha512', $hashdata, $hash_secret);
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
         return redirect($vnp_Url);
@@ -91,7 +80,6 @@ class VnpayController extends Controller
     public function return(Request $request)
     {
         $vnp_HashSecret = env('VNP_HASH_SECRET'); //Chuỗi bí mật
-        // $url = session('url_prev', '/');
         // Lay ma hash VnPay tra ve
         $vnp_SecureHash = $request->query('vnp_SecureHash');
         // Tao ma hash tu cac du lieu do VnPay tra ve
@@ -103,6 +91,8 @@ class VnpayController extends Controller
         }
         unset($inputData['vnp_SecureHash']);
         ksort($inputData);
+        $data['vnp'] = $inputData;
+        // dd($data);
         $i = 0;
         $hashData = "";
         foreach ($inputData as $key => $value) {
@@ -118,20 +108,24 @@ class VnpayController extends Controller
         // So sánh 2 mã hash vừa tạo bằng dữ liệu trả về và mã hashcuar VnPay
         if ($secureHash == $vnp_SecureHash) {
             // Check ResponseCode và update lại vào DB
-            if ($request->query('vnp_ResponseCode') == "00") {
-                $this->bookingRepository->successfulOnlinePayment(session('booking_code'));
+            if ($inputData['vnp_ResponseCode'] == '00' || $inputData['vnp_TransactionStatus'] == '00') {
+                // Lưu transaction
+                $this->bookingRepository->saveTransaction($data);
+                // Cập nhật trạng thái booking
+                $this->bookingRepository->successfulOnlinePayment($inputData['vnp_TxnRef']);
+
                 $data = ['msg' => __('Giao dịch thành công.')];
-            } else if ($request->query('vnp_ResponseCode') == "24") {
-                $this->bookingRepository->failedOnlinePayment(session('booking_code'), 2);
-                $data = ['msg' => __('Giao dịch thất bại! Booking đã bị hủy.')];
             } else {
-                $this->bookingRepository->failedOnlinePayment(session('booking_code'), 3);
-                $data = ['msg' => __('Giao dịch thất bại! Booking đã bị lỗi')];
+                // Lưu transaction
+                $this->bookingRepository->saveTransaction($data);
+                // Cập nhật trạng thái booking
+                $this->bookingRepository->failedOnlinePayment($inputData['vnp_TxnRef'], 2);
+
+                $data = ['msg' => __('Giao dịch thất bại! Booking không thành công.')];
             }
         } else {
             $data = ['msg' => __('Chữ ký không hợp lệ.')];
         }
-        // session()->forget('url_prev');
 
         return view('frontend.booking.return', compact('data'));
     }

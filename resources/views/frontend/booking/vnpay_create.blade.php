@@ -37,10 +37,10 @@
                 </div>
                 <div class="form-group">
                     <label for="order_id">Mã hóa đơn</label>
-                    <input class="form-control" id="order_id" name="order_id" type="text" value="{{ $data['id'] }}"
-                        readonly />
+                    <input class="form-control" type="text" value="{{ $data['code'] }}" readonly />
+                    <input type="hidden" name="booking_id" value="{{ $data['id'] }}">
                 </div>
-                <div class="form-group">
+                <div class=" form-group">
                     <label for="amount">Số tiền</label>
                     <input class="form-control" id="amount" name="amount" type="number"
                         value="{{ $data['total_price'] }}" readonly />

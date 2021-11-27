@@ -2,6 +2,14 @@
 
 @push('title', 'Edit Article')
 
+@section('script')
+<script type="text/javascript">
+    // Active Sidebar
+    $('#link-article').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-article, #link-article-manage').addClass('active');
+</script>
+@endsection
+
 @section('header')
 <!-- Content Header (Page header) -->
 <div class="content-header">

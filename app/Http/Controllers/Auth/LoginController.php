@@ -28,7 +28,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             toast(__('Welcome back.'), 'success')->position('top');
 
-            return redirect()->intended('/');
+            return redirect(url()->previous());
         }
         toast(__('auth.failed'), 'error')->autoClose(10000);
 
@@ -52,11 +52,10 @@ class LoginController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
             toast(__('You are logged out.'), 'warning');
-
-            return redirect()->intended('/');
         } else {
             Alert::error(__('Error.'), __('You are not logged in yet.'));
-            return redirect()->intended('/');
         }
+
+        return redirect()->intended();
     }
 }

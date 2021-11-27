@@ -2,6 +2,14 @@
 
 @push('title', 'Edit Location')
 
+@section('script')
+<script type="text/javascript">
+    // Active Sidebar
+    $('#link-area-location').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-area-location, #link-location').addClass('active');
+</script>
+@endsection
+
 @section('header')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -14,7 +22,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item active"><a href="{{ route('admin.location.index') }}">Area</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('admin.location.index') }}">Location</a></li>
                     <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </div><!-- /.col -->
@@ -71,7 +79,7 @@
 
                     <!-- .card-footer -->
                     <div class="card-footer">
-                        <a href="{{ route('admin.area.index') }}" class="btn btn-secondary">Cancel</a>
+                        <a href="{{ route('admin.location.index') }}" class="btn btn-secondary">Cancel</a>
                         <button type="submit" class="btn btn-success float-right">Save</button>
                     </div>
                     <!-- /.card-footer -->

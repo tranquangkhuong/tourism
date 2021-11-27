@@ -28,6 +28,6 @@ class SendMailConfirmBooking implements ShouldQueue
      */
     public function handle(CustomerBooking $event)
     {
-        Mail::to($event->booking['email'])->send(new MailBooking($event->booking));
+        Mail::to($event->data['email'])->send(new MailBooking($event->data));
     }
 }

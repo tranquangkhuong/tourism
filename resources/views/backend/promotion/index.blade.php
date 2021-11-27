@@ -2,6 +2,15 @@
 
 @push('title', 'Promotion')
 
+@section('script')
+<script src="{{ asset('js/custom-function.js') }}"></script>
+<script type="text/javascript">
+    // Active Sidebar
+    $('#link-promotion').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-promotion, #link-promotion-manage').addClass('active');
+</script>
+@endsection
+
 @section('header')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -20,28 +29,6 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
-@endsection
-
-@section('script')
-<script type="text/javascript">
-    $(document).ready(function () {
-        // tim kiem - filter
-        $("#search").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $(`#list-promotion tr`).filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-            });
-        });
-
-        // Alert Delete
-        $('.btn-delete').click((e) => {
-            let isDelete = confirm('Bạn có chắc chắn muốn xóa?');
-            if(!isDelete) {
-                e.preventDefault();
-            }
-        });
-    });
-</script>
 @endsection
 
 @section('content')
@@ -101,7 +88,7 @@
                     </tr>
                 </thead>
 
-                <tbody id="list-promotion">
+                <tbody id="list-data">
                     @foreach ($promotions as $promotion)
                     <tr>
                         <td>{{ $promotion->id }}</td>

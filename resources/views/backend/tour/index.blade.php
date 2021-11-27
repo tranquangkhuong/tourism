@@ -2,30 +2,14 @@
 
 @push('title', 'Tour')
 
-{{-- @section('style')
-<style>
-    .dropdown-toggle {
-        position: relative;
-    }
-
-    .dropdown-toggle::after {
-        content: '\f142';
-        font-family: 'Font Awesome 5 Free';
-        font-weight: 600;
-        font-size: 24px;
-    }
-
-    .dropdown-toggle::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 4px;
-        background-color: red;
-        top: 0;
-        left: 0;
-    }
-</style>
-@endsection --}}
+@section('script')
+<script src="{{ asset('js/custom-function.js') }}"></script>
+<script type="text/javascript">
+    // Active Sidebar
+    $('#link-tour').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-tour, #link-tour-manage').addClass('active');
+</script>
+@endsection
 
 @section('header')
 <!-- Content Header (Page header) -->
@@ -45,28 +29,6 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
-@endsection
-
-@section('script')
-<script type="text/javascript">
-    $(document).ready(function () {
-        // tim kiem - filter
-        $("#search").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $(`#list-tour tr`).filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-            });
-        });
-
-        // Alert Delete
-        $('.btn-delete').click((e) => {
-            let isDelete = confirm('Bạn có chắc chắn muốn xóa?');
-            if(!isDelete) {
-                e.preventDefault();
-            }
-        });
-    });
-</script>
 @endsection
 
 @section('content')
@@ -127,7 +89,7 @@
                     </tr>
                 </thead>
 
-                <tbody id="list-tour">
+                <tbody id="list-data">
                     @foreach ($tours as $tour)
                     <tr>
                         <td style="opacity: .5;">{{ $tour->id }}</td>
@@ -180,6 +142,9 @@
                                             <a class="dropdown-item"
                                                 href="{{ route('admin.tour.plan.index', $tour->id) }}">Plan</a>
                                             <a class="dropdown-item" href="#">Image</a>
+                                            <a class="dropdown-item"
+                                                href="{{ url('/admin/booking/add?').\Illuminate\Support\Arr::query(['tourId' => $tour->id]) }}">Book
+                                                this Tour</a>
                                         </div>
                                     </div>
                                 </div>

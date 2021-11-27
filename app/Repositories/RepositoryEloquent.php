@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Area;
+use App\Models\Attribute;
+use App\Models\Booking;
 use App\Models\Location;
 use App\Models\Payment;
 use App\Models\Promotion;
@@ -67,6 +69,11 @@ abstract class RepositoryEloquent implements RepositoryInterface
     {
         return $this->_model->where($column, 'like', '%' . $keyword . '%')
             ->orderBy($column)->get();
+    }
+
+    public function show($id)
+    {
+        return $this->_model->where('id', $id)->first();
     }
 
     /**
@@ -141,12 +148,105 @@ abstract class RepositoryEloquent implements RepositoryInterface
         return Payment::all();
     }
 
-    public function show($id)
+    /**
+     * Lay id cua cot include.
+     */
+    public function getIncludeId()
     {
-        return $this->_model->where('id', $id)->first();
+        return Attribute::select('id')->where('name', 'included')->first()->id;
     }
 
-    // RESOURCE
+    /**
+     * Lay id cua cot not_include.
+     */
+    public function getNotIncludeId()
+    {
+        return Attribute::select('id')->where('name', 'not included')->first()->id;
+    }
+
+    /**
+     * Lay cac dich vu bao gom theo tour (include).
+     */
+    public function getTourInclude($tourId)
+    {
+        return Tour::select('values.id', 'values.attribute_id', 'values.tour_id', 'values.value')->join('values', 'tours.id', '=', 'values.tour_id')
+            ->where([
+                ['values.attribute_id', $this->getIncludeId()],
+                ['values.tour_id', $tourId],
+            ])->first();
+    }
+
+    /**
+     * Lay cac dich vu KHONG bao gom theo tour (include).
+     */
+    public function getTourNotInclude($tourId)
+    {
+        return Tour::select('values.id', 'values.attribute_id', 'values.tour_id', 'values.value')->join('values', 'tours.id', '=', 'values.tour_id')
+            ->where([
+                ['values.attribute_id', $this->getNotIncludeId()],
+                ['values.tour_id', $tourId],
+            ])->first();
+    }
+
+    /**
+     * Lấy các yêu cầu book với phương thức thanh toán tiền mặt, trạng thái là 0
+     */
+    public function getBookingRequest()
+    {
+        $columns = [
+            'bookings.id',
+            'tours.name as tour_name',
+            'bookings.full_name',
+            'booking_details.total_slot',
+            'booking_details.other_day',
+            'bookings.status',
+            'bookings.payment_id',
+        ];
+
+        return Booking::select($columns)->join('booking_details', 'bookings.id', '=', 'booking_details.booking_id')->join('tours', 'booking_details.tour_id', '=', 'tours.id')->where([
+            ['bookings.status', '=', 0],
+            ['bookings.payment_id', '=', 1],
+        ])->get();
+    }
+
+    public function getBookingRequestDetail($bookingId)
+    {
+        $columns = [
+            'bookings.id as booking_id',
+            'bookings.code as booking_code',
+            'bookings.promotion_id',
+            'bookings.full_name',
+            'bookings.phone',
+            'bookings.email',
+            'bookings.address',
+            'bookings.note',
+            'bookings.status',
+            'bookings.created_at',
+            'tours.id as tour_id',
+            'tours.name as tour_name',
+            'tours.code as tour_code',
+            'tours.slot as tour_slot',
+            'tours.other_day',
+            'booking_details.other_day as day',
+            'booking_details.adult_slot',
+            'booking_details.adult_price',
+            'booking_details.youth_slot',
+            'booking_details.youth_price',
+            'booking_details.child_slot',
+            'booking_details.child_price',
+            'booking_details.baby_slot',
+            'booking_details.baby_price',
+            'booking_details.total_slot',
+            'booking_details.total_price',
+        ];
+
+        return Booking::select($columns)
+            ->join('booking_details', 'bookings.id', '=', 'booking_details.booking_id')
+            ->join('tours', 'booking_details.tour_id', '=', 'tours.id')
+            ->where('bookings.id', $bookingId)->first();
+    }
+
+    // ? RESOURCE
     /**
      * Store data to database
      *

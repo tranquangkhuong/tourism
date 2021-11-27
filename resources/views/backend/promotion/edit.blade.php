@@ -2,6 +2,14 @@
 
 @push('title', 'Edit Promotion')
 
+@section('script')
+<script type="text/javascript">
+    // Active Sidebar
+    $('#link-promotion').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-promotion, #link-promotion-manage').addClass('active');
+</script>
+@endsection
+
 @section('header')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -14,7 +22,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.promotion.index') }}">Slider</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.promotion.index') }}">Promotion</a></li>
                     <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </div><!-- /.col -->

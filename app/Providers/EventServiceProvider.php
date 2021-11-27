@@ -20,8 +20,6 @@ class EventServiceProvider extends ServiceProvider
         ],
         \App\Events\CustomerBooking::class => [
             \App\Listeners\SendMailConfirmBooking::class,
-        ],
-        \App\Events\CustomerNotification::class => [
             \App\Listeners\CreateNotificationForCustomer::class,
         ],
     ];

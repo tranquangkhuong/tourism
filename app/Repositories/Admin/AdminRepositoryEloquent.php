@@ -21,7 +21,7 @@ class AdminRepositoryEloquent extends RepositoryEloquent implements AdminReposit
             $this->_model->create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => Hash::make(123456),
             ]);
 
             return [

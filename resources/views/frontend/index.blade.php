@@ -13,9 +13,9 @@
 
 @include('frontend.include.service')
 
-@include('frontend.include.list-tour')
+@include('frontend.include.new-tour')
 
-@include('frontend.include.packup')
+@include('frontend.include.location')
 
 @include('frontend.include.top-review')
 

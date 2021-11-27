@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tour;
 use App\Repositories\Tour\TourRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -102,7 +103,9 @@ class TourController extends Controller
      */
     public function edit($tourId)
     {
-        $tour = $this->repo->find($tourId)->first();
+        $tour = $this->repo->find($tourId);
+        // $tour2 = Tour::where('id', $tourId)->first();
+        // dd($tour, $tour2);
         $areas = $this->repo->getAllArea();
         $locations = $this->repo->getAllLocation();
         $promotions = $this->repo->getAllPromotion();
@@ -110,7 +113,7 @@ class TourController extends Controller
         $vehicles = $this->repo->getAllVehicle();
         $includes = ($this->repo->getTourInclude($tourId));
         $notIncludes = ($this->repo->getTourNotInclude($tourId));
-        // dd(json_decode($notIncludes->value));
+        // dd(collect($notIncludes)->isNotEmpty());
 
         return view('backend.tour.edit', compact('tour', 'areas', 'locations', 'promotions', 'tags', 'vehicles', 'includes', 'notIncludes'));
     }
@@ -124,7 +127,7 @@ class TourController extends Controller
      */
     public function update(Request $request, $tourId)
     {
-        // dd($request, $tourId);
+        // dd($request->all(), empty($request->include_value_id), isset($request->include_value_id), is_null($request->not_include_value_id));
         $rs = $this->repo->update($request, $tourId);
         toast($rs['msg'], $rs['stt']);
 

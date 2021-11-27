@@ -2,6 +2,14 @@
 
 @push('title', 'Edit User')
 
+@section('script')
+<script type="text/javascript">
+    // Active Sidebar
+    // $('#link-user').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-user').addClass('active');
+</script>
+@endsection
+
 @section('header')
 <!-- Content Header (Page header) -->
 <div class="content-header">

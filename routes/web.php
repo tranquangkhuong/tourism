@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\ArticleController;
@@ -11,24 +12,30 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\BackendController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\EAV\AttributeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\TourPlanController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VnpayController;
 use App\Models\Booking;
 use App\Models\Tour;
+use App\Models\User;
+use App\Notifications\SendNotificationToCustomers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -119,10 +126,10 @@ Route::get('/auth/{provider}/callback', [LoginWithSocialNetworkController::class
 // ->middleware('verified');
 
 
-// Route::get('/', [BaseController::class, 'home']);
-Route::get('/', function () {
-    return view('frontend.index');
-})->name('index');
+Route::get('/', [BaseController::class, 'home']);
+// Route::get('/', function () {
+//     return view('frontend.index');
+// })->name('index');
 
 // Route::get('/destination', [BaseController::class, 'destination']);
 Route::get('/standard-list', function () {
@@ -133,19 +140,20 @@ Route::get('/detail-tour', function () {
     return view('frontend.detail_tour');
 });
 
+// Route::get('/blog', function () {
+//     return view('frontend.blog_masonry');
+// });
 
-// Route::get('/blog', [BaseController::class, 'blog']);
-Route::get('/blog', function () {
-    return view('frontend.blog_masonry');
-});
+Route::get('about-us', [BaseController::class, 'about']);
+// Route::get('/about-us', function () {
+//     return view('frontend.about_us');
+// });
 
-// Route::get('about', [BaseController::class, 'about']);
-Route::get('/about-us', function () {
-    return view('frontend.about_us');
-});
-Route::get('/booking', function () {
-    return view('frontend.booking_page');
-});
+Route::get('/contact', [BaseController::class, 'contact']);
+// Route::get('/contact-us', function () {
+//     return view('frontend.contact_us');
+// });
+
 Route::get('/test', function () {
     return view('frontend.test');
 });
@@ -156,37 +164,30 @@ Route::get('/myaccount', function () {
     return view('frontend.user.my_account');
 });
 
-// Route::get('/contact', [BaseController::class, 'contact']);
-Route::get('/contact-us', function () {
-    return view('frontend.contact_us');
-});
 
-// Các route liên quan đến Tours
+// ! Các route liên quan đến Tours
 Route::group(['prefix' => '/tour'], function () {
+    Route::get('/', [BaseController::class, 'listTour']);
     Route::get('/domestic', [BaseController::class, 'domestic']);
     Route::get('/foreign', [BaseController::class, 'foreign']);
-    Route::get('/{tour_id}/detail', [BaseController::class, 'detailTour']);
-    Route::get('/{tour_id}/booking', [BookingController::class, 'userCreate'])->middleware('auth:user');
-    Route::post('/booking/store', [BookingController::class, 'userStore'])->middleware('auth:user');
+    Route::get('/{tour_id}', [BaseController::class, 'detailTour']);
+    Route::get('/{tour_id}/booking', [BookingController::class, 'userCreate']);
+    Route::post('/booking/store', [BookingController::class, 'userStore']);
+});
+Route::prefix('/blog')->group(function () {
+    Route::get('/', [BaseController::class, 'blog']);
+    Route::get('/{article_id}', [BaseController::class, 'detailArticle']);
 });
 
-// Lấy thông tin của mã giảm giá
-Route::get('/promotion/{promotion_id}', [PromotionController::class, 'getPromotion']);
-
-// Thanh toán online qua VnPay
-Route::post('/vnpay', [VnpayController::class, 'create'])->name('vnpay');
-Route::get('/return-vnpay', [VnpayController::class, 'return'])->name('vnpay.return');
-
-
-//  Các route lien quan đến users , 'middleware' => 'user'
+// ! Các route liên quan đến Users , 'middleware' => 'user'
 Route::group(['prefix' => '/user', 'as' => 'user.', 'middleware' => 'auth:user'], function () {
     Route::get('/profile', [UserController::class, 'profile']);
     Route::post('/profile/update', [UserController::class, 'userUpdate']);
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/update-password', [UserController::class, 'updatePassword']);
-    Route::get('/booking', [UserController::class, 'booking']);
-    Route::get('/booking/detail/{code}', [BookingController::class, 'bookingDetail']);
+    Route::get('/booking', [UserController::class, 'getBooking']);
 });
+Route::get('/booking/{code}', [BookingController::class, 'bookingDetail']);
 
 Route::get('/notification', [UserController::class, 'getNotification']);
 Route::get('/notification/mark-as-read-all', [UserController::class, 'markAsReadAll']);
@@ -194,6 +195,12 @@ Route::get('/notification/delete-all', [UserController::class, 'deleteAllNotific
 Route::get('/notification/mark-as-read/{notification_id}', [UserController::class, 'markAsRead']);
 Route::get('/notification/delete/{notification_id}', [UserController::class, 'deleteNotification']);
 
+// Lấy thông tin của mã giảm giá
+Route::get('/promotion/{promotion_id}', [PromotionController::class, 'getPromotion']);
+
+// Thanh toán online qua VnPay
+Route::get('/vnpay', [VnpayController::class, 'create'])->name('vnpay');
+Route::get('/return-vnpay', [VnpayController::class, 'return'])->name('vnpay.return');
 
 /*
 |-----------------------------------------------------------------------
@@ -229,6 +236,20 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admi
         Route::get('/edit/{vehicle_id}', [VehicleController::class, 'edit'])->name('edit');
         Route::post('/update/{vehicle_id}', [VehicleController::class, 'update'])->name('update');
         Route::get('/delete/{vehicle_id}', [VehicleController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['prefix' => '/contact', 'as' => 'contact.'], function () {
+        Route::get('/', [ContactController::class, 'index'])->name('index');
+        Route::get('/index-data', [ContactController::class, 'indexData'])->name('index_data');
+        Route::post('/store', [ContactController::class, 'store'])->name('store');
+        Route::get('/edit/{contact_id}', [ContactController::class, 'edit'])->name('edit');
+        Route::post('/update/{contact_id}', [ContactController::class, 'update'])->name('update');
+        Route::get('/delete/{contact_id}', [ContactController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['prefix' => '/about', 'as' => 'about.'], function () {
+        Route::get('/', [AboutUsController::class, 'index'])->name('index');
+        Route::post('/update/{about_id}', [AboutUsController::class, 'update'])->name('update');
     });
 
     Route::group(['prefix' => '/area', 'as' => 'area.'], function () {
@@ -333,6 +354,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admi
 
     Route::group(['prefix' => '/admin-manage', 'as' => 'manage.'], function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::get('/add', [AdminController::class, 'create'])->name('add');
         Route::post('/store', [AdminController::class, 'store'])->name('store');
         Route::get('/edit/{admin_id}', [AdminController::class, 'edit'])->name('edit');
         Route::post('/update/{admin_id}', [AdminController::class, 'update'])->name('update');
@@ -352,11 +374,27 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admi
 
     Route::group(['prefix' => 'booking', 'as' => 'booking.'], function () {
         Route::get('/', [BookingController::class, 'index'])->name('index');
+        Route::group(['prefix' => 'request', 'as' => 'request.'], function () {
+            Route::get('/', [BookingController::class, 'request'])->name('index');
+            Route::get('/detail/{booking_id}', [BookingController::class, 'requestDetail'])->name('detail');
+            Route::post('/update/{booking_id}', [BookingController::class, 'updateRequest'])->name('update');
+        });
         Route::get('/add', [BookingController::class, 'create'])->name('add');
-        Route::post('/store', [BookingController::class, 'store'])->name('store');
+        Route::post('/store-step-1', [BookingController::class, 'storeStep1'])->name('store1');
+        Route::post('/store-step-2', [BookingController::class, 'storeStep2'])->name('store2');
         Route::get('/edit/{booking_id}', [BookingController::class, 'edit'])->name('edit');
         Route::post('/update/{booking_id}', [BookingController::class, 'update'])->name('update');
-        Route::get('/delete/{booking_id}', [BookingController::class, 'destroy'])->name('delete');
+        // Route::get('/delete/{booking_id}', [BookingController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['prefix' => 'transaction', 'as' => 'transaction.'], function () {
+        Route::get('/', [TransactionController::class, 'index'])->name('index');
+        Route::get('/show/{transaction_id}', [TransactionController::class, 'show'])->name('show');
+    });
+
+    Route::group(['prefix' => 'report', 'as' => 'report.'], function () {
+        Route::get('/', [ReportController::class, 'index'])->name('index');
+        Route::post('/export-pdf', [ReportController::class, 'pdf'])->name('pdf');
     });
 
     Route::get('/account', [AdminController::class, 'editAccount']);
@@ -395,41 +433,30 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admi
 // Route::get('/admin/testtour', function () {
 //     return view('admin.tour.testtour');
 // });
-
-
-Route::get('insert-data', function () {
-    $bookingDetail = DB::table('booking_details')->insert([
-        'booking_id' => 15,
-        'tour_id' => 1,
-        'other_day' => date('Y-m-d'), //$request->other_day
-        'adult_slot' => 2,
-        'adult_price' => 10,
-        'youth_slot' => 0,
-        'youth_price' => 10,
-        'child_slot' => 0,
-        'child_price' => 10,
-        'baby_slot' => 0,
-        'baby_price' => 10,
-        'total_slot' => 2,
-        'total_price' => 1099994,
-        'created_at' => now(),
-        'updated_at' => now(),
-    ]);
-    dd($bookingDetail);
+Route::get('/c-n', function () {
+    // $data = [
+    //     'user_id' => 1,
+    //     'type' => 'success',
+    //     'data' => implode(';;', [
+    //         'code' => 'RCSFSP2E1D',
+    //         'content' => 'You have successfully booked the tour: Teen tour',
+    //     ]),
+    // ];
+    $data = [
+        'code' => 'RCSFSP2E1D',
+        'content' => 'You have successfully booked the tour: Teen tour',
+    ];
+    $user = User::find(1);
+    // dd($user);
+    // $user->notify(new SendNotificationToCustomers($data));
+    Notification::send($user, new SendNotificationToCustomers($data));
 });
 
-Route::get('show-data', function () {
-    $a = Booking::where('code', 'RJtBjos6bZ')->first();
-    dd($a);
+Route::get('x', function () {
+    $a = env('APP_NAME');
+    $locale = str_replace('_', '-', app()->getLocale());
+    $local = app()->getLocale();
+    dd($locale, $local);
 });
 
-Route::get('session', function () {
-    session()->put('name', 'khuo9ng');
-    session(['ho' => 'Traanf']);
-    Session::put('user.class', 'tiếng anh');
-    Session::put('user.age', '10');
-    session()->forget('user');
-    Session::forget('ho');
-    session()->forget('name');
-    dd(session('name'));
-});
+Route::get('/test', [BookingController::class, 'test']);

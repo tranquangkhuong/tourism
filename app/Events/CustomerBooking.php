@@ -15,16 +15,16 @@ class CustomerBooking
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $booking;
+    public $data;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($booking)
+    public function __construct($data)
     {
-        $this->booking = $booking;
+        $this->data = $data;
     }
 
     /**

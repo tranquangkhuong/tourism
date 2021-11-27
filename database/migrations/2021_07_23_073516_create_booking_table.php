@@ -25,6 +25,11 @@ class CreateBookingTable extends Migration
                 ->references('id')->on('promotions')
                 ->onDelete('cascade');
             $table->string('code');
+            $table->string('full_name')->nullable();
+            $table->string('phone', 20)->nullable();
+            $table->string('email')->nullable();
+            $table->string('address')->nullable();
+            $table->string('note')->nullable();
             $table->tinyInteger('status')->default(1)->comment('1 là đơn đã hoàn thành');
             $table->timestamps();
             $table->softDeletes();

@@ -4,10 +4,9 @@
 
 @section('script')
 <script src="{{ asset('backend/tour-plan.js') }}"></script>
-<script>
-    $('#tour').parent().addClass('activemenu-is-opening menu-open');
-    $('#tour').addClass('active');
-    $('#manage-tour').addClass('active')
+<script type="text/javascript">
+    $('#link-tour').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-tour, #link-tour-manage').addClass('active');
 </script>
 @endsection
 
@@ -48,7 +47,8 @@
                         <div class="card-header">
                             <div class="card-title">Day: {{ $plan->day }}</div>
                         </div>
-                        <form action="{{ route('admin.tour.plan.update', $plan->id) }}" method="POST">
+                        <form action="{{ route('admin.tour.plan.update', $plan->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <input type="hidden" name="tour_id" value="{{ $tourId }}">
@@ -82,7 +82,7 @@
                         <div class="card-header">
                             <div class="card-title">Add new plan</div>
                         </div>
-                        <form action="{{ route('admin.tour.plan.store') }}" method="POST">
+                        <form action="{{ route('admin.tour.plan.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <input type="hidden" name="tour_id" value="{{ $tourId }}">

@@ -26,6 +26,8 @@ class CreateToursTable extends Migration
             $table->string('image_path', 2048)->nullable();
             $table->string('description', 2048)->comment('Mô tả');
             $table->string('departure_location')->nullable()->comment('Địa điểm khởi hành');
+            $table->string('departure_time')->nullable()->comment('Thời gian khởi hành');
+            $table->string('return_time')->nullable()->comment('Thời gian trở về');
             $table->string('destination')->nullable()->comment('Đích đến');
             $table->string('itinerary')->nullable()->comment('Hành trình');
             $table->integer('slot')->comment('Số chỗ');

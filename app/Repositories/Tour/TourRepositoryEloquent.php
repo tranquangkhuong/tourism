@@ -32,47 +32,6 @@ class TourRepositoryEloquent extends RepositoryEloquent implements TourRepositor
     }
 
     /**
-     * Lay id cua cot include.
-     */
-    public function getIncludeId()
-    {
-        return Attribute::select('id')->where('name', 'included')->first()->id;
-    }
-
-    /**
-     * Lay id cua cot not_include.
-     */
-    public function getNotIncludeId()
-    {
-        return Attribute::select('id')->where('name', 'not included')->first()->id;
-    }
-
-    /**
-     * Lay cac dich vu bao gom theo tour (include).
-     */
-    public function getTourInclude($tourId)
-    {
-        return $this->_model->select('values.id', 'values.attribute_id', 'values.tour_id', 'values.value')->join('values', 'tours.id', '=', 'values.tour_id')
-            ->where([
-                ['values.attribute_id', $this->getIncludeId()],
-                ['values.tour_id', $tourId],
-            ])->first();
-        // Value::select('values.id AS value_id', 'values.tour_id', 'values.attribute_id', 'values.value');
-    }
-
-    /**
-     * Lay cac dich vu KHONG bao gom theo tour (include).
-     */
-    public function getTourNotInclude($tourId)
-    {
-        return $this->_model->select('values.id', 'values.attribute_id', 'values.tour_id', 'values.value')->join('values', 'tours.id', '=', 'values.tour_id')
-            ->where([
-                ['values.attribute_id', $this->getNotIncludeId()],
-                ['values.tour_id', $tourId],
-            ])->first();
-    }
-
-    /**
      * Luu tour
      */
     public function store($request)
@@ -100,28 +59,34 @@ class TourRepositoryEloquent extends RepositoryEloquent implements TourRepositor
             $tour->vehicles()->attach($request->vehicle_id);
 
             // xu li Include (dich vu kem theo)
-            $include = json_encode($request->include);
-            Value::insert([
-                'attribute_id' => $this->getIncludeId(),
-                'tour_id' => $tour->id,
-                'value' => $include,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            if (!empty($request->include)) {
+                $include = json_encode($request->include);
+                Value::insert([
+                    'attribute_id' => $this->getIncludeId(),
+                    'tour_id' => $tour->id,
+                    'value' => $include,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
 
             // xu li Not Include (dich vu KHONG kem theo)
-            $notInclude = json_encode($request->not_include);
-            Value::insert([
-                'attribute_id' => $this->getNotIncludeId(),
-                'tour_id' => $tour->id,
-                'value' => $notInclude,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            if ($request->not_include) {
+                $notInclude = json_encode($request->not_include);
+                Value::insert([
+                    'attribute_id' => $this->getNotIncludeId(),
+                    'tour_id' => $tour->id,
+                    'value' => $notInclude,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
 
             // Upload anh tour
-            $path = $this->uploadImage($request->hasFile('image'), $request->file('image'), $tour->id . '/');
-            $this->_model->find($tour->id)->update(['image_path' => $path]);
+            if ($request->hasFile('image')) {
+                $path = $this->uploadImage($request->hasFile('image'), $request->file('image'), $tour->id . '/');
+                $this->_model->find($tour->id)->update(['image_path' => $path]);
+            }
 
             return [
                 'title' => __('Done!'),
@@ -166,18 +131,42 @@ class TourRepositoryEloquent extends RepositoryEloquent implements TourRepositor
             $tour->vehicles()->sync($request->vehicle_id);
 
             // xu li Include (dich vu kem theo)
-            $include = json_encode($request->include);
-            Value::findOrFail($request->include_value_id)->update([
-                'value' => $include,
-                'updated_at' => now(),
-            ]);
+            if ($request->include) {
+                $include = json_encode($request->include);
+                if (!empty($request->include_value_id)) {
+                    Value::findOrFail($request->include_value_id)->update([
+                        'value' => $include,
+                        'updated_at' => now(),
+                    ]);
+                } else {
+                    Value::insert([
+                        'attribute_id' => $this->getIncludeId(),
+                        'tour_id' => $tour->id,
+                        'value' => $include,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
 
             // xu li Not Include (dich vu KHONG kem theo)
-            $notInclude = json_encode($request->not_include);
-            Value::findOrFail($request->not_include_value_id)->update([
-                'value' => $notInclude,
-                'updated_at' => now(),
-            ]);
+            if ($request->not_include) {
+                $notInclude = json_encode($request->not_include);
+                if (!empty($request->not_include_value_id)) {
+                    Value::findOrFail($request->not_include_value_id)->update([
+                        'value' => $notInclude,
+                        'updated_at' => now(),
+                    ]);
+                } else {
+                    Value::insert([
+                        'attribute_id' => $this->getNotIncludeId(),
+                        'tour_id' => $tour->id,
+                        'value' => $notInclude,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
 
             return [
                 'title' => __('Done!'),

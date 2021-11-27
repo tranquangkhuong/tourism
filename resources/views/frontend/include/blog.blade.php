@@ -4,41 +4,35 @@
             <div class="col l-8 c-10 c-o-1">
                 <div class="blog-title">
                     <h2 class="blog-title__heading">From Our Blog</h2>
-                    <p class="blog-title__text">Một số bài viết về ẩm thức đặc biệt của chúng tôi, có thể bạn sẽ quan
-                        tâm đến hãy xem những bài viết dưới đấy để biết thêm</p>
+                    <p class="blog-title__text">Một số bài viết về du lịch đặc biệt của chúng tôi có thể bạn sẽ quan tâm
+                        đến, hãy xem những bài viết dưới đấy để biết thêm</p>
                 </div>
                 <ul class="blog-list">
+                    @foreach ($articles as $article)
                     <li class="blog-item">
                         <div class="blog-item_img">
-                            <a href="#"><img src="{{ URL::asset('frontend/img/dishes.jpg') }}" alt="blog"></a>
+                            <a href="javscript::void()"><img src="{{ URL::asset($article->image_path) }}"
+                                    alt="blog image"
+                                    onerror="this.onerror=null;this.src='{{ asset('/images/placeholder600x600.png') }}'"></a>
                         </div>
                         <div class="blog-item__content">
-                            <h4 class="blog-item__content-name"><a href="#">Amazing Tour</a></h4>
-                            <p class="blog-item__content-text">Al alit emnos lnipedit ius, vel et hinc agam fabulas. Ut
-                                audiam invenire iracundia vim. An eam dico similique, ut sint posse sit,</p>
+                            <h4 class="blog-item__content-name">
+                                <a href="javascript::void()">{{ $article->title }}</a>
+                            </h4>
+                            <p class="blog-item__content-text">
+                                content
+                            </p>
                             <div class="content-comment__wrap">
-                                <a href="#">September 11, 2016</a>
-                                <a href="#"><i class="fas fa-comment"></i>4 comments</a>
+                                {{-- <a href="#">{{ $article->created_at }}</a> --}}
+                                {{-- <a href="#"><i class="fas fa-comment"></i>4
+                                    comments</a>
+                                --}}
+                                <p>{{ $article->created_at }}</p>
                             </div>
                         </div>
                     </li>
-                    <li class="blog-item">
-                        <div class="blog-item_img">
-                            <a href="#"><img src="{{ URL::asset('frontend/img/dishes.jpg') }}" alt="blog"></a>
-                        </div>
-                        <div class="blog-item__content">
-                            <h4 class="blog-item__content-name"><a href="#">Amazing Tour</a></h4>
-                            <p class="blog-item__content-text">Al alit emnos lnipedit ius, vel et hinc agam fabulas. Ut
-                                audiam invenire iracundia vim. An eam dico similique, ut sint posse sit,l alit emnos
-                                lnipedit ius, vel et hinc agam fabulas. Ut audiam invenire iracundia vim. An eam dico
-                                similique, ut sint posse sitl alit emnos lnipedit ius, vel et hinc agam fabulas. Ut
-                                audiam invenire iracundia vim. An eam dico similique, ut sint posse sit</p>
-                            <div class="content-comment__wrap">
-                                <a href="#">September 11, 2016</a>
-                                <a href="#"><i class="far fa-comment"></i>4 comments</a>
-                            </div>
-                        </div>
-                    </li>
+                    @endforeach
+
                 </ul>
             </div>
             <div class="col l-4 hide-on-mobile hide-on-tablet">

@@ -8,6 +8,7 @@ interface RepositoryInterface
     public function getAll($columns = ['*']);
     public function find($id);
     public function search($column = 'name', $keyword);
+    public function show($id);
     public function getFooterData();
     public function getAllUser();
     public function getAllArea();
@@ -17,7 +18,12 @@ interface RepositoryInterface
     public function getAllVehicle();
     public function getAllTour();
     public function getAllPayment();
-    public function show($id);
+    public function getIncludeId();
+    public function getNotIncludeId();
+    public function getTourInclude($tourId);
+    public function getTourNotInclude($tourId);
+    public function getBookingRequest();
+    public function getBookingRequestDetail($bookingId);
     // resource
     public function store($request);
     public function update($request, $id);

@@ -2,6 +2,14 @@
 
 @push('title', 'Add Promotion')
 
+@section('script')
+<script type="text/javascript">
+    // Active Sidebar
+    $('#link-promotion').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-promotion, #link-add-promotion').addClass('active');
+</script>
+@endsection
+
 @section('header')
 <!-- Content Header (Page header) -->
 <div class="content-header">

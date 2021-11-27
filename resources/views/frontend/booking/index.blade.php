@@ -3,99 +3,8 @@
 @push('title', 'Booking')
 
 @section('script')
-<script>
-    // Tao ham number_format dua theo ham number_format() cua PHP
-    number_format = function (number, decimals = 0, dec_point = '.', thousands_sep = ',') {
-        number = number.toFixed(decimals);
-
-        var nstr = number.toString();
-        nstr += '';
-        x = nstr.split('.');
-        x1 = x[0];
-        x2 = x.length > 1 ? dec_point + x[1] : '';
-        var rgx = /(\d+)(\d{3})/;
-
-        while (rgx.test(x1))
-            x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
-
-        return x1 + x2;
-    }
-
-    isset = function (variable) {
-        if (typeof variable !== "undefined" && variable !== null) {
-            return true;
-        }
-
-        return false;
-    }
-
-    empty = function (variable) {
-        if (Boolean(variable) === false || variable.length === 0) {
-            return true;
-        }
-
-        return false;
-    }
-
-    $(document).ready(function () {
-    // Tinh gia va slot
-    var totalSlot = 0;
-    var totalPrice = 0;
-    var promotionNumberValue, promotionType;
-
-    $('#adultSlot, #youthSlot, #childSlot, #babySlot').on('input', function() {
-        var adultSlot = ($('#adultSlot').val());
-        var youthSlot = ($('#youthSlot').val());
-        var childSlot = ($('#childSlot').val());
-        var babySlot = ($('#babySlot').val());
-        var adultPrice = ($('#adultPrice').val());
-        var youthPrice = ($('#youthPrice').val());
-        var childPrice = ($('#childPrice').val());
-        var babyPrice = ($('#babyPrice').val());
-
-        totalSlot = (adultSlot*1) + (youthSlot*1) + (childSlot*1) + (babySlot*1);
-        totalPrice = (adultSlot*adultPrice) + (youthSlot*youthPrice) + (childSlot*childPrice) + (babySlot*babyPrice);
-        // console.log(number_format(totalPrice, 2, ',', ' '));
-        $('#totalSlot').val(parseFloat(totalSlot));
-        $('#totalPrice').val(parseFloat(totalPrice));
-        $('#viewTotalSlot').html(number_format(totalSlot, 0, '.', ''));
-        $('#viewTotalPrice').html(number_format(totalPrice, 0, '.', ' '));
-    });
-
-    reset_price = function (promotionNumberValue, promotionType) {
-        if (promotionType === '%') {
-        var totalPrice2 = totalPrice - (totalPrice * promotionNumberValue / 100);
-        } else if (promotionType === 'VND') {
-        var totalPrice2 = totalPrice - promotionNumberValue;
-        }
-        // console.log(number_format(totalPrice2, 2, ',', ''));
-        $('#totalPrice').val(parseFloat(totalPrice2));
-        $('#viewTotalPrice').html(number_format(totalPrice2, 0, ',', ' '));
-    }
-
-    $('.promotion').change(function (e) {
-            e.preventDefault();
-            var id = $(this).find(':selected').val();
-            // console.log(id, typeof id);
-            if (!empty(id)) {
-                $.ajax({
-                    type: "get",
-                    url: "/promotion/" + id,
-                    success: function (data) {
-                        promotionNumberValue = data.number;
-                        promotionType = data.type;
-                        // console.log(promotionNumberValue, promotionType);
-                        reset_price(promotionNumberValue, promotionType);
-                    }
-                });
-            } else {
-                promotionNumberValue = 0;
-                promotionType = 'VND';
-                reset_price(promotionNumberValue, promotionType);
-            }
-        });
-        });
-</script>
+<script type="text/javascript" src="{{ asset('/js/custom-function.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/booking-calculator.js') }}"></script>
 @endsection
 
 @section('content')
@@ -121,11 +30,13 @@
             <div class="row">
                 <div class="col l-12 m-12 c-12">
                     <div class="wrap-section-booking">
-                        <h1 class="booking-title">infomation tour</h1>
+                        <h1 class="booking-title">Infomation Tour</h1>
                         <div class="row booking-wrap-info">
                             <div class="col l-4">
-                                <a href="{{ asset($tour->image_path) }}"><img src="{{ asset($tour->image_path) }}"
-                                        alt="tour" /></a>
+                                <a href="{{ asset($tour->image_path) }}">
+                                    <img src="{{ asset($tour->image_path) }}" alt="tour"
+                                        onerror="this.onerror=null;this.src='{{ asset('images/placeholder600x600.png') }}'" />
+                                </a>
                             </div>
                             <div class="col l-8">
                                 <div class="booking-name-tour-wrap">
@@ -181,7 +92,7 @@
                 <div class="row">
                     <div class="col l-12">
                         <div style="overflow-x:auto;" class="wrap-section-booking table">
-                            <h1 class="booking-title">list Price Tour</h1>
+                            <h1 class="booking-title">List Price Tour</h1>
                             <input type="hidden" name="tour_id" value="{{ $tour->id }}">
                             <table>
                                 <tr>
@@ -280,7 +191,6 @@
                                 Total price: <span id="viewTotalPrice">0</span> <sup>đ</sup>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="row">
@@ -347,6 +257,32 @@
                 <div class="row">
                     <div class="col l-12 m-12 c-12">
                         <div class="feedback_list-items">
+                            <!-- thong tin thanh toan -->
+                            <div>
+                                @if (!auth('user')->check())
+                                <div class="form-group">
+                                    <label for="inputFullname">Full name</label>
+                                    <input id="inputFullname" class="form-control" type="text" name="full_name"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPhone">Phone</label>
+                                    <input id="inputPhone" class="form-control" type="text" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail">Email</label>
+                                    <input id="inputEmail" class="form-control" type="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Address</label>
+                                    <input id="inputAddress" class="form-control" type="text" name="address" required>
+                                </div>
+                                @endif
+                                <div class="form-group">
+                                    <label for="textNote">Note</label>
+                                    <textarea name="note" id="textNote" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
                             <div class="payments">
                                 @php
                                 $i = 1;
@@ -370,7 +306,7 @@
                                 @endforeach
 
                             </div>
-                            <button type="submit" class="feedback_content-submit">submit</button>
+                            <button type="submit" class="feedback_content-submit">Submit</button>
                         </div>
                     </div>
                 </div>

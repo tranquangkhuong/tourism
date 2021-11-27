@@ -4,40 +4,9 @@
 
 @section('script')
 <script type="text/javascript">
-    var boxCont= document.querySelector('.container-plan');
-    var addCont = document.querySelector('.add-box')
-    var contentBox=document.querySelector('.box-content').cloneNode();
-
-    addCont.onclick =function() {
-        boxCont.innerHTML=contentBox;
-    }
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.btn-save-plan').click((e) => {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                contentType: 'application/json',
-                url: route('admin.tour.plan.add', $('input[name=tour_id]').val()),
-                data: {
-                    tour_id: $('input[name=tour_id]').val();
-                    day: $('input[name=day]').val();
-                    content: $('textarea[name=content]').val();
-                    note: $('textarea[name=note]'),val();
-                },
-                // dataType: "json",
-                success: function (response) {
-                    Swal.fire(response.title, response.msg, response.stt);
-                    console.log(response);
-                },
-                error: () => {
-                    Swal.fire("Save failed!", "Please try again.", "error");
-                }
-            });
-        })
-    });
-
+    // Active Sidebar
+    $('#link-tour').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-tour, #link-tour-manage').addClass('active');
 </script>
 @endsection
 
@@ -298,25 +267,31 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="include">Include</label>
-                                        <input type="hidden" name="include_value_id" value="{{ $includes->id }}">
+                                        <input type="hidden" name="include_value_id"
+                                            value="{{ $includes ? $includes->id : '' }}">
                                         <select name="include[]" id="include" class="form-control select2tagging"
                                             multiple data-placeholder="Enter more include">
+                                            @if (collect($includes)->isNotEmpty())
                                             @foreach (json_decode($includes->value) as $key => $value)
                                             <option selected value="{{ $value }}">{{ $value }}
                                             </option>
                                             @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="notInclude">Not Include</label>
-                                        <input type="hidden" name="not_include_value_id" value="{{ $notIncludes->id }}">
+                                        <input type="hidden" name="not_include_value_id"
+                                            value="{{ $notIncludes ? $notIncludes->id : '' }}">
                                         <select name="not_include[]" id="notInclude" class="form-control select2tagging"
                                             multiple data-placeholder="Enter more include">
+                                            @if (collect($notIncludes)->isNotEmpty())
                                             @foreach (json_decode($notIncludes->value) as $key => $value)
                                             <option selected value="{{ $value }}">{{ $value }}</option>
                                             @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
@@ -332,7 +307,7 @@
                 </div>
 
                 <!-- tab 2 -->
-                <div class="tab-pane fade " id="custom-tabs-one-profile" role="tabpanel"
+                <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel"
                     aria-labelledby="custom-tabs-one-profile-tab">
                     {{-- @if (count($plans) > 0)
 

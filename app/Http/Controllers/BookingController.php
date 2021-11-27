@@ -24,11 +24,59 @@ class BookingController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function index()
     {
-        //
+        $bookings = $this->repo->getAll();
+
+        return view('backend.booking.index', compact('bookings'));
+    }
+
+    /**
+     * Display a listing of Booking Request
+     *
+     * @return view
+     */
+    public function request()
+    {
+        $bookings = $this->repo->getBookingRequest();
+
+        return view('backend.booking.request', compact('bookings'));
+    }
+
+    /**
+     * Get detail for request
+     */
+    public function requestDetail($bookingId)
+    {
+        $booking = $this->repo->getBookingRequestDetail($bookingId);
+        $promotions = $this->repo->getPromotion($booking->tour_id);
+
+        return view('backend.booking.request_detail', compact('booking', 'promotions'));
+    }
+
+    /**
+     * Accept/Update booking
+     */
+    public function updateRequest(Request $request, $bookingId)
+    {
+        $data = $request->all();
+        // dd($data, isset($data['accept']), isset($data['remove']));
+        $data['booking_id'] = $bookingId;
+        $rs = $this->repo->handleBookingRequest($data);
+        toast($rs['msg'], $rs['stt']);
+
+        return redirect()->route('admin.booking.request.index');
+    }
+
+    public function test()
+    {
+        $dt = [];
+        $dt1['vnp'] = ['vnp_TxnRef' => 30];
+        $dt2['cash'] = ['booking_id' => 20];
+
+        $this->repo->saveTransaction($dt);
     }
 
     /**
@@ -41,8 +89,9 @@ class BookingController extends Controller
         $users = $this->repo->getAllUser();
         $tours = $this->repo->getAllTour();
         $payments = $this->repo->getAllPayment();
-        // dd($users);
-        return view('backend.booking.add', compact('users', 'tours', 'payments'));
+        $tourId = request()->query('tourId');
+        // dd($tours);
+        return view('backend.booking.add', compact('users', 'tours', 'payments', 'tourId'));
     }
 
     /**
@@ -51,12 +100,34 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeStep1(Request $request)
     {
-        $rs = $this->repo->store($request);
+        // dd($request->all());
+        session([
+            'booking.user_id' => $request->user_id,
+            'booking.payment_id' => $request->payment_id,
+            'booking.status' => $request->status,
+        ]);
+        $tour = $this->repo->getTour($request->tour_id);
+        $promotions = $this->repo->getPromotion($request->tour_id);
+        // dd($tour, count($promotions));
+
+        return view('backend.booking.add2', compact('tour', 'promotions'));
+    }
+
+    public function storeStep2(Request $request)
+    {
+        $data = $request->all();
+        $data['user_id'] = session('booking.user_id');
+        $data['payment_id'] = session('booking.payment_id');
+        $data['status'] = session('booking.status');
+        // dd($data);
+        $rs = $this->repo->store($data);
+        session()->forget('booking');
         toast($rs['msg'], $rs['stt']);
 
-        return redirect()->url('/detail-tour', [$rs['tour_id']]);
+
+        return redirect()->route('admin.booking.index');
     }
 
     /**
@@ -67,7 +138,8 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $booking = $this->repo->show($id);
+        return view('backend.booking.edit', compact('booking'));
     }
 
     /**
@@ -79,7 +151,11 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->all(), $id);
+        $rs = $this->repo->update($request, $id);
+        toast($rs['msg'], $rs['stt']);
+
+        return redirect()->route('admin.booking.index');
     }
 
     /**
@@ -114,7 +190,7 @@ class BookingController extends Controller
         $tour = $this->repo->getTour($tourId);
         $promotions = $this->repo->getPromotion($tourId);
         $payments = $this->repo->getAllPayment();
-        // dd($tour, $promotions, $payments);
+        // dd(explode(',', $tour->other_day));
 
         return view('frontend.booking.index', compact('tour', 'promotions', 'payments'));
     }
@@ -127,11 +203,27 @@ class BookingController extends Controller
      */
     public function userStore(Request $request)
     {
-        $booking = $this->repo->store($request);
-        // dd($booking['booking_id']);
-        $result = $this->repo->checkPaymentMethod($booking['booking_id']);
-        $data = $result['data'];
-        return view($result['view'], compact('data'));
+        $dataStore = $request->all();
+        if (isset($dataStore['full_name'])) {
+            $dataStore['user_id'] = 1;
+        } else {
+            $dataStore['user_id'] = auth('user')->id();
+        }
+        $booking = $this->repo->store($dataStore);
+        // dd($booking);
+        if (isset($booking['booking_id'])) {
+            $result = $this->repo->checkPaymentMethod($booking['booking_id']);
+            // dd($result);
+            if (isset($result['route'])) {
+                return redirect()->route($result['route'], $result['data']);
+            } else {
+                $data = $result['data'];
+                return view($result['view'], compact('data'));
+            }
+        }
+
+        $data['msg'] = __('Đặt chỗ thất bại!');
+        return view('frontend.booking.return', compact('data'));
     }
 
     /**
@@ -144,6 +236,6 @@ class BookingController extends Controller
     {
         $booking = $this->repo->getBookingDetail($code);
 
-        return response()->json($booking);
+        return view('frontend.booking.detail', compact('booking'));
     }
 }

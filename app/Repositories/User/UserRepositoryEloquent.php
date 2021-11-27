@@ -22,7 +22,7 @@ class UserRepositoryEloquent extends RepositoryEloquent implements UserRepositor
             ->join('tours', 'booking_details.tour_id', '=', 'tours.id')
             ->join('bookings', 'booking_details.booking_id', '=', 'bookings.id')
             ->where('bookings.user_id', $userId)
-            ->orderByDesc('created_at');
+            ->orderByDesc('created_at')->get();
     }
 
     public function store($request)

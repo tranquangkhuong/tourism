@@ -75,7 +75,7 @@ const Toast = Swal.mixin({
     },
 });
 
-// load lai plan sau khi store, update, dele te
+// load lai plan sau khi store, update, delete
 function loadPlan(tourId) {
     $.ajax({
         type: "GET",

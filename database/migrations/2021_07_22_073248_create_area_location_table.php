@@ -18,6 +18,7 @@ class CreateAreaLocationTable extends Migration
             $table->string('name');
             $table->longText('description')->nullable()->comment('Mô tả chi tiết về khu vực');
             $table->tinyInteger('domestic')->default(1)->comment('1 là trong nuớc');
+            $table->string('image_path', 2048)->nullable();
             $table->timestamps();
         });
 
@@ -28,6 +29,7 @@ class CreateAreaLocationTable extends Migration
                 ->onDelete('cascade');
             $table->string('name');
             $table->longText('description')->nullable()->comment('Mô tả chi tiết về địa điểm');
+            $table->string('image_path', 2048)->nullable();
             $table->timestamps();
         });
     }

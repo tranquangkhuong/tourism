@@ -132,7 +132,7 @@ class UserController extends Controller
     public function profile()
     {
         // dd('loading');
-        $user = $this->repo->show(1);
+        $user = $this->repo->show($this->id());
 
         return view('frontend.user.my_account', compact('user'));
     }
@@ -171,7 +171,7 @@ class UserController extends Controller
      */
     public function updatePassword(Request $request)
     {
-        $rs = $this->repo->updatePassword($request, 1);
+        $rs = $this->repo->updatePassword($request, $this->id());
         if (!empty($rs['error_messages'])) {
             session()->flash('errors', $rs['error_messages']);
         }
@@ -185,7 +185,10 @@ class UserController extends Controller
      */
     public function getBooking()
     {
-        $this->repo->getBooking($this->id());
+        $bookings = $this->repo->getBooking($this->id());
+        // dd($bookings, $this->id());
+
+        return view('frontend.user.my_booking', compact('bookings'));
     }
 
     /**

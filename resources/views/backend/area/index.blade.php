@@ -2,6 +2,15 @@
 
 @push('title', 'Area')
 
+@section('script')
+<script src="{{ asset('js/custom-function.js') }}"></script>
+<script type="text/javascript">
+    // Active Sidebar
+    $('#link-area-location').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-area-location, #link-area').addClass('active');
+</script>
+@endsection
+
 @section('header')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -20,28 +29,6 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
-@endsection
-
-@section('script')
-<script type="text/javascript">
-    $(document).ready(function () {
-        // Tim kiem - filter
-        $("#search").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $(`#list-area tr`).filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-            });
-        });
-
-        // Alert Delete
-        $('.btn-delete').click((e) => {
-            let isDelete = confirm('Bạn có chắc chắn muốn xóa?');
-            if(!isDelete) {
-                e.preventDefault();
-            }
-        });
-    });
-</script>
 @endsection
 
 @section('content')
@@ -91,7 +78,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody id="list-area">
+                <tbody id="list-data">
                     @foreach ($areas as $area)
                     <tr>
                         <td style="opacity: .5">{{ $area->id }}</td>

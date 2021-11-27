@@ -9,22 +9,22 @@
                 <i class="fas fa-phone-alt"></i>
                 <span class="left-item__text">562 867 5309</span>
             </a>
-            <a href="#" class="header-top__left-item">
+            <a href="javascript::void()" class="header-top__left-item">
                 <i class="fas fa-map-marker-alt"></i>
                 <span class="left-item__text">Broadway & Morris St, New York</span>
             </a>
         </div>
         <div class="header-top__right">
             <div class="social">
-
                 @if (auth('user')->check())
                 <div class="notification-wrap">
-                    <a href="#" class="social-link notification"><i class="fas fa-bell"></i><span>2</span></a>
+                    <a href="javascript::void()" class="social-link notification"><i
+                            class="fas fa-bell"></i><span>2</span></a>
                     <!-- content notification -->
                     <div class="notification-content">
                         <header class="notification-content__header">
                             <h1>Notification</h1>
-                            <a href="#">Đánh dấu đã đọc tất cả</a>
+                            <a href="javascript::void()">Đánh dấu đã đọc tất cả</a>
                         </header>
                         <div class="notification-content__list">
                             <div class="notification-content__item">
@@ -33,8 +33,8 @@
                                 <div class="time-and-action">
                                     <span class="time">19-08-2021</span>
                                     <div class="action">
-                                        <a href="#">đã đọc</a>
-                                        <a href="#">xóa</a>
+                                        <a href="javascript::void()">đã đọc</a>
+                                        <a href="javascript::void()">xóa</a>
                                     </div>
                                 </div>
                             </div>
@@ -44,8 +44,8 @@
                                 <div class="time-and-action">
                                     <span class="time">19-08-2021</span>
                                     <div class="action">
-                                        <a href="#">đã đọc</a>
-                                        <a href="#">xóa</a>
+                                        <a href="javascript::void()">đã đọc</a>
+                                        <a href="javascript::void()">xóa</a>
                                     </div>
                                 </div>
                             </div>
@@ -55,8 +55,8 @@
                                 <div class="time-and-action">
                                     <span class="time">19-08-2021</span>
                                     <div class="action">
-                                        <a href="#">đã đọc</a>
-                                        <a href="#">xóa</a>
+                                        <a href="javascript::void()">đã đọc</a>
+                                        <a href="javascript::void()">xóa</a>
                                     </div>
                                 </div>
                             </div>
@@ -66,41 +66,46 @@
                                 <div class="time-and-action">
                                     <span class="time">19-08-2021</span>
                                     <div class="action">
-                                        <a href="#">đã đọc</a>
-                                        <a href="#">xóa</a>
+                                        <a href="javascript::void()">đã đọc</a>
+                                        <a href="javascript::void()">xóa</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <footer class="notification-content__footer"><a href="#">xóa tất cả</a></footer>
+                        <footer class="notification-content__footer"><a href="javascript::void()">xóa tất cả</a>
+                        </footer>
                     </div>
                 </div>
                 @endif
-
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="javascript::void()" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="javascript::void()" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                <a href="javascript::void()" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="javascript::void()" class="social-link"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="language hide-on-mobile">
-                <a href="#" class="language-link active">English</a>
+                <a href="javascript::void()" class="language-link active">English</a>
                 <ul class="language-list">
-                    <li class="language-item"><a href="" class="language-link">German</a></li>
-                    <li class="language-item"><a href="" class="language-link">Italy</a></li>
-                    <li class="language-item"><a href="" class="language-link">Tiếng Việt</a></li>
+                    <li class="language-item"><a href="javascript::void()" class="language-link">German</a></li>
+                    <li class="language-item"><a href="javascript::void()" class="language-link">Italy</a></li>
+                    <li class="language-item"><a href="javascript::void()" class="language-link">Tiếng Việt</a></li>
                 </ul>
             </div>
 
             {{-- da login --}}
-            @if (Auth::guard('user')->check())
+            @if (auth('user')->check())
             <div class="account-logined">
                 <div class="account-logined-action">
-                    <span class="account-name"><span class="account-name-user">{{ Auth::guard('user')->user()->name
+                    <span class="account-name"><span class="account-name-user">{{ auth('user')->user()->name
                             }}</span><i class="fas fa-sort-down"></i></span>
                 </div>
                 <ul class="account-option-list">
 
-                    <li class="account-option-item"><a href="#"><i class="far fa-user-circle"></i>My Account</a></li>
+                    <li class="account-option-item">
+                        <a href="{{ url('/user/profile') }}">
+                            <i class="far fa-user-circle"></i>
+                            My Account
+                        </a>
+                    </li>
                     <li class="account-option-item"><a href="{{ route('logout') }}"><i
                                 class="fas fa-sign-out-alt"></i>Logout</a></li>
                 </ul>
@@ -110,13 +115,15 @@
 
             {{-- chua login --}}
             <div class="account js-account">
-                <a href="javascript::void(0)" class="account__link"><i class="ti-user"></i></a>
+                <a href="javascript::void()" class="account__link"><i class="ti-user"></i></a>
             </div>
 
             @endif
 
         </div>
     </section>
+
+    <!-- Thanh Menu -->
     <section class="header-bottom">
         <label for="category-checkbox-input" class="list-category-mobile hide-on-pc">
             <i class="ti-view-list"></i>
@@ -127,55 +134,122 @@
                 <img src="{{ URL::asset('frontend/img/logo.png') }}" alt="logo">
             </a>
         </div>
+        <!-- Navbar -->
         <nav class="header-mid">
             <ul class="header-nav__list">
                 <li class="header-nav__item">
-                    <a href="#" class="header-nav__link">Home</a>
+                    <a href="{{ url('/') }}" class="header-nav__link">Home</a>
                 </li>
                 <li class="header-nav__item">
-                    <a href="#" class="header-nav__link">Pages</a>
-                </li>
-                <li class="header-nav__item">
-                    <a href="#" class="header-nav__link">Destination</a>
-                </li>
-                <li class="header-nav__item">
-                    <a href="#" class="header-nav__link active">Tour</a>
+                    <a href="{{ url('/tour') }}" class="header-nav__link active">Tour</a>
                     <ul class="subnav-list">
-                        <li class="subnav-item"><a href="#" class="subnav-link">Domestic</a></li>
-                        <li class="subnav-item"><a href="#" class="subnav-link">Foreign</a></li>
+                        <li class="subnav-item"><a href="{{ url('/tour/domestic') }}" class="subnav-link">Domestic</a>
+                        </li>
+                        <li class="subnav-item"><a href="{{ url('/tour/foreign') }}" class="subnav-link">Foreign</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="header-nav__item">
-                    <a href="#" class="header-nav__link">Blog</a>
+                    <a href="javascript::void()" class="header-nav__link">Destination</a>
                 </li>
                 <li class="header-nav__item">
-                    <a href="#" class="header-nav__link">Shop</a>
+                    <a href="{{ url('/blog') }}" class="header-nav__link">Blog</a>
+                </li>
+                <li class="header-nav__item">
+                    <a href="{{ url('/contact') }}" class="header-nav__link">Contact</a>
+                </li>
+                <li class="header-nav__item">
+                    <a href="{{ url('/about-us') }}" class="header-nav__link">About Us</a>
                 </li>
                 <label for="category-checkbox-input" class="close-categories hide-on-pc"><i
                         class="fas fa-times-circle"></i></label>
             </ul>
         </nav>
+        <!-- /Navbar -->
+
         <div class="header-right">
+
+            <!-- Thông báo -->
+            {{-- @if (auth('user')->check())
+            <div class="notification-wrap">
+                <a href="javascript::void()" class="social-link notification"><i
+                        class="fas fa-bell"></i><span>2</span></a>
+                <!-- content notification -->
+                <div class="notification-content">
+                    <header class="notification-content__header">
+                        <h1>Notification</h1>
+                        <a href="javascript::void()">Đánh dấu đã đọc tất cả</a>
+                    </header>
+                    <div class="notification-content__list">
+                        <div class="notification-content__item">
+                            <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát
+                                bà Du lịch cát bà</span>
+                            <div class="time-and-action">
+                                <span class="time">19-08-2021</span>
+                                <div class="action">
+                                    <a href="javascript::void()">đã đọc</a>
+                                    <a href="javascript::void()">xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-content__item">
+                            <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát
+                                bà Du lịch cát bà</span>
+                            <div class="time-and-action">
+                                <span class="time">19-08-2021</span>
+                                <div class="action">
+                                    <a href="javascript::void()">đã đọc</a>
+                                    <a href="javascript::void()">xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-content__item active">
+                            <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát
+                                bà Du lịch cát bà</span>
+                            <div class="time-and-action">
+                                <span class="time">19-08-2021</span>
+                                <div class="action">
+                                    <a href="javascript::void()">đã đọc</a>
+                                    <a href="javascript::void()">xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-content__item">
+                            <span class="name">Bạn đã đặt tour thành công: Du lịch cát bà Du lịch cát bàDu lịch cát
+                                bà Du lịch cát bà</span>
+                            <div class="time-and-action">
+                                <span class="time">19-08-2021</span>
+                                <div class="action">
+                                    <a href="javascript::void()">đã đọc</a>
+                                    <a href="javascript::void()">xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="notification-content__footer"><a href="javascript::void()">xóa tất cả</a>
+                    </footer>
+                </div>
+            </div>
+            @endif --}}
+
             <div class="cart-wrap">
-                <a href="#" class="header-cart"><i class="ti-shopping-cart"></i></a>
+                <a href="javascript::void()" class="header-cart"><i class="ti-shopping-cart"></i></a>
                 <div class="header-no-cart">
                     <span class="header-cart__content">No product in cart.</span>
                 </div>
             </div>
+            <!-- search btn -->
             <label class="header-search-btn" for="search-check-input-btn"><i class="ti-search"></i></label>
             <input type="checkbox" id="search-check-input-btn" hidden />
-
             <div class="form-search">
                 <div class="search-wrap">
                     <input class="search__input" type="text" placeholder="Search..">
-                    <button class="search__btn" class="">find now</button>
+                    <button class="search__btn" class="">Find now</button>
                 </div>
             </div>
             <label for="search-check-input-btn" class="modal_overlay"></label>
-
+            <!-- /search btn -->
         </div>
 
-
-        </div>
     </section>
 </header>

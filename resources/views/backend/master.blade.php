@@ -14,7 +14,7 @@
     @yield('style')
 </head>
 
-<body class="sidebar-mini layout-fixed" style="height: auto;">
+<body class="sidebar-mini control-sidebar-slide-open layout-fixed" style="height: auto;">
     <div class="wrapper">
         <!-- sidebar -->
         @include('backend.include.sidebar')
