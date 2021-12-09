@@ -28,6 +28,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VnpayController;
+use App\Models\Admin;
 use App\Models\Booking;
 use App\Models\Tour;
 use App\Models\User;
@@ -39,6 +40,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -354,10 +356,12 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admi
 
     Route::group(['prefix' => '/admin-manage', 'as' => 'manage.'], function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
-        Route::get('/add', [AdminController::class, 'create'])->name('add');
+        // Route::get('/add', [AdminController::class, 'create'])->name('add');
         Route::post('/store', [AdminController::class, 'store'])->name('store');
         Route::get('/edit/{admin_id}', [AdminController::class, 'edit'])->name('edit');
         Route::post('/update/{admin_id}', [AdminController::class, 'update'])->name('update');
+        Route::get('/edit/{admin_id}/permission', [AdminController::class, 'editPermission'])->name('edit.permission');
+        Route::post('/update/{admin_id}/permission', [AdminController::class, 'updatePermission'])->name('update.permission');
         // Route::get('/block/{admin_id}', [AdminController::class, 'block'])->name('block');
         // Route::get('/active/{admin_id}', [AdminController::class, 'active'])->name('active');
     });
@@ -402,37 +406,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admi
     Route::get('/change-password', [AdminController::class, 'changePassword']);
     Route::post('/update-password', [AdminController::class, 'updatePassword']);
 });
-// // page admin
-// Route::get('/admin', function () {
-//     return view('admin.homeadmin');
-// });
 
-// //slider
-// Route::get('/admin/slider', function () {
-//     return view('admin.slider.index');
-// });
-// Route::get('/admin/add-slider', function () {
-//     return view('admin.slider.add');
-// });
-
-// // area location.
-// Route::get('/admin/area-location', function () {
-//     return view('admin.arealocation.manage_location');
-// });
-// Route::get('/admin/add-location', function () {
-//     return view('admin.arealocation.add_location');
-// });
-// // tour.
-// Route::get('/admin/tour', function () {
-//     return view('admin.tour.manage_tour');
-// });
-
-// Route::get('/admin/add-tour', function () {
-//     return view('admin.tour.add_tour');
-// });
-// Route::get('/admin/testtour', function () {
-//     return view('admin.tour.testtour');
-// });
 Route::get('/c-n', function () {
     // $data = [
     //     'user_id' => 1,
@@ -453,10 +427,11 @@ Route::get('/c-n', function () {
 });
 
 Route::get('x', function () {
-    $a = env('APP_NAME');
-    $locale = str_replace('_', '-', app()->getLocale());
-    $local = app()->getLocale();
-    dd($locale, $local);
+    $admin = Admin::find(5);
+    // $role = DB::table('model_has_roles')->where('model_id', $admin->id)->first();
+    // $rs = $admin->removeRole($role->role_id);
+    $admin->syncPermissions([]);
+    // dd($role);
 });
 
 Route::get('/test', [BookingController::class, 'test']);

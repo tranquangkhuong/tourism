@@ -2,58 +2,74 @@
 
 return [
     'super_admin' => [
-        'roles' => [
-            'name' => 'super-admin',
-        ],
+        'roles' => 'super admin',
     ],
 
     'admin' => [
         'roles' => [
-            'name' => 'admin',
+            'service management',
+            'category management',
+            'account management',
         ],
         'permissions' => [
-            'add_tag',
-            'edit_tag',
-            'delete_tag',
-            'add_vehicle',
-            'edit_vehicle',
-            'delete_vehicle',
-            'add_promotion',
-            'edit_promotion',
-            'delete_promotion',
-            'add_area',
-            'edit_area',
-            'delete_area',
-            'add_location',
-            'edit_location',
-            'delete_location',
-            'add_payment',
-            'edit_payment',
-            'delete_payment',
-            'add_article',
-            'edit_article',
-            'delete_article',
-            'add_slider',
-            'edit_slider',
-            'delete_slider',
-            'add_contact',
-            'edit_contact',
-            'delete_contact',
-            'add_about',
-            'edit_about',
-            'delete_about',
-            'add_tour',
-            'edit_tour',
-            'delete_tour',
-            'add_tour_image',
-            'edit_tour_image',
-            'delete_tour_image',
-            'add_tour_plan',
-            'edit_tour_plan',
-            'delete_tour_plan',
-            'add_booking',
-            'edit_booking',
-            'delete_booking',
+            // service
+            'add tour',
+            'edit tour',
+            'delete tour',
+            'add image tour',
+            'delete image tour',
+            'add tour plan',
+            'edit tour plan',
+            'delete tour plan',
+
+            'add booking',
+            'edit booking',
+            'delete booking',
+
+            'view transaction',
+            'view report',
+
+            // category
+            'add tag',
+            'edit tag',
+            'delete tag',
+
+            'add vehicle',
+            'edit vehicle',
+            'delete vehicle',
+
+            'add slider',
+            'edit slider',
+            'delete slider',
+
+            'add article',
+            'edit article',
+            'delete article',
+
+            'add area',
+            'edit area',
+            'delete area',
+
+            'add location',
+            'edit location',
+            'delete location',
+
+            'add promotion',
+            'edit promotion',
+            'delete promotion',
+
+            'add contact',
+            'edit contact',
+            'delete contact',
+
+            'add about',
+            'edit about',
+            'delete about',
+
+            // account
+            'add account',
+            'edit account',
+            'decentralization',
         ],
     ],
 ];

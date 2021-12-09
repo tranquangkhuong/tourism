@@ -90,16 +90,16 @@
                             <td>{{ $admin->name }}</td>
                             <td>{{ $admin->email }}</td>
                             <td>
-                                <a class="btn btn-info btn-sm" title="Edit"
+                                <a class="btn btn-info btn-sm" title="Chỉnh sửa"
                                     href="{{ route('admin.manage.edit', $admin->id)}}">
                                     <i class="fas fa-pencil-alt">
                                     </i>
                                 </a>
-                                {{-- <a class="btn btn-danger btn-sm btn-delete" title="Delete"
-                                    href="{{ route('admin.user.delete', $user->id) }}">
-                                    <i class="fas fa-trash">
+                                <a class="btn btn-secondary btn-sm" title="Phân quyền"
+                                    href="{{ route('admin.manage.edit.permission', $admin->id) }}">
+                                    <i class="fas fa-sitemap">
                                     </i>
-                                </a> --}}
+                                </a>
                             </td>
                         </tr>
                         @endforeach

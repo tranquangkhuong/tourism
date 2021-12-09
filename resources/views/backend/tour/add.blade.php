@@ -54,43 +54,23 @@
                     @csrf
                     <!-- .card-body -->
                     <div class="card-body">
-                        <div class="form-group">
-                            <label for="exampleInputFile">Image</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">Upload</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputName">Name</label>
-                            <input type="text" id="inputName" name="name" class="form-control"
-                                placeholder="Nhập tên tour" required>
-                        </div>
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-10">
                                 <div class="form-group">
-                                    <label for="inputCode">Code</label>
-                                    <input type="text" id="inputCode" name="code" class="form-control" readonly required
-                                        placeholder="Click vào nút bên cạnh để tạo mã code">
+                                    <label for="exampleInputFile">Image</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile"
+                                                name="image">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <div class="form-group ">
-                                    <label for="inputCode">
-                                        <i class="far fa-question-circle"
-                                            title="Mã code là một dãy chữ số được tạo ngẫu nhiên. Có phân biệt chữ hoa và chữ thường."
-                                            style="opacity: .3; font-size: 12px"></i>
-                                    </label><br>
-                                    <button type="button" id="btn-generate-code" class="btn btn-primary">Generate
-                                        code</button>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="inputStatus">Display</label>
                                     <select id="inputStatus" name="display" class="form-control custom-select">
@@ -99,6 +79,12 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputName">Name</label>
+                            <input type="text" id="inputName" name="name" class="form-control"
+                                placeholder="Nhập tên tour" required>
                         </div>
                         <div class="row">
                             <div class="col-md-6">

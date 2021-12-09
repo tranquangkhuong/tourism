@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PasswordRequest;
+use App\Models\Admin;
 use App\Repositories\Admin\AdminRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -81,6 +85,40 @@ class AdminController extends Controller
         toast($rs['msg'], $rs['stt']);
 
         return back();
+    }
+
+    /**
+     * Edit permission for Admin
+     */
+    public function editPermission($adminId)
+    {
+        $permissions = Permission::all();
+        $roles = Role::all();
+        $admin = Admin::find($adminId);
+
+        return view('backend.admin.role_permission', compact('permissions', 'roles', 'admin'));
+    }
+
+    /**
+     * Update permission for Admin
+     */
+    public function updatePermission(Request $request, $adminId)
+    {
+        $admin = $this->repo->find($adminId);
+
+        if (empty($request->role_id) && empty($request->permission_id)) {
+            toast(__('Lỗi phân quyền'), 'error');
+            return back();
+        }
+
+        $roles = $request->role_id ?? [];
+        $admin->syncRoles($roles);
+
+        $permissions = $request->permission_id ?? [];
+        $admin->syncPermissions($permissions);
+
+        toast(__('Phân quyền thành công!'), 'success');
+        return redirect()->route('admin.manage.index');
     }
 
     /**
