@@ -6,8 +6,8 @@
 <script src="{{ asset('js/custom-function.js') }}"></script>
 <script type="text/javascript">
     // Active Sidebar
-    // $('#link-dashboard').parent().addClass('activemenu-is-opening menu-open');
-    $('#link-about').addClass('active');
+    $('#link-page').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-page, #link-about-page').addClass('active');
 </script>
 @endsection
 

@@ -43,6 +43,7 @@
                     <i class="fas fa-plus-circle"></i>&nbsp;
                     Export PDF
                 </a> --}}
+                Báo cáo doanh thu trong 30 ngày qua
             </h3>
 
             <div class="card-tools">

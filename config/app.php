@@ -165,11 +165,11 @@ return [
         /*
          * Package Service Providers...
          */
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class, //package thông báo
+        Intervention\Image\ImageServiceProvider::class, //package xử lý ảnh
+        Laravel\Socialite\SocialiteServiceProvider::class, //package đăng nhập FB, GG,...
+        Spatie\Permission\PermissionServiceProvider::class, //package phân quyền
+        Barryvdh\DomPDF\ServiceProvider::class, //package xuất PDF
 
         /*
          * Application Service Providers...

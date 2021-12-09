@@ -5,8 +5,8 @@
 @section('script')
 <script type="text/javascript">
     // Active Sidebar
-    // $('#link-dashboard').parent().addClass('activemenu-is-opening menu-open');
-    $('#link-contact').addClass('active');
+    $('#link-page').parent().addClass('activemenu-is-opening menu-open');
+    $('#link-page, #link-contact-page').addClass('active');
 </script>
 @endsection
 

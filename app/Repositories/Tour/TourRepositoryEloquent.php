@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Tour;
 
+use App\Helpers\Helper;
 use App\Models\Area;
 use App\Models\Attribute;
 use App\Models\Location;
@@ -40,7 +41,7 @@ class TourRepositoryEloquent extends RepositoryEloquent implements TourRepositor
             $tour = $this->_model->create([
                 'area_id' => $request->area_id,
                 'location_id' => $request->location_id,
-                'code' => $request->code,
+                'code' => Helper::generateCode(10),
                 'name' => $request->name,
                 'description' => $request->description,
                 'departure_location' => $request->departure_location,

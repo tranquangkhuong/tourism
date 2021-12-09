@@ -101,14 +101,21 @@ class PermissionRegistrar
     /**
      * Set the team id for teams/groups support, this id is used when querying permissions/roles
      *
-     * @param int $id
+     * @param int|string|\Illuminate\Database\Eloquent\Model $id
      */
-    public function setPermissionsTeamId(?int $id)
+    public function setPermissionsTeamId($id)
     {
+        if ($id instanceof \Illuminate\Database\Eloquent\Model) {
+            $id = $id->getKey();
+        }
         $this->teamId = $id;
     }
 
-    public function getPermissionsTeamId(): ?int
+    /**
+     *
+     * @return int|string
+     */
+    public function getPermissionsTeamId()
     {
         return $this->teamId;
     }
@@ -233,6 +240,8 @@ class PermissionRegistrar
     public function setPermissionClass($permissionClass)
     {
         $this->permissionClass = $permissionClass;
+        config()->set('permission.models.permission', $permissionClass);
+        app()->bind(Permission::class, $permissionClass);
 
         return $this;
     }
@@ -245,6 +254,15 @@ class PermissionRegistrar
     public function getRoleClass(): Role
     {
         return app($this->roleClass);
+    }
+
+    public function setRoleClass($roleClass)
+    {
+        $this->roleClass = $roleClass;
+        config()->set('permission.models.role',  $roleClass);
+        app()->bind(Role::class, $roleClass);
+
+        return $this;
     }
 
     /**
@@ -266,7 +284,7 @@ class PermissionRegistrar
         }
 
         $roleClass = $this->getRoleClass();
-        $roleInstance = new $roleClass;
+        $roleInstance = new $roleClass();
 
         return $this->cachedRoles[$roleId] = $roleInstance->newFromBuilder([
             'id' => $roleId,
