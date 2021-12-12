@@ -13,7 +13,7 @@
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header">
+<div class="content-header"style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -70,8 +70,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Tour</th>
-                        <th>User</th>
-                        <th>Slot</th>
+                        <th>Tên khách hàng</th>
+                        <th>Số lượng vé</th>
                         <th>Day</th>
                         <th>Action</th>
                     </tr>

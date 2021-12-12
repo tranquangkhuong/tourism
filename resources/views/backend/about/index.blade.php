@@ -13,7 +13,7 @@
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header">
+<div class="content-header"style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -38,87 +38,65 @@
         <div class="col-md-12">
             <!-- .card -->
             <div class="card card-primary card-outline card-outline-tabs">
-
                 <!-- .card-header -->
-                <div class="card-header p-0 border-bottom-0">
-                    {{-- <h3 class="card-title">About Us</h3> --}}
-                    <ul class="nav nav-tabs" id="custom-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="about-us-tab" href="#about-us" data-toggle="pill" role="tab"
-                                aria-controls="about-us" aria-selected="true">
-                                About Us page
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="social-link-tab" href="#social-link" data-toggle="pill" role="tab"
-                                aria-controls="social-link" aria-selected="false">
-                                Social link
-                            </a>
-                        </li>
+                {{-- <h3 class="card-title">About Us</h3> --}}
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#tabs-1">About Us page</a></li>
+                        <li><a href="#tabs-2">Social link</a></li>
                     </ul>
-                </div>
                 <!-- /.card-header-->
-
-
                 <!-- .card-body -->
-                <div class="card-body">
-                    <div class="tab-content" id="custom-tabsContent">
+                    <div id="tabs-1">
                         <!-- tab about us -->
-                        <div class="tab-pane fade active show" id="about-us" role="tabpanel"
-                            aria-labelledby="about-us-tab">
-                            <form action="{{ route('admin.about.update', $about->id) }}" method="post">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="summernote">About us</label>
-                                    <textarea id="summernote" class="form-control" name="about_us"
-                                        rows="10">{{ $about->about_us }}</textarea>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-success float-right">Save</button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <!-- tab social link -->
-                        <div class="tab-pane fade" id="social-link" role="tabpanel" aria-labelledby="social-link-tab">
-                            <form action="{{ route('admin.about.update', $about->id) }}" method="post">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="">Facebook link</label>
-                                    <input type="text" class="form-control" name="facebook" id=""
-                                        value="{{ $about->facebook }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Youtube link</label>
-                                    <input type="text" class="form-control" name="youtube" id=""
-                                        value="{{ $about->youtube }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Instagram link</label>
-                                    <input id="" class="form-control" type="text" name="instagram"
-                                        value="{{ $about->instagram }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Twitter link</label>
-                                    <input id="" class="form-control" type="text" name="twitter"
-                                        value="{{ $about->twitter }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Pinterest link</label>
-                                    <input id="" class="form-control" type="text" name="pinterest"
-                                        value="{{ $about->pinterest }}">
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-success float-right">Save</button>
-                                </div>
-                            </form>
-                        </div>
+                        <form action="{{ route('admin.about.update', $about->id) }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="summernote">About us</label>
+                                <textarea id="summernote" class="form-control" name="about_us"
+                                    rows="10">{{ $about->about_us }}</textarea>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success float-right">Save</button>
+                            </div>
+                        </form>
                     </div>
-
-
+                    <div id="tabs-2">
+                        <!-- tab social link -->
+                        <form action="{{ route('admin.about.update', $about->id) }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="">Facebook link</label>
+                                <input type="text" class="form-control" name="facebook" id=""
+                                    value="{{ $about->facebook }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Youtube link</label>
+                                <input type="text" class="form-control" name="youtube" id=""
+                                    value="{{ $about->youtube }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Instagram link</label>
+                                <input id="" class="form-control" type="text" name="instagram"
+                                    value="{{ $about->instagram }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Twitter link</label>
+                                <input id="" class="form-control" type="text" name="twitter"
+                                    value="{{ $about->twitter }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Pinterest link</label>
+                                <input id="" class="form-control" type="text" name="pinterest"
+                                    value="{{ $about->pinterest }}">
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success float-right">Save</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <!-- /.card-body -->
-
                 <!-- .card-footer -->
                 {{-- <div class="card-footer">
                     <button type="submit" class="btn btn-success float-right">Save</button>

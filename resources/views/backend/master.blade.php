@@ -23,7 +23,7 @@
         @include('backend.include.navbar')
 
         <!-- container -->
-        <div class="content-wrapper" style="min-height: 348px;">
+        <div class="content-wrapper " style="min-height: 348px;">
             @yield('header')
             @yield('content')
         </div>

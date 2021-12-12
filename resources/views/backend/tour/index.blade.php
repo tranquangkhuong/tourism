@@ -13,7 +13,7 @@
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header">
+<div class="content-header"style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -135,6 +135,7 @@
                                         <i class="fas fa-trash">
                                         </i>
                                     </a>
+
                                     <div class="dropdown" style="display: inline-block; margin: 0px 10px;">
                                         <i class="fas fa-ellipsis-v" type="button" id="dropdownMenuButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
@@ -160,5 +161,6 @@
     </div>
     <!-- /.card -->
 </section>
+   
 <!-- /.content -->
 @endsection

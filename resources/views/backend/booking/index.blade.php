@@ -13,7 +13,7 @@
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header">
+<div class="content-header"style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -67,14 +67,14 @@
                     <tr>
                         <th>ID</th>
                         <th>Code</th>
-                        <th>User</th>
+                        <th>Khách hàng</th>
                         <th>Tour</th>
-                        <th>Day</th>
-                        <th>Slot</th>
-                        <th>Price</th>
-                        <th>Payment</th>
-                        <th>Promotion</th>
-                        <th>Action</th>
+                        <th>Ngày đặt</th>
+                        <th>Số lượng vé</th>
+                        <th>Tổng tiền</th>
+                        <th>Phương thức thanh toán</th>
+                        <th>Khuyến mãi</th>
+                        <th>Chỉnh sửa</th>
                     </tr>
                 </thead>
 
