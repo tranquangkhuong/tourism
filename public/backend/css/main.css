@@ -73,6 +73,9 @@
     
  
 }
+.input-group{
+    position: relative;
+}
 .show-img_add{
     height:200px;
     width: 100%;
@@ -81,9 +84,10 @@
 
 }
 .img-tour_add{
-    margin: 10px;
-    width:90%;
-    height:90%;
+    position:absolute;
+    border:1px solid #ced4da;
+    width:200px;
+    height:200px;
 }
 .img-tour_add.disabled{
     display: none;
@@ -100,10 +104,28 @@
 .show-img_add:hover .icon-add_tour{
     opacity: 0.5;
 }
+.show-img_add{
+    width: 100%;
+    height: 201px;
+}
+.img-tour_link{
+    font-size:12px;
+    font-weight:200;
+    
+}
 
-
-
-
+.img-tour_add-show{
+    height:100%;
+    width: inherit;
+    object-fit:cover;
+    
+    
+}
+#show_edit-img{
+    opacity:1;
+    width: 100%;
+    height: 201px;
+}
 
 .other_link-FB a img{
     box-shadow: 0px 1px 2px 1px rgba(233, 230, 230, 0.466);

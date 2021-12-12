@@ -55,18 +55,29 @@
                     <!-- .card-body -->
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Thêm ảnh:</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
-                                            <label class="custom-file-label" for="exampleInputFile"></label>
-                                        </div>
+                            <div class="col-md-2" >
+                                <div class="form-group text-center"style="margin-bottom:50px">
+                                    <label for="exampleInputFile">Ảnh tour</label>
+                                        <div class="input-group">
+                                        <label class="show-img_add" for="exampleInputFile" >
+                                            <div class="text-center" width="100%">
+                                                <div class="img-tour_add disabled">
+                                                    <div class="img-tour_add-show">
+                                                         <img  src="" alt="" id="image" width="100%" height="100%">
+                                                    </div>
+                                                   
+                                                    <span class="img-tour_link"> </span>
+                                                </div>
+                                                <div class="img-tour_file ">
+                                                    <i class="fas fa-plus icon-add_tour"></i>
+                                                    <input type="file" class="custom-file-input" id="exampleInputFile" onChange="chooseFile(this)" name="image" accept="image/gif,image/jpeg,image/png"> 
+                                                </div>
+                                            </div>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-10">
                                 <div class="form-group">
                                     <label for="inputStatus">Trạng thái:</label>
                                     <select id="inputStatus" name="display" class="form-control custom-select">

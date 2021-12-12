@@ -78,6 +78,21 @@
       mode: "htmlmixed",
       theme: "monokai"
     });
+    //image form.
+    function chooseFile(fileInput){
+        if(fileInput.files && fileInput.files[0]){
+            var reader = new FileReader();
+            reader.onload= function(e){
+                var valueInput = $('#exampleInputFile').val();
+                $('#image').attr('src', e.target.result);
+                $('.img-tour_link').text(valueInput.slice(valueInput.lastIndexOf('\\')+1));
+                $('.img-tour_add').removeClass('disabled');
+                $('.icon-add_tour').addClass('disabled');
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+
+        }
+    }
 
     
    
