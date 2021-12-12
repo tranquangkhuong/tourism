@@ -2,7 +2,7 @@
 
 
 
-<div class="login-logo">
+<div class="login-logo" style="margin-top:50px;">
     <a href="../../index2.html"><b>Admin</b>LTE</a>
 </div>
 <!-- /.login-logo -->

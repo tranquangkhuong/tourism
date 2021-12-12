@@ -1,22 +1,19 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light bg-lightblue disabled color-palette elevation-2 position-fixed fixed-top">
     <!-- Left navbar links -->
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            <a class="nav-link text-white" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ url('/admin/dashboard') }}" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="javascript::void()" class="nav-link">Contact</a>
+            <a href="{{ url('/admin/dashboard') }}" class="nav-link text-white">Trang chủ</a>
         </li>
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
-        <li class="nav-item">
-            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+        <!-- <li class="nav-item">
+            <a class="nav-link text-white" data-widget="navbar-search" href="#" role="button">
                 <i class="fas fa-search"></i>
             </a>
             <div class="navbar-search-block">
@@ -35,11 +32,11 @@
                     </div>
                 </form>
             </div>
-        </li>
+        </li> -->
 
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
+            <a class="nav-link text-white" data-toggle="dropdown" href="#">
                 <i class="far fa-comments"></i>
                 <span class="badge badge-danger navbar-badge">3</span>
             </a>
@@ -100,7 +97,7 @@
         </li>
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
+            <a class="nav-link text-white" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
                 <span class="badge badge-warning navbar-badge">15</span>
             </a>
@@ -126,14 +123,32 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <a class="nav-link text-white" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                <i class="fas fa-th-large"></i>
+        <li class="nav-item dropdown">
+            <a class="nav-link text-white" data-toggle="dropdown" href="#">
+                <div class="image">
+                    <img src="{{ asset(auth('admin')->user()->avatar_image_path) }}" alt="User Image" style="width:40px;height:40px;border-radius:50%;margin-top: -12px;">
+                </div>
             </a>
+            <div class="dropdown-menu ">
+                <span class="dropdown-item dropdown-header bg-primary color-palette" style="font-size:16px;">{{ auth('admin')->user()->name }}</span>
+                <div class="dropdown-divider "></div>
+                <a href="{{ url('/admin/account') }}" class="dropdown-item ">
+                    <i class="fas fa-sign-in-alt"></i>Thông tin tài khoản
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="{{ url('/admin/change-password') }}" class="dropdown-item">
+                    <i class="fas fa-sign-in-alt"></i> Đổi mật khẩu
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="{{ url('/logout') }}" class="dropdown-item">
+                    <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                </a>
+                
+            </div>
         </li>
     </ul>
 </nav>

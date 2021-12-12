@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-1">
     <!-- Brand Logo -->
     <a href="{{ url('/admin/dashboard') }}" class="brand-link">
         <img src="{{ URL::asset('frontend/img/logo.png') }}" alt="Admin vietTour"
@@ -9,7 +9,7 @@
 
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar ">
         <!-- Sidebar user panel (optional) -->
         {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <a href="#" class="nav-link nav-link-logo">
@@ -59,41 +59,6 @@
                 data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <li class="nav-item">
-                        <a href="javascript::void()" class="nav-link nav-link-logo">
-                            <div class="image">
-                                <img src="{{ asset($user->avatar_image_path) }}" class="img-circle elevation-2"
-                                    alt="User Image"
-                                    onerror="this.onerror=null;this.src='{{ asset('/images/blank-profile-picture-215x215.png') }}'">
-                            </div>
-                            <div class="info text">
-                                {{ $user->name }}
-                            </div>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ url('/admin/account') }}" class="nav-link">
-                                    <i class="fas fa-sign-in-alt"></i>
-                                    <p>Thông tin tài khoản</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('/admin/change-password') }}" class="nav-link">
-                                    <i class="fas fa-sign-in-alt"></i>
-                                    <p>Đổi mật khẩu</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('/logout') }}" class="nav-link">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                    <p>Đăng xuất</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </div>
-
                 <!-- start -->
                 <li class="nav-item">
                     <a href="{{ url('/admin/dashboard') }}" id="link-dashboard" class="nav-link">

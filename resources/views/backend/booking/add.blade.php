@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header">
+<div class="content-header"style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
