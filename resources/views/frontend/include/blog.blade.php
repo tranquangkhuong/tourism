@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col l-8 c-10 c-o-1">
                 <div class="blog-title">
-                    <h2 class="blog-title__heading">From Our Blog</h2>
+                    <h2 class="blog-title__heading">Bí kíp du lịch.</h2>
                     <p class="blog-title__text">Một số bài viết về du lịch đặc biệt của chúng tôi có thể bạn sẽ quan tâm
                         đến, hãy xem những bài viết dưới đấy để biết thêm</p>
                 </div>

@@ -7,8 +7,8 @@
                         <img src="{{ URL::asset('frontend/img/restaurant.png') }}" alt="service">
                     </div>
                     <div class="service-item__content">
-                        <h3 class="content-heading">Restaurants</h3>
-                        <p class="content-text">Aenean commodo ligula eget dolor. Lorem ipsum</p>
+                        <h3 class="content-heading">Phong cách</h3>
+                        <p class="content-text">Du lịch theo phong cách riêng. Trải nghiệm trọn vẹn.</p>
                     </div>
                 </div>
             </div>
@@ -18,8 +18,8 @@
                         <img src="{{ URL::asset('frontend/img/sightseing.png') }}" alt="service">
                     </div>
                     <div class="service-item__content">
-                        <h3 class="content-heading">Sightseeing</h3>
-                        <p class="content-text">Aenean commodo ligula eget dolor. Lorem ipsum</p>
+                        <h3 class="content-heading">Địa điểm</h3>
+                        <p class="content-text">Những điểm đến khắp năm châu. Vuợt cao tầm mắt .</p>
                     </div>
                 </div>
             </div>
@@ -29,8 +29,8 @@
                         <img src="{{ URL::asset('frontend/img/boutique.png') }}" alt="service">
                     </div>
                     <div class="service-item__content">
-                        <h3 class="content-heading">Shop & Boutiques</h3>
-                        <p class="content-text">Aenean commodo ligula eget dolor. Lorem ipsum</p>
+                        <h3 class="content-heading">Dịch vụ</h3>
+                        <p class="content-text">Dịch vụ đáp ứng 5 sao. Phục vụ tận tình nâng cao uy tín.</p>
                     </div>
                 </div>
             </div>
@@ -40,8 +40,8 @@
                         <img src="{{ URL::asset('frontend/img/stay.png') }}" alt="service">
                     </div>
                     <div class="service-item__content">
-                        <h3 class="content-heading">Where to stay</h3>
-                        <p class="content-text">Aenean commodo ligula eget dolor. Lorem ipsum</p>
+                        <h3 class="content-heading">Chất lượng</h3>
+                        <p class="content-text">Tour chọn lọc chi tiết. Phục vụ hoàn hảo và tận tình</p>
                     </div>
                 </div>
             </div>

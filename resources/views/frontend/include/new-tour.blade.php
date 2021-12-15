@@ -4,10 +4,9 @@
             <div class="row">
                 <div class="col l-6 l-o-3 m-8 m-o-2 c-10 c-o-1">
                     <div class="banner-content banner-content-choose text-dark-color">
-                        <h2 class="banner-heading__medium banner-heading--color">Discover</h2>
-                        <h1 class="banner-heading__big">New Tour</h1>
-                        <p class="banner-text-small">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aene an
-                            commodo ligula eget dolor. Aenean massa. Cum sociis the</p>
+                        <h2 class="banner-heading__medium banner-heading--color">My world</h2>
+                        <h1 class="banner-heading__big">Du Lịch Quốc Tế</h1>
+                        <p class="banner-text-small">Thế giới trong tay, nhấc ngay hành lý. Không lo chi phí,với mọi ý chí có ngay chuyến đi như ý...</p>
                     </div>
                 </div>
             </div>

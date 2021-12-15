@@ -4,9 +4,9 @@
             <div class="wrap-title">
                 <div class="banner-content banner-content-choose">
                     <h2 class="banner-heading__medium banner-heading--color">
-                        Get readly
+                             Tour hót
                     </h2>
-                    <h1 class="banner-heading__big">Pack Up & Go</h1>
+                    <h1 class="banner-heading__big">Tour Chọn Nhiều Nhất</h1>
                 </div>
             </div>
         </div>

@@ -3,15 +3,15 @@
         <div class="header-top__left hide-on-tablet-mobile">
             <a href="mailto:hoangngocbkhn2311@gmail.com" class="header-top__left-item">
                 <i class="fas fa-envelope"></i>
-                <span class="left-item__text">setsail@qode.com</span>
+                <span class="left-item__text">vietour@gmail.com</span>
             </a>
             <a href="tel:+840393578454 " class="header-top__left-item">
                 <i class="fas fa-phone-alt"></i>
-                <span class="left-item__text">562 867 5309</span>
+                <span class="left-item__text">090099999</span>
             </a>
             <a href="javascript::void()" class="header-top__left-item">
                 <i class="fas fa-map-marker-alt"></i>
-                <span class="left-item__text">Broadway & Morris St, New York</span>
+                <span class="left-item__text">Mỹ Đình - Nam Từ Niêm - Hà Nội</span>
             </a>
         </div>
         <div class="header-top__right">
@@ -83,11 +83,11 @@
                 <a href="javascript::void()" class="social-link"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="language hide-on-mobile">
-                <a href="javascript::void()" class="language-link active">English</a>
+                <a href="javascript::void()" class="language-link active">Tiếng Việt</a>
                 <ul class="language-list">
-                    <li class="language-item"><a href="javascript::void()" class="language-link">German</a></li>
-                    <li class="language-item"><a href="javascript::void()" class="language-link">Italy</a></li>
-                    <li class="language-item"><a href="javascript::void()" class="language-link">Tiếng Việt</a></li>
+                    <li class="language-item"><a href="javascript::void()" class="language-link">English</a></li>
+                    <li class="language-item"><a href="javascript::void()" class="language-link">Trung Quốc</a></li>
+                    <li class="language-item"><a href="javascript::void()" class="language-link">Nga</a></li>
                 </ul>
             </div>
 
@@ -138,14 +138,14 @@
         <nav class="header-mid">
             <ul class="header-nav__list">
                 <li class="header-nav__item">
-                    <a href="{{ url('/') }}" class="header-nav__link">Home</a>
+                    <a href="{{ url('/') }}" class="header-nav__link">Trang Chủ</a>
                 </li>
                 <li class="header-nav__item">
                     <a href="{{ url('/tour') }}" class="header-nav__link active">Tour</a>
                     <ul class="subnav-list">
-                        <li class="subnav-item"><a href="{{ url('/tour/domestic') }}" class="subnav-link">Domestic</a>
+                        <li class="subnav-item"><a href="{{ url('/tour/domestic') }}" class="subnav-link">Nội Dịa</a>
                         </li>
-                        <li class="subnav-item"><a href="{{ url('/tour/foreign') }}" class="subnav-link">Foreign</a>
+                        <li class="subnav-item"><a href="{{ url('/tour/foreign') }}" class="subnav-link">Quốc Tế</a>
                         </li>
                     </ul>
                 </li>
@@ -153,10 +153,10 @@
                     <a href="javascript::void()" class="header-nav__link">Destination</a>
                 </li>
                 <li class="header-nav__item">
-                    <a href="{{ url('/blog') }}" class="header-nav__link">Blog</a>
+                    <a href="{{ url('/blog') }}" class="header-nav__link">Bài Viết</a>
                 </li>
                 <li class="header-nav__item">
-                    <a href="{{ url('/contact') }}" class="header-nav__link">Contact</a>
+                    <a href="{{ url('/contact') }}" class="header-nav__link">Liên Hệ</a>
                 </li>
                 <li class="header-nav__item">
                     <a href="{{ url('/about-us') }}" class="header-nav__link">About Us</a>
