@@ -4,8 +4,6 @@
 
 @section('content')
 
-
-
 @include('frontend.include.slider')
 
 @include('frontend.include.filter-offical')
@@ -21,8 +19,6 @@
 @include('frontend.include.new-tour')
 
 @include('frontend.include.location')
-
-<!-- @include('frontend.include.top-review') -->
 
 @include('frontend.include.blog')
 @endsection
