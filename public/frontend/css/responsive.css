@@ -243,6 +243,9 @@
          padding: 10px;
          background-color: #fff;
      }
+     .review__slide-title-location {
+        font-size: 4.5rem;   
+    }
 
  }
  /* PC  slow solution*/
@@ -262,5 +265,25 @@
      .hide-on-pc{
          display: none;
      }
+     .title-hot_tour-left__reverse::after {
+        content: " ";
+        position: absolute;
+        width: 92%;
+        height: 0;
+        top: 0;
+        right: 14px;
+        border-bottom: 25px solid var(--primary-color);
+        border-left: 25px solid transparent;
+         }
+    /* add more  */
+         .btn-read_more-icon{
+            margin-left: 57%;
+            margin-top: -6px;
+            font-size: 18px;
+        }
+        .video-review {
+         
+            -webkit-box-reflect: below 1px linear-gradient(transparent, transparent , rgba(0, 0, 0, 0.376));
+        }
 
  }

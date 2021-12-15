@@ -3,32 +3,28 @@
         <div class="grid wide">
             <div class="row">
                 <div class="col l-8 l-o-2 c-10 c-o-1">
-
                     <div class="title">
                         <div class="grid">
                             <div class="wrap-title">
                                 <div class="banner-content banner-content-choose">
-                                    <h2 class="banner-heading__medium banner-heading--color">Beauty of the world</h2>
-                                    <h1 class="banner-heading__big">Go & Discover</h1>
-                                    <p class="banner-text-small">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                        elit. Aene an commodo ligula eget dolor. Aenean massa. Cum sociis the</p>
+                                    <h2 class="banner-heading__medium banner-heading--color">Cảnh đẹp & Địa điểm</h2>
+                                    <h1 class="banner-heading__big">Vietnam Travel List</h1>
+                                    <p class="banner-text-small">Những danh lang thắng cảnh được nhiều du khách lựa chọn.
+                                        Những di cảnh được UNESCO vinh danh là di sản vật thể.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- video -->
+                  
                     <div class="video">
-                        <div class="video-frames js-video">
-                            <img src="{{ URL::asset('frontend/img/hoi-an-travel.jpg') }}" alt=""
-                                class="video-frames__imge" onclick="playVideo()">
-                            <span class="video-frames-button">
-                                <img src="{{ URL::asset('frontend/img/play-button.png') }}" alt=""
-                                    class="video-frames-button__play" onclick="playVideo()">
-                            </span>
+                            <!-- // video tự quay -->
+                            <div class="video-frames js-video">
+                                {{-- <iframe  width="" height="" src="" autoplay="1" title="YouTube video player" frameborder="0" allow="accelerometer; controls; clipboard-write; encrypted-media; gyroscope; picture-in-picture"  allowfullscreen></iframe> --}}
+                                <iframe class="responsive-iframe"
+                                    src="https://www.youtube.com/embed/Ilui-mb3sT0?autoplay=0&mute=1" frameborder="0"
+                                    allowfullscreen></iframe>
+                            </div>
                         </div>
-                    </div>
-
                 </div>
             </div>
         </div>

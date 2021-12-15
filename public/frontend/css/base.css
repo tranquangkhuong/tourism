@@ -703,7 +703,7 @@ html {
     white-space: nowrap;
     font-family: "Satisfy", cursive;
     font-size: 3.3rem;
-    text-shadow: 1px 2px #35232399;
+    text-shadow: 1px 2px #3a303099;
 }
 
 .banner-content .banner-heading__big {
@@ -715,8 +715,9 @@ html {
     line-height: 80px;
     margin: 10px 0;
     color: --color-heading-big;
-    text-shadow: 2px 3px #39bdc1;
+    text-shadow: 2px 3px #205f61;
 }
+
 
 .banner-content .banner-text-small {
     display: block;

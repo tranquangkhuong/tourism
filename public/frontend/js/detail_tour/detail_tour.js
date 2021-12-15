@@ -20,18 +20,12 @@ let section_height = section.offsetHeight;
 
 window.addEventListener("scroll", () => {
     let scroll = window.pageYOffset;
-    if (scroll > 400 || scroll == "undefined") {
-        // header.style.display = "none";
-        headerDetailBlog.classList.add("detail-blog");
-    } else {
-        headerDetailBlog.classList.remove("detail-blog");
-        // header.style.display = "block";
+    
         translate.forEach((element) => {
             let speed = element.dataset.speed;
             element.style.transform = `translateY(${scroll * speed}px)`;
             big_title.style.opacity = -scroll / (header_height / 2) + 1;
         });
-    }
 });
 // =========================================
 $(function() {

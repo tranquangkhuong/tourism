@@ -68,44 +68,6 @@
             form.submit();
         }
     });
-
-    // function submitRegister () {
-    //     $.ajax({
-    //         type: "post",
-    //         url: "/register",
-    //         data: {
-    //             _token: $("input[name='_token']").val(),
-    //             name: $("input[name='name']").val(),
-    //             email: $("input[name='email']").val(),
-    //             password: $("input[name='password']").val(),
-    //             re_password: $("textarea[name='re_password']").val(),
-    //         },
-    //         dataType: 'json',
-    //         success: function (response) {
-    //             if ($.isEmptyObject(response.error)) {
-    //                 printSuccessAlert(response.success);
-    //             } else {
-    //                 printErrorMsg(response.error);
-    //             }
-    //         }
-    //     });
-    //  }
-
-    // function printSuccessAlert (msg) {
-    //     Swal.fire({
-    //         title: 'Success!',
-    //         text: msg,
-    //         imageUrl: 'https://us.123rf.com/450wm/tashatuvango/tashatuvango1603/tashatuvango160301001/53290054-keys-to-success-concept-on-golden-keychain-over-black-wooden-background-closeup-view-selective-focus.jpg?ver=6',
-    //         imageAlt: 'Successful registration',
-    //     });
-    // }
-    // function printErrorMsg (msg) {
-    //     $(".print-error-msg").find("ul").html('');
-    //     $(".print-error-msg").css('display','block');
-    //     $.each(msg, function(key, value) {
-    //         $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
-    //     });
-    // }
 });
 </script>
 <script>
@@ -132,14 +94,52 @@
 <!-- Jquery Validation -->
 <script src="{{ URL::asset('backend/jquery-validation-1.19.3/dist/jquery.validate.min.js') }}"></script>
 <script src="{{ URL::asset('backend/jquery-validation-1.19.3/dist/additional-methods.min.js') }}"></script>
-
+<!-- vietour js -->
 <script src="{{ URL::asset('frontend/js/main.js') }}"></script>
 <script src="{{ URL::asset('frontend/js/detail_tour/detail_tour.js') }}"></script>
 <script src="{{ URL::asset('frontend/js/contact_us_js/contact_us.js') }}"></script>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD54ImUCEQ9aYBDgXVomjGIBdqdX93k3Z0&callback=initMap&callback=initMap">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript" src="{{ URL::asset('frontend/js/sweetalert2.all.min.js') }}"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script> -->
+<script type="text/javascript">
+  // -----------------update javascipt---------------------
+// hàm auto slile show.
+  actionSlideShow({
+     form:'#form1',
+     elementShowClass:'.container__slide-item',
+     iterationTime :8000,
+  })
+
+  actionSlideShow({
+     form:'#form2',
+     elementShowClass:'.container__slide-item',
+     iterationTime :9000,
+  })
+
+  actionSlideShow({
+     form:'#form3',
+     elementShowClass:'.container__slide-item',
+     iterationTime :11000,
+  })
+
+//   Effect...
+  effectImg({
+      listItemImage:'.action-img',
+      previewBox:'.previews-img',
+      prevewImg:'.show-img-detai-tour'
+  })
+  effectImg({
+      listItemImage:'.action-img1',
+      previewBox:'.previews-img',
+      prevewImg:'.show-img-detai-tour'
+  })
+</script>
+
+
+
+
 
 <script>
     const buyBtns = document.querySelectorAll('.js-account')

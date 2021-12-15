@@ -5,6 +5,235 @@ $(window).on('load', function() {
     $(".main").fadeIn(1000);
 });
 
+//=======================img show list===============
+
+function actionSlideShow(options) {
+    let imgIndex =2;
+    const formElement =document.querySelector(options.form);
+    if(formElement){
+        const slideImgs=formElement.querySelectorAll(options.elementShowClass);
+        function slideShow() {
+                const slideImgFirst = formElement.querySelector(`${options.elementShowClass}.first`);
+                const slideImgSecond = formElement.querySelector(`${options.elementShowClass}.second`);
+                const slideImgThird = slideImgs[imgIndex]
+                const slideImgFourth = slideImgs[imgIndex === slideImgs.length -1 ?  0 : imgIndex + 1]
+                slideImgFourth.classList.replace('fourth', 'third')
+                slideImgThird.classList.replace('third', 'second')
+                slideImgSecond.classList.replace('second', 'first')
+                slideImgFirst.classList.replace('first', 'fourth')
+                imgIndex++;
+                if(imgIndex >= slideImgs.length) { //imgIndex: 0-7, slideImgs.length: 8
+                    imgIndex = 0;
+                }
+                setTimeout(slideShow,`${options.iterationTime}`)
+            }
+            slideShow();
+        
+    }
+}
+
+
+$('#list-item__showlisttour_1').slick({
+
+    cssEase: 'linear',
+    infinite: true,
+    arrows: false,
+    initialSlide: 0,
+    pauseOnFocus: true, 
+    speed: 1000,
+    autoplay: true,
+    slidesToShow: 3,
+    slidesToScroll:3,
+    cssEase: 'linear',
+    autoplaySpeed: 6000,
+    touchMove: true,
+    responsive: [{
+            breakpoint: 1324,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                infinite: true,
+                speed: 1000,
+            }
+        },
+        {
+            breakpoint: 1025,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: false,
+                speed: 1000,
+                dots:true
+            }
+        },
+        {
+            breakpoint: 739,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                speed: 1000,
+                dots:true
+            }
+        },
+        {
+            breakpoint: 440,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                speed: 1000,
+                dots:true
+            }
+        }
+
+    ]
+});
+$('#list-item__showlisttour_2').slick({
+    infinite: true,
+    arrows: false,
+    initialSlide: 0,
+    pauseOnFocus: true, 
+    speed: 1000,
+    autoplay: true,
+    slidesToShow: 3,
+    slidesToScroll:3,
+    cssEase: 'linear',
+    autoplaySpeed: 8000,
+    touchMove: true,
+    responsive: [{
+            breakpoint: 1324,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                infinite: true,
+                speed: 1000,
+            }
+        },
+        {
+            breakpoint: 1025,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: false,
+                speed: 1000,
+                dots:true
+            }
+        },
+        {
+            breakpoint: 739,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                speed: 1000,
+                dots:true
+            }
+        },
+        {
+            breakpoint: 440,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                speed: 1000,
+                dots:true,
+            }
+        }
+
+    ]
+});
+$('#list-item__showlisttour').slick({
+    infinite: true,
+    arrows: false,
+    initialSlide: 0,
+    pauseOnFocus: true, 
+    speed: 1000,
+    autoplay: true,
+    slidesToShow: 3,
+    slidesToScroll:3,
+    cssEase: 'linear',
+    autoplaySpeed: 9000,
+    touchMove: true,
+    responsive: [{
+            breakpoint: 1324,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                infinite: true,
+                speed: 1000,
+            }
+        },
+        {
+            breakpoint: 1025,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: false,
+                speed: 1000,
+                dots:true
+            }
+        },
+        {
+            breakpoint: 739,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                speed: 1000,
+                dots:true
+            }
+        },
+        {
+            breakpoint: 440,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                speed: 1000,
+                dots:true
+            }
+        }
+
+    ]
+});
+
+$('#form1').css({"margin-left":"-200%"});   
+$('.listItemHot1').css({"margin-left":"115%","transition": "all 2s",});
+
+window.addEventListener('scroll', () => {
+    const listItemHot=$('#form1');
+    const listItemHot1=$('.listItemHot1');
+    const listItemHot2Ringht=$('#form2');
+    const listItemHot2Left=$('.listItemHot2');
+    const listItemHot3Ringht=$('#form3');
+    const listItemHot3Left=$('.listItemHot3');
+
+    let scrolLength = window.pageYOffset;
+    if(scrolLength>300){
+        listItemHot1.css({"margin-left":"0","transition": "all 1.5s"});
+        listItemHot.css({"margin-left":"0","transition": "all 1s"});
+    }else{
+        listItemHot.css({"margin-left":"-200%","transition": "all 2s",});
+        listItemHot1.css({"margin-left":"115%","transition": "all 2s",});
+    }
+    if(scrolLength>650){
+        listItemHot2Ringht.css({"margin-left":"0","transition": "all 1.5s"});
+        listItemHot2Left.css({"right":"0","transition": "all 1s"});
+    }
+    else{
+        listItemHot2Ringht.css({"margin-left":"150%","transition": "all 2s",});
+        listItemHot2Left.css({"right":"115%","transition": "all 2s",});
+    }
+    if(scrolLength>1050){
+        listItemHot3Ringht.css({"margin-left":"0","transition": "all 1.5s"});
+        listItemHot3Left.css({"margin-left":"0","transition": "all 1s"});
+    }
+    else{
+        listItemHot3Ringht.css({"margin-left":"-200%","transition": "all 2s",});
+        listItemHot3Left.css({"margin-left":"115%","transition": "all 2s",});
+    }
+});
+
+
+// </img show list>
+var btn = $('#button-back-top');
+
+
 
 var btn = $('#button-back-top');
 
