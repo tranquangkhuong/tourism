@@ -50,11 +50,11 @@
                     <!-- .card-body -->
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="inputName">Name</label>
+                            <label for="inputName">Tên Tag</label>
                             <input type="text" name="name" id="inputName" class="form-control" value="{{ $tag->name }}">
                         </div>
                         <div class="form-group">
-                            <label for="inputCreatedAt">Created at</label>
+                            <label for="inputCreatedAt">Ngày tạo</label>
                             <input type="" id="inputCreatedAt" class="form-control" disabled
                                 value="{{ date('m-d-Y H:i:s', strtotime($tag->created_at)) }}">
                         </div>

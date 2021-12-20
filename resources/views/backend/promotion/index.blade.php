@@ -17,13 +17,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Promotion</h1>
+                <h1 class="m-0">Khuyến mại</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item active">Promotion</li>
+                    <li class="breadcrumb-item active">Khuyến mại</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" id="search" class="form-control float-right" placeholder="Search">
+                            <input type="text" id="search" class="form-control float-right" placeholder="Tìm kiếm">
                             <div class="input-group-append float-right">
                                 <button type="button" class="btn btn-default"><i class="fas fa-search"></i></button>
                             </div>
@@ -68,19 +68,19 @@
                             ID
                         </th>
                         <th style="width: 20%">
-                            Content
+                            Tiêu đề
                         </th>
                         <th style="width: 10%">
-                            Start Date
+                            Ngày bắt đầu
                         </th>
                         <th style="width: 10%">
-                            End Date
+                            Ngày kết thúc
                         </th>
                         <th style="width: 25%">
-                            Discount
+                            Số  lượng ưu đãi
                         </th>
                         <th style="width: 10%">
-                            Amount
+                            Số lượng mã
                         </th>
                         <th style="width: 15%">
                             Action

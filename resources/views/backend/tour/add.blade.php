@@ -40,8 +40,8 @@
             <!-- .card -->
             <div class="card card-primary">
                 <!-- .card-header -->
-                <div class="card-header">
-                    <h3 class="card-title">Tạo thêm tour mới *</h3>
+                <div class="card-header text-center">
+                    <h3 class="card-title ">Tạo thêm tour mới *</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -54,8 +54,14 @@
                     @csrf
                     <!-- .card-body -->
                     <div class="card-body">
+                        <!-- name tour. -->
+                        <div class="form-group"style="margin-bottom:50px">
+                            <label for="inputName">Nhập tên tour *</label>
+                            <input type="text" id="inputName" name="name" class="form-control"
+                                placeholder="Nhập tên tour ..." style="height:50px" required>
+                        </div>
                         <div class="row">
-                            <div class="col-md-2" >
+                            <div class="col-md-3" >
                                 <div class="form-group text-center"style="margin-bottom:50px">
                                     <label for="exampleInputFile">Ảnh tour</label>
                                         <div class="input-group">
@@ -77,42 +83,96 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label for="inputStatus">Trạng thái:</label>
-                                    <select id="inputStatus" name="display" class="form-control custom-select">
-                                        <option selected="" value="1">Hiển thị</option>
-                                        <option value="0">Ẩn</option>
-                                    </select>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Giá:(người từ 45 tuổi trở lên)*</label>
+                                            <input type="number" name="adult_price" min="0" value="0" class="form-control" 
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Giá:(người từ 18 tuổi đến 44 tuổi)</label>
+                                            <input type="number" name="youth_price" min="0" value="0" class="form-control"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Giá:(trẻ cao:120cm trở xuống)</label>
+                                            <input type="number" name="child_price" min="0" value="0" class="form-control"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Giá:(em bé)</label>
+                                            <input type="number" name="baby_price" min="0" value="0" class="form-control"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="">Số lượng vé:</label>
+                                            <input type="number" name="slot" class="form-control" min="0" value="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <label for="">Những ngày khởi hành:</label>
+                                            <input type="text" name="other_day" class="form-control date"
+                                                placeholder="Ngày khởi hành khác"  autocomplete="off" required>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="inputName">Nhập tên tour:</label>
-                            <input type="text" id="inputName" name="name" class="form-control"
-                                placeholder="Nhập tên tour" required>
+                        <div class="row" >
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for=""> Địa Điểm xuất phát *</label>
+                                    <input type="text" name="departure_location" class="form-control"
+                                        placeholder="Địa điểm xuất phát" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Điểm đến *</label>
+                                    <input type="text" name="destination" class="form-control" placeholder="Đích đến"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:25px">
+                            <label for="">Hành trình:</label>
+                            <input type="text" name="itinerary" class="form-control" placeholder="Hành trình" required>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="selectArea">Lựa chọn vùng miền:</label>
-                                    <select name="area_id" id="selectArea" class="form-control custom-select" required>
-                                        <option value="">-- Choose an area --</option>
-                                        @foreach ($areas as $area)
-                                        <option value="{{ $area->id }}">{{ $area->name }}</option>
+                                    <label for="selectLocation">Địa điểm *</label>
+                                    <select name="location_id" id="selectLocation" class="form-control custom-select"
+                                        required>
+                                        <option value="">-- Thuộc Địa điểm du lịch --</option>
+                                        @foreach ($locations as $location)
+                                        <option value="{{ $location->id }}">{{ $location->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="selectLocation">Địa điểm:</label>
-                                    <select name="location_id" id="selectLocation" class="form-control custom-select"
-                                        required>
-                                        <option value="">-- Choose an location --</option>
-                                        @foreach ($locations as $location)
-                                        <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                    <label for="selectArea">Thuộc khu vực *</label>
+                                    <select name="area_id" id="selectArea" class="form-control custom-select" required>
+                                        <option value="">-- Lựa chọn khu vưc --</option>
+                                        @foreach ($areas as $area)
+                                        <option value="{{ $area->id }}">{{ $area->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -122,73 +182,6 @@
                             <label for="textDescription">Miêu tả:</label>
                             <textarea id="textDescription" name="description" class="form-control" rows="4"
                                 placeholder="Nhập mô tả ngẵn cho tour" required></textarea>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Điểm xuất phát:</label>
-                                    <input type="text" name="departure_location" class="form-control"
-                                        placeholder="Địa điểm xuất phát" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Đích đến:</label>
-                                    <input type="text" name="destination" class="form-control" placeholder="Đích đến"
-                                        required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Hành trình:</label>
-                            <input type="text" name="itinerary" class="form-control" placeholder="Hành trình" required>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="">Số lượng vé:</label>
-                                    <input type="number" name="slot" class="form-control" min="0" value="0" required>
-                                </div>
-                            </div>
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label for="">Những ngày khởi hành:</label>
-                                    <input type="text" name="other_day" class="form-control date"
-                                        placeholder="Ngày khởi hành khác"  autocomplete="off" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Giá:(người từ 45 tuổi trở lên)</label>
-                                    <input type="number" name="adult_price" min="0" value="0" class="form-control" 
-                                        required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Giá:(người từ 18 tuổi đến 44 tuổi)</label>
-                                    <input type="number" name="youth_price" min="0" value="0" class="form-control"
-                                        required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Giá:(trẻ cao:120cm trở xuống)</label>
-                                    <input type="number" name="child_price" min="0" value="0" class="form-control"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Giá:(em bé)</label>
-                                    <input type="number" name="baby_price" min="0" value="0" class="form-control"
-                                        required>
-                                </div>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
@@ -224,7 +217,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group" >
                                     <label for="include">Dịch vụ được ưu đãi:</label>
                                     <select name="include[]" id="include" class="form-control select2tagging" multiple
                                         data-placeholder="Enter more include">
@@ -240,13 +233,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-10">
+                               
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="inputStatus">Trạng thái:</label>
+                                    <select id="inputStatus" name="display" class="form-control custom-select">
+                                        <option selected="" value="1">Hiển thị</option>
+                                        <option value="0">Ẩn</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.card-body -->
 
                     <!-- .card-footer -->
                     <div class="card-footer">
-                        <a href="{{ route('admin.tour.index') }}" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-success float-right">Save</button>
+                        <a href="{{ route('admin.tour.index') }}" class="btn btn-secondary">Thoát</a>
+                        <button type="submit" class="btn btn-success float-right">Tạo</button>
                     </div>
                     <!-- /.card-footer -->
                 </form>

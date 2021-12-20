@@ -16,14 +16,14 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Location</h1>
+                <h1 class="m-0">Cập nhật địa điểm</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item active"><a href="{{ route('admin.location.index') }}">Location</a></li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active"><a href="{{ route('admin.location.index') }}">Địa điểm</a></li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -41,7 +41,7 @@
 
                 <!-- .card-header -->
                 <div class="card-header">
-                    <h3 class="card-title">Edit Location</h3>
+                    <h3 class="card-title">Chỉnh sửả địa điểm</h3>
                 </div>
                 <!-- /.card-header-->
 
@@ -50,14 +50,14 @@
                     <!-- .card-body -->
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Tên địa điểm</label>
                             <input class="form-control" type="text" name="name" id="name"
                                 placeholder="Nhập tên Địa điểm" required="" value="{{ $location->name }}">
                         </div>
                         <div class="form-group">
-                            <label for="selectArea">Area</label>
+                            <label for="selectArea">Thuộc khu vực</label>
                             <select name="area_id" id="selectArea" class="form-control custom-select" required>
-                                <option value="">-- Choose an Area --</option>
+                                <option value="">-- Chọn khu vực --</option>
                                 @foreach ($areas as $item)
                                 <option {{ $location->area_id === $item->id ? 'selected' : '' }}
                                     value="{{ $item->id }}">{{ $item->name }}</option>
@@ -65,7 +65,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Nội dung</label>
                             <textarea name="description" id="description" class="form-control" rows="9"
                                 placeholder="Nhập mô tả về khu vực">{{ $location->description }}</textarea>
                         </div>
@@ -79,8 +79,8 @@
 
                     <!-- .card-footer -->
                     <div class="card-footer">
-                        <a href="{{ route('admin.location.index') }}" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-success float-right">Save</button>
+                        <a href="{{ route('admin.location.index') }}" class="btn btn-secondary">Thoát</a>
+                        <button type="submit" class="btn btn-success float-right">Cập nhật</button>
                     </div>
                     <!-- /.card-footer -->
                 </form>

@@ -16,13 +16,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Add Promotion </h1>
+                <h1 class="m-0">Tạo khuyến mại </h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.promotion.index') }}">Promotion</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.promotion.index') }}">Khuyến mại</a></li>
                     <li class="breadcrumb-item active">Add</li>
                 </ol>
             </div><!-- /.col -->
@@ -40,7 +40,7 @@
             <div class="card card-primary">
                 <!-- .card-header -->
                 <div class="card-header">
-                    <h3 class="card-title">Create new promotion</h3>
+                    <h3 class="card-title">Tạo khuyến mại mới</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -54,12 +54,12 @@
                     <!-- .card-body -->
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="inputContent">Content</label>
+                            <label for="inputContent">Tên nội dung khuyến mại</label>
                             <input type="text" id="inputContent" name="content" class="form-control"
                                 placeholder="Enter the content of the promotion">
                         </div>
                         <div class="form-group">
-                            <label for="inputCode">Code
+                            <label for="inputCode"> Mã Code
                                 <i class="far fa-question-circle"
                                     title="Mã code viết liền không dấu, có phân biệt chữ hoa và chữ thường"
                                     style="opacity: .3; font-size: 12px"></i>
@@ -70,28 +70,28 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="inputStartDate">Start Date</label>
+                                    <label for="inputStartDate">Ngày bắt đầu khuyến mại</label>
                                     <input type="date" name="start_date" id="inputStartDate" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="inputEndDate">End Date</label>
+                                    <label for="inputEndDate">Ngày kết thúc</label>
                                     <input type="date" name="end_date" id="inputEndDate" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputNumber">Number</label>
+                            <label for="inputNumber">Số lượng </label>
                             <input type="number" name="number" id="inputNumber" class="form-control" min="0" value="0">
                         </div>
                         <div class="form-group">
-                            <label for="inputType">Type</label>
+                            <label for="inputType">Định dạng</label>
                             <select id="inputType" name="type" class="form-control custom-select">
                                 <option selected="" value="VND">VND</option>
                                 <option value="%">%</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="inputAmount">Amount</label>
+                            <label for="inputAmount">Số lượng mã</label>
                             <input type="number" name="amount" id="inputAmount" class="form-control" min="0" value="0">
                         </div>
                     </div>
@@ -99,8 +99,8 @@
 
                     <!-- .card-footer -->
                     <div class="card-footer">
-                        <a href="{{ route('admin.promotion.index') }}" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-success float-right">Save</button>
+                        <a href="{{ route('admin.promotion.index') }}" class="btn btn-secondary">Thoát</a>
+                        <button type="submit" class="btn btn-success float-right">Tạo</button>
                     </div>
                     <!-- /.card-footer -->
                 </form>

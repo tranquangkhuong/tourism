@@ -55,7 +55,7 @@
   
     // Summernote
     $('#summernote').summernote({
-        placeholder: 'Hello stand alone ui',
+        placeholder: 'Viết nội dung tại đây...',
         tabsize: 2,
         height: 220,
         toolbar: [

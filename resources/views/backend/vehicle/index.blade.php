@@ -17,13 +17,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Vehicle</h1>
+                <h1 class="m-0">Phương tiện </h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item active">Vehicle</li>
+                    <li class="breadcrumb-item active">Phương tiện</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" id="search" class="form-control float-right" placeholder="Search">
+                            <input type="text" id="search" class="form-control float-right" placeholder="Tìm kiếm">
                             <div class="input-group-append float-right">
                                 <button type="button" class="btn btn-default btn-clear-search"><i
                                         class="fas fa-search"></i></button>
@@ -70,10 +70,10 @@
                             ID
                         </th>
                         <th style="width: 40%">
-                            Name
+                            Tên phương tiện
                         </th>
                         <th style="20">
-                            Date
+                            Ngày tạo
                         </th>
                         <th style="width: 20%">
                             Action
@@ -120,7 +120,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add Vehicle</h4>
+                <h4 class="modal-title">Thêm phương tiện</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>

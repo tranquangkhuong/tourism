@@ -16,14 +16,14 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Area</h1>
+                <h1 class="m-0">Cập nhật khu vực</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item active"><a href="{{ route('admin.area.index') }}">Area</a></li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active"><a href="{{ route('admin.area.index') }}">Khu vực</a></li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -41,7 +41,7 @@
 
                 <!-- .card-header -->
                 <div class="card-header">
-                    <h3 class="card-title">Edit Area</h3>
+                    <h3 class="card-title">Chỉnh sửa khu vực</h3>
                 </div>
                 <!-- /.card-header-->
 
@@ -50,17 +50,17 @@
                     <!-- .card-body -->
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="inputName">Name</label>
+                            <label for="inputName">Tên khu vực</label>
                             <input type="text" name="name" id="inputName" class="form-control"
                                 value="{{ $area->name }}">
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Nội dung miêu tả</label>
                             <textarea name="description" id="description" class="form-control" rows="15"
                                 placeholder="Nhập mô tả về khu vực">{{ $area->description }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label for="inputStatus">Domestic</label>
+                            <label for="inputStatus">Khu vực thuộc</label>
                             <select id="inputStatus" name="domestic" class="form-control custom-select">
                                 <option {{ $area->domestic === 1 ? 'selected' : '' }} value="1">Trong nước</option>
                                 <option {{ $area->domestic !== 1 ? 'selected' : '' }} value="0">Nước ngoài</option>
@@ -76,8 +76,8 @@
 
                     <!-- .card-footer -->
                     <div class="card-footer">
-                        <a href="{{ route('admin.area.index') }}" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-success float-right">Save</button>
+                        <a href="{{ route('admin.area.index') }}" class="btn btn-secondary">Thoát</a>
+                        <button type="submit" class="btn btn-success float-right">Cập nhật</button>
                     </div>
                     <!-- /.card-footer -->
                 </form>
