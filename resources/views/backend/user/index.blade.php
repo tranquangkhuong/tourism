@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">User</h1>
+                <h1 class="m-0">Khách hàng</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" id="search" class="form-control float-right" placeholder="Search">
+                                <input type="text" id="search" class="form-control float-right" placeholder="Tìm kiếm">
                                 <div class="input-group-append float-right">
                                     <button type="button" class="btn btn-default"><i class="fas fa-search"></i></button>
                                 </div>
@@ -65,8 +65,8 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Image</th>
-                            <th>Name</th>
+                            <th>Ảnh đại diện</th>
+                            <th>Tên khách hàng</th>
                             <th>Email</th>
                             <th>Action</th>
                         </tr>

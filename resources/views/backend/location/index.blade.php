@@ -17,13 +17,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Location</h1>
+                <h1 class="m-0">Địa điểm</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item active">Location</li>
+                    <li class="breadcrumb-item active">Địa điểm</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" id="search" class="form-control float-right" placeholder="Search">
+                            <input type="text" id="search" class="form-control float-right" placeholder="Tìm kiếm">
                             <div class="input-group-append float-right">
                                 <button type="button" class="btn btn-default"><i class="fas fa-search"></i></button>
                             </div>
@@ -65,13 +65,13 @@
                             ID
                         </th>
                         <th style="width: 30%">
-                            Name
+                            Tên Địa Điểm
                         </th>
                         <th style="width: 20%">
-                            Area
+                            Thuộc khu vực
                         </th>
                         <th style="width: 15%">
-                            Date
+                            Ngày tạo
                         </th>
                         <th style="width: 15%">
                             Action
@@ -122,7 +122,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add Location</h4>
+                <h4 class="modal-title">Tạo điạ điểm du lịch</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -131,28 +131,28 @@
                 <form id="form-add" action="{{  route('admin.location.store')  }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Tên Địa điểm</label>
                         <input class="form-control" type="text" name="name" id="name" placeholder="Nhập tên Địa điểm"
                             required="">
                     </div>
                     <div class="form-group">
-                        <label for="selectArea">Area</label>
+                        <label for="selectArea">Thuộc khu vực</label>
                         <select name="area_id" id="selectArea" class="form-control custom-select" required>
-                            <option value="">-- Choose an Area --</option>
+                            <option value="">-- Chọn khu vực --</option>
                             @foreach ($areas as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
+                        <label for="description">Nội dung</label>
                         <textarea name="description" id="description" class="form-control" rows="9"
                             placeholder="Nhập mô tả về khu vực"></textarea>
                     </div>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-primary">Lưu</button>
+                <button type="submit" class="btn btn-primary">Tạo</button>
             </div>
             </form>
         </div>

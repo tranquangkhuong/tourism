@@ -85,7 +85,7 @@
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="{{ route('admin.tour.index') }}" class="small-box-footer small-box_link">More info <i
+                    <a href="{{ route('admin.tour.index') }}" class="small-box-footer small-box_link">Xem chi tiết   <i
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-                    <a href="{{ route('admin.booking.index') }}" class="small-box-footer">More info <i
+                    <a href="{{ route('admin.booking.index') }}" class="small-box-footer">Xem chi tiết<i
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="{{ route('admin.user.index') }}" class="small-box-footer">More info <i
+                    <a href="{{ route('admin.user.index') }}" class="small-box-footer">Xem chi tiết<i
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
@@ -131,7 +131,7 @@
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="{{ route('admin.article.index') }}" class="small-box-footer">More info <i
+                    <a href="{{ route('admin.article.index') }}" class="small-box-footer">Xem chi tiết<i
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>

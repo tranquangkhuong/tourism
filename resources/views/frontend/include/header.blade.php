@@ -77,10 +77,10 @@
                     </div>
                 </div>
                 @endif
-                <a href="javascript::void()" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="javascript::void()" class="social-link"><i class="fab fa-pinterest-p"></i></a>
-                <a href="javascript::void()" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                <a href="javascript::void()" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                <a href="" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="" class="social-link"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="language hide-on-mobile">
                 <a href="javascript::void()" class="language-link active">Tiếng Việt</a>

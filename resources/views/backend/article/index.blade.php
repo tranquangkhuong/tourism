@@ -17,13 +17,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Article</h1>
+                <h1 class="m-0">Quản lý bài viết</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item active">Article</li>
+                    <li class="breadcrumb-item active">Bài viết</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" id="search" class="form-control float-right" placeholder="Search">
+                            <input type="text" id="search" class="form-control float-right" placeholder="Tìm kiếm">
                             <div class="input-group-append float-right">
                                 <button type="button" class="btn btn-default"><i class="fas fa-search"></i></button>
                             </div>
@@ -68,16 +68,16 @@
                             ID
                         </th>
                         <th style="width: 30%">
-                            Title
+                            Tiêu đề
                         </th>
                         <th style="width: 20%">
-                            Writer
+                            Người tạo bài
                         </th>
                         <th style="width: 10%">
-                            Display
+                            Trạng thái
                         </th>
                         <th style="width: 15%">
-                            Updated at
+                            Thời gian tạo
                         </th>
                         <th style="width: 15%">
                             Action

@@ -16,14 +16,14 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Article</h1>
+                <h1 class="m-0">Cập nhật bài viết</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.article.index') }}">Article</a></li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -41,7 +41,7 @@
 
                 <!-- .card-header -->
                 <div class="card-header">
-                    <h3 class="card-title">Edit Article</h3>
+                    <h3 class="card-title">Cập nhật bài viết</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -55,26 +55,34 @@
                     @csrf
                     <!-- .card-body -->
                     <div class="card-body">
-                        <div class="form-group">
-                            <label for="exampleInputFile">Image</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">Upload</span>
+                        <div class="form-group d-flex justify-content-center">
+                           <div class="form-group text-center"style="margin-bottom:50px">
+                                <label for="exampleInputFile">Ảnh tiêu đề</label>
+                                    <div class="input-group">
+                                    <label class="show-img_add" for="exampleInputFile" style="width:100%;height:100%"> 
+                                        <div class="text-center" width="100%">
+                                            <div class="img-tour_add disabled" style="height:300px;position: inherit;">
+                                                <div class="img-tour_add-show">
+                                                        <img  src="" alt="" id="image" width="100%" height="100%">
+                                                </div>
+                                                <span class="img-tour_link"> </span>
+                                            </div>
+                                            <div class="img-tour_file ">
+                                                <img src="{{ $article->image_path }}" class="fas fa-plus icon-add_tour" id="show_edit-img" alt="tour img" style="height:350px">   
+                                                <input type="file" class="custom-file-input" id="exampleInputFile" onChange="chooseFile(this)" name="image" accept="image/gif,image/jpeg,image/png"> 
+                                            </div>
+                                        </div>
+                                    </label>
                                 </div>
                             </div>
-                            <span class="help-text">{{ $article->image_path }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="inputName">Title</label>
+                            <label for="inputName">Tiêu đề</label>
                             <input type="text" id="inputName" name="title" class="form-control"
                                 placeholder="Enter article title" value="{{ $article->title }}">
                         </div>
                         <div class="form-group">
-                            <label for="inputDescription">Content</label>
+                            <label for="inputDescription">Nội dung</label>
                             <textarea id="summernote" name="content"
                                 class="form-control">{{ $article->content }}</textarea>
                         </div>
@@ -90,8 +98,8 @@
 
                     <!-- .card-footer -->
                     <div class="card-footer">
-                        <a href="{{ route('admin.article.index') }}" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-success float-right">Save</button>
+                        <a href="{{ route('admin.article.index') }}" class="btn btn-secondary">Thoát</a>
+                        <button type="submit" class="btn btn-success float-right">Cập nhật</button>
                     </div>
                     <!-- /.card-footer -->
                 </form>

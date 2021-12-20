@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit User</h1>
+                <h1 class="m-0">Chỉnh sửa thông tin</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -41,7 +41,7 @@
                 <div class="card card-primary">
                     <!-- .card-header -->
                     <div class="card-header">
-                        <h3 class="card-title">Edit user</h3>
+                        <h3 class="card-title">Cập nhật thông tin</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                 <i class="fas fa-minus"></i>
@@ -66,7 +66,7 @@
                                     placeholder="Email" required value="{{ $user->email }}">
                             </div>
                             <p class="form-text text-muted">
-                                Default password is "123456".
+                                Tài khoản mặc định là: "123456".
                             </p>
                             <div class="form-group">
                                 <label for="inputPhone">Phone</label>
@@ -83,8 +83,8 @@
 
                         <!-- .card-footer -->
                         <div class="card-footer">
-                            <a href="{{ route('admin.user.index') }}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-success float-right">Save</button>
+                            <a href="{{ route('admin.user.index') }}" class="btn btn-secondary">Thoát</a>
+                            <button type="submit" class="btn btn-success float-right">Cập nhật</button>
                         </div>
                         <!-- /.card-footer -->
                     </form>

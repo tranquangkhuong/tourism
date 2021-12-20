@@ -17,13 +17,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Contact</h1>
+                <h1 class="m-0">Liên hệ</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item active">Contact</li>
+                    <li class="breadcrumb-item active">Liên hệ</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" id="search" class="form-control float-right" placeholder="Search">
+                            <input type="text" id="search" class="form-control float-right" placeholder="Tìm kiếm">
                             <div class="input-group-append float-right">
                                 <button type="button" class="btn btn-default"><i class="fas fa-search"></i></button>
                             </div>
@@ -66,10 +66,10 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Tên địa điểm</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -115,7 +115,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add Contact</h4>
+                <h4 class="modal-title">Thêm mới liên hệ</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -126,7 +126,7 @@
                     {{-- <div class="row">
                         <div class="col-12"> --}}
                             <div class="form-group">
-                                <label for="">Name</label>
+                                <label for="">Tên </label>
                                 <input class="form-control" type="text" name="name" id="name" placeholder="Nhập tên tag"
                                     required="">
                             </div>
@@ -134,7 +134,7 @@
                         </div>
                     </div> --}}
                     <div class="form-group">
-                        <label for="my-textarea">Info</label>
+                        <label for="my-textarea">Thông tin</label>
                         <textarea id="my-textarea" class="form-control" name="info" rows="3"></textarea>
                     </div>
                     <div class="form-group">
@@ -143,18 +143,18 @@
                             required="">
                     </div>
                     <div class="form-group">
-                        <label for="">Phone</label>
+                        <label for="">Số điện thoại</label>
                         <input class="form-control" type="text" name="phone" id="" placeholder="0123456789" required="">
                     </div>
                     <div class="form-group">
-                        <label for="">Address</label>
+                        <label for="">Địa chỉ liên hệ</label>
                         <input class="form-control" type="text" name="address" id=""
                             placeholder="22, Nhân Mỹ, Mỹ Đình, Nam Từ Liêm, Hà Nội" required="">
                     </div>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-primary">Lưu</button>
+                <button type="submit" class="btn btn-primary">Tạo</button>
             </div>
             </form>
         </div>

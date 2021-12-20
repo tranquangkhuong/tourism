@@ -2601,3 +2601,17 @@ li.slick-active button {
     50%  {color: rgb(0, 255, 234);}
     100% {color: #fff;}
   }
+
+.map_page{
+    max-height: 250px;
+}
+.abc i {
+    font-size:20px;
+    margin-top:12px
+}
+#post-stamp{
+    background: url("../img/home-1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+}

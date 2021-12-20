@@ -69,10 +69,10 @@
                             ID
                         </th>
                         <th style="width: 40%">
-                            Name
+                            Tên Tag
                         </th>
                         <th style="20">
-                            Date
+                            Ngày Tạo 
                         </th>
                         <th style="width: 20%">
                             Action

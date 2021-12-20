@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Change Password</h1>
+                <h1 class="m-0">Đổi mật khẩu</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -30,7 +30,7 @@
         <!-- Default box -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Change Password</h3>
+                <h3 class="card-title">Đặt lại mật khẩu</h3>
             </div>
             <form action="{{ url('/admin/update-password') }}" method="post">
                 @csrf
@@ -51,24 +51,24 @@
                     @endif
 
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Mật khẩu cũ</label>
                         <input type="password" name="password" id="password" class="form-control" required
                             placeholder="Nhập mật khẩu hiện tại">
                     </div>
                     <div class="form-group">
-                        <label for="newPassword">New Password</label>
+                        <label for="newPassword">Mật khẩu mới</label>
                         <input type="password" name="new_password" id="newPassword" class="form-control" required
                             placeholder="Nhập mật khẩu mới">
                     </div>
                     <div class="form-group">
-                        <label for="rePassword">ReNew Password</label>
+                        <label for="rePassword">Nhập lại mật khẩu mới</label>
                         <input type="password" name="re_new_password" id="rePassword" class="form-control" required
                             placeholder="Nhập lại mật khẩu mới">
                     </div>
                 </div>
                 <div class="card-footer">
                     <a href="{{ url('/admin/account') }}" class="btn btn-sm btn-secondary">Back to My Account</a>
-                    <button type="submit" class="btn btn-sm btn-success float-right">Update</button>
+                    <button type="submit" class="btn btn-sm btn-success float-right">Cập nhật</button>
                 </div>
             </form>
         </div>

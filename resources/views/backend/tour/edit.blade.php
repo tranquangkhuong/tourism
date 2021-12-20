@@ -16,14 +16,14 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Tour </h1>
+                <h1 class="m-0">Cập Nhật Tour </h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.tour.index') }}">Tour</a></li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active">Cập Nhật</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -38,7 +38,7 @@
         <div id="tabs">
              <!-- .card-header -->
             <ul>
-                <li><a href="#tabs-1">Edit tour</a></li>
+                <li><a href="#tabs-1">Chỉnh sửa tour</a></li>
                 <li><a href="#tabs-2">Plan</a></li>
                 <li><a href="#tabs-3">Image</a></li>
             </ul>
@@ -51,7 +51,26 @@
                     @csrf
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-2" >
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="inputName">Nhập tên tour *</label>
+                                    <input type="text" id="inputName" name="name" class="form-control"
+                                        placeholder="Nhập tên tour" required value="{{ $tour->name }}">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="inputStatus">Trạng thái</label>
+                                    <select id="inputStatus" name="display" class="form-control custom-select">
+                                        <option {{ $tour->display === 1 ? 'selected' : '' }} value="1">Hiển thị
+                                        </option>
+                                        <option {{ $tour->display !== 1 ? 'selected' : '' }} value="0">Ẩn</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3" >
                                 <div class="form-group text-center"style="margin-bottom:50px">
                                     <label for="exampleInputFile">Ảnh tour</label>
                                         <div class="input-group">
@@ -61,7 +80,6 @@
                                                     <div class="img-tour_add-show">
                                                             <img  src="" alt="" id="image" width="100%" height="100%">
                                                     </div>
-                                                    
                                                     <span class="img-tour_link"> </span>
                                                 </div>
                                                 <div class="img-tour_file ">
@@ -73,11 +91,56 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputName">Name</label>
-                            <input type="text" id="inputName" name="name" class="form-control"
-                                placeholder="Nhập tên tour" required value="{{ $tour->name }}">
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Giá:(người từ 45 tuổi trở lên)*</label>
+                                            <input type="number" name="adult_price" min="0" class="form-control" required
+                                                value="{{ $tour->adult_price }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Giá:(người từ 18 tuổi đến 44 tuổi)</label>
+                                            <input type="number" name="youth_price" min="0" class="form-control" required
+                                                value="{{ $tour->youth_price }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Giá:(trẻ cao:120cm trở xuống)</label>
+                                            <input type="number" name="child_price" min="0" class="form-control" required
+                                                value="{{ $tour->child_price }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Giá:(em bé)</label>
+                                            <input type="number" name="baby_price" min="0" class="form-control" required
+                                                value="{{ $tour->baby_price }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="">Số lượng vé:</label>
+                                            <input type="number" name="slot" class="form-control" min="0" required
+                                                value="{{ $tour->slot }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <label for="">Những ngày khởi hành:</label>
+                                            <input type="text" name="other_day" class="form-control date"
+                                                placeholder="Ngày khởi hành khác" required value="{{ $tour->other_day }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -93,20 +156,35 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="inputStatus">Display</label>
-                                    <select id="inputStatus" name="display" class="form-control custom-select">
-                                        <option {{ $tour->display === 1 ? 'selected' : '' }} value="1">Hiển thị
-                                        </option>
-                                        <option {{ $tour->display !== 1 ? 'selected' : '' }} value="0">Ẩn</option>
-                                    </select>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="selectArea">Area</label>
+                                    <label for="">Địa Điểm xuất phát *</label>
+                                    <input type="text" name="departure_location" class="form-control"
+                                        placeholder="Địa điểm xuất phát" required
+                                        value="{{ $tour->departure_location }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Điểm đến *</label>
+                                    <input type="text" name="destination" class="form-control"
+                                        placeholder="Đích đến" required value="{{ $tour->destination }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Hành trình:</label>
+                            <input type="text" name="itinerary" class="form-control" placeholder="Hành trình"
+                                required value="{{ $tour->itinerary }}">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="selectArea">Địa điểm *</label>
                                     <select name="area_id" id="selectArea" class="form-control custom-select"
                                         required>
                                         <option value="">-- Choose an area --</option>
@@ -119,7 +197,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="selectLocation">Location</label>
+                                    <label for="selectLocation">Thuộc khu vực *</label>
                                     <select name="location_id" id="selectLocation"
                                         class="form-control custom-select" required>
                                         <option value="">-- Choose an location --</option>
@@ -132,84 +210,17 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="textDescription">Description</label>
+                            <label for="textDescription">Miêu tả:</label>
                             <textarea id="textDescription" name="description" class="form-control" rows="4"
                                 placeholder="Nhập mô tả ngẵn cho tour" required>{{ $tour->description }}</textarea>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Departure location</label>
-                                    <input type="text" name="departure_location" class="form-control"
-                                        placeholder="Địa điểm xuất phát" required
-                                        value="{{ $tour->departure_location }}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Destination</label>
-                                    <input type="text" name="destination" class="form-control"
-                                        placeholder="Đích đến" required value="{{ $tour->destination }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Itinerary</label>
-                            <input type="text" name="itinerary" class="form-control" placeholder="Hành trình"
-                                required value="{{ $tour->itinerary }}">
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="">Slot</label>
-                                    <input type="number" name="slot" class="form-control" min="0" required
-                                        value="{{ $tour->slot }}">
-                                </div>
-                            </div>
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label for="">Other day</label>
-                                    <input type="text" name="other_day" class="form-control date"
-                                        placeholder="Ngày khởi hành khác" required value="{{ $tour->other_day }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Adult price</label>
-                                    <input type="number" name="adult_price" min="0" class="form-control" required
-                                        value="{{ $tour->adult_price }}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Youth price</label>
-                                    <input type="number" name="youth_price" min="0" class="form-control" required
-                                        value="{{ $tour->youth_price }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Child price</label>
-                                    <input type="number" name="child_price" min="0" class="form-control" required
-                                        value="{{ $tour->child_price }}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Bayby price</label>
-                                    <input type="number" name="baby_price" min="0" class="form-control" required
-                                        value="{{ $tour->baby_price }}">
-                                </div>
-                            </div>
-                        </div>
+                        
+                        
+                        
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group" data-select2-id="111">
-                                    <label for="selectPromotion">Promotion</label>
+                                    <label for="selectPromotion">Áp dụng khuyến mãi</label>
                                     <div class="select2-purple" data-select2-id="101">
                                         <select  name="promotion_id[]" id="selectPromotion" class="select2 select2-hidden-accessible" multiple="" data-placeholder="Lựa chọn khuyến mãi..." data-dropdown-css-class="select2-purple" style="width: 100%;" data-select2-id="15" tabindex="-1" aria-hidden="true">
                                         @php
@@ -239,10 +250,10 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Vehicle</label>
-                                    <select name="vehicle_id[]" id="selectVehicle" class="form-control select2bs4 select2-hidden-accessible" style="width: 100%;" data-select2-id="17" tabindex="-1" aria-hidden="true">
-                                            @php
+                                 <div class="form-group" data-select2-id="54">
+                                    <label for="selectVehicle">Lựa chọn phương tiện</label>    
+                                    <select  name="vehicle_id[]" id="selectVehicle" class="select2 select2-hidden-accessible" multiple="" data-placeholder="Lựa chọn hình thức tour..." style="width: 100%;" data-select2-id="10" tabindex="-1" aria-hidden="true">
+                                         @php
                                         $vehicleIds = $tour->vehicles->pluck('id')->toArray();
                                         @endphp
                                         @foreach ($vehicles as $vehicle)
@@ -256,7 +267,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="include">Include</label>
+                                    <label for="include">Dịch vụ được ưu đãi:</label>
                                     <input type="hidden" name="include_value_id"
                                         value="{{ $includes ? $includes->id : '' }}">
                                     <select name="include[]" id="include" class="form-control select2tagging"
@@ -273,7 +284,7 @@
                             
                             <div class="col-md-6">
                                 <div class="form-group" style="margin:0px 20px;">
-                                    <label for="notInclude">Not Include</label>
+                                    <label for="notInclude">Dịch vụ không được ưu đãi:</label>
                                     <input type="hidden" name="not_include_value_id"
                                         value="{{ $notIncludes ? $notIncludes->id : '' }}">
                                     <select name="not_include[]" id="notInclude" class="form-control select2tagging"
@@ -290,8 +301,8 @@
                     </div>
                     <!-- .card-footer -->
                     <div class="card-footer">
-                        <a href="{{ route('admin.tour.index') }}" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-success float-right">Save</button>
+                        <a href="{{ route('admin.tour.index') }}" class="btn btn-secondary">Thoát</a>
+                        <button type="submit" class="btn btn-success float-right">Cập nhật</button>
                     </div>
                     <!-- /.card-footer -->
                 </form>

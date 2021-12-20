@@ -16,13 +16,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Contact</h1>
+                <h1 class="m-0">Cập nhật liên hệ</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item active"><a href="{{ route('admin.contact.index') }}">Contact</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('admin.contact.index') }}">Liên hệ</a></li>
                     <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </div><!-- /.col -->
@@ -41,7 +41,7 @@
 
                 <!-- .card-header -->
                 <div class="card-header">
-                    <h3 class="card-title">Edit Contact</h3>
+                    <h3 class="card-title">Chỉnh sửa liên hệ</h3>
                 </div>
                 <!-- /.card-header-->
 
@@ -50,12 +50,12 @@
                     <!-- .card-body -->
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="inputName">Name</label>
+                            <label for="inputName">Tên</label>
                             <input type="text" name="name" id="inputName" class="form-control"
                                 value="{{ $contact->name }}">
                         </div>
                         <div class="form-group">
-                            <label for="">Info</label>
+                            <label for="">Thông tin</label>
                             <textarea id="" class="form-control" name="info" rows="3">{{ $contact->info }}</textarea>
                         </div>
                         <div class="form-group">
@@ -63,16 +63,16 @@
                             <input id="" class="form-control" type="email" name="email" value="{{ $contact->email }}">
                         </div>
                         <div class="form-group">
-                            <label for="">Phone</label>
+                            <label for="">Số điện thoại</label>
                             <input id="" class="form-control" type="text" name="phone" value="{{ $contact->phone }}">
                         </div>
                         <div class="form-group">
-                            <label for="">Address</label>
+                            <label for="">Địa chỉ</label>
                             <input id="" class="form-control" type="text" name="address"
                                 value="{{ $contact->address }}">
                         </div>
                         <div class="form-group">
-                            <label for="inputCreatedAt">Created at</label>
+                            <label for="inputCreatedAt">Ngày khởi tạo</label>
                             <input type="" id="inputCreatedAt" class="form-control" disabled
                                 value="{{ date('m-d-Y H:i:s', strtotime($contact->created_at)) }}">
                         </div>
@@ -81,8 +81,8 @@
 
                     <!-- .card-footer -->
                     <div class="card-footer">
-                        <a href="{{ route('admin.contact.index') }}" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-success float-right">Save</button>
+                        <a href="{{ route('admin.contact.index') }}" class="btn btn-secondary">Thoát</a>
+                        <button type="submit" class="btn btn-success float-right">Cập nhật</button>
                     </div>
                     <!-- /.card-footer -->
                 </form>
