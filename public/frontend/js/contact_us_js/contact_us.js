@@ -14,4 +14,4 @@
     });
   }
 
-$('.jumbotron').paroller();
+// $('.jumbotron').paroller();
