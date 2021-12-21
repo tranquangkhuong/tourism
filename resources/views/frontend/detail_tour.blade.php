@@ -149,32 +149,24 @@
                             </div>
                             <div class="list-img_detail row">
                                 <div class="grallery col l-4 c-12 m-6 ">
-                                    <span>
-                                        <img class="item-img myImg"
-                                            src="{{ URL::asset('frontend/img/detail-product/pc1.jpg') }}"
-                                            alt="phong cảnh thung lũng hà giang">
-                                    </span>
+                                    <figure class="list-show_img action-img1 " data-lightbox='mygallery'>
+                                        <img src="{{ URL::asset('frontend/img/detail-product/pc1.jpg') }}" alt="Đồng lúa hà giang"
+                                            class="img-detail_list_tour item-img myImg" />
+                                    </figure>
                                 </div>
                                 <div class="grallery col l-4 c-12 m-6 ">
-                                    <span>
-                                        <img class="item-img myImg"
-                                            src="{{ URL::asset('frontend/img/detail-product/pc2.jpg') }}"
-                                            alt="ngôi nhà đá hà giang">
-                                    </span>
+                                    <figure class="list-show_img action-img1 " data-lightbox='mygallery'>
+                                        <img src="{{ URL::asset('frontend/img/detail-product/pc2.jpg') }}" alt="Đồng lúa hà giang"
+                                            class="img-detail_list_tour item-img myImg" />
+                                    </figure>
                                 </div>
                                 <div class="grallery col l-4 c-12 m-6 ">
-                                    <span>
-                                        <img class="item-img myImg"
-                                            src="{{ URL::asset('frontend/img/detail-product/pc3.jpg') }}"
-                                            alt="ruộng bậc thang ">
-                                    </span>
+                                    <figure class="list-show_img action-img1 " data-lightbox='mygallery'>
+                                        <img src="{{ URL::asset('frontend/img/detail-product/pc3.jpg') }}" alt="Đồng lúa hà giang"
+                                            class="img-detail_list_tour item-img myImg" />
+                                    </figure>
                                 </div>
-                            </div>
-                            <div class="modal_img" id="MyModal">
-                                <span class="close-img"><i class="fas fa-times"></i></span>
-                                <img alt="" class="modal-content" id="img1">
-                                <div id="caption"></div>
-                            </div>
+                            </div>    
                         </div>
                     </div>
                 </div>
@@ -288,7 +280,7 @@
                         </div>
                         <div class="map-detail_tour">
                             {{-- <div id="map"> --}}
-                            <img src="{{ URL::asset('frontend/img/map/hagiangmap.jpg') }}" alt="">
+                            <!-- <img src="{{ URL::asset('frontend/img/map/hagiangmap.jpg') }}" alt=""> -->
                         </div>
                     </div>
                 </div>
@@ -327,27 +319,6 @@
                             <img src="https://assets.codepen.io/12005/disney-balloon.jpg"
                                 alt="a balloon fairground ride" class="img-detail_list_tour" />
                         </figure>
-                    </div>
-                    <div class="product-img_show_detail">
-                        <div class="previews-img">
-                            <div class="detail-img">
-                                <span class="title">hà giang
-                                    <p class="currents-i"></p>
-                                    of <p class="total-imgs"></p>
-                                </span>
-                                <span class="icons fas fa-times"></span>
-                            </div>
-                            <div class="img-boxs">
-                                <div class="slieder_img previews">
-                                    <i class="fas fa-angle-left"></i>
-                                </div>
-                                <div class="slieder_img nexts">
-                                    <i class="fas fa-angle-right"></i>
-                                </div>
-                                <img class="show-img-detai-tour" src="" alt="">
-                            </div>
-                        </div>
-                        <div class="shawdow2-show-img"></div>
                     </div>
                 </div>
                 {{--       //        - reviews-   // --}}
@@ -482,13 +453,11 @@
                             </div>
                             <div class="feedback_information-email-card">
                                 <span class="icon_add-card"><i class="far fa-calendar-alt"></i></span>
-                                <input class="feedback_input-card add-card" tep id="datepicker" step="3"
-                                    placeholder="dd-mm-yyyy*">
+                                <input class="feedback_input-card add-card" date-number="['13-12-2021', '16-11-2021', '17-11-2021','18-11-2021']"  id="datepicker" placeholder="dd-mm-yyyy*">
                             </div>
                             <div class="feedback_information-email-card">
                                 <span class="icon_add-card"><i class="fas fa-tags"></i></span>
-                                <input class="feedback_input-card add-card" type="number"
-                                    placeholder="Number of tickets*">
+                                <input class="feedback_input-card add-card" type="number" min="0" placeholder="Number of tickets*">
                             </div>
                             <div class="feedback-content content-card">
                                 <span></span>
@@ -515,6 +484,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="product-img_show_detail">
+            <div class="previews-img">
+                <div class="detail-img">
+                    <span class="title">hà giang
+                        <p class="currents-i"></p>
+                        of <p class="total-imgs"></p>
+                    </span>
+                    <span class="icons fas fa-times"></span>
+                </div>
+                <div class="img-boxs">
+                    <div class="slieder_img previews">
+                        <i class="fas fa-angle-left"></i>
+                    </div>
+                    <div class="slieder_img nexts">
+                        <i class="fas fa-angle-right"></i>
+                    </div>
+                    <img class="show-img-detai-tour" src="" alt="">
+                </div>
+            </div>
+            <div class="shawdow2-show-img"></div>
         </div>
     </div>
     @endsection

@@ -89,7 +89,10 @@
             optionContainer.classList.remove("active");
         })
     });
+
+   
 </script>
+
 
 <!-- Jquery Validation -->
 <script src="{{ URL::asset('backend/jquery-validation-1.19.3/dist/jquery.validate.min.js') }}"></script>
@@ -135,6 +138,7 @@
       previewBox:'.previews-img',
       prevewImg:'.show-img-detai-tour'
   })
+
 </script>
 
 

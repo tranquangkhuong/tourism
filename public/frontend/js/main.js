@@ -228,13 +228,25 @@ window.addEventListener('scroll', () => {
         listItemHot3Left.css({"margin-left":"115%","transition": "all 2s",});
     }
 });
-
-
+//more-blog
+$(function() {
+    const heightElement=$(".content-detial_blog").height();
+    if(heightElement >= 1000){
+        $(".content-detial_blog").addClass('showmore');
+        $('.btn-read_more-detail_blog').css({"display":"flex"});
+    }
+    $(".btn-read_more-icondown").addClass("moreactive");
+    let changeText= $('.btn-read_more.btn-read_more-down');
+    changeText.cliked=1;
+    changeText.click(function() {
+        $(".btn-read_more-icondown").toggleClass("moreactive");
+        $(".btn-read_more-iconup").toggleClass("moreactive");
+        $(".content-detial_blog.showmore").toggleClass("moreactive");
+        $(".btn-read_more.btn-read_more-down").text((changeText.cliked++ % 2 == 0) ? "Thêm" : "Thu gọn");
+    })   
+})
 // </img show list>
 var btn = $('#button-back-top');
-
-
-
 var btn = $('#button-back-top');
 
 $(window).scroll(function() {
@@ -256,40 +268,18 @@ window.addEventListener("scroll", function() {
     header.classList.toggle("sticky", window.scrollY > 0);
 });
 
-//     // fillter location
-selectedLocation.addEventListener("click", () => {
-    ContainerLocation.classList.add("active");
-});
+// fillter location
+// selectedLocation.addEventListener("click", () => {
+//     ContainerLocation.classList.add("active");
+// });
 
-listOptionLocation.forEach(o => {
-    o.addEventListener("click", () => {
-        selectedLocation.innerHTML = o.querySelector("label").innerHTML;
-        ContainerLocation.classList.remove("active");
-    })
-});
+// listOptionLocation.forEach(o => {
+//     o.addEventListener("click", () => {
+//         selectedLocation.innerHTML = o.querySelector("label").innerHTML;
+//         ContainerLocation.classList.remove("active");
+//     })
+// });
 
-//video
-const modalVideo = document.querySelector(".modal-video")
-const getBtns = document.querySelectorAll('.js-video')
-const modalVideoClose = document.querySelector(".js-modal-video-close")
-const modalVideoContainer = document.querySelector(".video-wrap")
-    // hàm hiển thị modal đăng nhập (thêm class open vào modal)
-function showModal() {
-    modalVideo.classList.add('open')
-}
-// hàm ẩn modal  (loại bỏ class open ra khỏi modal)
-function hideModal() {
-    modalVideo.classList.remove('open')
-}
-
-for (const getBtn of getBtns) {
-    getBtn.addEventListener('click', showModal)
-}
-modalVideoClose.addEventListener('click', hideModal)
-
-modalVideoContainer.addEventListener('click', function(event) {
-    event.stopPropagation()
-});
 $('#slider').slick({
     fade: !0,
     cssEase: 'linear',

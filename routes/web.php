@@ -165,7 +165,9 @@ Route::get('/mail', function () {
 Route::get('/myaccount', function () {
     return view('frontend.user.my_account');
 });
-
+Route::get('/detail-blog', function () {
+    return view('frontend.detail_blog');
+});
 
 // ! Các route liên quan đến Tours
 Route::group(['prefix' => '/tour'], function () {
