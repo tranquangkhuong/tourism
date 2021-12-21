@@ -5,7 +5,7 @@
 <!-- favicon -->
 <link rel="icon" type="image/png" href="{{ URL::asset('frontend/img/logo-i2.png') }}" />
 <!--  jquery CSS -->
-<link type="text/css" href="{{ URL::asset('backend/css/jquery-ui.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ URL::asset('frontend/css/jquery-ui.css') }}" rel="stylesheet">
 <script type="text/javascript" src="{{ URL::asset('frontend/jquery/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('frontend/jquery/jquery-ui.js') }}"></script>
 <!--  slick -->
@@ -16,6 +16,7 @@
 <!-- fontthemify -->
 <link type="text/css" href="{{ URL::asset('frontend/themify-icons-font/themify-icons/themify-icons.css') }}"
     rel="stylesheet">
+
 <!-- CSS Vietour -->
 <link href="{{ URL::asset('frontend/css/main.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('frontend/css/base.css') }}" rel="stylesheet">

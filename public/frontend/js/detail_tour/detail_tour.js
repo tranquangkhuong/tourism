@@ -53,26 +53,25 @@ $(function(){
 
 
 $(function() {
+    var onlyThisDates =$("#datepicker").attr("date-number");
     var minDate = new Date();
     $("#datepicker").datepicker({
         defaultDate: new Date(),
-        showAnim: "drop",
+        showAnim: 'drop',
         numberOfMonth: 1,
         minDate: minDate,
-        dateFormat: "dd/mm/yy",
+        dateFormat: 'dd/mm/yy',
         beforeShowDay: function(date) {
             var disabled = true, // date enabled by default
                 // get the number of days in current month
-                numOfDays = new Date(
-                    date.getFullYear(),
-                    date.getMonth() + 1,
-                    0
-                ).getDate();
-            if (numOfDays % 4 == 0) disabled = date.getDate() % 4 != 0;
-            // for even-days months, disable the even dates
-            else disabled = date.getDate() % 4 == 0; //for odd - days months, disable the odd dates
-            return [disabled, ""];
-        },
+                numOfDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+                var dt_ddmmyyyy = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+            if (numOfDays % 4 == 0)
+                disabled = (onlyThisDates.indexOf(dt_ddmmyyyy) != -1) // for even-days months, disable the even dates
+            else disabled = (onlyThisDates.indexOf(dt_ddmmyyyy) != -1) //for odd - days months, disable the odd dates
+            return [disabled, ""]
+        }
+
     });
 });
 
