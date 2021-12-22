@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Tour\Image\TourImageRepositoryInterface;
 use Illuminate\Http\Request;
+use App\Models\TourImage;
+use Illuminate\Support\Facades\File;
+
 
 class TourImageController extends Controller
 {
@@ -22,12 +25,14 @@ class TourImageController extends Controller
     public function index($tourId)
     {
         $images = $this->repo->getImageTour($tourId);
-        return view('test.tour.image.index', compact('images'));
+        // $images = TourImage::all();
+        return view('backend.tour.images.index', compact('images','tourId'));
     }
 
-    public function indexData($tourId)
+    public function indexData()
     {
-        return response()->json($this->repo->getImageTour($tourId));
+        $images = TourImage::all();
+        return response()->json($images);
     }
 
     /**
@@ -35,9 +40,9 @@ class TourImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($tourId)
     {
-        return view('test.tour.image.add');
+        return view('backend.tour.images.add', compact('tourId'));
     }
 
     /**
@@ -48,25 +53,80 @@ class TourImageController extends Controller
      */
     public function store(Request $request)
     {
-        $rs = $this->repo->store($request);
-        toast($rs['msg'], $rs['stt']);
+         $tourId =  $request->tour_id;
 
-        return redirect()->route('admin.tour.image.index');
+        foreach($request->file('images') as $key => $file) {
+            $originFileName = $file->getClientOriginalName();
+            // lay extension cua file
+            $extension = $file->getClientOriginalExtension();
+            // lay ten file khong co extension
+            $fileNameWithoutExtension = substr($originFileName, 0, strlen($originFileName)
+                - (strlen($extension) + 1));
+            // create unique file name de khong bi trung
+            $fileName = $fileNameWithoutExtension . uniqid('_') . '.' . $extension;
+            $path = "/images/tours/" . $tourId . "/";
+            $file->move(public_path($path), $fileName);
+
+            $insert[$key]['tour_id'] = $tourId;
+            $insert[$key]['image_name'] = $fileName;
+            $insert[$key]['image_path'] = $path . $fileName;
+        }
+        TourImage::insert($insert);
+
+        return redirect()->route('images.index', $tourId);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Image  $image
+     * @return \Illuminate\Http\Response
+     */
+    public function show(TourImage $image)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Image  $image
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(TourImage $image)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Image  $image
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, TourImage $image)
+    {
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
     public function destroy($imageId)
     {
-        $rs = $this->repo->destroy($imageId);
-        if ($rs['stt'] == 'error') {
-            return response()->json($rs, 500);
+        try {
+           $image = TourImage::find($imageId);
+            $this->repo->deleteImage($image->image_path);
+            $image->delete();
+            toast('Success','success');
+            return  redirect()->route('images.index', $image->tour_id);
+        } catch (\Throwable $th) {
+             toast("Error!", "error");
+            return  redirect()->route('images.index', $image->tour_id);
         }
-
-        return response()->json($rs);
     }
 }

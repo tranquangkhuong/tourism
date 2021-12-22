@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\TourMuntipleImage;
 
 /*
 |--------------------------------------------------------------------------
@@ -214,7 +215,7 @@ Route::get('/return-vnpay', [VnpayController::class, 'return'])->name('vnpay.ret
 // })->name('dashboard');
 
 Route::get('/generate-code/{length}', [Controller::class, 'generateCode'])->name('generate_code');
-Route::get('/images/{model}/{size}/{image_path}', [Controller::class, 'flyResize'])->where('image_path', '(.*)');
+// Route::get('/images/{model}/{size}/{image_path}', [Controller::class, 'flyResize'])->where('image_path', '(.*)');
 
 Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function () {
 
@@ -324,13 +325,12 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admi
         });
 
         Route::group(['prefix' => '/image', 'as' => 'image.'], function () {
-            Route::get('/{tour_id}', [TourImageController::class, 'index'])->name('index');
+            // Route::get('/{tour_id}', [TourImageController::class, 'index'])->name('index');
             Route::get('/index-data/{tour_id}', [TourImageController::class, 'indexData'])->name('index_data');
-            Route::get('/add', [TourImageController::class, 'create'])->name('add');
-            Route::post('/store', [TourImageController::class, 'store'])->name('store');
-            // Route::get('/edit/{image_id}', [TourImageController::class, 'edit'])->name('edit');
-            // Route::post('/update/{image_id}', [TourImageController::class, 'update'])->name('update');
-            Route::get('/delete/{image_id}', [TourImageController::class, 'destroy'])->name('delete');
+            Route::get('/add-image', [TourImageController::class, 'add'])->name('addnew');
+            Route::post('/save', [TourImageController::class, 'store'])->name('save');
+            // Route::post('/store', [TourImageController::class, 'store'])->name('store');
+            // Route::post('/delete',[TourImageController::class, 'remvoeFile'])->name('delete');
         });
     });
 
@@ -435,3 +435,8 @@ Route::get('x', function () {
 });
 
 Route::get('/test', [BookingController::class, 'test']);
+// Route::get('/add-image', [TourImageController::class, 'create'])->name('addnew');
+Route::get('/{tour_id}', [TourImageController::class, 'index'])->name('images.index');
+Route::get('/image/add/{tour_id}', [TourImageController::class, 'create'])->name('add-image');
+Route::post('/image/save', [TourImageController::class, 'store']);
+Route::get('/tour/image/{image_id}', [TourImageController::class, 'destroy'])->name('images.delete');
