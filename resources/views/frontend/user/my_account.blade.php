@@ -38,40 +38,32 @@
 @endsection
 
 @section('content')
-<div id="myAccount">
+<div id="myAccount" style="margin-bottom:50px">
     <div class="grid wide">
+    @csrf
         <div id="tabs" class="row">
             <div class="col l-12 m-12 c-12">
                 <header class="header">
-                    <div class="header-background">
-                        <div class="header-background__img">
-                            <img src="{{ URL::asset('frontend/img/among.png') }}" alt="account">
-                        </div>
-                        <div class="header-background__action">
-                            <a href="#"><i class="fas fa-camera"></i><span>Change background image</span></a>
-                        </div>
-                    </div>
                     <div class="header-avatar">
                         <div class="header-avatar__img">
-                            <a href="#"><img src="{{ URL::asset('frontend/img/account.png') }}" alt="account"></a>
+                            <a href="#"><img src="{{ $user->avatar_image_path ?: $user->profile_photo_path ?: 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg' }}" alt="account"></a>
                         </div>
                         <div class="header-avatar__action">
                             <a href="#"><i class="fas fa-camera"></i></a>
                         </div>
+                        
                     </div>
+                    <h1 class="header_name-orther">{{ $user->name }}</h1>
                 </header>
             </div>
             <div class="col l-3 m-3 c-12">
                 <div class="side-bar">
                     <div class="side-bar__wrap">
                         <div class="side-bar__item active">
-                            <a href="#tabs-1">Desboard</a>
+                            <a href="#tabs-1">Tài khoản của tôi</a>
                         </div>
                         <div class="side-bar__item">
-                            <a href="#tabs-2">My booking</a>
-                        </div>
-                        <div class="side-bar__item">
-                            <a href="#tabs-3">Tab3</a>
+                            <a href="#tabs-2">Đơn mua</a>
                         </div>
                     </div>
                 </div>
@@ -81,57 +73,70 @@
                     <div class="feedback_list-items book-card">
                         <!-- Form Update -->
                         <form action="{{ url('/user/profile/update') }}" method="post" enctype="multipart/form-data">
-                            @csrf
+                            
                             <div class=" feedback_content-information">
                                 <div class="row">
-                                    <div class="feedback_information-email-card col l-6 m-6 c-6 ">
-                                        Chỗ này để cái ảnh <br />
-                                        {{ $user->avatar_image_path ?: $user->profile_photo_path ?: 'none' }}
+                                    <div class="feedback_information-email-card col l-9 m-9 c-12 ">
+                                        <label for="User_Name">Tên của bạn:</label>
+                                        <div class="feedback_information-email-card ">
+                                            <span class="icon_add-card"><i class="fas fa-user-alt"></i></span>
+                                            <input class="feedback_input-card add-card" id="User_Name" type="text" name="name"
+                                                placeholder="User Name*" value="{{ $user->name }}">
+                                        </div>
+                                        <label for="User_Name-email">Email:</label>
+                                        <div class="feedback_information-email-card">
+                                            <span class="icon_add-card"><i class="far fa-envelope"></i></span>
+                                            <input class="feedback_input-card add-card" id="User_Name-email" type="email" placeholder="Email*"
+                                                readonly value="{{ $user->email }}">
+                                        </div>
+                                        <label for="User_Name-phone">Số điện thoai:</label>
+                                        <div class="feedback_information-email-card">
+                                            <span class="icon_add-card"><i class="fas fa-phone"></i></span>
+                                            <input class="feedback_input-card add-card" id="User_Name-phone" type="tel" name="phone" minlength="9"
+                                                maxlength="14" pattern="^[+]?[0-9]{9,14}$" placeholder="Phone*"
+                                                value="{{ $user->phone }}">
+                                        </div>
+                                        <label for="User_Name-address">Địa chỉ:</label>
+                                        <div class="feedback_information-email-card">
+                                            <span class="icon_add-card"><i class="fas fa-address-card"></i></span>
+                                            <input class="feedback_input-card add-card" id="User_Name-address" type="text" name="address"
+                                                placeholder="Address" value="{{ $user->address }}">
+                                        </div>
+                                        
                                     </div>
-                                    <div class="feedback_information-email-card col l-6 m-6 c-6 ">
-                                        <span class="icon_add-card"><i class="fas fa-user-alt"></i></span>
-                                        <input class="feedback_input-card add-card" type="file" name="image"
-                                            placeholder="Image">
+                                    <div class="feedback_information-email-card col l-3 m-3 c-12 ">
+                                        <div class="img-other">
+                                            <label for="feedback_input-card">
+                                                <div class="img-orther-from none ">
+                                                    <img id="img-orther-update" src="" alt="avatar">
+                                                </div>
+                                                <div class="input-img-orther ">
+                                                    <!-- cho đường link ảnh từ database vào src của thẻ img -->
+                                                    <img class="input-img-orther-data" src="{{ $user->avatar_image_path ?: $user->profile_photo_path ?: 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg' }}" alt="avatar">
+                                                    <input id="feedback_input-card" type="file" onChange="chooseFile(this)" name="image" placeholder="Image">
+                                                </div>
+                                            </label>
+                                        </div>                                   
                                     </div>
                                 </div>
-                                <div class="feedback_information-email-card ">
-                                    <span class="icon_add-card"><i class="fas fa-user-alt"></i></span>
-                                    <input class="feedback_input-card add-card" type="text" name="name"
-                                        placeholder="User Name*" value="{{ $user->name }}">
-                                </div>
-                                <div class="feedback_information-email-card">
-                                    <span class="icon_add-card"><i class="far fa-envelope"></i></span>
-                                    <input class="feedback_input-card add-card" type="email" placeholder="Email*"
-                                        readonly value="{{ $user->email }}">
-                                </div>
-                                <div class="feedback_information-email-card">
-                                    <span class="icon_add-card"><i class="fas fa-phone"></i></span>
-                                    <input class="feedback_input-card add-card" type="tel" name="phone" minlength="9"
-                                        maxlength="14" pattern="^[+]?[0-9]{9,14}$" placeholder="Phone*"
-                                        value="{{ $user->phone }}">
-                                </div>
-                                <div class="feedback_information-email-card">
-                                    <span class="icon_add-card"><i class="fas fa-address-card"></i></span>
-                                    <input class="feedback_input-card add-card" type="text" name="address"
-                                        placeholder="Address" value="{{ $user->address }}">
-                                </div>
+                                
                             </div>
-                            <button class="feedback_content-submit submit-btn">Save Change</button>
+                            <button class="feedback_content-submit submit-btn">Cập nhật</button>
                         </form>
                         <!-- /form -->
                     </div>
                 </div>
             </div>
             <div id="tabs-2" class="tab-item l-9 m-9 c-12">
-                <!--
+                
                 <table class="table" style="background-color: #efefef">
                     <thead style="background-color:#02acea;color: #fff;">
                         <tr>
                         <th scope="col">Code</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Total slot</th>
-                        <th scope="col">Total price</th>
-                        <th scope="col">Date</th>
+                        <th scope="col">Tên đơn</th>
+                        <th scope="col">Số lượng </th>
+                        <th scope="col">Tổng tiền</th>
+                        <th scope="col">Ngày mua</th>
                         <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -154,10 +159,7 @@
                         </tr>
 
                     </tbody>
-                    </table> -->
-            </div>
-            <div id="tabs-3" class="tab-item l-9 m-9 c-12">
-                <h1>tab 3</h1>
+                    </table>
             </div>
         </div>
     </div>

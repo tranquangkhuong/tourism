@@ -44,7 +44,6 @@
                     Thêm mới
                 </a>
             </h3>
-
             <div class="card-tools">
                 <div class="row">
                     <div class="col">
@@ -78,7 +77,7 @@
                     </tr>
                 </thead>
 
-                <tbody id="list-data">
+                <tbody id="list-data" >
                     @foreach ($bookings as $booking)
                     <tr>
                         <td style="opacity: .5;">{{ $booking->id }}</td>

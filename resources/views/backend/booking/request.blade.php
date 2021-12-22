@@ -77,9 +77,9 @@
                     </tr>
                 </thead>
 
-                <tbody id="list-data">
+                <tbody  id="list-data">
                     @foreach ($bookings as $booking)
-                    <tr>
+                    <tr class="form-group-action-card"> 
                         <td>{{ $booking->id }}</td>
                         <td class="text-wrap">{{ $booking->tour_name }}</td>
                         <td class="text-wrap">{{ $booking->full_name }}</td>

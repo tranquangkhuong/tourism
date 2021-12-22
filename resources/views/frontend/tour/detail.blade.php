@@ -396,7 +396,7 @@
                             </div>
                             <div class=" feedback_content-information">
                                 <div class="feedback_information-email-card ">
-                                    <span class="icon_add-card"><i class="fas fa-user-alt"></i></span>
+                                    <span class="icon_add-card"></span>
                                     <input class="feedback_input-card add-card" type="text" placeholder="Name*">
                                 </div>
                                 <div class="feedback_information-email-card">
@@ -415,7 +415,7 @@
                                 <!-- date -->
                                 <div class="feedback_information-email-card">
                                     <span class="icon_add-card"><i class="far fa-calendar-alt"></i></span>
-                                    <input class="feedback_input-card add-card" date-number="['27-12-2021', '28-12-2021']"  id="datepicker" placeholder="dd-mm-yyyy*">
+                                    <input class="feedback_input-card add-card" date-number="['29-12-2021', '28-12-2021']"  id="datepicker" placeholder="dd-mm-yyyy*">
                                 </div>
                                 <div class="feedback_information-email-card">
                                     <span class="icon_add-card"><i class="fas fa-tags"></i></span>
