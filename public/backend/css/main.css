@@ -162,6 +162,21 @@
    margin-left: 50%;
    transform: translateX(-50%);
 }
+.right.badge.badge-danger.none{
+    display: none;
+}
+.new-booking{
+    /* color: red; */
+    animation: colers ease-in-out 1s infinite;
+}
+@keyframes colers{
+    0%{
+        color:red;
+    }
+    100%{
+        color: #fff;
+    }
+}
 
 .show-img_add.edit-img_admin::before{
     content: "Thay đổi";

@@ -95,8 +95,11 @@
             @if (auth('user')->check())
             <div class="account-logined">
                 <div class="account-logined-action">
-                    <span class="account-name"><span class="account-name-user">{{ auth('user')->user()->name
-                            }}</span><i class="fas fa-sort-down"></i></span>
+                    <span class="account-name">
+                        <img class="account-img__other" src=" https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg " alt="">
+                        <span class="account-name-user">{{ auth('user')->user()->name}}</span>
+                        <i class="fas fa-sort-down"></i>
+                    </span>
                 </div>
                 <ul class="account-option-list">
 

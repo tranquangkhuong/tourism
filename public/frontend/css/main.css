@@ -2578,6 +2578,359 @@ li.slick-active button {
 .banner-heading__big{
     position: relative;
 }
+.feedback_information-email-card.choose-file{
+    max-width: 300px;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: #FFF;
+    color: #000;
+
+}
+.text-myaccould{
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    font-size:20px;
+    font-weight: 600;
+    line-height: 40px;
+    color:black;
+}
+.feedback_list-items{
+width: 100%;
+
+height: auto;
+}
+.filter__icon-location-name::before{
+    content: '\f007';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #848484;
+    font-family: "Font Awesome 5 Free";
+}
+.filter__icon-location-phone::before{
+    content: '\f879';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #848484;
+    font-family: "Font Awesome 5 Free";
+}
+.filter__icon-location-email::before{
+    content: '\f1fa';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #848484;
+    font-family: "Font Awesome 5 Free";
+}
+.filter__icon-location-address::before{
+    content: '\f124';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #848484;
+    font-family: "Font Awesome 5 Free";
+}
+
+.filter__icon-location-note::before{
+    content: '\f086';
+    position: absolute;
+    top: 25%;
+    transform: translateY(-50%);
+    left: 30px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #848484;
+    font-family: "Font Awesome 5 Free";
+}
+#myAccount .feedback_content-submit {
+    height: 50px;
+    width: 220px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #f59b9b;
+    color: var(--white-color);
+    transition: opacity .2s;
+}
+
+#myAccount .feedback_content-submit:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+#myAccount .feedback_information-email-card {
+    margin-bottom: 10px;
+}
+#myAccount .container-feedback
+{
+    margin-top: 0;
+    border-radius: 5px;
+}
+#myAccount .side-bar {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: #9fcbd1bd;
+}
+#myAccount .side-bar__wrap {
+    padding: 20px 10px;
+}
+#myAccount .side-bar__item {
+    margin-bottom: 2px;
+    padding: 6px;
+    border-radius: 8px;
+    margin: 8px 2px;
+    background-color: rgb(232 142 142 / 60%);
+    cursor: pointer;
+}
+#myAccount .side-bar__item.active {
+    border-bottom: 1px solid var(--white-color);
+}
+#myAccount .side-bar__item a{
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 500;
+    color: var(--white-color);
+    text-decoration: none;
+}
+#myAccount  .feedback_input-card {
+    border-radius: 15px;
+}
+#myAccount .header {
+    width: 100%;
+    height: 200px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+#myAccount .header-avatar {
+    position: absolute;
+    left: 50%;
+    width: 150px;
+    height: auto;
+    text-align: center;
+    transform: translateX(-50%);
+    transition: all .2s;
+}
+#myAccount .header-avatar:hover{
+    opacity: .8;
+}
+.header-avatar__img{
+    width: 150px;
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #f59b9b;
+    border: 2px solid var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-avatar__img img {
+    max-width: 100%;
+    height: auto;
+}
+.header-avatar__action {
+    position: absolute;
+    bottom: 10px;
+    right: 6px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #e4e4e4;
+    text-align: center;
+}
+.header-avatar__action a {
+    font-size: 2.2rem;
+    font-family: inherit;
+    color: #333;
+}
+.header-avatar__action a i {
+    line-height: 35px;
+}
+#myAccount .header-background {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-top-left-radius: 30px;
+    overflow: hidden;
+    border-top-right-radius: 30px;
+}
+#myAccount .header-background__img{
+    width: 100%;
+    height: 350px;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-background__img img {
+    width: 100%;
+}
+.header-background__action {
+    position: absolute;
+    right: 10%;
+    bottom: 20%;
+    background: var(--white-color);
+    border-radius: 5px;
+    transition: color .2s;
+}
+.header-background__action:hover {
+    opacity: .8;
+}
+.header-background__action  a {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 5px 10px;
+    font-weight: 600;
+    display: block;
+}
+.header-background__action  a i {
+    margin-right: 10px;
+    font-size: 1.8rem;
+}
+#myAccount .table {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+#myAccount .table th {
+    padding: 0 10px;
+}
+
+#myAccount .table td {
+    border-left: 2px solid #fff;
+    padding: 0 6px;
+    border-bottom: 1px solid #fff;
+}
+.header_name-orther{
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.img-other{
+    width: 100%;
+    height: auto;
+}
+.img-orther-from{ 
+    width: 100%;
+    height: auto;
+    border:1px solid var(--white-color)
+}
+.img-orther-from::after{
+    content:" Chỉnh sửa ";
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 50%;
+    opacity:0.4 ;
+    color: #000;
+    font-size: 17px;
+
+}
+.img-other:hover .img-orther-from::after{
+    opacity:1;
+}
+.img-orther-from.none{
+    display:none;
+}
+
+.img-orther-from img{
+    width: inherit;
+    object-fit: cover;
+}
+.input-img-orther{
+    width: 100%;
+    height: auto;
+    border:1px solid var(--white-color)
+}
+.input-img-orther::after{
+    content:" Chỉnh sửa ";
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 50%;
+    opacity:0.4 ;
+    color: #000;
+    font-size: 17px;
+}
+.img-other:hover .img-orther-from img{
+    opacity:0.4;
+}
+.img-other:hover .input-img-orther img{
+    opacity:0.4;
+}
+.input-img-orther img{
+    width: inherit;
+    object-fit: cover;
+}
+.input-img-orther-data.none{
+    display: none;
+}
+.input-img-orther #feedback_input-card{
+    opacity: 0;
+}
+.img-other:hover .input-img-orther::after{
+    opacity:1;
+}
+.feedback_information-email-card label{
+    font-size: 16px;
+}
+.content-card {
+    width: 100%;
+    height: auto;
+}
+.add_card-done{
+    width: 100%;
+    height: auto;
+    margin-bottom: 100px;
+}
+.img-add_card-done{
+    margin-left:50%;
+    transform: translateX(-50%);
+}
+.img-add_card-done img{
+    max-width: 435px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    object-fit: cover;
+}
+.add_card-done_title{
+    width: 100%;
+    margin-left:50%;
+    transform: translateX(-50%);
+}
+.add_card-done_title h1{
+    font-size: 23px;
+    text-align: center;
+    color:var(--primary-color);
+}
+.account-img__other{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: -10px;
+}
 .tour-new {
     position: absolute;
     /* z-index: -1; */
@@ -2602,7 +2955,42 @@ li.slick-active button {
     50%  {color: rgb(0, 255, 234);}
     100% {color: #fff;}
   }
+  @media only screen and (max-width:46.1875em){
+    #myAccount .header {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    #myAccount .header-background__img {
+        height: 200px;
+    }
+    .header-background__action{
+        right: 0;
+        bottom: 0;
+        box-shadow: 0 0 9px #333;
+    }
+    #myAccount .side-bar {
+        height: auto;
+    }
+    #myAccount .side-bar__wrap{
+        display: flex;
+        margin-bottom: 10px;
+    }
+}
+/**
+* Tablet
+*/
+@media only screen and (min-width:46.25em) and (max-width:63.9375em) {
+    #myAccount .header-background__img {
+        height: 250px;
+        box-shadow: 5px;
+    }
+}
+/**
+* Desktop
+*/
+@media only screen and (min-width: 1024px) {
 
+}
 .map_page{
     max-height: 250px;
 }

@@ -94,7 +94,7 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>{{ $totalBooking }}</h3>
+                        <h3 id="form-group-action-card">{{ $totalBooking }}</h3>
                         <p>Booking</p>
                     </div>
                     <div class="icon">

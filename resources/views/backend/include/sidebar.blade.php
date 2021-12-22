@@ -105,6 +105,7 @@
                         <p>
                             Đặt tour
                             <i class="right fas fa-angle-left"></i>
+                            <span class="right badge badge-danger none">New</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -120,11 +121,11 @@
                                 <p>Quản lý đặt tour</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.booking.request.index') }}" id="link-booking-request"
                                 class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Duyệt đơn book</p>
+                                <p class="" id="newBooking">Duyệt đơn book</p>
                             </a>
                         </li>
                     </ul>

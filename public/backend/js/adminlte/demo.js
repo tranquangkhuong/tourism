@@ -684,4 +684,19 @@
       $brand_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_brand_color)
     }
   })(jQuery)
-  1
+  
+  function notifyBooking() {
+    let numberBooking=$("#form-group-action-card").text();
+    let numberBooker=$(".form-group-action-card").length;
+    console.log(numberBooker);
+    if(numberBooker >0){
+      $(".right.badge.badge-danger").removeClass("none");
+    }
+    if(numberBooking >0){
+      $(".right.badge.badge-danger").removeClass("none");
+      $("#newBooking").addClass("new-booking");
+    }else{
+
+    }
+}
+notifyBooking()

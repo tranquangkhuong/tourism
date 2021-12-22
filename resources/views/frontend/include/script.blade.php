@@ -139,6 +139,22 @@
       prevewImg:'.show-img-detai-tour'
   })
 
+  //image form.
+  function chooseFile(fileInput){
+        if(fileInput.files && fileInput.files[0]){
+            var reader = new FileReader();
+            reader.onload= function(e){
+                // var valueInput = $('#exampleInputFile').val();
+                $('#img-orther-update').attr('src', e.target.result);
+                // $('.img-tour_link').text(valueInput.slice(valueInput.lastIndexOf('\\')+1));
+                $('.img-orther-from').removeClass('none');
+                $('.input-img-orther-data').addClass('none');
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+
+        }
+    }
+
 </script>
 
 

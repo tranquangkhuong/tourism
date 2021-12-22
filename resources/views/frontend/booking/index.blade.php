@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col l-12 m-12 c-12">
                     <div class="wrap-section-booking">
-                        <h1 class="booking-title">Infomation Tour</h1>
+                        <h1 class="booking-title">Thông tin tour</h1>
                         <div class="row booking-wrap-info">
                             <div class="col l-4">
                                 <a href="{{ asset($tour->image_path) }}">
@@ -91,6 +91,13 @@
                 @csrf
                 <div class="row">
                     <div class="col l-12">
+                    <div style="overflow-x:auto;" class="wrap-section-booking table">
+                            <h1 class="booking-title">Chọn ngày khởi hành</h1>
+                            <div class="feedback_information-email-card choose-file">
+                                    <span class="icon_add-card" style="top:0;"><i class="far fa-calendar-alt"></i></span>
+                                    <input class="feedback_input-card add-card" style="text-align: center; font-size: 20px; color: black;" date-number="['29-12-2021', '28-12-2021']"  id="datepicker" placeholder="dd-mm-yyyy*">
+                            </div>
+                        </div>
                         <div style="overflow-x:auto;" class="wrap-section-booking table">
                             <h1 class="booking-title">List Price Tour</h1>
                             <input type="hidden" name="tour_id" value="{{ $tour->id }}">
@@ -173,9 +180,10 @@
                                     <input type="submit" />
                                 </div> --}}
                                 @if (count($promotions) > 0)
-                                <div>
+                                <div class="promotion_id-list">
+                                    <h2> Áp dụng mã giảm giá:</h2>
                                     <select name="promotion_id" class="promotion">
-                                        <option value="">-- Select Promotion --</option>
+                                        <option value="">-- Chọn mã giảm giá --</option>
                                         @foreach ($promotions as $promotion)
                                         <option value="{{ $promotion->id }}">{{ $promotion->content }}</option>
                                         @endforeach
@@ -254,33 +262,38 @@
                         </div>
                     </div>
                 </div>
+
+
+
                 <div class="row">
                     <div class="col l-12 m-12 c-12">
-                        <div class="feedback_list-items">
+                            <h2 class="text-myaccould">Điền thông tin đặt tour</h2>
+                        <div class="feedback_list-items"style="margin-bottom:35px;">
                             <!-- thong tin thanh toan -->
-                            <div>
+                            <div class="form-group_input">
                                 @if (!auth('user')->check())
-                                <div class="form-group">
-                                    <label for="inputFullname">Full name</label>
-                                    <input id="inputFullname" class="form-control" type="text" name="full_name"
-                                        required>
+                                <div class="filter-wrap-item about_search" style="margin-bottom:25px;">
+                                    <span class="filter__icon filter__icon-location-name"></span>
+                                    <input type="text" class="filter__input" name="full_name"
+                                        required placeholder="Tên của bạn">
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputPhone">Phone</label>
-                                    <input id="inputPhone" class="form-control" type="text" name="phone" required>
+                                <div class="filter-wrap-item about_search" style="margin-bottom:25px;">
+                                    <span class="filter__icon filter__icon-location-phone"></span>
+                                    <input type="text" class="filter__input" placeholder="Số điện thoại" name="phone" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputEmail">Email</label>
-                                    <input id="inputEmail" class="form-control" type="email" name="email" required>
+                                <div class="filter-wrap-item about_search" style="margin-bottom:25px;">
+                                    <span class="filter__icon filter__icon-location-email"></span>
+                                    <input type="email" class="filter__input" placeholder="Email" name="email" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputAddress">Address</label>
-                                    <input id="inputAddress" class="form-control" type="text" name="address" required>
+                                <div class="filter-wrap-item about_search" style="margin-bottom:25px;">
+                                    <span class="filter__icon filter__icon-location-address"></span>
+                                    <input type="text" class="filter__input" placeholder="Địa chỉ" name="address" required>
                                 </div>
                                 @endif
-                                <div class="form-group">
-                                    <label for="textNote">Note</label>
-                                    <textarea name="note" id="textNote" cols="30" rows="10"></textarea>
+                                <div class="filter-wrap-item about_search" style="margin-bottom:25px;height: 150px;">
+                                    <span class="filter__icon filter__icon-location-note"></span>
+                                    <textarea name="note" class="filter__input" id="textNote" cols="30" rows="10" placeholder="Ghi chú"></textarea>
+                                    <!-- <input type="text" class="filter__input" placeholder="Địa chỉ" name="address" required> -->
                                 </div>
                             </div>
                             <div class="payments">
@@ -306,7 +319,7 @@
                                 @endforeach
 
                             </div>
-                            <button type="submit" class="feedback_content-submit">Submit</button>
+                            <button type="submit" class="feedback_content-submit">Đặt ngay</button>
                         </div>
                     </div>
                 </div>
