@@ -39,7 +39,7 @@
         <!-- .card-header -->
         <div class="card-header">
             <h3 class="card-title">
-                <a href="{{ route('admin.tour.add') }}" class="btn btn-xs btn-success">
+                <a href="{{ route('admin.tour.index') }}" class="btn btn-xs btn-success">
                     <i class="fas fa-plus-circle"></i>&nbsp;
                     Thêm mới
                 </a>
@@ -142,7 +142,7 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
                                                 href="{{ route('admin.tour.plan.index', $tour->id) }}">Plan</a>
-                                            <a class="dropdown-item" href="#">Image</a>
+                                            <a class="dropdown-item" href="{{ route('images.index', $tour->id) }}">Image</a>
                                             <a class="dropdown-item"
                                                 href="{{ url('/admin/booking/add?').\Illuminate\Support\Arr::query(['tourId' => $tour->id]) }}">Book
                                                 this Tour</a>
@@ -161,6 +161,6 @@
     </div>
     <!-- /.card -->
 </section>
-   
+
 <!-- /.content -->
 @endsection
