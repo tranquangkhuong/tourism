@@ -12,7 +12,7 @@
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header"style="margin-top:50px;">
+<div class="content-header" style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -51,23 +51,27 @@
 
                 <form action="{{ route('admin.article.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="admin_id" value="{{ auth('admin')->id() }}">
                     <!-- .card-body -->
                     <div class="card-body">
                         <div class="form-group d-flex justify-content-center">
-                           <div class="form-group text-center"style="margin-bottom:50px">
+                            <div class="form-group text-center" style="margin-bottom:50px">
                                 <label for="exampleInputFile">Ảnh tiêu đề</label>
-                                    <div class="input-group">
-                                    <label class="show-img_add" for="exampleInputFile" style="width:100%;height:100%"> 
+                                <div class="input-group">
+                                    <label class="show-img_add" for="exampleInputFile" style="width:100%;height:100%">
                                         <div class="text-center" width="100%">
                                             <div class="img-tour_add disabled" style="height:300px;position: inherit;">
                                                 <div class="img-tour_add-show">
-                                                        <img  src="" alt="" id="image" width="100%" height="100%">
+                                                    <img src="" alt="" id="image" width="100%" height="100%">
                                                 </div>
                                                 <span class="img-tour_link"> </span>
                                             </div>
                                             <div class="img-tour_file ">
-                                                <i class="fas fa-plus icon-add_tour" style="font-size:20px;">600 x 600</i> 
-                                                <input type="file" class="custom-file-input" id="exampleInputFile" onChange="chooseFile(this)" name="image" accept="image/gif,image/jpeg,image/png"> 
+                                                <i class="fas fa-plus icon-add_tour" style="font-size:20px;">600 x
+                                                    600</i>
+                                                <input type="file" class="custom-file-input" id="exampleInputFile"
+                                                    onChange="chooseFile(this)" name="image"
+                                                    accept="image/gif,image/jpeg,image/png">
                                             </div>
                                         </div>
                                     </label>

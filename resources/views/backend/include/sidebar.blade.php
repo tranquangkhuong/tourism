@@ -297,8 +297,10 @@
                 </li>
                 @endif
 
+
                 @if($user->hasAnyPermission(['add contact', 'edit contact', 'delete contact', 'add about', 'edit
                 about', 'delete about']))
+                <li class="nav-header text-uppercase">Cấu hình hệ thống</li>
                 <li class="nav-item">
                     <a href="javascript::void()" id="link-page" class="nav-link">
                         <i class="nav-icon fab fa-product-hunt"></i>

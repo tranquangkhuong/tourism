@@ -1,10 +1,10 @@
 @extends('backend.master')
 
-@push('title', 'Change Password')
+@push('title', 'Đổi mật khẩu')
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header"style="margin-top:50px;">
+<div class="content-header" style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -14,8 +14,8 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#">My Account</a></li>
-                    <li class="breadcrumb-item active">Change Password</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/admin/account') }}">My Account</a></li>
+                    <li class="breadcrumb-item active">Đổi mật khẩu</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ url('/admin/account') }}" class="btn btn-sm btn-secondary">Back to My Account</a>
+                    <a href="{{ url('/admin/account') }}" class="btn btn-sm btn-secondary">Quay lại My Account</a>
                     <button type="submit" class="btn btn-sm btn-success float-right">Cập nhật</button>
                 </div>
             </form>

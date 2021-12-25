@@ -10,10 +10,10 @@ class BackendController extends Controller
     public function dashboard()
     {
         $totalTour = DB::table('tours')->get()->count();
-        $totalBooking = DB::table('bookings')->get()->count();
+        $requestBooking = DB::table('bookings')->where('status', 0)->get()->count();
         $totalUser = DB::table('users')->get()->count();
         $totalArticle = DB::table('articles')->get()->count();
         // dd($totalBooking);
-        return view('backend.dashboard', compact('totalTour', 'totalBooking', 'totalUser', 'totalArticle'));
+        return view('backend.dashboard', compact('totalTour', 'requestBooking', 'totalUser', 'totalArticle'));
     }
 }

@@ -157,7 +157,7 @@ class AdminController extends Controller
      */
     public function editAccount()
     {
-        $account = $this->repo->show(5);
+        $account = $this->repo->show($this->id());
         // dd($account);
         return view('backend.account.my_account', compact('account'));
     }
@@ -167,7 +167,7 @@ class AdminController extends Controller
      */
     public function updateAccount(Request $request)
     {
-        $rs = $this->repo->updateProfile($request, 5);
+        $rs = $this->repo->updateProfile($request, $this->id());
         toast($rs['msg'], $rs['stt']);
 
         return back();
@@ -186,7 +186,7 @@ class AdminController extends Controller
      */
     public function updatePassword(Request $request)
     {
-        $rs = $this->repo->updatePassword($request, 5);
+        $rs = $this->repo->updatePassword($request, $this->id());
         if (!empty($rs['error_messages'])) {
             session()->flash('errors', $rs['error_messages']);
         }

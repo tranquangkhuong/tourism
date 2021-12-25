@@ -13,7 +13,7 @@
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header"style="margin-top:50px;">
+<div class="content-header" style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -39,7 +39,7 @@
         <!-- .card-header -->
         <div class="card-header">
             <h3 class="card-title">
-                <a href="{{ route('admin.tour.index') }}" class="btn btn-xs btn-success">
+                <a href="{{ route('admin.tour.add') }}" class="btn btn-xs btn-success">
                     <i class="fas fa-plus-circle"></i>&nbsp;
                     Thêm mới
                 </a>
@@ -117,37 +117,40 @@
                         </td>
                         <td>
                             @if ($tour->display === 1)
-                            <a href="#"><span class="badge badge-info">Hiện</span></a>
+                            <a href="javascript::void()"><span class="badge badge-info">Hiện</span></a>
                             @else
-                            <a href="#"><span class="badge badge-warning">Ẩn</span></a>
+                            <a href="javascript::void()"><span class="badge badge-warning">Ẩn</span></a>
                             @endif
                         </td>
                         <td class="project-actions">
                             <div class="row">
                                 <div class="col">
-                                    <a class="btn btn-info btn-sm" title="Edit"
+                                    <a class="btn btn-info btn-sm" title="Sửa"
                                         href="{{ route('admin.tour.edit', $tour->id)}}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                     </a>
-                                    <a class="btn btn-danger btn-sm btn-delete" title="Delete"
+                                    <a class="btn btn-danger btn-sm btn-delete" title="Xóa"
                                         href="{{ route('admin.tour.delete', $tour->id) }}">
                                         <i class="fas fa-trash">
                                         </i>
                                     </a>
+                                    <a class="btn btn-secondary btn-sm" title="Đặt tour này"
+                                        href="{{ url('/admin/booking/add?').\Illuminate\Support\Arr::query(['tourId' => $tour->id]) }}">
+                                        <i class="fas fa-receipt"></i>
+                                    </a>
 
-                                    <div class="dropdown" style="display: inline-block; margin: 0px 10px;">
+                                    {{-- <div class="dropdown" style="display: inline-block; margin: 0px 10px;">
                                         <i class="fas fa-ellipsis-v" type="button" id="dropdownMenuButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
                                                 href="{{ route('admin.tour.plan.index', $tour->id) }}">Plan</a>
-                                            <a class="dropdown-item" href="{{ route('images.index', $tour->id) }}">Image</a>
                                             <a class="dropdown-item"
-                                                href="{{ url('/admin/booking/add?').\Illuminate\Support\Arr::query(['tourId' => $tour->id]) }}">Book
-                                                this Tour</a>
+                                                href="{{ route('images.index', $tour->id) }}">Image</a>
+
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </td>

@@ -242,6 +242,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Helper' => App\Helpers\Helper::class,  // custom helper
         'PDF' => Barryvdh\DomPDF\Facade::class, // pachage export PDF - barryvdh/laravel-dompdf
+        'Carbon' => Illuminate\Support\Carbon::class,
 
     ],
 

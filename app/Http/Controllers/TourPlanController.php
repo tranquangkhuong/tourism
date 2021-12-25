@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TourPlan;
 use App\Repositories\Tour\Plan\TourPlanRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class TourPlanController extends Controller
         $rs = $this->repo->store($request);
         toast($rs['msg'], $rs['stt']);
 
-        return redirect()->route('admin.tour.plan.index', ['tour_id' => $request->tour_id]);
+        return redirect()->route('admin.tour.edit', $request->tour_id);
         // $data = [
         //     'title' => 'Tieu de',
         //     'msg' => 'Tin nhan',
@@ -57,7 +58,7 @@ class TourPlanController extends Controller
         $rs = $this->repo->update($request, $planId);
         toast($rs['msg'], $rs['stt']);
 
-        return redirect()->route('admin.tour.plan.index', ['tour_id' => $request->tour_id]);
+        return redirect()->route('admin.tour.edit', $request->tour_id);
     }
 
     /**
@@ -66,8 +67,11 @@ class TourPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($planId)
     {
-        //
+        $tourId = TourPlan::find($planId)->tour_id;
+        $rs = $this->repo->destroy($planId);
+        toast($rs['msg'], $rs['stt']);
+        return redirect()->route('admin.tour.edit', $tourId);
     }
 }

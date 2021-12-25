@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@push('title', 'Add Booking')
+@push('title', 'Thêm đơn Booking')
 
 @section('script')
 <script src="{{ asset('js/custom-function.js') }}"></script>
@@ -72,11 +72,11 @@
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header"style="margin-top:50px;">
+<div class="content-header" style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Add Booking</h1>
+                <h1 class="m-0">Tạo đơn đặt tour</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -101,7 +101,7 @@
                 <div class="card card-primary">
                     <!-- .card-header -->
                     <div class="card-header">
-                        <h3 class="card-title">Create new booking</h3>
+                        <h3 class="card-title">Tạo đơn đặt tour</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                 <i class="fas fa-minus"></i>
@@ -113,9 +113,13 @@
                     <!-- .card-body -->
                     <form action="{{ route('admin.booking.store2') }}" method="post">
                         @csrf
+                        <input type="hidden" name="user_id" value="{{ $queryData['user_id'] }}">
+                        <input type="hidden" name="tour_id" value="{{ $queryData['tour_id'] }}">
+                        <input type="hidden" name="payment_id" value="{{ $queryData['payment_id'] }}">
+                        <input type="hidden" name="status" value="{{ $queryData['status'] }}">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="selectDay">Other Day</label>
+                                <label for="selectDay">Ngày khởi hành</label>
                                 <select name="other_day" id="selectDay" class="form-control custom-select" required>
                                     @php
                                     $otherDays = explode(',', $tour->other_day)
@@ -128,7 +132,7 @@
                             </div>
                             <div class="row">
                                 <div style="overflow-x:auto;" class="wrap-section-booking table">
-                                    <h1 class="booking-title">List Price Tour</h1>
+                                    <h1 class="booking-title">Danh sách giá Tour</h1>
                                     <input type="hidden" name="tour_id" value="{{ $tour->id }}">
                                     <table>
                                         <tr>
@@ -207,7 +211,7 @@
                                                 @if (count($promotions) > 0)
                                                 <div>
                                                     <select name="promotion_id" class="promotion">
-                                                        <option value="">-- Select Promotion --</option>
+                                                        <option value="">-- Chọn khuyến mại --</option>
                                                         @foreach ($promotions as $promotion)
                                                         <option value="{{ $promotion->id }}">{{ $promotion->content }}
                                                         </option>
@@ -219,11 +223,11 @@
                                             <div class="booking-price-final">
                                                 <input id="totalSlot" type="hidden" name="total_slot"
                                                     readonly="readonly">
-                                                Total slot: <span id="viewTotalSlot">0</span>
+                                                Tổng số chỗ: <span id="viewTotalSlot">0</span>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <input id="totalPrice" type="hidden" name="total_price"
                                                     readonly="readonly">
-                                                Total price: <span id="viewTotalPrice">0</span> <sup>đ</sup>
+                                                Tổng giá: <span id="viewTotalPrice">0</span> <sup>đ</sup>
                                             </div>
                                         </div>
 
@@ -238,8 +242,8 @@
 
                         <!-- .card-footer -->
                         <div class="card-footer">
-                            <a href="{{ route('admin.booking.index') }}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-success float-right">Save</button>
+                            <a href="{{ route('admin.booking.index') }}" class="btn btn-secondary">Quay lại</a>
+                            <button type="submit" class="btn btn-success float-right">Lưu</button>
                         </div>
                         <!-- /.card-footer -->
                     </form>

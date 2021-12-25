@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@push('title', 'Add Booking')
+@push('title', 'Tạo đơn Booking')
 
 @section('script')
 <script>
@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header"style="margin-top:50px;">
+<div class="content-header" style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Add Booking</h1>
+                <h1 class="m-0">Tạo đơn đặt tour</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="card card-primary">
                     <!-- .card-header -->
                     <div class="card-header">
-                        <h3 class="card-title">Create new booking</h3>
+                        <h3 class="card-title">Tạo đơn đặt tour</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                 <i class="fas fa-minus"></i>
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="selectUser">User</label>
+                                        <label for="selectUser">Khách hàng</label>
                                         <select name="user_id" id="selectUser" class="form-control" required>
                                             <option value="">-- Select user --</option>
                                             @foreach ($users as $user)
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <label for="selectPayment">Payment method</label>
+                                                <label for="selectPayment">Phương thức thanh toán</label>
                                                 <select name="payment_id" id="selectPayment" class="form-control"
                                                     required>
                                                     <option value="">-- Select Payment --</option>
@@ -88,11 +88,11 @@ document.addEventListener('DOMContentLoaded', function () {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="inputStatus">Status</label>
+                                                <label for="inputStatus">Trạng thái</label>
                                                 <select id="inputStatus" name="status"
                                                     class="form-control custom-select">
-                                                    <option selected="" value="1">Paid</option>
-                                                    <option value="0">Not Paid</option>
+                                                    <option selected="" value="1">Đã t.toán</option>
+                                                    <option value="0">Chưa t.toán</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="form-group">
                                 <label for="selectTour">Tour</label>
                                 <select name="tour_id" id="selectTour" class="form-control" required>
-                                    <option value="">-- Select Tour --</option>
+                                    <option value="">-- Chọn Tour --</option>
                                     @foreach ($tours as $tour)
                                     <option {{ $tour->id == $tourId ? 'selected' : '' }} value="{{ $tour->id }}">
                                         {{ $tour->name }} --- {{ $tour->slot }} slot
@@ -116,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         <!-- .card-footer -->
                         <div class="card-footer">
-                            <a href="{{ route('admin.booking.index') }}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-success float-right">Next</button>
+                            <a href="{{ route('admin.booking.index') }}" class="btn btn-secondary">Quay lại quản lý</a>
+                            <button type="submit" class="btn btn-success float-right">Tiếp</button>
                         </div>
                         <!-- /.card-footer -->
                     </form>

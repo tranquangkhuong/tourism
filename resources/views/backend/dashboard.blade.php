@@ -12,14 +12,16 @@
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header coler-page_header elevation-1 "style="margin-top:50px;">
+<div class="content-header coler-page_header elevation-1 " style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-2">
                 <h1 class="m-0">Dashboard</h1>
             </div><!-- /.col -->
             <div class="col-sm-8">
-            <marquee id="marq" scrollamount="7" direction="left" loop="50" scrolldelay="3" behavior="scroll" color="0033CC" onmouseover="this.stop()" onmouseout="this.start()"> Chào mừng bạn đến với hệ thống quản trị Website quảng bá và đặt tour du lịch trực tuyến. <span style="width: 
+                <marquee id="marq" scrollamount="7" direction="left" loop="50" scrolldelay="3" behavior="scroll"
+                    color="0033CC" onmouseover="this.stop()" onmouseout="this.start()"> Chào mừng bạn đến với hệ thống
+                    quản trị Website quảng bá và đặt tour du lịch trực tuyến. <span style="width:
              100%;height: 100%;display: inline-block;"></marquee>
             </div><!-- /.col -->
             <div class="col-sm-2">
@@ -46,7 +48,8 @@
                     <br>+ Cần được hướng dẫn trước khi mới tiếp cận tới Admin.
                     <br>+ Không nên thêm sửa xóa nội dụng khi chưa đc cấp phép.
                     <br>+ Không đăng tải những nội dung không đúng mục đích.
-                    <br>+ Chúng ta luôn luôn tuân thủ những bước thực hiện để cho công việc được hiệu quả.Admin hotline:19009876.
+                    <br>+ Chúng ta luôn luôn tuân thủ những bước thực hiện để cho công việc được hiệu quả.Admin
+                    hotline:19009876.
                 </p>
             </div>
         </div>
@@ -85,7 +88,7 @@
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="{{ route('admin.tour.index') }}" class="small-box-footer small-box_link">Xem chi tiết   <i
+                    <a href="{{ route('admin.tour.index') }}" class="small-box-footer small-box_link">Xem chi tiết <i
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
@@ -94,8 +97,8 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3 id="form-group-action-card">{{ $totalBooking }}</h3>
-                        <p>Booking</p>
+                        <h3 id="form-group-action-card">{{ $requestBooking }}</h3>
+                        <p>Yêu cầu Booking</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>

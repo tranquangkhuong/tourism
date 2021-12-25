@@ -1,6 +1,6 @@
 @extends('frontend.master')
 
-@push('title', 'Contact us')
+@push('title', 'Liên hệ')
 
 @section('content')
 <div class="container-map">
@@ -10,7 +10,7 @@
         <div class="row">
             <div class="container_about_us-item col l-7 m-12 c-12">
                 <div class="container_about_us_item-list contact_us_item-list">
-                    <h2 class="container_about_us_item_list-title"> Contact Us Now </h2>
+                    <h2 class="container_about_us_item_list-title">Liên hệ với chúng tôi</h2>
                     <p class="container_about_us_item_list-text">Si elit omnes impedit ius, vel et hinc agam fabulas. Ut
                         audiam invenire iracundia vim. Tn ea diam ea. Piber Korem sit amet.</p>
                     <p class="container_about_us_item_list-text_content">Al elit omnes impedfghit ius, vel et hinc agam
@@ -29,27 +29,31 @@
             </div>
         </div>
         <div class="row contact_us-address">
+            @foreach ($contacts as $c)
             <div class="col l-4 m-12 c-12 footer-column">
                 <div class="footer-logo contact_us-item ">
-                    <h2 class="contact_us-title">hà nội</h2>
+                    <h2 class="contact_us-title">{{ $c->name }}</h2>
                 </div>
-                <p class="text-description comtact-text">Lorem ipsum dolor sit ametco nsec te tuer adipiscing elitae</p>
+                <p class="text-description comtact-text">{{ $c->info }}</p>
                 <div class="social-footer">
-                    <a href="mailto:hoangngocbkhn2311@gmail.com" class="header-top__left-item">
+                    <a href="mailto:{{ $c->email }}" class="header-top__left-item">
                         <i class="fas fa-envelope"></i>
-                        <span class="left-item__text comtact-text">setsail@qode.com</span>
+                        <span class="left-item__text comtact-text">{{ $c->email }}</span>
                     </a>
-                    <a href="tel:+840393578454 " class="header-top__left-item">
+                    <a href="tel:{{ $c->phone }} " class="header-top__left-item">
                         <i class="fas fa-phone-alt"></i>
-                        <span class="left-item__text comtact-text">562 867 5309</span>
+                        <span class="left-item__text comtact-text">
+                            {{ preg_replace('~(\d{4})(\d{3})(\d{3})~', '$1 $2 $3', $c->phone) }}
+                        </span>
                     </a>
                     <a href="#" class="header-top__left-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span class="left-item__text comtact-text">Broadway & Morris St, New York</span>
+                        <span class="left-item__text comtact-text">{{ $c->address }}</span>
                     </a>
                 </div>
             </div>
-            <div class="col l-4 m-12 c-12 footer-column">
+            @endforeach
+            {{-- <div class="col l-4 m-12 c-12 footer-column">
                 <div class="footer-logo contact_us-item ">
                     <h2 class="contact_us-title">Đà nẵng</h2>
                 </div>
@@ -88,32 +92,32 @@
                         <span class="left-item__text comtact-text">Broadway & Morris St, New York</span>
                     </a>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="container-feedback ">
             <div class="feedback_list-items">
                 <div class="feedback-items">
-                    <h2 class="contact_us-title">Leave a Reply</h2>
+                    <h2 class="contact_us-title">Để lại một phản hồi</h2>
                 </div>
                 <div class="feedback-content">
                     <span></span>
                     <textarea name="" class="feedback_content-text" cols="40" rows="10"
-                        placeholder="Message"></textarea>
+                        placeholder="Nội dung"></textarea>
                 </div>
                 <div class="grid">
                     <div class="row feedback_content-information">
                         <div class="feedback_information-email l-6 m-12 c-12">
                             <span class="feedback_information_email-icon"></span>
-                            <input class="feedback_input" type="text" placeholder="email">
+                            <input class="feedback_input" type="text" placeholder="Email">
                         </div>
                         <div class="feedback_information-email l-6 m-12 c-12">
                             <span class="feedback_information_email-icon1"></span>
-                            <input class="feedback_input" type="text " placeholder="name">
+                            <input class="feedback_input" type="text " placeholder="Tên">
                         </div>
                     </div>
                 </div>
-                <button class="feedback_content-submit">send</button>
+                <button class="feedback_content-submit">Gửi</button>
             </div>
         </div>
 

@@ -42,6 +42,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\TourMuntipleImage;
+use App\Models\Area;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,49 +131,14 @@ Route::get('/auth/{provider}/callback', [LoginWithSocialNetworkController::class
 
 
 Route::get('/', [BaseController::class, 'home']);
-// Route::get('/', function () {
-//     return view('frontend.index');
-// })->name('index');
-
-// Route::get('/destination', [BaseController::class, 'destination']);
-Route::get('/standard-list', function () {
-    return view('frontend.standard_list');
-});
-
-Route::get('/detail-tour', function () {
-    return view('frontend.detail_tour');
-});
-
-// Route::get('/blog', function () {
-//     return view('frontend.blog_masonry');
-// });
-
 Route::get('about-us', [BaseController::class, 'about']);
-// Route::get('/about-us', function () {
-//     return view('frontend.about_us');
-// });
-
 Route::get('/contact', [BaseController::class, 'contact']);
-// Route::get('/contact-us', function () {
-//     return view('frontend.contact_us');
-// });
-
-Route::get('/test', function () {
-    return view('frontend.test');
-});
-Route::get('/mail', function () {
-    return view('mail.booking');
-});
-Route::get('/myaccount', function () {
-    return view('frontend.user.my_account');
-});
-Route::get('/detail-blog', function () {
-    return view('frontend.detail_blog');
-});
 
 // ! Các route liên quan đến Tours
 Route::group(['prefix' => '/tour'], function () {
     Route::get('/', [BaseController::class, 'listTour']);
+    Route::get('/list', [BaseController::class, 'listTour']);
+    Route::post('/search', [BaseController::class, 'search']);
     Route::get('/domestic', [BaseController::class, 'domestic']);
     Route::get('/foreign', [BaseController::class, 'foreign']);
     Route::get('/{tour_id}', [BaseController::class, 'detailTour']);
@@ -202,6 +168,7 @@ Route::get('/notification/delete/{notification_id}', [UserController::class, 'de
 
 // Lấy thông tin của mã giảm giá
 Route::get('/promotion/{promotion_id}', [PromotionController::class, 'getPromotion']);
+Route::get('/social-element', [Controller::class, 'socialElement']);
 
 // Thanh toán online qua VnPay
 Route::get('/vnpay', [VnpayController::class, 'create'])->name('vnpay');
@@ -212,12 +179,8 @@ Route::get('/return-vnpay', [VnpayController::class, 'return'])->name('vnpay.ret
 | Routes for Administrators.
 |-----------------------------------------------------------------------
 */
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
 
 Route::get('/generate-code/{length}', [Controller::class, 'generateCode'])->name('generate_code');
-// Route::get('/images/{model}/{size}/{image_path}', [Controller::class, 'flyResize'])->where('image_path', '(.*)');
 
 Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function () {
 
@@ -327,12 +290,8 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admi
         });
 
         Route::group(['prefix' => '/image', 'as' => 'image.'], function () {
-            // Route::get('/{tour_id}', [TourImageController::class, 'index'])->name('index');
-            Route::get('/index-data/{tour_id}', [TourImageController::class, 'indexData'])->name('index_data');
-            Route::get('/add-image', [TourImageController::class, 'add'])->name('addnew');
-            Route::post('/save', [TourImageController::class, 'store'])->name('save');
-            // Route::post('/store', [TourImageController::class, 'store'])->name('store');
-            // Route::post('/delete',[TourImageController::class, 'remvoeFile'])->name('delete');
+            Route::post('/image/save', [TourImageController::class, 'store'])->name('store');
+            Route::get('/delete/{image_id}', [TourImageController::class, 'destroy'])->name('delete');
         });
     });
 
@@ -387,6 +346,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admi
         });
         Route::get('/add', [BookingController::class, 'create'])->name('add');
         Route::post('/store-step-1', [BookingController::class, 'storeStep1'])->name('store1');
+        Route::get('/store/hocks', [BookingController::class, 'hocks'])->name('hocks');
         Route::post('/store-step-2', [BookingController::class, 'storeStep2'])->name('store2');
         Route::get('/edit/{booking_id}', [BookingController::class, 'edit'])->name('edit');
         Route::post('/update/{booking_id}', [BookingController::class, 'update'])->name('update');
@@ -408,37 +368,3 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admi
     Route::get('/change-password', [AdminController::class, 'changePassword']);
     Route::post('/update-password', [AdminController::class, 'updatePassword']);
 });
-
-Route::get('/c-n', function () {
-    // $data = [
-    //     'user_id' => 1,
-    //     'type' => 'success',
-    //     'data' => implode(';;', [
-    //         'code' => 'RCSFSP2E1D',
-    //         'content' => 'You have successfully booked the tour: Teen tour',
-    //     ]),
-    // ];
-    $data = [
-        'code' => 'RCSFSP2E1D',
-        'content' => 'You have successfully booked the tour: Teen tour',
-    ];
-    $user = User::find(1);
-    // dd($user);
-    // $user->notify(new SendNotificationToCustomers($data));
-    Notification::send($user, new SendNotificationToCustomers($data));
-});
-
-Route::get('x', function () {
-    $admin = Admin::find(5);
-    // $role = DB::table('model_has_roles')->where('model_id', $admin->id)->first();
-    // $rs = $admin->removeRole($role->role_id);
-    $admin->syncPermissions([]);
-    // dd($role);
-});
-
-Route::get('/test', [BookingController::class, 'test']);
-// Route::get('/add-image', [TourImageController::class, 'create'])->name('addnew');
-Route::get('/{tour_id}', [TourImageController::class, 'index'])->name('images.index');
-Route::get('/image/add/{tour_id}', [TourImageController::class, 'create'])->name('add-image');
-Route::post('/image/save', [TourImageController::class, 'store']);
-Route::get('/tour/image/{image_id}', [TourImageController::class, 'destroy'])->name('images.delete');

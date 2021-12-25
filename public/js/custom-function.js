@@ -6,14 +6,6 @@ $(document).ready(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
     });
-
-    // Alert Delete. Hien xac nhan xoa
-    $(".btn-delete").click((e) => {
-        let isDelete = confirm("Bạn có chắc chắn muốn xóa?");
-        if (!isDelete) {
-            e.preventDefault();
-        }
-    });
 });
 
 // Tao ham number_format dua theo ham number_format() cua PHP

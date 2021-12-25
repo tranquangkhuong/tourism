@@ -103,24 +103,37 @@ class BookingController extends Controller
     public function storeStep1(Request $request)
     {
         // dd($request->all());
-        session([
-            'booking.user_id' => $request->user_id,
-            'booking.payment_id' => $request->payment_id,
-            'booking.status' => $request->status,
-        ]);
-        $tour = $this->repo->getTour($request->tour_id);
-        $promotions = $this->repo->getPromotion($request->tour_id);
+
+        $query = [
+            'user_id' => $request->user_id,
+            'tour_id' => $request->tour_id,
+            'payment_id' => $request->payment_id,
+            'status' => $request->status,
+        ];
+
         // dd($tour, count($promotions));
 
-        return view('backend.booking.add2', compact('tour', 'promotions'));
+
+        return redirect()->route('admin.booking.hocks', $query);
+    }
+
+    public function hocks(Request $request)
+    {
+        // dd($request->all());
+        $queryData = [
+            'user_id' => $request->user_id,
+            'tour_id' => $request->tour_id,
+            'payment_id' => $request->payment_id,
+            'status' => $request->status,
+        ];
+        $tour = $this->repo->getTour($request->tour_id);
+        $promotions = $this->repo->getPromotion($request->tour_id);
+        return view('backend.booking.add2', compact('tour', 'promotions', 'queryData'));
     }
 
     public function storeStep2(Request $request)
     {
         $data = $request->all();
-        $data['user_id'] = session('booking.user_id');
-        $data['payment_id'] = session('booking.payment_id');
-        $data['status'] = session('booking.status');
         // dd($data);
         $rs = $this->repo->store($data);
         session()->forget('booking');
@@ -190,9 +203,22 @@ class BookingController extends Controller
         $tour = $this->repo->getTour($tourId);
         $promotions = $this->repo->getPromotion($tourId);
         $payments = $this->repo->getAllPayment();
+
+        $x = explode(',', $tour->other_day);
+        $count = count($x);
+        $i = 0;
+        $ngayKhac = '[';
+        foreach ($x as $key => $value) {
+            if (++$i == $count) {
+                $ngayKhac .= '\'' . $value . '\'';
+            } else {
+                $ngayKhac .= '\'' . $value . '\', ';
+            }
+        }
+        $ngayKhac .= ']';
         // dd(explode(',', $tour->other_day));
 
-        return view('frontend.booking.index', compact('tour', 'promotions', 'payments'));
+        return view('frontend.booking.index', compact('tour', 'promotions', 'payments', 'ngayKhac'));
     }
 
     /**
@@ -222,7 +248,10 @@ class BookingController extends Controller
             }
         }
 
-        $data['msg'] = __('Đặt chỗ thất bại!');
+        $data = [
+            'msg' => __('Đặt chỗ thất bại!'),
+            'status' => 2,
+        ];
         return view('frontend.booking.return', compact('data'));
     }
 

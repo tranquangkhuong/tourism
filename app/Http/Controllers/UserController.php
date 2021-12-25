@@ -133,8 +133,9 @@ class UserController extends Controller
     {
         // dd('loading');
         $user = $this->repo->show($this->id());
+        $bookings = $this->repo->getBooking($this->id());
 
-        return view('frontend.user.my_account', compact('user'));
+        return view('frontend.user.my_account', compact('user', 'bookings'));
     }
 
     /**
@@ -147,7 +148,7 @@ class UserController extends Controller
     public function userUpdate(Request $request)
     {
         // dd($request->has)
-        $rs = $this->repo->update($request, 1);
+        $rs = $this->repo->update($request, $this->id());
         toast($rs['msg'], $rs['stt']);
 
         return back();

@@ -21,6 +21,22 @@ class TourRepositoryEloquent extends RepositoryEloquent implements TourRepositor
         return \App\Models\Tour::class;
     }
 
+    public function getPlan($tourId)
+    {
+        $data = \App\Models\TourPlan::where('tour_id', $tourId)->orderBy('day', 'asc')->get();
+        // $data['tour_name'] = $this->getTourName($tourId);
+        // dd($data[0]['content']);
+        return $data;
+    }
+
+    /**
+     * Lay tat ca anh cua mot Tour.
+     */
+    public function getImageTour($tourId)
+    {
+        return \App\Models\TourImage::where('tour_id', $tourId)->get();
+    }
+
     /**
      * Overwrite ham getAll.
      */

@@ -40,22 +40,28 @@
 @section('content')
 <div id="myAccount" style="margin-bottom:50px">
     <div class="grid wide">
-    @csrf
         <div id="tabs" class="row">
             <div class="col l-12 m-12 c-12">
                 <header class="header">
                     <div class="header-avatar">
                         <div class="header-avatar__img">
-                            <a href="#"><img src="{{ $user->avatar_image_path ?: $user->profile_photo_path ?: 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg' }}" alt="account"></a>
+                            <a href="javascript::void()">
+                                <img src="{{ isset($user->avatar_image_path) ? asset($user->avatar_image_path) : (isset($user->profile_photo_path) ? asset($user->profile_photo_path) : 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg'
+    ) }}" alt="account"></a>
+                            {{-- <img src="{{ asset($user->avatar_image_path) }}" alt="account"> --}}
+                            </a>
                         </div>
                         <div class="header-avatar__action">
                             <a href="#"><i class="fas fa-camera"></i></a>
                         </div>
-                        
+
                     </div>
                     <h1 class="header_name-orther">{{ $user->name }}</h1>
+
                 </header>
             </div>
+
+            <!-- sidebar -->
             <div class="col l-3 m-3 c-12">
                 <div class="side-bar">
                     <div class="side-bar__wrap">
@@ -68,41 +74,43 @@
                     </div>
                 </div>
             </div>
+
             <div id="tabs-1" class="container-search_product tab-item col l-9 m-9 c-12">
                 <div class="container-feedback ">
                     <div class="feedback_list-items book-card">
                         <!-- Form Update -->
                         <form action="{{ url('/user/profile/update') }}" method="post" enctype="multipart/form-data">
-                            
+                            @csrf
                             <div class=" feedback_content-information">
                                 <div class="row">
                                     <div class="feedback_information-email-card col l-9 m-9 c-12 ">
                                         <label for="User_Name">Tên của bạn:</label>
                                         <div class="feedback_information-email-card ">
                                             <span class="icon_add-card"><i class="fas fa-user-alt"></i></span>
-                                            <input class="feedback_input-card add-card" id="User_Name" type="text" name="name"
-                                                placeholder="User Name*" value="{{ $user->name }}">
+                                            <input class="feedback_input-card add-card" id="User_Name" type="text"
+                                                name="name" placeholder="User Name*" value="{{ $user->name }}">
                                         </div>
                                         <label for="User_Name-email">Email:</label>
                                         <div class="feedback_information-email-card">
                                             <span class="icon_add-card"><i class="far fa-envelope"></i></span>
-                                            <input class="feedback_input-card add-card" id="User_Name-email" type="email" placeholder="Email*"
-                                                readonly value="{{ $user->email }}">
+                                            <input class="feedback_input-card add-card" id="User_Name-email"
+                                                type="email" placeholder="Email*" readonly value="{{ $user->email }}">
                                         </div>
                                         <label for="User_Name-phone">Số điện thoai:</label>
                                         <div class="feedback_information-email-card">
                                             <span class="icon_add-card"><i class="fas fa-phone"></i></span>
-                                            <input class="feedback_input-card add-card" id="User_Name-phone" type="tel" name="phone" minlength="9"
-                                                maxlength="14" pattern="^[+]?[0-9]{9,14}$" placeholder="Phone*"
-                                                value="{{ $user->phone }}">
+                                            <input class="feedback_input-card add-card" id="User_Name-phone" type="tel"
+                                                name="phone" minlength="9" maxlength="14" pattern="^[+]?[0-9]{9,14}$"
+                                                placeholder="Phone*" value="{{ $user->phone }}">
                                         </div>
                                         <label for="User_Name-address">Địa chỉ:</label>
                                         <div class="feedback_information-email-card">
                                             <span class="icon_add-card"><i class="fas fa-address-card"></i></span>
-                                            <input class="feedback_input-card add-card" id="User_Name-address" type="text" name="address"
-                                                placeholder="Address" value="{{ $user->address }}">
+                                            <input class="feedback_input-card add-card" id="User_Name-address"
+                                                type="text" name="address" placeholder="Address"
+                                                value="{{ $user->address }}">
                                         </div>
-                                        
+
                                     </div>
                                     <div class="feedback_information-email-card col l-3 m-3 c-12 ">
                                         <div class="img-other">
@@ -112,54 +120,54 @@
                                                 </div>
                                                 <div class="input-img-orther ">
                                                     <!-- cho đường link ảnh từ database vào src của thẻ img -->
-                                                    <img class="input-img-orther-data" src="{{ $user->avatar_image_path ?: $user->profile_photo_path ?: 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg' }}" alt="avatar">
-                                                    <input id="feedback_input-card" type="file" onChange="chooseFile(this)" name="image" placeholder="Image">
+                                                    <img class="input-img-orther-data"
+                                                        src="{{ $user->avatar_image_path ?: $user->profile_photo_path ?: 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg' }}"
+                                                        alt="avatar">
+                                                    <input id="feedback_input-card" type="file"
+                                                        onChange="chooseFile(this)" name="image" placeholder="Image">
                                                 </div>
                                             </label>
-                                        </div>                                   
+                                        </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
-                            <button class="feedback_content-submit submit-btn">Cập nhật</button>
+                            <button type="submit" class="feedback_content-submit submit-btn">Cập nhật</button>
                         </form>
                         <!-- /form -->
                     </div>
                 </div>
             </div>
+
             <div id="tabs-2" class="tab-item l-9 m-9 c-12">
-                
+                @if (collect($bookings)->isNotEmpty())
                 <table class="table" style="background-color: #efefef">
                     <thead style="background-color:#02acea;color: #fff;">
                         <tr>
-                        <th scope="col">Code</th>
-                        <th scope="col">Tên đơn</th>
-                        <th scope="col">Số lượng </th>
-                        <th scope="col">Tổng tiền</th>
-                        <th scope="col">Ngày mua</th>
-                        <th scope="col">Action</th>
+                            <th scope="col">Code</th>
+                            <th scope="col">Tên đơn</th>
+                            <th scope="col">Số lượng </th>
+                            <th scope="col">Tổng tiền (đ)</th>
+                            <th scope="col">Ngày mua</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($bookings as $bk)
                         <tr>
-                        <th scope="row">#35fsdd</th>
-                        <td>Hạ Long  một trong bảy kỳ quan thiên nhiên của thế giới Hạ Long  một trong bảy kỳ quan thiên nhiên của thế giớHạ Long  một trong bảy kỳ quan thiên nhiên của thế giớ</td>
-                        <td>1244</td>
-                        <td>1233</td>
-                        <td>2/9/2021</td>
-                        <td><a href="#">Detail</a></td>
+                            <th scope="row">{{ $bk->code }}</th>
+                            <td>{{ $bk->name }}</td>
+                            <td>{{ $bk->total_slot }}</td>
+                            <td>{{ number_format($bk->total_price, 0, ',', ' ')}}</td>
+                            <td>{{ $bk->created_at }}</td>
+                            <td><a href="{{ url("/booking/$bk->code") }}">Chi tiết</a></td>
                         </tr>
-                        <tr>
-                        <th scope="row">#35fsdd</th>
-                        <td>Halfhaofhafpgnahvfndajdpjujr;rurprpedpoq</u></td>
-                        <td>1244</td>
-                        <td>1233</td>
-                        <td>2/9/2021</td>
-                        <td><a href="#">Detail</a></td>
-                        </tr>
-
+                        @endforeach
                     </tbody>
-                    </table>
+                </table>
+                @else
+                <span>Chưa có đơn đặt tour nào.</span>
+                @endif
             </div>
         </div>
     </div>

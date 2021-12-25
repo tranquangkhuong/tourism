@@ -29,7 +29,7 @@ class ArticleRepositoryEloquent extends RepositoryEloquent implements ArticleRep
             $content = $this->getDataFromEditor($request->content);
 
             $article = new Article();
-            $article->admin_id = 5;
+            $article->admin_id = $request->admin_id;
             $article->title = $request->title;
             if ($image) {
                 $article->image_path = $image;

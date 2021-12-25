@@ -114,8 +114,10 @@ class TourController extends Controller
         $includes = ($this->repo->getTourInclude($tourId));
         $notIncludes = ($this->repo->getTourNotInclude($tourId));
         // dd(collect($notIncludes)->isNotEmpty());
+        $plans = $this->repo->getPlan($tourId);
+        $images = $this->repo->getImageTour($tourId);
 
-        return view('backend.tour.edit', compact('tour', 'areas', 'locations', 'promotions', 'tags', 'vehicles', 'includes', 'notIncludes'));
+        return view('backend.tour.edit', compact('tour', 'areas', 'locations', 'promotions', 'tags', 'vehicles', 'includes', 'notIncludes', 'plans', 'images'));
     }
 
     /**

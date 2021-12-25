@@ -114,17 +114,26 @@ class VnpayController extends Controller
                 // Cập nhật trạng thái booking
                 $this->bookingRepository->successfulOnlinePayment($inputData['vnp_TxnRef']);
 
-                $data = ['msg' => __('Giao dịch thành công.')];
+                $data = [
+                    'msg' => __('Giao dịch thành công.'),
+                    'status' => 1,
+                ];
             } else {
                 // Lưu transaction
                 $this->bookingRepository->saveTransaction($data);
                 // Cập nhật trạng thái booking
                 $this->bookingRepository->failedOnlinePayment($inputData['vnp_TxnRef'], 2);
 
-                $data = ['msg' => __('Giao dịch thất bại! Booking không thành công.')];
+                $data = [
+                    'msg' => __('Giao dịch thất bại! Booking không thành công.'),
+                    'status' => 2,
+                ];
             }
         } else {
-            $data = ['msg' => __('Chữ ký không hợp lệ.')];
+            $data = [
+                'msg' => __('Chữ ký không hợp lệ.'),
+                'status' => 2,
+            ];
         }
 
         return view('frontend.booking.return', compact('data'));

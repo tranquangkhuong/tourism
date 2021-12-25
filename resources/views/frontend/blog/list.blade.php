@@ -1,10 +1,10 @@
 @extends('frontend.master')
 
-@push('title', 'Blog')
+@push('title', 'Bài viết')
 
 @section('content')
 <div class="slider">
-    <h1 class="slider-text translate" data-speed="0.1">Blog</h1>
+    <h1 class="slider-text translate" data-speed="0.1">Bài viết</h1>
     <img src="{{ URL::asset('frontend/img/img_slider/person.png') }} " class="person translate" data-speed="-0.25"
         alt="">
     <img src="{{ URL::asset('frontend/img/img_slider/slider1.jpg') }} " class="slider-img translate" data-speed="0.4"
@@ -31,7 +31,7 @@
                     <span>{{ $article->created_at }}</span>
                 </div>
                 <div class="blogmasonry-title_list-content">
-                    <p class="blogmasonry_content-text">{{ $article->content }}</p>
+                    <p class="blogmasonry_content-text">&nbsp;</p>
                 </div>
                 <div class="blogmasonry_content-detail">
                     <a href="{{ url("/blog/{$article->id}") }}" class="blogmasonry_detail-link">Xem thêm<i
@@ -42,6 +42,6 @@
         @endforeach
 
     </div>
-    {{ $articles->links('pagination.default') }}
+    {{ $articles->links() }}
 </div>
 @endsection

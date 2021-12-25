@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class Controller extends BaseController
@@ -44,4 +45,33 @@ class Controller extends BaseController
     // {
     //     return $this->repo->flyResize($model, $size, $imagePath);
     // }
+
+    public function socialElement()
+    {
+        $contact = DB::table('contacts')->get();
+        $about = DB::table('about')->first();
+        // dd(empty($contact[3]->address));
+        $data = [
+            'email' => $contact[0]->email,
+            'phone' => preg_replace('~(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{2})[^\d]{0,7}(\d{2})~', '$1 $2 $3 $4', $contact[0]->phone),
+            'address' => $contact[0]->address,
+            'facebook' => $about->facebook,
+            'youtube' => $about->youtube,
+            'instagram' => $about->instagram,
+            'twitter' => $about->twitter,
+            'pinterest' => $about->pinterest,
+
+            // 'email2' => $contact[1]->email,
+            // 'phone2' => $contact[1]->phone,
+            'address2' => isset($contact[1]->address) ? $contact[1]->address : '',
+            // 'email3' => $contact[2]->email,
+            // 'phone3' => $contact[2]->phone,
+            'address3' => isset($contact[2]->address) ? $contact[2]->address : '',
+            // 'email4' => $contact[3]->email,
+            // 'phone4' => $contact[3]->phone,
+            'address4' => isset($contact[3]->address) ? $contact[3]->address : '',
+        ];
+
+        return response()->json($data);
+    }
 }

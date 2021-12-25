@@ -16,11 +16,11 @@ class AboutSeeder extends Seeder
     {
         DB::table('about')->insert([
             'about_us' => 'Giới thiệu về VieTour',
-            'facebook' => 'facebook.com',
-            'youtube' => 'youtube.com',
-            'instagram' => 'instagram.com',
-            'twitter' => 'twitter.com',
-            'pinterest' => 'pinterest.com',
+            'facebook' => 'https://www.facebook.com',
+            'youtube' => 'https://www.youtube.com',
+            'instagram' => 'https://www.instagram.com',
+            'twitter' => 'https://www.twitter.com',
+            'pinterest' => 'https://www.pinterest.com',
         ]);
     }
 }

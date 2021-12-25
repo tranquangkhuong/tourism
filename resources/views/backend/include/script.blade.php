@@ -4,6 +4,16 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    $(document).ready(function () {
+        // Alert Delete. Hien xac nhan xoa
+        $(".btn-delete").click((e) => {
+            let isDelete = confirm("Bạn có chắc chắn muốn xóa?");
+            if (!isDelete) {
+                e.preventDefault();
+            }
+        });
+    });
 </script>
 <!-- Optional JavaScript Bootstrap -->
 <script src="{{asset('backend/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
@@ -26,7 +36,7 @@
     $(function () {
     bsCustomFileInput.init();
     });
-    
+
     // muntible date.
     $('.date').datepicker({
     multidate: true
@@ -52,7 +62,7 @@
         theme: 'classic',
     });
 
-  
+
     // Summernote
     $('#summernote').summernote({
         placeholder: 'Viết nội dung tại đây...',
@@ -94,8 +104,8 @@
         }
     }
 
-    
-   
+
+
 </script>
 
 <script>
@@ -109,7 +119,7 @@
         }
     });
 </script>
-<script >
+<script>
     var setDefaultActive = function() {
     var path = window.location.pathname;
     var element = $(".nav-item a[href='" + path + "']");

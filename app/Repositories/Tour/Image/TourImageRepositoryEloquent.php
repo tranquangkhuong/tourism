@@ -13,14 +13,6 @@ class TourImageRepositoryEloquent extends RepositoryEloquent implements TourImag
     }
 
     /**
-     * Lay tat ca anh cua mot Tour.
-     */
-    public function getImageTour($tourId)
-    {
-        return $this->_model->where('tour_id', $tourId)->get();
-    }
-
-    /**
      * Upload (multi image) va luu vao DB.
      */
     public function store($request)

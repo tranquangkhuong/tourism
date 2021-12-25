@@ -22,12 +22,12 @@ class TourImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($tourId)
-    {
-        $images = $this->repo->getImageTour($tourId);
-        // $images = TourImage::all();
-        return view('backend.tour.images.index', compact('images','tourId'));
-    }
+    // public function index($tourId)
+    // {
+    //     $images = $this->repo->getImageTour($tourId);
+    //     // $images = TourImage::all();
+    //     return view('backend.tour.images.index', compact('images','tourId'));
+    // }
 
     public function indexData()
     {
@@ -40,10 +40,10 @@ class TourImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($tourId)
-    {
-        return view('backend.tour.images.add', compact('tourId'));
-    }
+    // public function create($tourId)
+    // {
+    //     return view('backend.tour.images.add', compact('tourId'));
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -53,27 +53,36 @@ class TourImageController extends Controller
      */
     public function store(Request $request)
     {
-         $tourId =  $request->tour_id;
+        try {
+            $tourId =  $request->tour_id;
 
-        foreach($request->file('images') as $key => $file) {
-            $originFileName = $file->getClientOriginalName();
-            // lay extension cua file
-            $extension = $file->getClientOriginalExtension();
-            // lay ten file khong co extension
-            $fileNameWithoutExtension = substr($originFileName, 0, strlen($originFileName)
-                - (strlen($extension) + 1));
-            // create unique file name de khong bi trung
-            $fileName = $fileNameWithoutExtension . uniqid('_') . '.' . $extension;
-            $path = "/images/tours/" . $tourId . "/";
-            $file->move(public_path($path), $fileName);
+            foreach ($request->file('images') as $key => $file) {
+                $originFileName = $file->getClientOriginalName();
+                // lay extension cua file
+                $extension = $file->getClientOriginalExtension();
+                // lay ten file khong co extension
+                $fileNameWithoutExtension = substr($originFileName, 0, strlen($originFileName)
+                    - (strlen($extension) + 1));
+                // create unique file name de khong bi trung
+                $fileName = $fileNameWithoutExtension . uniqid('_') . '.' . $extension;
+                $path = "/images/tours/" . $tourId . "/";
+                if (!is_dir(public_path($path))) {
+                    mkdir(public_path($path), 0777, true);
+                }
+                $file->move(public_path($path), $fileName);
 
-            $insert[$key]['tour_id'] = $tourId;
-            $insert[$key]['image_name'] = $fileName;
-            $insert[$key]['image_path'] = $path . $fileName;
+                $insert[$key]['tour_id'] = $tourId;
+                $insert[$key]['image_path'] = $path . $fileName;
+            }
+            TourImage::insert($insert);
+            toast(__('Thêm ảnh thành công'), 'success');
+
+            return redirect()->route('admin.tour.edit', $tourId);
+        } catch (\Throwable $th) {
+            toast(__('Đã xảy ra lỗi'), 'error');
+
+            return redirect()->route('admin.tour.edit', $tourId);
         }
-        TourImage::insert($insert);
-
-        return redirect()->route('images.index', $tourId);
     }
 
     /**
@@ -119,14 +128,15 @@ class TourImageController extends Controller
     public function destroy($imageId)
     {
         try {
-           $image = TourImage::find($imageId);
+            $image = TourImage::find($imageId);
+            $tourId = $image->tour_id;
             $this->repo->deleteImage($image->image_path);
             $image->delete();
-            toast('Success','success');
-            return  redirect()->route('images.index', $image->tour_id);
+            toast(__('Xóa ảnh thành công'), 'success');
+            return redirect()->route('admin.tour.edit', $tourId);
         } catch (\Throwable $th) {
-             toast("Error!", "error");
-            return  redirect()->route('images.index', $image->tour_id);
+            toast(__('Xóa ảnh thất bại'), "error");
+            return redirect()->route('admin.tour.edit', $tourId);
         }
     }
 }

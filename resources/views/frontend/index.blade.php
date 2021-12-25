@@ -8,17 +8,17 @@
 
 @include('frontend.include.filter-offical')
 
-@include('frontend.include.hot-tour')
+@include('frontend.include.area-tour')
 
-@include('frontend.include.top-review')
+@include('frontend.include.promotion')
 
-@include('frontend.include.review')
+@include('frontend.include.video')
 
 @include('frontend.include.service')
 
-@include('frontend.include.new-tour')
+@include('frontend.include.foreign-tour')
 
-@include('frontend.include.location')
+@include('frontend.include.hot-tour')
 
 @include('frontend.include.blog')
 @endsection

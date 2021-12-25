@@ -149,74 +149,76 @@ class BookingRepositoryEloquent extends RepositoryEloquent implements BookingRep
      */
     public function store($data)
     {
-        try {
-            // dd($data);
-            if ($data['user_id'] !== 1) {
-                $user = User::find($data['user_id']);
-                $data['full_name'] = $user->name;
-                $data['phone'] = $user->phone;
-                $data['email'] = $user->email;
-                $data['address'] = $user->address;
-            }
+        // try {
+        // dd($data);
+        if ($data['user_id'] !== 1) {
+            $user = User::find($data['user_id']);
+            $data['full_name'] = $user->name;
+            $data['phone'] = $user->phone;
+            $data['email'] = $user->email;
+            $data['address'] = $user->address;
+        }
 
-            $booking = $this->_model->create([
-                'user_id' => $data['user_id'],
-                'payment_id' => $data['payment_id'],
-                'promotion_id' => $data['promotion_id'] ?? 0,
-                'code' => Helper::generateCode(), //hàm generateCode() là static function,
-                'full_name' => $data['full_name'],
-                'phone' => $data['phone'],
-                'email' => $data['email'],
-                'address' => $data['address'],
-                'note' => $data['note'] ?: 'null',
-                'status' => $data['status'] ?? 0,
-            ]);
+        $booking = $this->_model->create([
+            'user_id' => $data['user_id'],
+            'payment_id' => $data['payment_id'],
+            'promotion_id' => $data['promotion_id'] ?? 1,
+            'code' => Helper::generateCode(), //hàm generateCode() là static function,
+            'full_name' => $data['full_name'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'address' => $data['address'],
+            'note' => $data['note'] ?? 'null',
+            'status' => $data['status'] ?? 0,
+        ]);
 
-            // dd($booking);
-            DB::table('booking_details')->insert([
-                'booking_id' => $booking->id,
-                'tour_id' => $data['tour_id'],
-                'other_day' => date('Y-m-d'), //date_format(date_create($data['other_day']), 'Y-m-d'), //date('Y-m-d',strtotime($dataother_day))
-                'adult_price' => $data['adult_price'],
-                'adult_slot' => $data['adult_slot'] ?? 0,
-                'youth_price' => $data['youth_price'],
-                'youth_slot' => $data['youth_slot'] ?? 0,
-                'child_price' => $data['child_price'],
-                'child_slot' => $data['child_slot'] ?? 0,
-                'baby_price' => $data['baby_price'],
-                'baby_slot' => $data['baby_slot'] ?? 0,
-                'total_price' => $data['total_price'],
-                'total_slot' => $data['total_slot'] ?? 0,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-            // dd($bookingDetail);
+        // dd($booking);
+        DB::table('booking_details')->insert([
+            'booking_id' => $booking->id,
+            'tour_id' => $data['tour_id'],
+            'other_day' => date('Y-m-d'), //date_format(date_create($data['other_day']), 'Y-m-d'), //date('Y-m-d',strtotime($dataother_day))
+            'adult_price' => $data['adult_price'],
+            'adult_slot' => $data['adult_slot'] ?? 0,
+            'youth_price' => $data['youth_price'],
+            'youth_slot' => $data['youth_slot'] ?? 0,
+            'child_price' => $data['child_price'],
+            'child_slot' => $data['child_slot'] ?? 0,
+            'baby_price' => $data['baby_price'],
+            'baby_slot' => $data['baby_slot'] ?? 0,
+            'total_price' => $data['total_price'],
+            'total_slot' => $data['total_slot'] ?? 0,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        // dd($bookingDetail);
 
-            // Trừ đi số slot đã book
-            $tour = Tour::find($data['tour_id']);
-            $tour->slot = $tour->slot - $data['total_slot'];
-            $tour->save();
+        // Trừ đi số slot đã book
+        $tour = Tour::find($data['tour_id']);
+        $tour->slot = $tour->slot - $data['total_slot'];
+        $tour->save();
 
-            // Trừ đi 1 mã giảm giá
-            if (!empty($data['promotion_id'])) {
+        // Trừ đi 1 mã giảm giá
+        if (!empty($data['promotion_id'])) {
+            if ($data['promotion_id'] > 1) {
                 $promotion = Promotion::find($data['promotion_id']);
                 $promotion->amount = $promotion->amount - 1;
                 $promotion->save();
             }
-
-            return [
-                'title' => __('Done!'),
-                'msg' => __('Booking successfully.'),
-                'stt' => self::STATUS_SUCCESS,
-                'booking_id' => $booking->id,
-            ];
-        } catch (\Exception $e) {
-            return [
-                'title' => __('Oops! An error has occurred.'),
-                'msg' => __('Booking failed.'),
-                'stt' => self::STATUS_ERROR,
-            ];
         }
+
+        return [
+            'title' => __('Done!'),
+            'msg' => __('Booking successfully.'),
+            'stt' => self::STATUS_SUCCESS,
+            'booking_id' => $booking->id,
+        ];
+        // } catch (\Exception $e) {
+        //     return [
+        //         'title' => __('Oops! An error has occurred.'),
+        //         'msg' => __('Booking failed.'),
+        //         'stt' => self::STATUS_ERROR,
+        //     ];
+        // }
     }
 
     /**
@@ -233,6 +235,7 @@ class BookingRepositoryEloquent extends RepositoryEloquent implements BookingRep
                 'view' => 'frontend.booking.return',
                 'data' => [
                     'msg' => __('Đặt chỗ thành công. Quý khách thanh toán tại quầy trong vòng 7 ngày để hoàn tất quá trình. Xin cảm ơn!'),
+                    'status' => 1,
                 ],
             ];
         } else if ($booking->payment_id == 2) {
@@ -250,6 +253,7 @@ class BookingRepositoryEloquent extends RepositoryEloquent implements BookingRep
                 'view' => 'frontend.booking.return',
                 'data' => [
                     'msg' => __('Phương thức thanh toán không chính xác!'),
+                    'status' => 2,
                 ],
             ];
         }

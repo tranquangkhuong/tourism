@@ -1,74 +1,104 @@
 {{-- select option của select2 --}}
 <script>
     $(function() {
-            // Initialize Select2 elements
-            $('.select2').select2();
+        // Initialize Select2 elements
+        $('.select2').select2();
 
-            // Initialize Select2 Bootstrap4 elements
-            $('.select2bs4').select2({
-                theme: 'bootstrap4'
-            });
+        // Initialize Select2 Bootstrap4 elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
         });
+    });
 </script>
 
 {{-- jquery validate --}}
 <script>
     $(document).ready(function() {
 
-    $('#login-form').validate({
-        rules: {
-            email: {
-                required: true,
-                email: true,
-            },
-            password: {
-                required: true,
-                minlength: 6,
-            }
-        },
-        errorPlacement: function(error, element) {
-            switch (element.attr('name')) {
-                case 'email':
-                case 'password':
-                    error.insertBefore(element);
-            }
-        },
-        submitHandler: function(form) {
-            form.submit();
-        }
-    });
+        // load header, footer
+        $.get("/social-element",
+            function (data, textStatus, jqXHR) {
+                console.log(data);
+                let emailLink = $('.link-email'),
+                phoneLink = $('.link-phone'),
+                addressLink = $('.link-address'),
+                twLink = $('.link-twitter'),
+                pinLink = $('.link-pinterest'),
+                fbLink = $('.link-facebook'),
+                insLink = $('.link-instagram'),
+                ytbLink = $('.link-youtube');
 
-    $('#register-form').validate({
-        rules: {
-            name: "required",
-            email: {
-                required: true,
-                email: true,
+                emailLink.attr('href', 'mailto:' + data.email);
+                emailLink.children('span').text(data.email);
+                phoneLink.attr('href', 'tel:' + data.phone);
+                phoneLink.children('span').text(data.phone);
+                addressLink.children('span').text(data.address);
+                twLink.attr('href', data.twitter);
+                pinLink.attr('href', data.pinterest);
+                fbLink.attr('href', data.facebook);
+                insLink.attr('href', data.instagram);
+                ytbLink.attr('href', data.youtube);
+
+                $('.address-1').text(data.address2);
+                $('.address-2').text(data.address3);
+                $('.address-3').text(data.address4);
             },
-            password: {
-                required: true,
-                minlength: 6,
+        );
+
+        $('#login-form').validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true,
+                },
+                password: {
+                    required: true,
+                    minlength: 6,
+                }
             },
-            re_password: {
-                // equalTo: "#password",
-                required: true,
-                minlength: 6,
+            errorPlacement: function(error, element) {
+                switch (element.attr('name')) {
+                    case 'email':
+                    case 'password':
+                        error.insertBefore(element);
+                }
             },
-        },
-        errorPlacement: function(error, element) {
-            switch (element.attr('name')) {
-                case 'name':
-                case 'email':
-                case 'password':
-                case 're_password':
-                    error.insertBefore(element);
+            submitHandler: function(form) {
+                form.submit();
             }
-        },
-        submitHandler: function(form) {
-            form.submit();
-        }
+        });
+
+        $('#register-form').validate({
+            rules: {
+                name: "required",
+                email: {
+                    required: true,
+                    email: true,
+                },
+                password: {
+                    required: true,
+                    minlength: 6,
+                },
+                re_password: {
+                    // equalTo: "#password",
+                    required: true,
+                    minlength: 6,
+                },
+            },
+            errorPlacement: function(error, element) {
+                switch (element.attr('name')) {
+                    case 'name':
+                    case 'email':
+                    case 'password':
+                    case 're_password':
+                        error.insertBefore(element);
+                }
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
     });
-});
 </script>
 <script>
     const selected = document.querySelector(".filter-selected")
@@ -89,10 +119,7 @@
             optionContainer.classList.remove("active");
         })
     });
-
-   
 </script>
-
 
 <!-- Jquery Validation -->
 <script src="{{ URL::asset('backend/jquery-validation-1.19.3/dist/jquery.validate.min.js') }}"></script>
@@ -107,7 +134,7 @@
 <script type="text/javascript" src="{{ URL::asset('frontend/js/sweetalert2.all.min.js') }}"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script> -->
 <script type="text/javascript">
-  // -----------------update javascipt---------------------
+    // -----------------update javascipt---------------------
 // hàm auto slile show.
   actionSlideShow({
      form:'#form1',
@@ -154,7 +181,6 @@
 
         }
     }
-
 </script>
 
 

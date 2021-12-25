@@ -6,6 +6,5 @@ use App\Repositories\RepositoryInterface;
 
 interface TourPlanRepositoryInterface extends RepositoryInterface
 {
-    public function getPlan($tourId);
     public function getTourName($tourId);
 }

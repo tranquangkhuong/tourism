@@ -19,15 +19,16 @@
                             <h4 class="blog-item__content-name">
                                 <a href="javascript::void()">{{ $article->title }}</a>
                             </h4>
-                            <p class="blog-item__content-text">
+                            {{-- <p class="blog-item__content-text">
                                 content
-                            </p>
+                            </p> --}}
                             <div class="content-comment__wrap">
                                 {{-- <a href="#">{{ $article->created_at }}</a> --}}
                                 {{-- <a href="#"><i class="fas fa-comment"></i>4
                                     comments</a>
                                 --}}
-                                <p>{{ $article->created_at }}</p>
+                                <p>{{ Carbon::createFromFormat('Y-m-d H:i:s',
+                                    $article->created_at)->translatedFormat('l, j F, Y') }}</p>
                             </div>
                         </div>
                     </li>

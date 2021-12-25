@@ -16,7 +16,7 @@ class SliderRepositoryEloquent extends RepositoryEloquent implements SliderRepos
     {
         try {
             $slider = new Slider();
-            $slider->admin_id = 5;
+            $slider->admin_id = $request->admin_id;
             $slider->title = $request->title;
             $slider->content = $request->content;
             if (!empty($image)) {

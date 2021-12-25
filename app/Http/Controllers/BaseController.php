@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Attribute;
 use App\Models\Comment;
 use App\Models\Location;
+use App\Models\Slider;
 use App\Models\Tag;
 use App\Models\Tour;
 use App\Models\TourImage;
@@ -29,15 +30,24 @@ class BaseController extends Controller
      * Trang HOME.
      */
     public function home()
-    { //where('name', 'like', 'hot')->first()
+    {
+        $sliders = Slider::where('display', 1)->get();
+        $northTours = Area::where('name', 'like', 'mien bac')->first()->tours()->latest()->take(10)->get();
+        $centralTours = Area::where('name', 'like', 'mien trung')->first()->tours()->latest()->take(10)->get();
+        $southTours = Area::where('name', 'like', 'mien nam')->first()->tours()->latest()->take(10)->get();
         $hotTours = Tag::where('name', 'like', 'hot')->first()->tours()->take(12)->get();
         // dd($hotTours);
-        $newTours = Tour::orderByDesc('created_at')->get();
-        // $recommendedTours = Tag::where('name', 'like', 'recommended')->first()->tours()->get();
-        $locations = Location::all();
-        $articles = Article::limit(5)->orderByDesc('created_at')->get();
+        $northId =  Area::where('name', 'like', 'mien bac')->first()->id;
+        $centralId =  Area::where('name', 'like', 'mien trung')->first()->id;
+        $southId =  Area::where('name', 'like', 'mien nam')->first()->id;
+        $foreignTours = Tour::where([
+            ['area_id', '<>', $northId],
+            ['area_id', '<>', $centralId],
+            ['area_id', '<>', $southId],
+        ])->take(10)->get();
+        $articles = Article::limit(3)->latest()->get();
 
-        return view('frontend.index', compact('hotTours', 'newTours', 'locations', 'articles'));
+        return view('frontend.index', compact('sliders', 'northTours', 'centralTours', 'southTours', 'hotTours', 'foreignTours', 'articles'));
     }
 
     /**
@@ -45,18 +55,88 @@ class BaseController extends Controller
      */
     public function listTour(Request $request)
     {
-        $tags = array($request->query('tag'));
-        if (isset($tags[0])) {
-            $tours = Tag::where('name', 'like', $tags[0])->first()->tours()->orderByDesc('created_at')->get();
-            $title['slider'] = 'Tag: ' . $tags[0];
-            $title['title'] = 'Search Tag';
-        } else {
-            $tours = Tour::orderByDesc('created_at')->get();
-            $title['slider'] = 'All Tours';
-            $title['title'] = 'All Tours';
+        $tag = $request->query('tag');
+        $area = $request->query('area');
+        $location = $request->query('location');
+
+        // lấy danh sách theo khu vực (bắc, trung, nam)
+        if (isset($area)) {
+            $title = [
+                'slider' => __('Khu vực không chính xác'),
+                'title' =>  __('Khu vực không chính xác'),
+            ];
+            $tours = null;
+
+            if (strcasecmp($area, 'mien bac') == 0) {
+                $title = [
+                    'slider' => __('Tour Miền Bắc'),
+                    'title' =>  __('Tour Miền Bắc'),
+                ];
+                $tours = Area::where('name', 'like', $area)->first()
+                    ->tours()->latest()->paginate(10);
+            }
+            if (strcasecmp($area, 'mien trung') == 0) {
+                $title = [
+                    'slider' => __('Tour Miền Trung'),
+                    'title' =>  __('Tour Miền Trung'),
+                ];
+                $tours = Area::where('name', 'like', $area)->first()
+                    ->tours()->latest()->paginate(10);
+            }
+            if (strcasecmp($area, 'mien nam') == 0) {
+                $tt = '';
+                $title = [
+                    'slider' => __('Tour Miền Nam'),
+                    'title' =>  __('Tour Miền Nam'),
+                ];
+                $tours = Area::where('name', 'like', $area)->first()
+                    ->tours()->latest()->paginate(10);
+            }
+            if (strcasecmp($area, 'nuoc ngoai') == 0) {
+                $title = [
+                    'slider' => __('Tour Nước Ngoài'),
+                    'title' =>  __('Tour Nước Ngoài'),
+                ];
+                $tours = Area::where([
+                    ['name', '<>', 'mien bac'],
+                    ['name', '<>', 'mien trung'],
+                    ['name', '<>', 'mien nam'],
+                ])->first()->tours()->latest()->paginate(10);
+            }
         }
-        // dd($tours);
+
+        if (isset($location)) {
+            $title = [
+                'slider' => __('Tour theo địa điểm'),
+                'title' =>  __('Tour theo địa điểm'),
+            ];
+            $tours = Location::where('name', 'like', $area)->first()
+                ->tours()->latest()->paginate(10);
+        }
+
+        // lấy list theo tag (hot, new,...)
+        if (isset($tag)) {
+            $tours = Tag::where('name', 'like', $tag)->first()
+                ->tours()->latest()->paginate(10);
+            $title = [
+                'slider' => 'Tag: ' . $tag,
+                'title' =>  __('Tìm kiếm Tag'),
+            ];
+        }
+        // dd(empty($area), $tag, $title, $tours);
         return view('frontend.tour.list', compact('title', 'tours'));
+    }
+
+    public function search(Request $request)
+    {
+        $tours = Tour::where('name', 'like', '%' . $request->keyword . '%')->orderBy('name')->paginate(10);
+        $title = [
+            'slider' => __('Kết quả tìm kiếm'),
+            'title' => __('Kết quả tìm kiếm'),
+        ];
+        // dd($tours);
+
+        return view('frontend.tour.list', compact('tours', 'title'));
     }
 
     /**
@@ -70,15 +150,29 @@ class BaseController extends Controller
     }
 
     /**
+     * Tất cả tour
+     */
+    public function allTour()
+    {
+        $tours = Tour::latest()->paginate(10);
+        $title = [
+            'slider' => __('Toàn bộ tour'),
+            'title' =>  __('Tour'),
+        ];
+
+        return view('frontend.tour.list', compact('title', 'tours'));
+    }
+
+    /**
      * Trang TOUR DOMESTIC.
      */
     public function domestic()
     {
         $tours = Tour::select('tours.id', 'tours.name', 'tours.image_path', 'tours.description', 'tours.other_day', 'tours.adult_price', 'tours.destination', 'tours.slot')
-            ->join('areas', 'tours.area_id', '=', 'areas.id')->where('areas.domestic', 1)->get();
+            ->join('areas', 'tours.area_id', '=', 'areas.id')->where('areas.domestic', 1)->paginate(10);
         $title = [
-            'title' => 'Domestic tours',
-            'slider' => 'Tours in Vietnam',
+            'title' => 'Tour trong nước',
+            'slider' => 'Tour trong nước',
         ];
         // dd($tours);
 
@@ -91,10 +185,10 @@ class BaseController extends Controller
     public function foreign()
     {
         $tours = Tour::select('tours.id', 'tours.name', 'tours.image_path', 'tours.description', 'tours.other_day', 'tours.adult_price', 'tours.destination', 'tours.slot')
-            ->join('areas', 'tours.area_id', '=', 'areas.id')->where('areas.domestic', 0)->get();
+            ->join('areas', 'tours.area_id', '=', 'areas.id')->where('areas.domestic', 0)->paginate(10);
         $title = [
-            'title' => 'Foreign tours',
-            'slider' => 'Foreign tours',
+            'title' => 'Tour nước ngoài',
+            'slider' => 'Tour nước ngoài',
         ];
         // dd($tours);
 
@@ -139,10 +233,10 @@ class BaseController extends Controller
 
         // Binh luan & danh gia
         // $comments = Comment::select('comments.content', 'comments.created_at', 'users.name', 'users.avatar_image_path', 'users.profile_image_path')->join('users', 'comments.user_id', '=', 'users.id')->where('comments.tour_id', $tourId)->get();
-        // dd($plans);
+        // dd(array_slice($images->toArray(), 0, 3));
 
 
-        return view('frontend.tour.detail', compact('tour', 'tags', 'vehicles', 'includes', 'notIncludes', 'plans', 'location'));
+        return view('frontend.tour.detail', compact('tour', 'tags', 'vehicles', 'includes', 'notIncludes', 'plans', 'location', 'images'));
         // , 'area', 'vote', 'images', 'comments'
     }
 
@@ -151,7 +245,7 @@ class BaseController extends Controller
      */
     public function blog()
     {
-        $articles = Article::orderByDesc('created_at')->paginate(1);
+        $articles = Article::where('display', 1)->latest()->paginate(10);
 
         return view('frontend.blog.list', compact('articles'));
     }
@@ -166,10 +260,10 @@ class BaseController extends Controller
         $latest = Article::where([
             ['display', 1],
             ['id', '<>', $articleId],
-        ])->orderByDesc('created_at')->take(3)->get();
+        ])->latest()->take(3)->get();
 
         $publisher = isset($article) ? Article::find($articleId)->admin()->first() : null;
-        // dd($publisher);
+        // dd($article);
 
         return view('frontend.blog.detail', compact('article', 'latest', 'publisher'));
     }
@@ -190,7 +284,8 @@ class BaseController extends Controller
     public function about()
     {
         $aboutUs = DB::table('about')->first('about_us');
+        $hotTours = Tag::where('name', 'like', 'hot')->first()->tours()->take(12)->get();
 
-        return view('frontend.about_us', compact('aboutUs'));
+        return view('frontend.about_us', compact('aboutUs', 'hotTours'));
     }
 }

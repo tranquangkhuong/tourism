@@ -16,22 +16,23 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $countAdmin = Admin::count();
-        if (!$countAdmin) {
-            // create admin account
-            $admin = Admin::create([
-                'name' => 'super-admin',
-                'email' => 'superadmin@mail.xxx',
-                'password' => Hash::make('123456'),
-                'created_at' => now(),
-            ]);
-            // create role super-admin
-            Role::create([
-                'name' => config('roles.super_admin.roles.name'),
-                'guard_name' => config('auth.guards.admin.name'),
-            ]);
-            // Assign role vao admin account
-            $admin->assignRole(config('roles.super_admin.roles.name'));
-        }
+        // $countAdmin = Admin::count();
+        // if (!$countAdmin) {
+        // create admin account
+        $admin = Admin::create([
+            'name' => 'super-admin',
+            'email' => 'superadmin@mail.com',
+            'password' => Hash::make('123456'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        // create role super-admin
+        // Role::create([
+        //     'name' => config('roles.super_admin.roles.name'),
+        //     'guard_name' => config('auth.guards.admin.name'),
+        // ]);
+        // Assign role vao admin account
+        $admin->assignRole(config('roles.super_admin.roles'));
+        // }
     }
 }

@@ -67,10 +67,10 @@
                                             <i class="fas fa-box-tissue"></i>
                                             <span>Slot Remaining: <span>{{ $tour->slot }}</span></span>
                                         </div>
-                                        <div class="booking-detail-info__item">
+                                        {{-- <div class="booking-detail-info__item">
                                             <i class="fas fa-calendar-check"></i>
                                             <a href="javascript::void()">Other Day</a>
-                                        </div>
+                                        </div> --}}
                                         <div class="booking-detail-info__item"><i
                                                 class="fas fa-dollar-sign"></i><span>Price:
                                                 <span>{{ number_format($tour->adult_price, null, ',', ' ') }}
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="booking-notice"> Khách nữ từ 55 tuổi trở lên, khách nam từ 60 tuổi trở lên đi tour
+                        <div class="booking-notice">Khách nữ từ 55 tuổi trở lên, khách nam từ 60 tuổi trở lên đi tour
                             một mình và khách mang thai trên 4 tháng (16 tuần) vui lòng đăng ký tour trực tiếp tại văn
                             phòng của Vietravel. Không áp dụng đăng ký tour online đối với khách từ 70 tuổi trở lên.
                         </div>
@@ -91,11 +91,22 @@
                 @csrf
                 <div class="row">
                     <div class="col l-12">
-                    <div style="overflow-x:auto;" class="wrap-section-booking table">
+                        <div style="overflow-x:auto;" class="wrap-section-booking table">
                             <h1 class="booking-title">Chọn ngày khởi hành</h1>
                             <div class="feedback_information-email-card choose-file">
-                                    <span class="icon_add-card" style="top:0;"><i class="far fa-calendar-alt"></i></span>
-                                    <input class="feedback_input-card add-card" style="text-align: center; font-size: 20px; color: black;" date-number="['29-12-2021', '28-12-2021']"  id="datepicker" placeholder="dd-mm-yyyy*">
+                                <span class="icon_add-card" style="top:0;"><i class="far fa-calendar-alt"></i></span>
+                                {{-- <span>{{ $ngayKhac }}</span> --}}
+                                <br>
+                                {{-- <input class="feedback_input-card add-card" name="other_day"
+                                    style="text-align: center; font-size: 20px; color: black;"
+                                    date-number="{{ $ngayKhac }}" id="datepicker" placeholder="dd-mm-yyyy*"
+                                    autocomplete="off" /> --}}
+                                <select name="other_day" id="" class="feedback_input-card add-card">
+                                    <option value="">Chọn ngày khởi hành</option>
+                                    @foreach ($otherDay as $day)
+                                    <option value="{{ $day }}">{{ $day }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div style="overflow-x:auto;" class="wrap-section-booking table">
@@ -267,19 +278,20 @@
 
                 <div class="row">
                     <div class="col l-12 m-12 c-12">
-                            <h2 class="text-myaccould">Điền thông tin đặt tour</h2>
-                        <div class="feedback_list-items"style="margin-bottom:35px;">
+                        <h2 class="text-myaccould">Điền thông tin đặt tour</h2>
+                        <div class="feedback_list-items" style="margin-bottom:35px;">
                             <!-- thong tin thanh toan -->
                             <div class="form-group_input">
                                 @if (!auth('user')->check())
                                 <div class="filter-wrap-item about_search" style="margin-bottom:25px;">
                                     <span class="filter__icon filter__icon-location-name"></span>
-                                    <input type="text" class="filter__input" name="full_name"
-                                        required placeholder="Tên của bạn">
+                                    <input type="text" class="filter__input" name="full_name" required
+                                        placeholder="Tên của bạn">
                                 </div>
                                 <div class="filter-wrap-item about_search" style="margin-bottom:25px;">
                                     <span class="filter__icon filter__icon-location-phone"></span>
-                                    <input type="text" class="filter__input" placeholder="Số điện thoại" name="phone" required>
+                                    <input type="text" class="filter__input" placeholder="Số điện thoại" name="phone"
+                                        required>
                                 </div>
                                 <div class="filter-wrap-item about_search" style="margin-bottom:25px;">
                                     <span class="filter__icon filter__icon-location-email"></span>
@@ -287,12 +299,14 @@
                                 </div>
                                 <div class="filter-wrap-item about_search" style="margin-bottom:25px;">
                                     <span class="filter__icon filter__icon-location-address"></span>
-                                    <input type="text" class="filter__input" placeholder="Địa chỉ" name="address" required>
+                                    <input type="text" class="filter__input" placeholder="Địa chỉ" name="address"
+                                        required>
                                 </div>
                                 @endif
                                 <div class="filter-wrap-item about_search" style="margin-bottom:25px;height: 150px;">
                                     <span class="filter__icon filter__icon-location-note"></span>
-                                    <textarea name="note" class="filter__input" id="textNote" cols="30" rows="10" placeholder="Ghi chú"></textarea>
+                                    <textarea name="note" class="filter__input" id="textNote" cols="30" rows="10"
+                                        placeholder="Ghi chú"></textarea>
                                     <!-- <input type="text" class="filter__input" placeholder="Địa chỉ" name="address" required> -->
                                 </div>
                             </div>

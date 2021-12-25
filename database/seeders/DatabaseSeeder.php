@@ -16,15 +16,16 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             AboutSeeder::class,
-            AdminSeeder::class,
+            ContactSeeder::class,
             AreaSeeder::class,
-            AttributeSeeder::class,
             LocationSeeder::class,
-            PermissionSeeder::class,
-            PromotionSeeder::class,
+            AttributeSeeder::class,
+            PaymentSeeder::class,
             TagSeeder::class,
-            UserSeeder::class,
             VehicleSeeder::class,
+            PermissionSeeder::class,
+            AdminSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

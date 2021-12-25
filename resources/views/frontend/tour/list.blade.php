@@ -2,7 +2,12 @@
 
 @push('title', $title['title'])
 
-@push('script')
+@section('style')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+@endsection
+
+{{-- @section('script')
 <script>
     $( function() {
       $( "#slider-range" ).slider({
@@ -18,7 +23,7 @@
         " - $" + $( "#slider-range" ).slider( "values", 1 ) );
     } );
 </script>
-@endpush
+@endsection --}}
 
 @section('content')
 <div class="slider">
@@ -61,6 +66,7 @@
             </div>
             <div class="container_list-product l-9 m-12 c-12">
                 <div class="product row">
+                    @if (collect($tours)->isNotEmpty())
                     @foreach ($tours as $tour)
                     <div class="product-item l-6 c-12 m-12">
                         <div class="product-list-item">
@@ -121,80 +127,109 @@
                         </div>
                     </div>
                     @endforeach
+                    <div class="d-flex justify-content-center">
+                        {{ $tours->links() }}
+                    </div>
+                    @else
+                    <div>
+                        <!-- chỗ này cho căn giữa và chữ to lên tý (đoạn này chưa style được) -->
+                        <span style="text-align: center; margin-top: 50%;font-size: 1.6rem;width: 100%">
+                            Không có tour
+                        </span>
+                    </div>
+                    @endif
                 </div>
             </div>
             <div class="container-search_product l-3 m-12 c-12">
                 <div class="container-feedback sandard-list ">
                     <div class="feedback_list-items book-card">
                         <div class="feedback-items">
-                            <h2 class="contact_us-title " style="text-transform:capitalize">Plan your trip</h2>
+                            <h2 class="contact_us-title " style="text-transform:capitalize">Tìm kiếm</h2>
                         </div>
-                        <div class=" feedback_content-information">
-                            <div class="filter-wrap-item about_search">
-                                <span class="filter__icon filter__icon-location-search"></span>
-                                <input type="text" class="filter__input" placeholder="Search Tour">
-                            </div>
-                            <div class="filter-wrap-item about_search">
-                                <span class="filter__icon filter__icon-location"></span>
-                                <input type="text" class="filter__input" placeholder="Where to?">
-                            </div>
-                            <div class="filter-wrap-item">
-                                <span class="filter__icon filter__icon-calendar"></span>
-                                <span class="filter__input filter-selected">Month</span>
-                                <div type="text" class="filter__list">
-                                    <div class="filter__item">
-                                        <input type="radio" name="category" class="radio" id="input-select-filter">
-                                        <label class="filter__item-month" for="input-select-filter">January</label>
-                                    </div>
-                                    <div class="filter__item">
-                                        <input type="radio" name="category" class="radio" id="input-select-filter-1">
-                                        <label class="filter__item-month" for="input-select-filter-1">March</label>
-                                    </div>
-                                    <div class="filter__item">
-                                        <input type="radio" name="category" class="radio" id="input-select-filter-2">
-                                        <label class="filter__item-month" for="input-select-filter-2">April</label>
-                                    </div>
-                                    <div class="filter__item">
-                                        <input type="radio" name="category" class="radio" id="input-select-filter-3">
-                                        <label class="filter__item-month" for="input-select-filter-3">May</label>
-                                    </div>
-                                    <div class="filter__item">
-                                        <input type="radio" name="category" class="radio" id="input-select-filter-4">
-                                        <label class="filter__item-month" for="input-select-filter-4">June</label>
-                                    </div>
-                                    <div class="filter__item">
-                                        <input type="radio" name="category" class="radio" id="input-select-filter-5">
-                                        <label class="filter__item-month" for="input-select-filter-5">July</label>
-                                    </div>
-                                    <div class="filter__item">
-                                        <input type="radio" name="category" class="radio" id="input-select-filter-6">
-                                        <label class="filter__item-month" for="input-select-filter-6">August</label>
-                                    </div>
-                                    <div class="filter__item">
-                                        <input type="radio" name="category" class="radio" id="input-select-filter-7">
-                                        <label class="filter__item-month" for="input-select-filter-7">September</label>
-                                    </div>
-                                    <div class="filter__item">
-                                        <input type="radio" name="category" class="radio" id="input-select-filter-8">
-                                        <label class="filter__item-month" for="input-select-filter-8">October</label>
-                                    </div>
-                                    <div class="filter__item">
-                                        <input type="radio" name="category" class="radio" id="input-select-filter-9">
-                                        <label class="filter__item-month" for="input-select-filter-9">November</label>
-                                    </div>
-                                    <div class="filter__item">
-                                        <input type="radio" name="category" class="radio" id="input-select-filter-10">
-                                        <label class="filter__item-month" for="input-select-filter-10">December</label>
+                        <form action="{{ url('/tour/search') }}" method="post">
+                            @csrf
+                            <div class=" feedback_content-information">
+                                <div class="filter-wrap-item about_search">
+                                    <span class="filter__icon filter__icon-location-search"></span>
+                                    <input type="text" class="filter__input" name="keyword"
+                                        placeholder="Bạn muốn đi đâu?">
+                                </div>
+                                {{-- <div class="filter-wrap-item about_search">
+                                    <span class="filter__icon filter__icon-location"></span>
+                                    <input type="text" class="filter__input" placeholder="Where to?">
+                                </div>
+                                <div class="filter-wrap-item">
+                                    <span class="filter__icon filter__icon-calendar"></span>
+                                    <span class="filter__input filter-selected">Month</span>
+                                    <div type="text" class="filter__list">
+                                        <div class="filter__item">
+                                            <input type="radio" name="category" class="radio" id="input-select-filter">
+                                            <label class="filter__item-month" for="input-select-filter">January</label>
+                                        </div>
+                                        <div class="filter__item">
+                                            <input type="radio" name="category" class="radio"
+                                                id="input-select-filter-1">
+                                            <label class="filter__item-month" for="input-select-filter-1">March</label>
+                                        </div>
+                                        <div class="filter__item">
+                                            <input type="radio" name="category" class="radio"
+                                                id="input-select-filter-2">
+                                            <label class="filter__item-month" for="input-select-filter-2">April</label>
+                                        </div>
+                                        <div class="filter__item">
+                                            <input type="radio" name="category" class="radio"
+                                                id="input-select-filter-3">
+                                            <label class="filter__item-month" for="input-select-filter-3">May</label>
+                                        </div>
+                                        <div class="filter__item">
+                                            <input type="radio" name="category" class="radio"
+                                                id="input-select-filter-4">
+                                            <label class="filter__item-month" for="input-select-filter-4">June</label>
+                                        </div>
+                                        <div class="filter__item">
+                                            <input type="radio" name="category" class="radio"
+                                                id="input-select-filter-5">
+                                            <label class="filter__item-month" for="input-select-filter-5">July</label>
+                                        </div>
+                                        <div class="filter__item">
+                                            <input type="radio" name="category" class="radio"
+                                                id="input-select-filter-6">
+                                            <label class="filter__item-month" for="input-select-filter-6">August</label>
+                                        </div>
+                                        <div class="filter__item">
+                                            <input type="radio" name="category" class="radio"
+                                                id="input-select-filter-7">
+                                            <label class="filter__item-month"
+                                                for="input-select-filter-7">September</label>
+                                        </div>
+                                        <div class="filter__item">
+                                            <input type="radio" name="category" class="radio"
+                                                id="input-select-filter-8">
+                                            <label class="filter__item-month"
+                                                for="input-select-filter-8">October</label>
+                                        </div>
+                                        <div class="filter__item">
+                                            <input type="radio" name="category" class="radio"
+                                                id="input-select-filter-9">
+                                            <label class="filter__item-month"
+                                                for="input-select-filter-9">November</label>
+                                        </div>
+                                        <div class="filter__item">
+                                            <input type="radio" name="category" class="radio"
+                                                id="input-select-filter-10">
+                                            <label class="filter__item-month"
+                                                for="input-select-filter-10">December</label>
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="sider-range">
+                                    <label for="amount">Price range:</label>
+                                    <input type="text" id="amount" readonly>
+                                </p>
+                                <div id="slider-range"></div> --}}
                             </div>
-                            <p class="sider-range">
-                                <label for="amount">Price range:</label>
-                                <input type="text" id="amount" readonly>
-                            </p>
-                            <div id="slider-range"></div>
-                        </div>
-                        <button class="feedback_content-submit submit-btn">Search</button>
+                            <button type="submit" class="feedback_content-submit submit-btn">Tìm kiếm</button>
+                        </form>
                     </div>
                 </div>
                 <div class="img-planes">

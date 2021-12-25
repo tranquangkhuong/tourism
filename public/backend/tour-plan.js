@@ -5,7 +5,7 @@ $(document).ready(function() {
     var form = `
     <div class="card card-info">
                             <div class="card-header">
-                                <div class="card-title">Add new plan</div>
+                                <div class="card-title">Thêm kế hoạch</div>
                                 <div class="card-tools">
                   <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -22,23 +22,23 @@ $(document).ready(function() {
                                 <div class="card-body">
                                     <input type="hidden" name="tour_id" value="${tourId}">
                                     <div class="form-group col-sm-12">
-                                        <label for="inputDay">Day</label>
+                                        <label for="inputDay">Ngày</label>
                                         <input type="number" id="inputDay" name="day" class="form-control" min="1"
-                                            required placeholder="Enter the date number of the tour">
+                                            required placeholder="Nhập ngày của tour">
                                     </div>
                                     <div class="form-group col-12 col-sm-12">
-                                        <label for="summernote">Content</label>
+                                        <label for="summernote">Nội dung</label>
                                         <textarea id="summernote" name="content" class="form-control" rows="5" required
-                                            placeholder="Enter the content of the day"></textarea>
+                                            placeholder="Nhập nội dung kế hoạch"></textarea>
                                     </div>
                                     <div class="form-group col-12 col-sm-12">
-                                        <label for="inputNote">Note</label>
+                                        <label for="inputNote">Ghi chú</label>
                                         <textarea id="inputNote" name="note" class="form-control" rows="2"
-                                            placeholder="Enter the note of the day"></textarea>
+                                            placeholder="Nhập ghi chú"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit"
-                                            class="btn btn-sm btn-success float-right btn-save-plan">Save</button>
+                                            class="btn btn-sm btn-success float-right btn-save-plan">Lưu</button>
                                     </div>
                                 </div>
                             </form>

@@ -19,7 +19,7 @@
 
 <body>
 
-    @include('frontend.include.load-wrap')
+    {{-- @include('frontend.include.load-wrap') --}}
 
     <div class="main">
         @include('frontend.include.header')

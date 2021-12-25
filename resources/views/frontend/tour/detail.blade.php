@@ -1,10 +1,10 @@
 @extends('frontend.master')
 
-@push('title', 'Detail tour')
+@push('title', 'Chi tiết tour')
 
 @section('content')
 <div class="slider">
-    <h1 class="slider-text translate" data-speed="0.1">Detail Tour</h1>
+    <h1 class="slider-text translate" data-speed="0.1">Chi tiết Tour</h1>
     <div class="cloud-effect"></div>
     <img src="{{ URL::asset('frontend/img/img_slider/person.png') }} " class="person translate" data-speed="-0.25"
         alt="">
@@ -178,34 +178,26 @@
                             </div>
                             <!-- hien 3 anh -->
                             <div class="list-img_detail row">
+                                @if (collect($images)->isNotEmpty())
+                                @foreach (array_slice($images->toArray(), 0, 2) as $img)
                                 <div class="grallery col l-4 c-12 m-6 ">
                                     <figure class="list-show_img action-img1 " data-lightbox='mygallery'>
-                                        <img src="{{ URL::asset('frontend/img/detail-product/pc1.jpg') }}" alt="Đồng lúa hà giang"
+                                        <img src="{{ asset($img['image_path']) }}" alt="Image"
                                             class="img-detail_list_tour item-img myImg" />
                                     </figure>
                                 </div>
-                                <div class="grallery col l-4 c-12 m-6 ">
-                                    <figure class="list-show_img action-img1 " data-lightbox='mygallery'>
-                                        <img src="{{ URL::asset('frontend/img/detail-product/pc2.jpg') }}" alt="Đồng lúa hà giang"
-                                            class="img-detail_list_tour item-img myImg" />
-                                    </figure>
-                                </div>
-                                <div class="grallery col l-4 c-12 m-6 ">
-                                    <figure class="list-show_img action-img1 " data-lightbox='mygallery'>
-                                        <img src="{{ URL::asset('frontend/img/detail-product/pc3.jpg') }}" alt="Đồng lúa hà giang"
-                                            class="img-detail_list_tour item-img myImg" />
-                                    </figure>
-                                </div>
-                            </div>    
+                                @endforeach
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Tour Plan -->
                 <div class="tabcontent">
-                    <div class="detail-tour_pain">
+                    {{-- <div class="detail-tour_pain">
                         <h1 class="titel-tour_pain">Tour Plan</h1>
-                    </div>
+                    </div> --}}
                     @foreach ($plans as $plan)
                     <div class="list-tour_pain">
                         <div class="number-date">
@@ -214,10 +206,10 @@
                         <p class="titel-date_tour_pain">Ngày {{ $plan->day }}: {{ $plan->title }}</p>
                         <div class="text-tour_psin">
                             <p class="text-container_pain">
-                                {{ $plan->content }}
+                                {!! $plan->content !!}
                             </p>
                             <p class="text-container_pain">
-                                <b>Note:</b> {{ $plan->note }}
+                                <b>Ghi chú:</b> {{ $plan->note }}
                             </p>
                         </div>
                     </div>
@@ -234,242 +226,254 @@
                         <div class="map-detail_tour">
                             {{-- <div id="map">Gallery --}}
                                 <img src="{{ URL::asset('frontend/img/map/hagiangmap.jpg') }}" alt="Google map">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Gallery -->
-                    <div class="tabcontent">
-                        <div class="img-detail">
-                            <figure class="list-show_img action-img " data-lightbox='mygallery'>
-                                <img src="https://assets.codepen.io/12005/windmill.jpg" alt="A windmill"
-                                    class="img-detail_list_tour" />
-                            </figure>
-                            <figure class="landscape action-img">
-                                <img src="https://assets.codepen.io/12005/suspension-bridge.jpg"
-                                    alt="The Clifton Suspension Bridge" class="img-detail_list_tour" />
-                            </figure>
-                            <figure class="action-img">
-                                <img src="https://assets.codepen.io/12005/sunset.jpg" alt="Sunset and boats"
-                                    class="img-detail_list_tour" />
-                            </figure>
-                            <figure class="action-img">
-                                <img src="https://assets.codepen.io/12005/snowy.jpg" alt="a river in the snow"
-                                    class="img-detail_list_tour" />
-                            </figure>
-                            <figure class="landscape action-img">
-                                <img src="https://assets.codepen.io/12005/bristol-balloons1.jpg"
-                                    alt="a single checked balloon" class="img-detail_list_tour" />
-                            </figure>
-                            <figure class="action-img">
-                                <img src="https://assets.codepen.io/12005/dog-balloon.jpg"
-                                    alt="a hot air balloon shaped like a dog" class="img-detail_list_tour" />
-                            </figure>
-                            <figure class="action-img">
-                                <img src="https://assets.codepen.io/12005/abq-balloons.jpg"
-                                    alt="View from a hot air balloon of other balloons" class="img-detail_list_tour" />
-                            </figure>
-                            <figure class="action-img">
-                                <img src="https://assets.codepen.io/12005/disney-balloon.jpg"
-                                    alt="a balloon fairground ride" class="img-detail_list_tour" />
-                            </figure>
-                        </div>
-                    </div>
-                    {{-- // - reviews- // --}}
-                    <div class="tabcontent">
-                        <div class="reviews-tour">
-                            <div class="detail-tour_pain">
-                                <h1 class="titel-tour_pain">Điểm đánh giá và phân tích điểm</h1>
-                                <p>Không chỉ được thiên nhiên ưu ái cho nhiều danh lam thắng cảnh được thế giới trầm
-                                    trồ, Hà
-                                    Giang còn là nơi lưu giữ những di tích lịch sử lâu đời cũng như nét đẹp văn hóa đặc
-                                    sắc
-                                    của 22 dân tộc vùng cao phía Bắc. Tất cả đã tạo nên sức hút hấp dẫn khiến các tín đồ
-                                    du
-                                    lịch không ngừng tìm kiếm kinh nghiệm du lịch Hà Giang để chinh phục trọn vẹn vùng
-                                    sơn
-                                    cước xinh đẹp này</p>
-                            </div>
-                            <div class="evalution_tour">
-                                <div class="parameter-review_tour row">
-                                    <div class="parameter_number col l-3 m-2 c-12">
-                                        <span>7.7</span>
-                                        <div class="parameter_text">
-                                            <span class="parameter_listtext">good</span>
-                                        </div>
-                                    </div>
-                                    <div class="popular_tours-percentage col l-9 m-8 c-12">
-                                        <div class="bar">
-                                            <div class="infor">
-                                                <span>xếp hạng</span>
-                                            </div>
-                                            <div class="progress-line food">
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                        <div class="bar">
-                                            <div class="infor">
-                                                <span>độ quan tâm khách hàng</span>
-                                            </div>
-                                            <div class="progress-line care">
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                        <div class="bar">
-                                            <div class="infor">
-                                                <span>khách sạn</span>
-                                            </div>
-                                            <div class="progress-line hotel">
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                        <div class="bar">
-                                            <div class="infor">
-                                                <span>an ninh</span>
-                                            </div>
-                                            <div class="progress-line security">
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                        <div class="bar">
-                                            <div class="infor">
-                                                <span>người dẫn tour</span>
-                                            </div>
-                                            <div class="progress-line travel-guide">
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                        <div class="bar">
-                                            <div class="infor">
-                                                <span>thái độ nhân viên</span>
-                                            </div>
-                                            <div class="progress-line attitude">
-                                                <span></span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container-feedback ">
-                                <div class="feedback_list-items">
-                                    <div class="feedback-items">
-                                        <h2 class="contact_us-title">gửi thông tin đánh giá</h2>
-                                    </div>
-                                    <div class="feedback-content">
-                                        <span></span>
-                                        <textarea name="" class="feedback_content-text" cols="40" rows="10"
-                                            placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="grid">
-                                        <div class="row feedback_content-information">
-                                            <div class="feedback_information-email l-6 m-12 c-12">
-                                                <span class="feedback_information_email-icon"></span>
-                                                <input class="feedback_input" type="text" placeholder="email">
-                                            </div>
-                                            <div class="feedback_information-email l-6 m-12 c-12">
-                                                <span class="feedback_information_email-icon1"></span>
-                                                <input class="feedback_input" type="text " placeholder="name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment_cookies-consent">
-                                        <input type="checkbox" class="wp-comment-cookies-consent">
-                                        <lable class="wp-comment-cookies-consent">
-                                            Save my name, email, and website in this browser for the next time I
-                                            comment.
-                                        </lable>
-                                    </div>
-                                    <button class="feedback_content-submit">send</button>
-                                </div>
-                            </div>
+                                {{--
+                            </div> --}}
                         </div>
                     </div>
                 </div>
-                <div class="container-search_product col l-3 m-12 c-12">
-                    <div class="container-feedback ">
-                        <div class="feedback_list-items book-card">
-                            <div class="feedback-items">
-                                <h2 class="contact_us-title " style="text-transform:capitalize">đặt chuyến thăm quan tại
-                                    đây
-                                </h2>
+
+                <!-- Gallery -->
+                <div class="tabcontent">
+                    <div class="img-detail">
+                        {{-- <figure class="list-show_img action-img " data-lightbox='mygallery'>
+                            <img src="https://assets.codepen.io/12005/windmill.jpg" alt="A windmill"
+                                class="img-detail_list_tour" />
+                        </figure> --}}
+                        @if (collect($images)->isNotEmpty())
+                        @foreach ($images as $img)
+                        <figure class="landscape action-img">
+                            <img src="{{ $img->image_path }}" alt="Image tour" class="img-detail_list_tour" />
+                        </figure>
+                        @endforeach
+                        @else
+                        Không có ảnh nào.
+                        @endif
+                        {{-- <figure class="action-img">
+                            <img src="https://assets.codepen.io/12005/sunset.jpg" alt="Sunset and boats"
+                                class="img-detail_list_tour" />
+                        </figure>
+                        <figure class="action-img">
+                            <img src="https://assets.codepen.io/12005/snowy.jpg" alt="a river in the snow"
+                                class="img-detail_list_tour" />
+                        </figure>
+                        <figure class="landscape action-img">
+                            <img src="https://assets.codepen.io/12005/bristol-balloons1.jpg"
+                                alt="a single checked balloon" class="img-detail_list_tour" />
+                        </figure>
+                        <figure class="action-img">
+                            <img src="https://assets.codepen.io/12005/dog-balloon.jpg"
+                                alt="a hot air balloon shaped like a dog" class="img-detail_list_tour" />
+                        </figure>
+                        <figure class="action-img">
+                            <img src="https://assets.codepen.io/12005/abq-balloons.jpg"
+                                alt="View from a hot air balloon of other balloons" class="img-detail_list_tour" />
+                        </figure>
+                        <figure class="action-img">
+                            <img src="https://assets.codepen.io/12005/disney-balloon.jpg"
+                                alt="a balloon fairground ride" class="img-detail_list_tour" />
+                        </figure> --}}
+                    </div>
+                </div>
+
+                {{-- // - reviews- // --}}
+                <div class="tabcontent">
+                    <div class="reviews-tour">
+                        <div class="detail-tour_pain">
+                            <h1 class="titel-tour_pain">Điểm đánh giá và phân tích điểm</h1>
+                            <p>Không chỉ được thiên nhiên ưu ái cho nhiều danh lam thắng cảnh được thế giới trầm
+                                trồ, Hà
+                                Giang còn là nơi lưu giữ những di tích lịch sử lâu đời cũng như nét đẹp văn hóa đặc
+                                sắc
+                                của 22 dân tộc vùng cao phía Bắc. Tất cả đã tạo nên sức hút hấp dẫn khiến các tín đồ
+                                du
+                                lịch không ngừng tìm kiếm kinh nghiệm du lịch Hà Giang để chinh phục trọn vẹn vùng
+                                sơn
+                                cước xinh đẹp này</p>
+                        </div>
+                        <div class="evalution_tour">
+                            <div class="parameter-review_tour row">
+                                <div class="parameter_number col l-3 m-2 c-12">
+                                    <span>7.7</span>
+                                    <div class="parameter_text">
+                                        <span class="parameter_listtext">good</span>
+                                    </div>
+                                </div>
+                                <div class="popular_tours-percentage col l-9 m-8 c-12">
+                                    <div class="bar">
+                                        <div class="infor">
+                                            <span>xếp hạng</span>
+                                        </div>
+                                        <div class="progress-line food">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="bar">
+                                        <div class="infor">
+                                            <span>độ quan tâm khách hàng</span>
+                                        </div>
+                                        <div class="progress-line care">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="bar">
+                                        <div class="infor">
+                                            <span>khách sạn</span>
+                                        </div>
+                                        <div class="progress-line hotel">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="bar">
+                                        <div class="infor">
+                                            <span>an ninh</span>
+                                        </div>
+                                        <div class="progress-line security">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="bar">
+                                        <div class="infor">
+                                            <span>người dẫn tour</span>
+                                        </div>
+                                        <div class="progress-line travel-guide">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="bar">
+                                        <div class="infor">
+                                            <span>thái độ nhân viên</span>
+                                        </div>
+                                        <div class="progress-line attitude">
+                                            <span></span>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                            <div class=" feedback_content-information">
-                                <div class="feedback_information-email-card ">
-                                    <span class="icon_add-card"></span>
-                                    <input class="feedback_input-card add-card" type="text" placeholder="Name*">
+                        </div>
+                        <div class="container-feedback ">
+                            <div class="feedback_list-items">
+                                <div class="feedback-items">
+                                    <h2 class="contact_us-title">gửi thông tin đánh giá</h2>
                                 </div>
-                                <div class="feedback_information-email-card">
-                                    <span class="icon_add-card"><i class="far fa-envelope"></i></span>
-                                    <input class="feedback_input-card add-card" type="email " placeholder="email*">
-                                </div>
-                                <div class="feedback_information-email-card">
-                                    <span class="icon_add-card"><i class="far fa-envelope"></i></span>
-                                    <input class="feedback_input-card add-card" type="email "
-                                        placeholder="confirm Email*">
-                                </div>
-                                <div class="feedback_information-email-card">
-                                    <span class="icon_add-card"><i class="fas fa-phone"></i></span>
-                                    <input class="feedback_input-card add-card" type="tel" placeholder="Phone*">
-                                </div>
-                                <!-- date -->
-                                <div class="feedback_information-email-card">
-                                    <span class="icon_add-card"><i class="far fa-calendar-alt"></i></span>
-                                    <input class="feedback_input-card add-card" date-number="['29-12-2021', '28-12-2021']"  id="datepicker" placeholder="dd-mm-yyyy*">
-                                </div>
-                                <div class="feedback_information-email-card">
-                                    <span class="icon_add-card"><i class="fas fa-tags"></i></span>
-                                    <input class="feedback_input-card add-card" type="number"
-                                        placeholder="Number of tickets*">
-                                </div>
-                                <div class="feedback-content content-card">
+                                <div class="feedback-content">
                                     <span></span>
-                                    <textarea name="" class="feedback_content-text content_text-card" cols="5" rows="6"
+                                    <textarea name="" class="feedback_content-text" cols="40" rows="10"
                                         placeholder="Message"></textarea>
                                 </div>
+                                <div class="grid">
+                                    <div class="row feedback_content-information">
+                                        <div class="feedback_information-email l-6 m-12 c-12">
+                                            <span class="feedback_information_email-icon"></span>
+                                            <input class="feedback_input" type="text" placeholder="email">
+                                        </div>
+                                        <div class="feedback_information-email l-6 m-12 c-12">
+                                            <span class="feedback_information_email-icon1"></span>
+                                            <input class="feedback_input" type="text " placeholder="name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment_cookies-consent">
+                                    <input type="checkbox" class="wp-comment-cookies-consent">
+                                    <label class="wp-comment-cookies-consent">
+                                        Save my name, email, and website in this browser for the next time I
+                                        comment.
+                                    </label>
+                                </div>
+                                <button class="feedback_content-submit">Gửi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- right column -->
+            <div class="container-search_product col l-3 m-12 c-12">
+                <div class="container-feedback ">
+                    <div class="feedback_list-items book-card">
+                        {{-- <div class="feedback-items">
+                            <h2 class="contact_us-title " style="text-transform:capitalize">Đặt tour
+                            </h2>
+                        </div> --}}
+                        {{-- <div class=" feedback_content-information">
+                            <div class="feedback_information-email-card ">
+                                <span class="icon_add-card"></span>
+                                <input class="feedback_input-card add-card" type="text" placeholder="Name*">
                             </div>
-                            <button class="feedback_content-submit submit-btn">check availability</button>
-                            <button class="feedback_content-submit submit-btn">book now</button>
+                            <div class="feedback_information-email-card">
+                                <span class="icon_add-card"><i class="far fa-envelope"></i></span>
+                                <input class="feedback_input-card add-card" type="email " placeholder="email*">
+                            </div>
+                            <div class="feedback_information-email-card">
+                                <span class="icon_add-card"><i class="far fa-envelope"></i></span>
+                                <input class="feedback_input-card add-card" type="email " placeholder="confirm Email*">
+                            </div>
+                            <div class="feedback_information-email-card">
+                                <span class="icon_add-card"><i class="fas fa-phone"></i></span>
+                                <input class="feedback_input-card add-card" type="tel" placeholder="Phone*">
+                            </div>
+                            <!-- date -->
+                            <div class="feedback_information-email-card">
+                                <span class="icon_add-card"><i class="far fa-calendar-alt"></i></span>
+                                <input class="feedback_input-card add-card" date-number="['29-12-2021', '28-12-2021']"
+                                    id="datepicker" placeholder="dd-mm-yyyy*">
+                            </div>
+                            <div class="feedback_information-email-card">
+                                <span class="icon_add-card"><i class="fas fa-tags"></i></span>
+                                <input class="feedback_input-card add-card" type="number"
+                                    placeholder="Number of tickets*">
+                            </div>
+                            <div class="feedback-content content-card">
+                                <span></span>
+                                <textarea name="" class="feedback_content-text content_text-card" cols="5" rows="6"
+                                    placeholder="Message"></textarea>
+                            </div>
+
                         </div>
+                        <button class="feedback_content-submit submit-btn">check availability</button> --}}
+                        <a href="{{ url("/tour/$tour->id/booking") }}">
+                            <button class="feedback_content-submit submit-btn">Đặt tour</button>
+                        </a>
                     </div>
-                    <div class="background-clock">
-                        <div class="clock">
-                            <div class="hour">
-                                <div class="hr" id="hr"></div>
-                            </div>
-                            <div class="min">
-                                <div class="mn" id="mn"></div>
-                            </div>
-                            <div class="sec">
-                                <div class="sc" id="sc"></div>
-                            </div>
+                </div>
+                <div class="background-clock">
+                    <div class="clock">
+                        <div class="hour">
+                            <div class="hr" id="hr"></div>
+                        </div>
+                        <div class="min">
+                            <div class="mn" id="mn"></div>
+                        </div>
+                        <div class="sec">
+                            <div class="sc" id="sc"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="product-img_show_detail">
-        <div class="previews-img">
-            <div class="detail-img">
-                <span class="title">hà giang
-                    <p class="currents-i"></p>
-                    of <p class="total-imgs"></p>
-                </span>
-                <span class="icons fas fa-times"></span>
-            </div>
-            <div class="img-boxs">
-                <div class="slieder_img previews">
-                    <i class="fas fa-angle-left"></i>
-                </div>
-                <div class="slieder_img nexts">
-                    <i class="fas fa-angle-right"></i>
-                </div>
-                <img class="show-img-detai-tour" src="" alt="">
-            </div>
+</div>
+
+<div class="product-img_show_detail">
+    <div class="previews-img">
+        <div class="detail-img">
+            <span class="title">{{ $tour->name }}
+                <p class="currents-i"></p>
+                of <p class="total-imgs"></p>
+            </span>
+            <span class="icons fas fa-times"></span>
         </div>
-        <div class="shawdow2-show-img"></div>
+        <div class="img-boxs">
+            <div class="slieder_img previews">
+                <i class="fas fa-angle-left"></i>
+            </div>
+            <div class="slieder_img nexts">
+                <i class="fas fa-angle-right"></i>
+            </div>
+            <img class="show-img-detai-tour" src="" alt="">
+        </div>
     </div>
+    <div class="shawdow2-show-img"></div>
+</div>
 </div>
 @endsection

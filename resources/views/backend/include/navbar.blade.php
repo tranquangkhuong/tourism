@@ -1,4 +1,5 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light bg-lightblue disabled color-palette elevation-2 position-fixed fixed-top">
+<nav
+    class="main-header navbar navbar-expand navbar-white navbar-light bg-lightblue disabled color-palette elevation-2 position-fixed fixed-top">
     <!-- Left navbar links -->
     <ul class="navbar-nav ">
         <li class="nav-item">
@@ -35,7 +36,7 @@
         </li> -->
 
         <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
             <a class="nav-link text-white" data-toggle="dropdown" href="#">
                 <i class="far fa-comments"></i>
                 <span class="badge badge-danger navbar-badge">3</span>
@@ -94,9 +95,9 @@
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
             </div>
-        </li>
+        </li> --}}
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
             <a class="nav-link text-white" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
                 <span class="badge badge-warning navbar-badge">15</span>
@@ -121,7 +122,7 @@
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
-        </li>
+        </li> --}}
         <li class="nav-item">
             <a class="nav-link text-white" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
@@ -130,11 +131,14 @@
         <li class="nav-item dropdown">
             <a class="nav-link text-white" data-toggle="dropdown" href="#">
                 <div class="image">
-                    <img src="{{ asset(auth('admin')->user()->avatar_image_path) }}" alt="User Image" style="width:40px;height:40px;border-radius:50%;margin-top: -12px;">
+                    <img src="{{ asset(auth('admin')->user()->avatar_image_path) }}"
+                        onerror="this.onerror=null;this.src='{{ asset('/images/blank-profile-picture-215x215.png') }}'"
+                        alt="User Image" style="width:40px;height:40px;border-radius:50%;margin-top: -12px;">
                 </div>
             </a>
             <div class="dropdown-menu ">
-                <span class="dropdown-item dropdown-header bg-primary color-palette" style="font-size:16px;">{{ auth('admin')->user()->name }}</span>
+                <span class="dropdown-item dropdown-header bg-primary color-palette" style="font-size:16px;">{{
+                    auth('admin')->user()->name }}</span>
                 <div class="dropdown-divider "></div>
                 <a href="{{ url('/admin/account') }}" class="dropdown-item ">
                     <i class="fas fa-sign-in-alt"></i>Thông tin tài khoản
@@ -147,7 +151,7 @@
                 <a href="{{ url('/logout') }}" class="dropdown-item">
                     <i class="fas fa-sign-out-alt"></i> Đăng xuất
                 </a>
-                
+
             </div>
         </li>
     </ul>

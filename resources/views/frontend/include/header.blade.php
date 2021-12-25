@@ -1,22 +1,22 @@
 <header id="header">
     <section class="header-top">
         <div class="header-top__left hide-on-tablet-mobile">
-            <a href="mailto:hoangngocbkhn2311@gmail.com" class="header-top__left-item">
+            <a href="javascript::void()" class="header-top__left-item link-email">
                 <i class="fas fa-envelope"></i>
-                <span class="left-item__text">vietour@gmail.com</span>
+                <span class="left-item__text"></span>
             </a>
-            <a href="tel:+840393578454 " class="header-top__left-item">
+            <a href="javascript::void()" class="header-top__left-item link-phone">
                 <i class="fas fa-phone-alt"></i>
-                <span class="left-item__text">090099999</span>
+                <span class="left-item__text"></span>
             </a>
-            <a href="javascript::void()" class="header-top__left-item">
+            <a href="javascript::void()" class="header-top__left-item link-address">
                 <i class="fas fa-map-marker-alt"></i>
-                <span class="left-item__text">Mỹ Đình - Nam Từ Niêm - Hà Nội</span>
+                <span class="left-item__text"></span>
             </a>
         </div>
         <div class="header-top__right">
             <div class="social">
-                @if (auth('user')->check())
+                {{-- @if (auth('user')->check())
                 <div class="notification-wrap">
                     <a href="javascript::void()" class="social-link notification"><i
                             class="fas fa-bell"></i><span>2</span></a>
@@ -76,11 +76,17 @@
                         </footer>
                     </div>
                 </div>
-                @endif
-                <a href="" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="" class="social-link"><i class="fab fa-pinterest-p"></i></a>
-                <a href="" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                <a href="" class="social-link"><i class="fab fa-instagram"></i></a>
+                @endif --}}
+                <a href="javascript::void()" target="_blank" class="social-link link-twitter"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="javascript::void()" target="_blank" class="social-link link-pinterest"><i
+                        class="fab fa-pinterest-p"></i></a>
+                <a href="javascript::void()" target="_blank" class="social-link link-facebook"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="javascript::void()" target="_blank" class="social-link link-instagram"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="javascript::void()" target="_blank" class="social-link link-youtube"><i
+                        class="fab fa-youtube"></i></a>
             </div>
             <div class="language hide-on-mobile">
                 <a href="javascript::void()" class="language-link active">Tiếng Việt</a>
@@ -96,7 +102,9 @@
             <div class="account-logined">
                 <div class="account-logined-action">
                     <span class="account-name">
-                        <img class="account-img__other" src=" https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg " alt="">
+                        <img class="account-img__other"
+                            src=" https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg "
+                            alt="">
                         <span class="account-name-user">{{ auth('user')->user()->name}}</span>
                         <i class="fas fa-sort-down"></i>
                     </span>
@@ -106,11 +114,11 @@
                     <li class="account-option-item">
                         <a href="{{ url('/user/profile') }}">
                             <i class="far fa-user-circle"></i>
-                            My Account
+                            Thông tin tài khoản
                         </a>
                     </li>
                     <li class="account-option-item"><a href="{{ route('logout') }}"><i
-                                class="fas fa-sign-out-alt"></i>Logout</a></li>
+                                class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
                 </ul>
             </div>
 
@@ -146,15 +154,15 @@
                 <li class="header-nav__item">
                     <a href="{{ url('/tour') }}" class="header-nav__link active">Tour</a>
                     <ul class="subnav-list">
-                        <li class="subnav-item"><a href="{{ url('/tour/domestic') }}" class="subnav-link">Nội Dịa</a>
+                        <li class="subnav-item"><a href="{{ url('/tour/domestic') }}" class="subnav-link">Nội Địa</a>
                         </li>
                         <li class="subnav-item"><a href="{{ url('/tour/foreign') }}" class="subnav-link">Quốc Tế</a>
                         </li>
                     </ul>
                 </li>
-                <li class="header-nav__item">
-                    <a href="javascript::void()" class="header-nav__link">Destination</a>
-                </li>
+                {{-- <li class="header-nav__item">
+                    <a href="javascript::void()" class="header-nav__link">Đích đến</a>
+                </li> --}}
                 <li class="header-nav__item">
                     <a href="{{ url('/blog') }}" class="header-nav__link">Bài Viết</a>
                 </li>
@@ -162,7 +170,7 @@
                     <a href="{{ url('/contact') }}" class="header-nav__link">Liên Hệ</a>
                 </li>
                 <li class="header-nav__item">
-                    <a href="{{ url('/about-us') }}" class="header-nav__link">About Us</a>
+                    <a href="{{ url('/about-us') }}" class="header-nav__link">Giới thiệu</a>
                 </li>
                 <label for="category-checkbox-input" class="close-categories hide-on-pc"><i
                         class="fas fa-times-circle"></i></label>
@@ -235,20 +243,23 @@
             </div>
             @endif --}}
 
-            <div class="cart-wrap">
+            {{-- <div class="cart-wrap">
                 <a href="javascript::void()" class="header-cart"><i class="ti-shopping-cart"></i></a>
                 <div class="header-no-cart">
                     <span class="header-cart__content">No product in cart.</span>
                 </div>
-            </div>
+            </div> --}}
             <!-- search btn -->
             <label class="header-search-btn" for="search-check-input-btn"><i class="ti-search"></i></label>
             <input type="checkbox" id="search-check-input-btn" hidden />
             <div class="form-search">
-                <div class="search-wrap">
-                    <input class="search__input" type="text" placeholder="Search..">
-                    <button class="search__btn" class="">Find now</button>
-                </div>
+                <form action="{{ url('/tour/search') }}" method="POST">
+                    @csrf
+                    <div class="search-wrap">
+                        <input class="search__input" type="text" name="keyword" placeholder="Tìm kiếm">
+                        <button type="submit" class="search__btn" class="">Tìm kiếm</button>
+                    </div>
+                </form>
             </div>
             <label for="search-check-input-btn" class="modal_overlay"></label>
             <!-- /search btn -->
