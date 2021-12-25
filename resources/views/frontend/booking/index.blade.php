@@ -267,14 +267,12 @@
                                 </div>
                             </div>
                             <div class="submit-rule">
-                                <input type="checkbox" id="yes-i-do" required />
+                                <input type="checkbox" id="yes-i-do" checked required />
                                 <label for="yes-i-do">Tôi đồng ý</label>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
 
                 <div class="row">
                     <div class="col l-12 m-12 c-12">

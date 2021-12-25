@@ -14,7 +14,7 @@
 
 @section('header')
 <!-- Content Header (Page header) -->
-<div class="content-header"style="margin-top:50px;">
+<div class="content-header" style="margin-top:50px;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -157,7 +157,7 @@
                             <p>
                                 {{-- <label for="">Promotion:</label> {{ $booking->promotion_content ?: '(none)' }} --}}
                                 <select name="promotion_id" class="promotion" id="">
-                                    <option value="">--Choose a promotion--</option>
+                                    <option value="1">--Choose a promotion--</option>
                                     @isset($promotions)
                                     @foreach ($promotions as $prm)
                                     <option {{ $booking->promotion_id === $prm->id ? 'selected' : '' }}
