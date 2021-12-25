@@ -94,7 +94,7 @@
 .feedback_information-email-card .icon_add-card {
     position: absolute;
     font-size: 14px;
-    color: #FFF;
+    color: #fff;
     top: 10px;
     padding: 12px;
 }
@@ -121,7 +121,6 @@
     font-size: 14px;
     line-height: 24px;
 }
-
 
 .detail_main-infor {
     margin-top: 30px;
@@ -165,7 +164,7 @@
     border: none;
     outline: none;
     color: var(--white-color);
-    background-color: rgba(255, 255, 255, .25);
+    background-color: rgba(255, 255, 255, 0.25);
     padding: 10px 45px;
     font-weight: 400;
     font-size: 18px;
@@ -174,15 +173,16 @@
 
 .feedback_content-submit.submit-btn {
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .feedback-content.content-card {
     margin-top: 10px;
-    height: 55px
+    height: 55px;
 }
 
 .feedback_content-text.content_text-card {
-    height: 55px
+    height: 55px;
 }
 
 
@@ -437,7 +437,7 @@
     width: 100%;
     height: auto;
     padding: 60px 0px;
-    border-bottom: 1px solid #D4D3D3;
+    border-bottom: 1px solid #d4d3d3;
 }
 
 .evalution_tour .parameter_number {
@@ -658,7 +658,7 @@
     cursor: pointer;
 }
 
-@media only screen and (max-with:700px) {
+@media only screen and (max-with: 700px) {
     .modal-content {
         width: 100%;
     }

@@ -77,7 +77,7 @@ class TourController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all(), json_encode($request->include), json_decode(json_encode($request->include)));
+        // dd($request->all());
         $rs = $this->repo->store($request);
         toast($rs['msg'], $rs['stt']);
 

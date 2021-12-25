@@ -368,3 +368,8 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth:admi
     Route::get('/change-password', [AdminController::class, 'changePassword']);
     Route::post('/update-password', [AdminController::class, 'updatePassword']);
 });
+
+Route::get('/x', function () {
+    $findUser = User::where('facebook_id', '45')->first();
+    dd(isset($findUser));
+});

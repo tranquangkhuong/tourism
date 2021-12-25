@@ -19,6 +19,8 @@ class Tour extends Model
         'code',
         'description',
         'departure_location',
+        'departure_time',
+        'return_time',
         'destination',
         'itinerary',
         'slot',

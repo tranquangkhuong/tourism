@@ -195,6 +195,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Thời gian khởi hành</label>
+                                                <input type="text" name="departure_time" class="form-control"
+                                                    placeholder="Thời gian khởi hành"
+                                                    value="{{ $tour->departure_time }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Thời gian trở về</label>
+                                                <input type="text" name="return_time" class="form-control"
+                                                    placeholder="Thời gian trở về" value="{{ $tour->return_time }}">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label for="">Hành trình:</label>
                                         <input type="text" name="itinerary" class="form-control"
@@ -362,12 +379,12 @@
                                             <div class="form-group col-12 col-sm-12">
                                                 <label for="inputNote">Ghi chú</label>
                                                 <textarea id="inputNote" name="note" class="form-control" rows="2"
-                                                    placeholder="Nhập ghi cú">{{ $p->note }}}</textarea>
+                                                    placeholder="Nhập ghi cú">{{ $p->note }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 {{-- <button type="button"
                                                     class="btn btn-sm btn-secondary btn-remove">Xóa</button> --}}
-                                                <button type="button"
+                                                <button type="submit"
                                                     class="btn btn-sm btn-success float-right btn-save-plan">Cập
                                                     nhật</button>
                                             </div>

@@ -152,6 +152,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Thời gian khởi hành</label>
+                                    <input type="text" name="departure_time" class="form-control"
+                                        placeholder="Thời gian khởi hành">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Thời gian trở về</label>
+                                    <input type="text" name="return_time" class="form-control"
+                                        placeholder="Thời gian trở về">
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group" style="margin-bottom:25px">
                             <label for="">Hành trình:</label>
                             <input type="text" name="itinerary" class="form-control" placeholder="Hành trình" required>

@@ -11,13 +11,14 @@
                     @foreach ($articles as $article)
                     <li class="blog-item">
                         <div class="blog-item_img">
-                            <a href="javscript::void()"><img src="{{ URL::asset($article->image_path) }}"
-                                    alt="blog image"
-                                    onerror="this.onerror=null;this.src='{{ asset('/images/placeholder600x600.png') }}'"></a>
+                            <a href="{{ url("/blog/{$article->id}") }}">
+                                <img src="{{ URL::asset($article->image_path) }}" alt="blog image"
+                                    onerror="this.onerror=null;this.src='{{ asset('/images/placeholder600x600.png') }}'">
+                            </a>
                         </div>
                         <div class="blog-item__content">
                             <h4 class="blog-item__content-name">
-                                <a href="javascript::void()">{{ $article->title }}</a>
+                                <a href="{{ url("/blog/{$article->id}") }}">{{ $article->title }}</a>
                             </h4>
                             {{-- <p class="blog-item__content-text">
                                 content

@@ -32,10 +32,14 @@ class BaseController extends Controller
     public function home()
     {
         $sliders = Slider::where('display', 1)->get();
-        $northTours = Area::where('name', 'like', 'mien bac')->first()->tours()->latest()->take(10)->get();
-        $centralTours = Area::where('name', 'like', 'mien trung')->first()->tours()->latest()->take(10)->get();
-        $southTours = Area::where('name', 'like', 'mien nam')->first()->tours()->latest()->take(10)->get();
-        $hotTours = Tag::where('name', 'like', 'hot')->first()->tours()->take(12)->get();
+        $northTours = Area::where('name', 'like', 'mien bac')->first()
+            ->tours()->where('display', 1)->latest()->take(10)->get();
+        $centralTours = Area::where('name', 'like', 'mien trung')->first()
+            ->tours()->where('display', 1)->latest()->take(10)->get();
+        $southTours = Area::where('name', 'like', 'mien nam')->first()
+            ->tours()->where('display', 1)->latest()->take(10)->get();
+        $hotTours = Tag::where('name', 'like', 'hot')->first()
+            ->tours()->where('display', 1)->take(12)->get();
         // dd($hotTours);
         $northId =  Area::where('name', 'like', 'mien bac')->first()->id;
         $centralId =  Area::where('name', 'like', 'mien trung')->first()->id;
@@ -44,6 +48,7 @@ class BaseController extends Controller
             ['area_id', '<>', $northId],
             ['area_id', '<>', $centralId],
             ['area_id', '<>', $southId],
+            ['display', 1],
         ])->take(10)->get();
         $articles = Article::limit(3)->latest()->get();
 
@@ -73,7 +78,7 @@ class BaseController extends Controller
                     'title' =>  __('Tour Miền Bắc'),
                 ];
                 $tours = Area::where('name', 'like', $area)->first()
-                    ->tours()->latest()->paginate(10);
+                    ->tours()->where('display', 1)->latest()->paginate(10);
             }
             if (strcasecmp($area, 'mien trung') == 0) {
                 $title = [
@@ -81,7 +86,7 @@ class BaseController extends Controller
                     'title' =>  __('Tour Miền Trung'),
                 ];
                 $tours = Area::where('name', 'like', $area)->first()
-                    ->tours()->latest()->paginate(10);
+                    ->tours()->where('display', 1)->latest()->paginate(10);
             }
             if (strcasecmp($area, 'mien nam') == 0) {
                 $tt = '';
@@ -90,7 +95,7 @@ class BaseController extends Controller
                     'title' =>  __('Tour Miền Nam'),
                 ];
                 $tours = Area::where('name', 'like', $area)->first()
-                    ->tours()->latest()->paginate(10);
+                    ->tours()->where('display', 1)->latest()->paginate(10);
             }
             if (strcasecmp($area, 'nuoc ngoai') == 0) {
                 $title = [
@@ -101,6 +106,7 @@ class BaseController extends Controller
                     ['name', '<>', 'mien bac'],
                     ['name', '<>', 'mien trung'],
                     ['name', '<>', 'mien nam'],
+                    ['display', 1],
                 ])->first()->tours()->latest()->paginate(10);
             }
         }
@@ -111,13 +117,13 @@ class BaseController extends Controller
                 'title' =>  __('Tour theo địa điểm'),
             ];
             $tours = Location::where('name', 'like', $area)->first()
-                ->tours()->latest()->paginate(10);
+                ->tours()->where('display', 1)->latest()->paginate(10);
         }
 
         // lấy list theo tag (hot, new,...)
         if (isset($tag)) {
             $tours = Tag::where('name', 'like', $tag)->first()
-                ->tours()->latest()->paginate(10);
+                ->tours()->where('display', 1)->latest()->paginate(10);
             $title = [
                 'slider' => 'Tag: ' . $tag,
                 'title' =>  __('Tìm kiếm Tag'),
@@ -129,7 +135,10 @@ class BaseController extends Controller
 
     public function search(Request $request)
     {
-        $tours = Tour::where('name', 'like', '%' . $request->keyword . '%')->orderBy('name')->paginate(10);
+        $tours = Tour::where([
+            ['name', 'like', '%' . $request->keyword . '%'],
+            ['display', 1],
+        ])->orderBy('name')->paginate(10);
         $title = [
             'slider' => __('Kết quả tìm kiếm'),
             'title' => __('Kết quả tìm kiếm'),
@@ -154,7 +163,7 @@ class BaseController extends Controller
      */
     public function allTour()
     {
-        $tours = Tour::latest()->paginate(10);
+        $tours = Tour::latest()->where('display', 1)->paginate(10);
         $title = [
             'slider' => __('Toàn bộ tour'),
             'title' =>  __('Tour'),
@@ -169,7 +178,10 @@ class BaseController extends Controller
     public function domestic()
     {
         $tours = Tour::select('tours.id', 'tours.name', 'tours.image_path', 'tours.description', 'tours.other_day', 'tours.adult_price', 'tours.destination', 'tours.slot')
-            ->join('areas', 'tours.area_id', '=', 'areas.id')->where('areas.domestic', 1)->paginate(10);
+            ->join('areas', 'tours.area_id', '=', 'areas.id')->where([
+                ['areas.domestic', 1],
+                ['display', 1],
+            ])->paginate(10);
         $title = [
             'title' => 'Tour trong nước',
             'slider' => 'Tour trong nước',
@@ -185,7 +197,10 @@ class BaseController extends Controller
     public function foreign()
     {
         $tours = Tour::select('tours.id', 'tours.name', 'tours.image_path', 'tours.description', 'tours.other_day', 'tours.adult_price', 'tours.destination', 'tours.slot')
-            ->join('areas', 'tours.area_id', '=', 'areas.id')->where('areas.domestic', 0)->paginate(10);
+            ->join('areas', 'tours.area_id', '=', 'areas.id')->where([
+                ['areas.domestic', 0],
+                ['display', 1],
+            ])->paginate(10);
         $title = [
             'title' => 'Tour nước ngoài',
             'slider' => 'Tour nước ngoài',

@@ -99,12 +99,14 @@
 
             {{-- da login --}}
             @if (auth('user')->check())
+            @php
+            $user = auth('user')->user();
+            @endphp
             <div class="account-logined">
                 <div class="account-logined-action">
                     <span class="account-name">
-                        <img class="account-img__other"
-                            src=" https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg "
-                            alt="">
+                        <img class="account-img__other" src="{{ isset($user->avatar_image_path) ? asset($user->avatar_image_path) : (isset($user->profile_photo_path) ? asset($user->profile_photo_path) : 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg'
+    ) }}" alt="">
                         <span class="account-name-user">{{ auth('user')->user()->name}}</span>
                         <i class="fas fa-sort-down"></i>
                     </span>

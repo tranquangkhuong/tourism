@@ -25,31 +25,32 @@ class LoginWithSocialNetworkController extends Controller
     {
         try {
             $user = Socialite::driver($provider)->user();
+
+            $providerIdField = $provider . '_id';
+            // ->orWhere('email', $user->getEmail())
+            $findUser = User::where($providerIdField, $user->id)->first();
+            // dd($findUser, $providerIdField);
+            if (isset($findUser)) {
+                Auth::guard('user')->login($findUser);
+                toast(__('Welcome back.'), 'info')->position('top');
+
+                return redirect()->intended('/');
+            } else {
+                $newUser = User::create([
+                    $providerIdField => $user->getId(),
+                    'name' => $user->getName(),
+                    'email' => $user->getEmail(),
+                    'email_verified_at' => now(),
+                    'profile_photo_path' =>  $user->getAvatar(),
+                    'password' => encrypt('123456'),
+                ]);
+                Auth::guard('user')->login($newUser);
+                toast(__('Welcome to website, :Name !', ['name' => $user->getName()]), 'success')->position('top');
+
+                return redirect()->intended('/');
+            }
         } catch (\Exception $e) {
             toast(__('Login failed.'), 'error')->position('top');
-            return redirect()->intended('/login');
-        }
-
-        $providerIdField = $provider . '_id';
-        // ->orWhere('email', $user->getEmail())
-        $findUser = User::where($providerIdField, $user->id)->first();
-        if ($findUser) {
-            Auth::guard('user')->login($findUser);
-            toast(__('Welcome back.'), 'info')->position('top');
-
-            return redirect()->intended('/');
-        } else {
-            $newUser = User::create([
-                $providerIdField => $user->getId(),
-                'name' => $user->getName(),
-                'email' => $user->getEmail(),
-                'email_verified_at' => now(),
-                'profile_photo_path' => $user->getAvatar(),
-                'password' => encrypt('tour12345'),
-            ]);
-            Auth::guard('user')->login($newUser);
-            toast(__('Welcome to website, :Name !', ['name' => $user->getName()]), 'success')->position('top');
-
             return redirect()->intended('/');
         }
     }
